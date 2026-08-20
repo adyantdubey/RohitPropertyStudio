@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -16,10 +17,16 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: CheckoutPageProps): Promise<Metadata> {
   const { slug } = await params;
   const product = getProductBySlug(slug);
-  if (!product) return { title: "Checkout" };
+  if (!product) {
+    return {
+      title: "Checkout",
+      robots: { index: false, follow: false },
+    };
+  }
   return {
     title: `Checkout — ${product.title}`,
-    description: `Review ${product.title} and continue to secure payment.`,
+    description: `Review the prototype checkout experience for ${product.title}. No payment is collected.`,
+    robots: { index: false, follow: false },
     openGraph: { title: `Checkout — ${product.title}`, description: product.tagline, images: [] },
     twitter: { card: "summary", title: `Checkout — ${product.title}`, description: product.tagline, images: [] },
   };
@@ -31,22 +38,50 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
   if (!product) notFound();
 
   return (
-    <main id="main-content" className="checkout-page">
+    <main id="main-content" className="checkout-page cin-checkout-page">
+      <h1 className="sr-only">Checkout preview for {product.title}</h1>
       <div className="checkout-topbar">
         <Link href={`/courses/${product.slug}`}><ArrowLeft aria-hidden="true" size={16} /> Back to product</Link>
-        <span>SECURE CHECKOUT / PROTOTYPE</span>
+        <span>CHECKOUT EXPERIENCE / PROTOTYPE</span>
       </div>
-      <div className="checkout-intro">
-        <p className="eyebrow">REVIEW / CONFIRM / CONTINUE</p>
-        <h2>Complete your <em>access.</em></h2>
-        <p>Review the product, buyer details, price, access terms, and policy before continuing.</p>
-      </div>
+      <section
+        aria-labelledby="checkout-intro-title"
+        className="checkout-intro cin-checkout-intro"
+      >
+        <div className="cin-checkout-intro__copy">
+          <p className="eyebrow">REVIEW / UNDERSTAND / PREVIEW</p>
+          <h2 id="checkout-intro-title">See the path to <em>access.</em></h2>
+          <p>
+            Review the proposed buyer details, price, delivery, access terms,
+            and policies. This prototype does not collect payment or create
+            access.
+          </p>
+        </div>
+        <figure className="cin-checkout-intro__media">
+          <Image
+            alt="Quiet architectural interior with strong natural light"
+            height={1200}
+            priority
+            sizes="(max-width: 860px) 100vw, 48vw"
+            src="/media/interior-soft.jpg"
+            width={1800}
+          />
+          <figcaption>
+            <span>CHECKOUT / PROTOTYPE</span>
+            <strong>Calm enough to review every detail.</strong>
+          </figcaption>
+        </figure>
+      </section>
       <CheckoutPanel
         product={{
           slug: product.slug,
+          kind: product.kind,
           title: product.title,
+          shortTitle: product.shortTitle,
           format: product.format,
           access: product.access,
+          delivery: product.delivery,
+          disclaimer: product.disclaimer,
           price: product.price.formatted,
         }}
       />

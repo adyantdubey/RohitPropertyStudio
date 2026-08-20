@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowDown, ArrowUpRight, Check, ShieldCheck } from "lucide-react";
+import { CinematicMedia } from "../../components/CinematicMedia";
 import { CourseCover } from "../../components/CourseCover";
-import { SectionHeading } from "../../components/SectionHeading";
-import { getProductBySlug, products } from "../../lib/content";
+import { getProductBySlug, products, type ProductKind } from "../../lib/content";
 
 type ProductPageProps = {
   params: Promise<{ slug: string }>;
@@ -15,6 +15,46 @@ const coverVariant = {
   pdf: "field",
   toolkit: "room",
 } as const;
+
+const productMedia: Record<
+  ProductKind,
+  {
+    poster: string;
+    videoSrc?: string;
+    alt: string;
+    width: number;
+    height: number;
+    objectPosition?: string;
+    caption: string;
+  }
+> = {
+  course: {
+    poster: "/media/interior-daylight.jpg",
+    videoSrc: "/media/interior-walkthrough.mp4",
+    alt: "A composed residential interior in warm daylight",
+    width: 1800,
+    height: 2700,
+    objectPosition: "50% 58%",
+    caption: "Temporary editorial stock media. It is not a Rohit project or listing.",
+  },
+  pdf: {
+    poster: "/media/blueprint-hands.jpg",
+    videoSrc: "/media/blueprint-process.mp4",
+    alt: "Hands reviewing an architectural drawing at a work table",
+    width: 2048,
+    height: 3072,
+    objectPosition: "50% 50%",
+    caption: "Temporary editorial stock media. The plans are illustrative only.",
+  },
+  toolkit: {
+    poster: "/media/facade-detail.jpg",
+    alt: "Geometric facade detail in warm afternoon light",
+    width: 1800,
+    height: 1170,
+    objectPosition: "54% 50%",
+    caption: "Temporary editorial stock media. It does not depict a Rohit project.",
+  },
+};
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -47,116 +87,174 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const product = getProductBySlug(slug);
   if (!product) notFound();
 
+  const media = productMedia[product.kind];
+
   return (
-    <main id="main-content" className="product-page">
-      <section className={`product-hero product-hero-${product.kind}`}>
-        <div className="product-hero-grid" aria-hidden="true" />
-        <div className="product-hero-copy">
-          <p className="eyebrow">{product.eyebrow} / PREVIEW EDITION</p>
-          <h1>{product.title}</h1>
-          {product.subtitle ? <h2>{product.subtitle}</h2> : null}
-          <p>{product.tagline}</p>
-          <div className="product-hero-meta">
-            <span><small>FORMAT</small>{product.format}</span>
-            <span><small>LEVEL</small>{product.level}</span>
-            <span><small>ACCESS</small>{product.access.replace("Placeholder: ", "")}</span>
+    <main id="main-content" className={`product-editorial product-editorial--${product.kind}`}>
+      <section className="product-editorial-hero">
+        <div className="product-editorial-hero__copy">
+          <div className="product-editorial-hero__index">
+            <span>RESOURCE / {product.kind.toUpperCase()}</span>
+            <span>PREVIEW EDITION</span>
           </div>
-        </div>
 
-        <div className="product-cover-stage">
-          <div className="product-cover-pages" aria-hidden="true"><span /><span /></div>
-          <CourseCover
-            variant={coverVariant[product.kind]}
-            title={product.shortTitle}
-            className="product-main-cover"
-          />
-          <span className="cover-measure">210 × 297 / DIGITAL EDITION</span>
-        </div>
-
-        <div className="product-buy-row">
-          <div>
-            <span>PREVIEW PRICE</span>
-            <strong>{product.price.formatted}</strong>
+          <div className="product-editorial-hero__title">
+            <p className="cin-kicker">{product.eyebrow}</p>
+            <h1>{product.title}</h1>
+            {product.subtitle ? <p className="product-editorial-hero__subtitle">{product.subtitle}</p> : null}
+            <p className="product-editorial-hero__tagline">{product.tagline}</p>
           </div>
-          <Link className="button button-light" href={`/checkout/${product.slug}`}>
-            {product.primaryCta} <ArrowUpRight aria-hidden="true" size={18} />
-          </Link>
-          <a className="product-scroll-link" href="#inside">
-            See what’s inside <ArrowDown aria-hidden="true" size={15} />
+
+          <div className="product-editorial-hero__action">
+            <Link className="cin-button cin-button-light" href={`/checkout/${product.slug}`}>
+              {product.primaryCta} <ArrowUpRight aria-hidden="true" size={17} />
+            </Link>
+            <p>
+              <span>Preview price</span>
+              <strong>{product.price.formatted}</strong>
+            </p>
+          </div>
+
+          <a className="product-editorial-hero__scroll" href="#purpose">
+            Explore the resource <ArrowDown aria-hidden="true" size={15} />
           </a>
         </div>
+
+        <figure className="product-editorial-hero__media">
+          <CinematicMedia
+            poster={media.poster}
+            videoSrc={media.videoSrc}
+            alt={media.alt}
+            width={media.width}
+            height={media.height}
+            objectPosition={media.objectPosition}
+            priority
+            parallax={8}
+            controlLabel={`${product.title} editorial video`}
+          />
+          <div className="product-editorial-hero__cover">
+            <CourseCover
+              variant={coverVariant[product.kind]}
+              title={product.shortTitle}
+              className="product-editorial-cover"
+            />
+          </div>
+          <figcaption>{media.caption}</figcaption>
+        </figure>
+
+        <div className="product-editorial-hero__facts" aria-label="Resource details">
+          <span><small>FORMAT</small>{product.format}</span>
+          <span><small>LEVEL</small>{product.level}</span>
+          <span><small>ACCESS</small>{product.access.replace("Placeholder: ", "")}</span>
+        </div>
       </section>
 
-      <section className="product-positioning section-pad">
-        <div>
-          <p className="eyebrow">THE PURPOSE</p>
+      <section className="product-editorial-purpose" id="purpose">
+        <div className="product-editorial-purpose__lead">
+          <p className="cin-kicker">THE ROLE / {product.collectionRole}</p>
           <h2>{product.tagline}</h2>
         </div>
-        <div>
+        <div className="product-editorial-purpose__body">
           <p>{product.description}</p>
-          <p className="product-disclaimer"><ShieldCheck aria-hidden="true" /> {product.disclaimer}</p>
+          <dl>
+            <div>
+              <dt>Best when</dt>
+              <dd>{product.bestWhen}</dd>
+            </div>
+            <div>
+              <dt>You leave with</dt>
+              <dd>{product.tangibleOutcome}</dd>
+            </div>
+          </dl>
+          <p className="product-editorial-disclaimer">
+            <ShieldCheck aria-hidden="true" size={18} />
+            <span>{product.disclaimer}</span>
+          </p>
         </div>
       </section>
 
-      <section className="product-fit section-pad section-orange">
-        <SectionHeading
-          eyebrow="FIT / BEFORE YOU COMMIT"
-          title={<>Know exactly who this<br /><em>was built for.</em></>}
-        />
-        <div className="fit-grid">
-          <div>
-            <h3>It is designed for</h3>
+      <section className="product-editorial-fit">
+        <header>
+          <p className="cin-kicker">FIT / BEFORE YOU COMMIT</p>
+          <h2>Built for a clear moment.<br /><em>Not every promise.</em></h2>
+        </header>
+        <div className="product-editorial-fit__grid">
+          <article>
+            <span>01 / DESIGNED FOR</span>
             {product.idealFor.map((item) => (
               <p key={item}><Check aria-hidden="true" size={16} />{item}</p>
             ))}
-          </div>
-          <div>
-            <h3>It is not designed for</h3>
+          </article>
+          <article>
+            <span>02 / NOT DESIGNED FOR</span>
             {product.notFor.map((item) => (
-              <p key={item}><span aria-hidden="true">×</span>{item}</p>
+              <p key={item}><i aria-hidden="true">×</i>{item}</p>
             ))}
+          </article>
+        </div>
+      </section>
+
+      <section className="product-editorial-inside" id="inside">
+        <div className="product-editorial-inside__intro">
+          <div>
+            <p className="cin-kicker">THE CONTENT / 001—006</p>
+            <h2>A complete structure,<br /><em>not a content dump.</em></h2>
           </div>
+          <p>Every section moves from framing the question to recording a responsible next step.</p>
+        </div>
+
+        <div className="product-editorial-inside__layout">
+          <figure className="product-editorial-inside__visual">
+            <CinematicMedia
+              poster={product.kind === "toolkit" ? "/media/interior-soft.jpg" : "/media/blueprint-hands.jpg"}
+              alt="Editorial view of the thinking and documentation behind a property decision"
+              width={product.kind === "toolkit" ? 1200 : 2048}
+              height={product.kind === "toolkit" ? 800 : 3072}
+              sizes="(max-width: 900px) 100vw, 40vw"
+              objectPosition="50% 52%"
+              parallax={5}
+              showPauseControl={false}
+            />
+            <figcaption>Editorial stock image / illustrative process</figcaption>
+          </figure>
+
+          <ol className="product-editorial-curriculum">
+            {product.sections.map((section) => (
+              <li key={section.number}>
+                <span>{section.number}</span>
+                <div>
+                  <h3>{section.title}</h3>
+                  <p>{section.description}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      <section className="inside-product section-pad" id="inside">
-        <SectionHeading
-          eyebrow="THE CONTENT / 001—006"
-          title={<>A complete structure,<br /><em>not a content dump.</em></>}
-          body="Each section moves from framing the question to recording a responsible next step."
-        />
-        <div className="curriculum-stack">
-          {product.sections.map((section) => (
-            <article key={section.number}>
-              <span>{section.number}</span>
-              <h3>{section.title}</h3>
-              <p>{section.description}</p>
-              <i aria-hidden="true">↗</i>
-            </article>
-          ))}
+      <section className="product-editorial-includes">
+        <div className="product-editorial-includes__heading">
+          <p className="cin-kicker">YOUR WORKING MATERIAL</p>
+          <h2>What arrives<br /><em>with the resource.</em></h2>
         </div>
-      </section>
-
-      <section className="product-includes section-pad section-ink">
-        <div>
-          <p className="eyebrow eyebrow-light">YOUR WORKING MATERIAL</p>
-          <h2>Everything included,<br /><em>nothing disguised.</em></h2>
-        </div>
-        <div className="includes-grid">
+        <div className="product-editorial-includes__grid">
           {product.includes.map((item, index) => (
-            <div key={item}><span>0{index + 1}</span><p>{item}</p></div>
+            <div key={item}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <p>{item}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="purchase-bar">
+      <section className="product-editorial-purchase">
         <div>
           <small>{product.kind.toUpperCase()} / ROHIT</small>
-          <strong>{product.title}</strong>
+          <h2>{product.title}</h2>
+          <p>{product.price.formatted} <span>preview price</span></p>
         </div>
-        <span>{product.price.formatted} <small>preview</small></span>
-        <Link className="button button-blue" href={`/checkout/${product.slug}`}>
-          Continue to checkout <ArrowUpRight aria-hidden="true" size={17} />
+        <Link className="cin-button cin-button-dark" href={`/checkout/${product.slug}`}>
+          Continue to checkout <ArrowUpRight aria-hidden="true" size={18} />
         </Link>
       </section>
     </main>

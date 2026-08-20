@@ -29,9 +29,9 @@ test("server-renders the finished Rohit home experience", async () => {
 
   const html = await response.text();
   assert.match(html, /Rohit — Real Estate Education for Clearer Decisions/i);
-  assert.match(html, /Property\./i);
-  assert.match(html, /Decoded\./i);
-  assert.match(html, /Explore the learning/i);
+  assert.match(html, /Property,/i);
+  assert.match(html, /read clearly\./i);
+  assert.match(html, /Explore the Decision System/i);
   assert.match(html, /The Property Decision System/i);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|Starter Project/i);
 });

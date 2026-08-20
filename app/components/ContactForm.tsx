@@ -6,7 +6,20 @@ import { useEffect, useRef, useState } from "react";
 
 type FormStatus = "idle" | "submitting" | "success";
 
-export function ContactForm() {
+export type ContactTopic =
+  | "course"
+  | "pdf"
+  | "support"
+  | "story"
+  | "property"
+  | "partnership"
+  | "other";
+
+type ContactFormProps = {
+  defaultTopic?: ContactTopic;
+};
+
+export function ContactForm({ defaultTopic }: ContactFormProps) {
   const [status, setStatus] = useState<FormStatus>("idle");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const successRef = useRef<HTMLDivElement | null>(null);
@@ -43,7 +56,8 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div
-        className="contact-form-success"
+        aria-live="polite"
+        className="contact-form-success cin-contact-form-success"
         ref={successRef}
         role="status"
         tabIndex={-1}
@@ -51,11 +65,11 @@ export function ContactForm() {
         <span className="contact-form-success__icon" aria-hidden="true">
           <CheckCircle2 size={24} strokeWidth={1.8} />
         </span>
-        <p className="contact-form-success__eyebrow">Enquiry prepared</p>
-        <h3>Thank you. Your question is ready for Rohit.</h3>
+        <p className="contact-form-success__eyebrow">Preview complete</p>
+        <h3>Your enquiry flow is ready.</h3>
         <p>
-          This preview keeps the enquiry on this device and does not transmit
-          it. The live delivery service can be connected before launch.
+          No details were transmitted. Once Rohit’s approved contact service is
+          connected, this is where a secure delivery confirmation will appear.
         </p>
         <button
           className="contact-form-success__reset"
@@ -69,14 +83,32 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form
+      aria-busy={status === "submitting"}
+      aria-labelledby="contact-form-title"
+      className="contact-form cin-contact-form"
+      onSubmit={handleSubmit}
+    >
       <div className="contact-form__intro">
         <p className="contact-form__kicker">Start a conversation</p>
-        <h2>Tell Rohit where you are in your property journey.</h2>
+        <h2 id="contact-form-title">
+          Tell Rohit where you are in your property journey.
+        </h2>
         <p>
           Share the question that is slowing you down. The more context you
-          give, the more useful the reply can be.
+          give, the more useful the reply can be. Do not include confidential
+          documents or payment information.
         </p>
+        <dl className="cin-contact-form__facts">
+          <div>
+            <dt>Current state</dt>
+            <dd>Local preview</dd>
+          </div>
+          <div>
+            <dt>Live handoff</dt>
+            <dd>Not connected</dd>
+          </div>
+        </dl>
       </div>
 
       <div className="contact-form__fields">
@@ -86,6 +118,7 @@ export function ContactForm() {
             autoComplete="name"
             id="contact-name"
             name="name"
+            maxLength={100}
             placeholder="e.g. Aarav Mehta"
             required
             type="text"
@@ -98,6 +131,7 @@ export function ContactForm() {
             autoComplete="email"
             id="contact-email"
             name="email"
+            maxLength={254}
             placeholder="you@example.com"
             required
             type="email"
@@ -113,6 +147,7 @@ export function ContactForm() {
             id="contact-phone"
             inputMode="tel"
             name="phone"
+            maxLength={30}
             placeholder="+91 98765 43210"
             type="tel"
           />
@@ -120,12 +155,19 @@ export function ContactForm() {
 
         <div className="contact-field contact-field--half">
           <label htmlFor="contact-topic">What can we help with?</label>
-          <select defaultValue="" id="contact-topic" name="topic" required>
+          <select
+            defaultValue={defaultTopic ?? ""}
+            id="contact-topic"
+            name="topic"
+            required
+          >
             <option disabled value="">
               Select an enquiry type
             </option>
             <option value="course">Choosing the right course</option>
             <option value="pdf">PDF or download support</option>
+            <option value="support">Purchase or access support</option>
+            <option value="story">Share a learner story</option>
             <option value="property">A property-learning question</option>
             <option value="partnership">Speaking or partnership</option>
             <option value="other">Something else</option>
@@ -137,6 +179,7 @@ export function ContactForm() {
           <textarea
             id="contact-message"
             name="message"
+            maxLength={1500}
             placeholder="What are you trying to understand or decide?"
             required
             rows={5}
@@ -146,13 +189,13 @@ export function ContactForm() {
         <label className="contact-consent" htmlFor="contact-consent">
           <input id="contact-consent" name="consent" required type="checkbox" />
           <span>
-            I agree that my details may be used to reply to this enquiry.
+            I understand this prototype does not send or store my details.
           </span>
         </label>
 
         <div className="contact-form__submit-row">
           <p id="contact-response-note">
-            Typical reply window: within two working days.
+            Preview only — preparing this form will not contact Rohit yet.
           </p>
           <button
             aria-describedby="contact-response-note"
@@ -161,7 +204,9 @@ export function ContactForm() {
             type="submit"
           >
             <span>
-              {status === "submitting" ? "Preparing enquiry…" : "Send enquiry"}
+              {status === "submitting"
+                ? "Preparing preview…"
+                : "Prepare enquiry preview"}
             </span>
             <Send aria-hidden="true" size={17} strokeWidth={1.8} />
           </button>
@@ -170,4 +215,3 @@ export function ContactForm() {
     </form>
   );
 }
-

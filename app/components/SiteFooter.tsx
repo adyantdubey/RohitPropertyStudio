@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { TransitionLink } from "./RouteCurtain";
 
 export function SiteFooter() {
   return (
@@ -11,53 +11,54 @@ export function SiteFooter() {
       </div>
 
       <div className="footer-lead">
-        <p className="eyebrow eyebrow-light">THE NEXT MOVE</p>
+        <p className="eyebrow eyebrow-light">WHEN YOU ARE READY</p>
         <h2>
-          Build the way
-          <em>you decide.</em>
+          Learn the process.
+          <em>Keep the judgement.</em>
         </h2>
         <div className="footer-actions">
-          <Link className="button button-light" href="/courses">
+          <TransitionLink className="button button-light" href="/courses">
             Explore courses <ArrowUpRight aria-hidden="true" size={17} />
-          </Link>
-          <Link className="text-link text-link-light" href="/contact">
+          </TransitionLink>
+          <TransitionLink className="text-link text-link-light" href="/contact">
             Ask a question <ArrowUpRight aria-hidden="true" size={15} />
-          </Link>
+          </TransitionLink>
         </div>
       </div>
 
       <div className="footer-grid">
         <div>
-          <Link className="footer-brand" href="/">
+          <TransitionLink className="footer-brand" href="/">
             <span>R</span>
             ROHIT
-          </Link>
+          </TransitionLink>
           <p>
             Clear frameworks, practical tools, and focused learning for more
             considered property decisions.
           </p>
         </div>
 
-        <div className="footer-links">
-          <strong>Explore</strong>
-          <Link href="/about">About</Link>
-          <Link href="/courses">Courses</Link>
-          <Link href="/results">Results</Link>
-          <Link href="/insights">Insights</Link>
-        </div>
+        <nav className="footer-links" aria-labelledby="footer-explore-title">
+          <strong id="footer-explore-title">Explore</strong>
+          <TransitionLink href="/about">About</TransitionLink>
+          <TransitionLink href="/courses">Courses</TransitionLink>
+          <TransitionLink href="/results">Results</TransitionLink>
+          <TransitionLink href="/insights">Insights</TransitionLink>
+          <TransitionLink href="/contact">Contact</TransitionLink>
+        </nav>
 
-        <div className="footer-links">
-          <strong>Information</strong>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
-          <Link href="/refund">Refund policy</Link>
-          <Link href="/disclaimer">Disclaimer</Link>
-        </div>
+        <nav className="footer-links" aria-labelledby="footer-information-title">
+          <strong id="footer-information-title">Information</strong>
+          <TransitionLink href="/privacy">Privacy</TransitionLink>
+          <TransitionLink href="/terms">Terms</TransitionLink>
+          <TransitionLink href="/refund">Refund policy</TransitionLink>
+          <TransitionLink href="/disclaimer">Disclaimer</TransitionLink>
+        </nav>
 
         <div className="footer-coordinate">
-          <span>28.6139° N</span>
-          <span>77.2090° E</span>
-          <small>INDIA / WORLDWIDE LEARNING</small>
+          <span>FRAME / VERIFY</span>
+          <span>COMPARE / DECIDE</span>
+          <small>INDIA / DIGITAL LEARNING</small>
         </div>
       </div>
 

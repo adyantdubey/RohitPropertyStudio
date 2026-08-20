@@ -3,7 +3,9 @@ import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./site.css";
+import "./cinematic.css";
 import { MotionProvider } from "./components/MotionProvider";
+import { RouteCurtain } from "./components/RouteCurtain";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 
@@ -22,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const socialImage = `${origin}/og.png`;
+  const socialImage = `${origin}/og-cinematic.png`;
 
   return {
     title: {
@@ -34,14 +36,14 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(origin),
     openGraph: {
       type: "website",
-      title: "Rohit — Property. Decoded.",
+      title: "Rohit — Property, Read Clearly.",
       description:
         "Real-estate education for people who would rather understand the decision than follow the noise.",
-      images: [{ url: socialImage, width: 1680, height: 941, alt: "Rohit — Property. Decoded." }],
+      images: [{ url: socialImage, width: 1680, height: 941, alt: "Rohit — Property, Read Clearly." }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Rohit — Property. Decoded.",
+      title: "Rohit — Property, Read Clearly.",
       description:
         "Real-estate education for people who would rather understand the decision than follow the noise.",
       images: [socialImage],
@@ -60,9 +62,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <MotionProvider>
-          <SiteHeader />
-          {children}
-          <SiteFooter />
+          <RouteCurtain>
+            <SiteHeader />
+            {children}
+            <SiteFooter />
+          </RouteCurtain>
         </MotionProvider>
       </body>
     </html>

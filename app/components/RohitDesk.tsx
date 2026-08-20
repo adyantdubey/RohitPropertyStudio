@@ -1,8 +1,9 @@
 "use client";
 
-import { ArrowUpRight, MessageCircle, Send, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, BookOpen, MessageCircle, Send } from "lucide-react";
 import type { FormEvent } from "react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type DeskReply = {
   question: string;
@@ -11,19 +12,19 @@ type DeskReply = {
 
 const suggestedReplies: DeskReply[] = [
   {
-    question: "I’m new to real estate. Where should I begin?",
+    question: "Which resource suits a first-time learner?",
     answer:
-      "Start with the Field Notes guide. It establishes the essential vocabulary, a due-diligence checklist, and a simple way to compare opportunities before you move into the deeper course.",
+      "Choose The Property Decision System for a guided, end-to-end foundation. If you want a concise companion for visits and due diligence, begin with Before You Buy.",
   },
   {
-    question: "What is the difference between the course and the PDF?",
+    question: "How do the field guide and toolkit differ?",
     answer:
-      "The PDF is a concise field reference you can revisit while researching. The course adds guided lessons, worked examples, and a complete decision process for people who want more structure.",
+      "Before You Buy organises questions and checks around a property review. The Deal Room is for people already comparing options who need reusable worksheets, registers, and a decision record.",
   },
   {
-    question: "Does Rohit answer personal investment questions?",
+    question: "Can this guide assess a specific property?",
     answer:
-      "Rohit can clarify the educational material and his evaluation framework, but the site does not provide personalised investment, legal, tax, or financial advice.",
+      "No. The guide can explain Rohit’s learning resources and their boundaries, but it cannot assess a property or provide personalised investment, legal, tax, valuation, or financial advice.",
   },
 ];
 
@@ -32,6 +33,16 @@ export function RohitDesk() {
   const [customQuestion, setCustomQuestion] = useState("");
   const [isCustomFallback, setIsCustomFallback] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
+  const requestRef = useRef<AbortController | null>(null);
+
+  useEffect(
+    () => () => {
+      const activeRequest = requestRef.current;
+      requestRef.current = null;
+      activeRequest?.abort();
+    },
+    [],
+  );
 
   function selectSuggestion(item: DeskReply) {
     setReply(item);
@@ -44,56 +55,67 @@ export function RohitDesk() {
     const question = customQuestion.trim();
     if (!question) return;
 
+    requestRef.current?.abort();
+    const controller = new AbortController();
+    requestRef.current = controller;
     setIsThinking(true);
     try {
       const response = await fetch("/api/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question }),
+        signal: controller.signal,
       });
       const data = (await response.json()) as { answer?: string };
       if (!response.ok || !data.answer) throw new Error("Mistral unavailable");
       setReply({ question, answer: data.answer });
       setIsCustomFallback(false);
-    } catch {
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
       setReply({
         question,
         answer:
-          "Mistral is wired into this experience but its private API key is not connected in the preview. Send this question to Rohit through the contact form and he can reply with the right context.",
+          "The live catalogue assistant is not connected in this preview, so it will not invent an answer. Send the question through the enquiry form when live contact is enabled, and Rohit can respond with the right context.",
       });
       setIsCustomFallback(true);
     } finally {
-      setIsThinking(false);
+      if (requestRef.current === controller) {
+        requestRef.current = null;
+        setIsThinking(false);
+      }
     }
   }
 
   return (
-    <section className="rohit-desk" aria-labelledby="rohit-desk-title">
+    <section
+      className="rohit-desk cin-resource-concierge"
+      aria-labelledby="rohit-desk-title"
+    >
       <div className="rohit-desk__topline">
         <div className="rohit-desk__identity">
           <span className="rohit-desk__mark" aria-hidden="true">
             <MessageCircle size={18} strokeWidth={1.8} />
           </span>
           <div>
-            <p className="rohit-desk__label">Rohit’s desk</p>
+            <p className="rohit-desk__label">Resource guide</p>
             <p className="rohit-desk__availability">
-              <span aria-hidden="true" /> Guided answers
+              <span aria-hidden="true" /> Catalogue-backed answers
             </p>
           </div>
         </div>
         <span className="rohit-desk__demo-label">
-          <Sparkles aria-hidden="true" size={14} /> AI-ready demo
+          <BookOpen aria-hidden="true" size={14} /> Optional AI
         </span>
       </div>
 
       <div className="rohit-desk__body">
         <div className="rohit-desk__intro">
-          <p className="rohit-desk__eyebrow">A clear place to start</p>
-          <h2 id="rohit-desk-title">Ask before you choose.</h2>
+          <p className="rohit-desk__eyebrow">A quiet place to compare</p>
+          <h2 id="rohit-desk-title">Find the useful starting point.</h2>
           <p>
-            Explore curated answers to common questions. This preview is
-            transparent by design: it is ready for an AI knowledge layer, but
-            does not pretend to generate live advice.
+            Start with a curated catalogue answer or ask a short question. Any
+            generated response is limited to Rohit’s resource information and
+            never replaces professional advice.
           </p>
         </div>
 
@@ -112,43 +134,53 @@ export function RohitDesk() {
           ))}
         </div>
 
-        <div className="rohit-desk__conversation" aria-live="polite">
+        <div
+          aria-busy={isThinking}
+          aria-live="polite"
+          className="rohit-desk__conversation"
+        >
           <p className="rohit-desk__question">“{reply.question}”</p>
           <div className="rohit-desk__reply">
             <span className="rohit-desk__reply-mark" aria-hidden="true">
-              R
+              RG
             </span>
             <div>
               <p>{reply.answer}</p>
               {isCustomFallback ? (
-                <a className="rohit-desk__contact-link" href="/contact">
-                  Ask Rohit directly
+                <Link className="rohit-desk__contact-link" href="#contact-form">
+                  Continue to the enquiry preview
                   <ArrowUpRight aria-hidden="true" size={16} />
-                </a>
+                </Link>
               ) : null}
             </div>
           </div>
         </div>
 
         <form className="rohit-desk__composer" onSubmit={submitQuestion}>
-          <label htmlFor="rohit-desk-question">Your own question</label>
+          <label htmlFor="rohit-desk-question">Ask about the resources</label>
           <div className="rohit-desk__composer-control">
             <input
               autoComplete="off"
               id="rohit-desk-question"
+              aria-describedby="rohit-desk-note"
+              maxLength={500}
               onChange={(event) => setCustomQuestion(event.target.value)}
-              placeholder="Ask about a guide, course, or learning path…"
+              placeholder="Ask about format, access, fit, or what is included…"
               type="text"
               value={customQuestion}
             />
             <button
-              aria-label="Submit question"
+              aria-label={isThinking ? "Checking the catalogue" : "Ask the resource guide"}
               disabled={!customQuestion.trim() || isThinking}
               type="submit"
             >
-              {isThinking ? <Sparkles aria-hidden="true" size={17} /> : <Send aria-hidden="true" size={17} strokeWidth={1.8} />}
+              <Send aria-hidden="true" size={17} strokeWidth={1.8} />
             </button>
           </div>
+          <span className="sr-only" id="rohit-desk-note">
+            Questions are limited to 500 characters. The assistant answers only
+            from the resource catalogue.
+          </span>
         </form>
       </div>
     </section>
