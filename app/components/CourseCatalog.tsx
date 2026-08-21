@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, FileText, PanelsTopLeft } from "lucide-react";
+import { ArrowUpRight, FileText, PanelsTopLeft, Presentation } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
   products,
@@ -14,41 +14,63 @@ export type CatalogProduct = Product;
 
 type CatalogFilter = "all" | ProductKind;
 
+type ReleaseCopy = {
+  status: "Prepared / launch setup pending" | "Coming soon" | "In development";
+  summary: string;
+  availability: string;
+  action: string;
+  href: string;
+};
+
 const kindLabels: Record<ProductKind, string> = {
-  course: "Course",
+  deck: "Training deck",
   pdf: "Field guide",
   toolkit: "Toolkit",
 };
 
-const kindActions: Record<ProductKind, string> = {
-  course: "See the course",
-  pdf: "Open the field guide",
-  toolkit: "Explore the toolkit",
+const releaseCopy: Record<string, ReleaseCopy> = {
+  "before-you-buy-field-guide": {
+    status: "Coming soon",
+    summary:
+      "Rohitt is developing the first edition as a practical, general-education companion for the questions that deserve time before a property commitment.",
+    availability:
+      "There is no finished PDF or purchase gateway today. Release details will be shared only after the guide is complete and reviewed.",
+    action: "Join the first-access list",
+    href: "/contact?interest=field-guide#contact-form",
+  },
+  "basics-of-real-estate-training-deck": {
+    status: "Prepared / launch setup pending",
+    summary:
+      "A real 49-slide PowerPoint resource carrying 100 Yards branding, covering real-estate foundations, property formats, construction, approvals, areas, charges, UDS, and payment-plan examples.",
+    availability:
+      "The training file exists. Pricing, buyer licence, payment, protected delivery, support, and refund terms are still being configured.",
+    action: "View the prepared resource",
+    href: "/courses/basics-of-real-estate-training-deck",
+  },
+  "deal-room-toolkit": {
+    status: "In development",
+    summary:
+      "A supporting review toolkit is being explored. Its contents, format, licence, and release date have not been finalised.",
+    availability: "No toolkit or download is available today.",
+    action: "View development status",
+    href: "/courses/deal-room-toolkit",
+  },
 };
 
 const mediaByKind = {
-  course: {
-    src: "/media/blueprint-hands.jpg",
-    alt: "Hands reviewing architectural drawings on a working desk",
-    caption:
-      "Editorial stock image—not a course screenshot, learner artifact, or Rohit project.",
+  deck: {
+    src: "/media/real-estate-training-deck-cover.png",
+    alt: "Cover of the 100 Yards Basics of Real Estate training deck",
   },
   pdf: {
     src: "/media/interior-daylight.jpg",
     alt: "A sunlit residential interior with contrasting materials and plants",
-    caption:
-      "Editorial stock image—not a guide preview, Rohit listing, or learner property.",
   },
   toolkit: {
     src: "/media/facade-detail.jpg",
     alt: "Close editorial view of a geometric building facade in daylight",
-    caption:
-      "Editorial stock image—not a toolkit screen, Rohit project, or property recommendation.",
   },
-} as const satisfies Record<
-  ProductKind,
-  { src: string; alt: string; caption: string }
->;
+} as const satisfies Record<ProductKind, { src: string; alt: string }>;
 
 type CourseCatalogProps = {
   items?: readonly CatalogProduct[];
@@ -57,54 +79,65 @@ type CourseCatalogProps = {
 
 export function CourseCatalog({
   items = products,
-  heading = "Choose the instrument that fits the work in front of you.",
+  heading = "One prepared resource. Two ideas still taking shape.",
 }: CourseCatalogProps) {
   const [activeFilter, setActiveFilter] = useState<CatalogFilter>("all");
+  const orderedItems = useMemo(
+    () =>
+      [...items].sort((a, b) => {
+        const aRank = a.slug === "basics-of-real-estate-training-deck" ? 0 : 1;
+        const bRank = b.slug === "basics-of-real-estate-training-deck" ? 0 : 1;
+        return aRank - bRank;
+      }),
+    [items],
+  );
   const filters = useMemo(
     () => [
       "all" as const,
-      ...Array.from(new Set(items.map((item) => item.kind))),
+      ...Array.from(new Set(orderedItems.map((item) => item.kind))),
     ],
-    [items],
+    [orderedItems],
   );
   const visibleProducts = useMemo(
     () =>
       activeFilter === "all"
-        ? items
-        : items.filter((item) => item.kind === activeFilter),
-    [activeFilter, items],
+        ? orderedItems
+        : orderedItems.filter((item) => item.kind === activeFilter),
+    [activeFilter, orderedItems],
   );
   const isSingleResult = visibleProducts.length === 1;
 
   return (
     <section
-      className="course-editorial-catalog"
+      className="course-editorial-catalog authority-academy-catalog"
       aria-labelledby="course-catalog-title"
     >
-      <header className="course-editorial-catalog-header">
+      <header className="course-editorial-catalog-header authority-academy-catalog__header">
         <div>
-          <p className="course-editorial-catalog-eyebrow">THE LEARNING COLLECTION / 001—003</p>
+          <p className="course-editorial-catalog-eyebrow">
+            ACADEMY ROADMAP / CURRENT STATUS
+          </p>
           <h2 id="course-catalog-title">{heading}</h2>
         </div>
         <div className="course-editorial-catalog-intro">
           <p className="course-editorial-catalog-summary">
-            Learn the complete decision structure, carry a focused question set
-            into a review, or organise active comparisons in one working record.
-            Each resource stands alone.
+            The 49-slide Basics of Real Estate deck is a prepared training
+            resource. Before You Buy and The Deal Room remain future concepts.
+            Purchase and protected download are not open yet.
           </p>
           <p className="course-editorial-stock-disclosure">
-            Collection photography is temporary editorial stock. It is not a
-            product preview, learner result, Rohit project, listing, or
-            recommendation.
+            The featured cover comes from the uploaded 100 Yards training deck.
+            Remaining photography is licensed editorial stock, not product
+            content, a Rohitt listing, or evidence of a client outcome.
           </p>
         </div>
       </header>
 
-      <div className="course-editorial-catalog-toolbar">
+      <div className="course-editorial-catalog-toolbar authority-academy-catalog__toolbar">
         <div
           className="course-editorial-catalog-filters"
           role="group"
-          aria-label="Filter learning resources by format"
+          aria-label="Filter planned Academy resources by format"
         >
           {filters.map((filter) => (
             <button
@@ -114,7 +147,7 @@ export function CourseCatalog({
               onClick={() => setActiveFilter(filter)}
               type="button"
             >
-              {filter === "all" ? "All resources" : kindLabels[filter]}
+              {filter === "all" ? "All planned resources" : kindLabels[filter]}
             </button>
           ))}
         </div>
@@ -124,26 +157,28 @@ export function CourseCatalog({
       </div>
 
       <div
-        className={`course-editorial-card-grid${isSingleResult ? " course-editorial-card-grid--single" : ""}`}
+        className={`course-editorial-card-grid authority-academy-catalog__grid${isSingleResult ? " course-editorial-card-grid--single" : ""}`}
       >
         {visibleProducts.map((product) => {
           const media = mediaByKind[product.kind];
-          const collectionIndex = items.findIndex((item) => item.slug === product.slug) + 1;
+          const release = releaseCopy[product.slug];
+          const collectionIndex =
+            orderedItems.findIndex((item) => item.slug === product.slug) + 1;
           const ProductIcon =
-            product.kind === "course"
-              ? BookOpen
+            product.kind === "deck"
+              ? Presentation
               : product.kind === "pdf"
                 ? FileText
                 : PanelsTopLeft;
 
           return (
             <article
-              className={`course-editorial-card${product.featured ? " course-editorial-card--featured" : ""}${isSingleResult ? " course-editorial-card--single" : ""}`}
+              className={`course-editorial-card authority-academy-card${product.slug === "basics-of-real-estate-training-deck" ? " course-editorial-card--featured authority-academy-card--flagship" : ""}${isSingleResult ? " course-editorial-card--single" : ""}`}
               key={product.slug}
             >
               <figure className="course-editorial-card-media">
                 <Link
-                  aria-label={`Explore ${product.title}`}
+                  aria-label={`View the status of ${product.title}`}
                   className="course-editorial-card-image-link"
                   href={`/courses/${product.slug}`}
                 >
@@ -161,13 +196,17 @@ export function CourseCatalog({
                 <span className="course-editorial-card-icon" aria-hidden="true">
                   <ProductIcon size={28} strokeWidth={1.25} />
                 </span>
-                <figcaption>{media.caption}</figcaption>
+                <figcaption>
+                  {product.kind === "deck"
+                    ? "Cover preview from the uploaded 100 Yards training deck."
+                    : "Editorial stock image. Not a product preview or property recommendation."}
+                </figcaption>
               </figure>
 
               <div className="course-editorial-card-content">
                 <div className="course-editorial-card-meta">
-                  <span>{product.collectionRole}</span>
-                  <span>{product.level}</span>
+                  <span>{release.status}</span>
+                  <span>{kindLabels[product.kind]}</span>
                 </div>
 
                 <h3>
@@ -176,31 +215,15 @@ export function CourseCatalog({
                 {product.subtitle ? (
                   <p className="course-editorial-card-subtitle">{product.subtitle}</p>
                 ) : null}
-                <p className="course-editorial-card-description">{product.description}</p>
+                <p className="course-editorial-card-description">{release.summary}</p>
 
-                <div className="course-editorial-card-use">
-                  <small>BEST WHEN</small>
-                  <p>{product.bestWhen}</p>
+                <div className="course-editorial-card-use authority-academy-card__availability">
+                  <small>CURRENT STATUS</small>
+                  <p>{release.availability}</p>
                 </div>
 
-                <div className="course-editorial-card-output">
-                  <small>WORKING OUTPUT</small>
-                  <p>{product.tangibleOutcome}</p>
-                </div>
-
-                <dl className="course-editorial-card-specs">
-                  <div>
-                    <dt>Format</dt>
-                    <dd>{product.format}</dd>
-                  </div>
-                  <div>
-                    <dt>Placeholder price</dt>
-                    <dd><strong>{product.price.formatted}</strong></dd>
-                  </div>
-                </dl>
-
-                <Link className="course-editorial-card-link" href={`/courses/${product.slug}`}>
-                  {kindActions[product.kind]}
+                <Link className="course-editorial-card-link" href={release.href}>
+                  {release.action}
                   <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.8} />
                 </Link>
               </div>

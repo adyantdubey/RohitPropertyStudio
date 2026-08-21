@@ -14,7 +14,9 @@ import {
   type ReactNode,
 } from "react";
 import { gsap } from "gsap";
+import { brand } from "../lib/brand";
 import { useMotion } from "./MotionProvider";
+import { RksMark } from "./RksMark";
 
 type NavigateOptions = {
   scroll: boolean;
@@ -37,7 +39,7 @@ export type RouteCurtainProps = {
  */
 export function RouteCurtain({
   children,
-  label = "ROHIT / PROPERTY, READ CLEARLY",
+  label = `${brand.name.toUpperCase()} / ${brand.line.toUpperCase()}`,
 }: RouteCurtainProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -149,9 +151,9 @@ export function RouteCurtain({
         0,
       )
       .to(line, { scaleX: 1, duration: 0.62, ease: "power3.inOut" }, 0.1)
-      .to(curtain, { yPercent: -100, duration: 0.55, ease: "power4.inOut" }, 0.92);
+      .to(curtain, { yPercent: -100, duration: 0.55, ease: "power4.inOut" }, 1.5);
 
-    timeoutRef.current = setTimeout(resetCurtain, 2500);
+    timeoutRef.current = setTimeout(resetCurtain, 3200);
   }, [hasInitialLandingIntro, resetCurtain]);
 
   useEffect(() => {
@@ -219,7 +221,9 @@ export function RouteCurtain({
       >
         <div className="route-curtain__grid" />
         <div ref={contentRef} className="route-curtain__content">
-          <span className="route-curtain__mark" aria-hidden="true">R</span>
+          <span className="route-curtain__mark" aria-hidden="true">
+            <RksMark />
+          </span>
           <small className="route-curtain__label">{label}</small>
         </div>
         <span
@@ -254,6 +258,7 @@ export type TransitionLinkProps = Omit<
 export function TransitionLink({
   href,
   onClick,
+  prefetch = false,
   scroll = true,
   target,
   ...props
@@ -300,5 +305,14 @@ export function TransitionLink({
     });
   };
 
-  return <Link {...props} href={href} target={target} scroll={scroll} onClick={handleClick} />;
+  return (
+    <Link
+      {...props}
+      href={href}
+      prefetch={prefetch}
+      target={target}
+      scroll={scroll}
+      onClick={handleClick}
+    />
+  );
 }

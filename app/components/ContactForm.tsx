@@ -1,16 +1,13 @@
 "use client";
 
-import { CheckCircle2, Send } from "lucide-react";
+import { Mail, Send } from "lucide-react";
 import type { FormEvent } from "react";
-import { useEffect, useRef, useState } from "react";
-
-type FormStatus = "idle" | "submitting" | "success";
+import { useState } from "react";
 
 export type ContactTopic =
-  | "course"
-  | "pdf"
-  | "support"
-  | "story"
+  | "training-deck"
+  | "field-guide"
+  | "academy"
   | "property"
   | "partnership"
   | "other";
@@ -19,23 +16,24 @@ type ContactFormProps = {
   defaultTopic?: ContactTopic;
 };
 
+const recipient = "sales@100yards.in";
+
+const topicLabels: Record<ContactTopic, string> = {
+  "training-deck": "Basics of Real Estate training deck — launch access",
+  "field-guide": "Before You Buy — first access",
+  academy: "Property Academy roadmap",
+  property: "Property guidance",
+  partnership: "Speaking or partnership",
+  other: "General enquiry",
+};
+
+function readFormValue(data: FormData, key: string) {
+  const value = data.get(key);
+  return typeof value === "string" ? value.trim() : "";
+}
+
 export function ContactForm({ defaultTopic }: ContactFormProps) {
-  const [status, setStatus] = useState<FormStatus>("idle");
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const successRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    if (status === "success") {
-      successRef.current?.focus();
-    }
-  }, [status]);
-
-  useEffect(
-    () => () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
-    },
-    [],
-  );
+  const [emailHandoffOpened, setEmailHandoffOpened] = useState(false);
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -46,72 +44,65 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
       return;
     }
 
-    setStatus("submitting");
-    timerRef.current = setTimeout(() => {
-      form.reset();
-      setStatus("success");
-    }, 700);
-  }
+    const data = new FormData(form);
+    const name = readFormValue(data, "name");
+    const email = readFormValue(data, "email");
+    const phone = readFormValue(data, "phone");
+    const topic = readFormValue(data, "topic") as ContactTopic;
+    const message = readFormValue(data, "message");
+    const topicLabel = topicLabels[topic] ?? "Website enquiry";
+    const subject = `${topicLabel}${name ? ` — ${name}` : ""}`;
+    const body = [
+      `Hello Hundred Yards team,`,
+      "",
+      message,
+      "",
+      "—",
+      `Name: ${name}`,
+      `Reply email: ${email}`,
+      `Phone: ${phone || "Not provided"}`,
+      `Enquiry: ${topicLabel}`,
+      "",
+      "Prepared from Rohitt Kumar Singh's website. Please review before sending.",
+    ].join("\n");
 
-  if (status === "success") {
-    return (
-      <div
-        aria-live="polite"
-        className="contact-form-success cin-contact-form-success"
-        ref={successRef}
-        role="status"
-        tabIndex={-1}
-      >
-        <span className="contact-form-success__icon" aria-hidden="true">
-          <CheckCircle2 size={24} strokeWidth={1.8} />
-        </span>
-        <p className="contact-form-success__eyebrow">Preview complete</p>
-        <h3>Your enquiry flow is ready.</h3>
-        <p>
-          No details were transmitted. Once Rohit’s approved contact service is
-          connected, this is where a secure delivery confirmation will appear.
-        </p>
-        <button
-          className="contact-form-success__reset"
-          type="button"
-          onClick={() => setStatus("idle")}
-        >
-          Write another enquiry
-        </button>
-      </div>
-    );
+    setEmailHandoffOpened(true);
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   return (
     <form
-      aria-busy={status === "submitting"}
       aria-labelledby="contact-form-title"
-      className="contact-form cin-contact-form"
+      className="contact-form cin-contact-form authority-contact-form"
       onSubmit={handleSubmit}
     >
-      <div className="contact-form__intro">
-        <p className="contact-form__kicker">Start a conversation</p>
-        <h2 id="contact-form-title">
-          Tell Rohit where you are in your property journey.
-        </h2>
+      <div className="contact-form__intro authority-contact-form__intro">
+        <p className="contact-form__kicker">Write to the company team</p>
+        <h2 id="contact-form-title">Give the question the context it needs.</h2>
         <p>
-          Share the question that is slowing you down. The more context you
-          give, the more useful the reply can be. Do not include confidential
-          documents or payment information.
+          This form prepares an email in your own mail application. Nothing is
+          submitted to or stored by this website. Review the message, then send
+          it directly to the Hundred Yards team.
         </p>
-        <dl className="cin-contact-form__facts">
+        <dl className="cin-contact-form__facts authority-contact-form__facts">
           <div>
-            <dt>Current state</dt>
-            <dd>Local preview</dd>
+            <dt>Recipient</dt>
+            <dd>Hundred Yards team</dd>
           </div>
           <div>
-            <dt>Live handoff</dt>
-            <dd>Not connected</dd>
+            <dt>Email</dt>
+            <dd>
+              <a href={`mailto:${recipient}`}>{recipient}</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Website storage</dt>
+            <dd>None for this form</dd>
           </div>
         </dl>
       </div>
 
-      <div className="contact-form__fields">
+      <div className="contact-form__fields authority-contact-form__fields">
         <div className="contact-field contact-field--half">
           <label htmlFor="contact-name">Your name</label>
           <input
@@ -126,7 +117,7 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
         </div>
 
         <div className="contact-field contact-field--half">
-          <label htmlFor="contact-email">Email address</label>
+          <label htmlFor="contact-email">Reply email</label>
           <input
             autoComplete="email"
             id="contact-email"
@@ -154,7 +145,7 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
         </div>
 
         <div className="contact-field contact-field--half">
-          <label htmlFor="contact-topic">What can we help with?</label>
+          <label htmlFor="contact-topic">Reason for writing</label>
           <select
             defaultValue={defaultTopic ?? ""}
             id="contact-topic"
@@ -164,13 +155,14 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
             <option disabled value="">
               Select an enquiry type
             </option>
-            <option value="course">Choosing the right course</option>
-            <option value="pdf">PDF or download support</option>
-            <option value="support">Purchase or access support</option>
-            <option value="story">Share a learner story</option>
-            <option value="property">A property-learning question</option>
+            <option value="training-deck">
+              Basics of Real Estate — training deck
+            </option>
+            <option value="field-guide">Before You Buy — first access</option>
+            <option value="academy">Property Academy roadmap</option>
+            <option value="property">Property guidance</option>
             <option value="partnership">Speaking or partnership</option>
-            <option value="other">Something else</option>
+            <option value="other">General enquiry</option>
           </select>
         </div>
 
@@ -180,7 +172,7 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
             id="contact-message"
             name="message"
             maxLength={1500}
-            placeholder="What are you trying to understand or decide?"
+            placeholder="What are you trying to understand, plan, or decide?"
             required
             rows={5}
           />
@@ -189,28 +181,38 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
         <label className="contact-consent" htmlFor="contact-consent">
           <input id="contact-consent" name="consent" required type="checkbox" />
           <span>
-            I understand this prototype does not send or store my details.
+            I understand this opens my email app. This website does not submit
+            or store the information entered above.
           </span>
         </label>
 
-        <div className="contact-form__submit-row">
+        <div className="contact-form__submit-row authority-contact-form__submit-row">
           <p id="contact-response-note">
-            Preview only — preparing this form will not contact Rohit yet.
+            Recipient: Hundred Yards team at {recipient}. You choose whether to
+            send the prepared email.
           </p>
           <button
             aria-describedby="contact-response-note"
             className="contact-form__submit"
-            disabled={status === "submitting"}
             type="submit"
           >
-            <span>
-              {status === "submitting"
-                ? "Preparing preview…"
-                : "Prepare enquiry preview"}
-            </span>
+            <span>Open email to 100 Yards</span>
             <Send aria-hidden="true" size={17} strokeWidth={1.8} />
           </button>
         </div>
+
+        {emailHandoffOpened ? (
+          <p
+            aria-live="polite"
+            className="contact-form-success authority-contact-form__handoff-note"
+            role="status"
+          >
+            <Mail aria-hidden="true" size={18} />
+            Your email application should now be open. Nothing has been sent by
+            this website; review the prepared message and send it from your
+            email account.
+          </p>
+        ) : null}
       </div>
     </form>
   );

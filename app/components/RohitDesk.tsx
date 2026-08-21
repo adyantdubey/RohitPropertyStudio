@@ -12,19 +12,19 @@ type DeskReply = {
 
 const suggestedReplies: DeskReply[] = [
   {
-    question: "Which resource suits a first-time learner?",
+    question: "I am exploring a property. Where should I begin?",
     answer:
-      "Choose The Property Decision System for a guided, end-to-end foundation. If you want a concise companion for visits and due diligence, begin with Before You Buy.",
+      "Use the Advisory route for a human conversation with the Hundred Yards team. If you are here to learn first, the Academy and Insights routes explain Rohitt’s educational work without presenting automated property advice.",
   },
   {
-    question: "How do the field guide and toolkit differ?",
+    question: "Can I download the field guide today?",
     answer:
-      "Before You Buy organises questions and checks around a property review. The Deal Room is for people already comparing options who need reusable worksheets, registers, and a decision record.",
+      "Not yet. Before You Buy is clearly marked Coming Soon because the PDF, final price, delivery terms, and payment flow are not live. You can register interest and be contacted when first access is ready.",
   },
   {
-    question: "Can this guide assess a specific property?",
+    question: "Can this site assess a specific property?",
     answer:
-      "No. The guide can explain Rohit’s learning resources and their boundaries, but it cannot assess a property or provide personalised investment, legal, tax, valuation, or financial advice.",
+      "No. This guide can explain the site and route you to a human conversation, but it cannot assess a property or provide personalised investment, legal, tax, valuation, engineering, or financial advice.",
   },
 ];
 
@@ -75,7 +75,7 @@ export function RohitDesk() {
       setReply({
         question,
         answer:
-          "The live catalogue assistant is not connected in this preview, so it will not invent an answer. Send the question through the enquiry form when live contact is enabled, and Rohit can respond with the right context.",
+          "The optional site guide is not connected, so it will not invent an answer. Continue to the enquiry route for the Hundred Yards team or choose one of the published starting points above.",
       });
       setIsCustomFallback(true);
     } finally {
@@ -97,25 +97,25 @@ export function RohitDesk() {
             <MessageCircle size={18} strokeWidth={1.8} />
           </span>
           <div>
-            <p className="rohit-desk__label">Resource guide</p>
+          <p className="rohit-desk__label">RKS site guide</p>
             <p className="rohit-desk__availability">
-              <span aria-hidden="true" /> Catalogue-backed answers
+              <span aria-hidden="true" /> Site-backed answers
             </p>
           </div>
         </div>
         <span className="rohit-desk__demo-label">
-          <BookOpen aria-hidden="true" size={14} /> Optional AI
+          <BookOpen aria-hidden="true" size={14} /> Optional Mistral guide
         </span>
       </div>
 
       <div className="rohit-desk__body">
         <div className="rohit-desk__intro">
-          <p className="rohit-desk__eyebrow">A quiet place to compare</p>
-          <h2 id="rohit-desk-title">Find the useful starting point.</h2>
+          <p className="rohit-desk__eyebrow">Choose the right door</p>
+          <h2 id="rohit-desk-title">Advisory, Academy, or a field note?</h2>
           <p>
-            Start with a curated catalogue answer or ask a short question. Any
-            generated response is limited to Rohit’s resource information and
-            never replaces professional advice.
+            Start with a curated answer or ask a short navigation question. Any
+            generated response is limited to this site&apos;s published information
+            and never replaces a human or qualified professional.
           </p>
         </div>
 
@@ -148,7 +148,7 @@ export function RohitDesk() {
               <p>{reply.answer}</p>
               {isCustomFallback ? (
                 <Link className="rohit-desk__contact-link" href="#contact-form">
-                  Continue to the enquiry preview
+                  Continue to a human enquiry
                   <ArrowUpRight aria-hidden="true" size={16} />
                 </Link>
               ) : null}
@@ -157,7 +157,7 @@ export function RohitDesk() {
         </div>
 
         <form className="rohit-desk__composer" onSubmit={submitQuestion}>
-          <label htmlFor="rohit-desk-question">Ask about the resources</label>
+          <label htmlFor="rohit-desk-question">Ask about this site</label>
           <div className="rohit-desk__composer-control">
             <input
               autoComplete="off"
@@ -165,12 +165,12 @@ export function RohitDesk() {
               aria-describedby="rohit-desk-note"
               maxLength={500}
               onChange={(event) => setCustomQuestion(event.target.value)}
-              placeholder="Ask about format, access, fit, or what is included…"
+              placeholder="Ask about advisory, the field guide, or where to begin…"
               type="text"
               value={customQuestion}
             />
             <button
-              aria-label={isThinking ? "Checking the catalogue" : "Ask the resource guide"}
+              aria-label={isThinking ? "Checking the site guide" : "Ask the site guide"}
               disabled={!customQuestion.trim() || isThinking}
               type="submit"
             >
@@ -179,7 +179,7 @@ export function RohitDesk() {
           </div>
           <span className="sr-only" id="rohit-desk-note">
             Questions are limited to 500 characters. The assistant answers only
-            from the resource catalogue.
+            from the published site context.
           </span>
         </form>
       </div>

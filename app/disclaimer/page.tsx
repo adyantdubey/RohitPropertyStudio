@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "Educational Disclaimer" };
 
 export default function DisclaimerPage() {
   return (
-    <LegalDocument code="LGL / 04" title="Educational Disclaimer" intro="Rohit teaches a process for thinking—not a guaranteed property outcome.">
+    <LegalDocument code="LGL / 04" title="Educational Disclaimer" intro="Rohitt teaches a process for thinking—not a guaranteed property outcome.">
       <h2>No personal advice</h2>
       <p>All content is general education and is not financial, investment, legal, tax, engineering, valuation, brokerage, or property-specific advice.</p>
       <h2>No guaranteed outcome</h2>

@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import { Geist_Mono, Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import "./site.css";
 import "./cinematic.css";
+import "./authority.css";
 import { MotionProvider } from "./components/MotionProvider";
 import { RouteCurtain } from "./components/RouteCurtain";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
+import { brand, organizationJsonLd, personJsonLd } from "./lib/brand";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
@@ -35,24 +37,27 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: "Rohit — Property Decision Studio",
-      template: "%s — Rohit",
+      default: `${brand.name} — ${brand.line}`,
+      template: `%s — ${brand.name}`,
     },
     description:
-      "Rohit’s property decision studio: clear real-estate frameworks, practical field guides, and decision tools.",
+      `${brand.name}, ${brand.professionalTitle} of ${brand.organizationName}, shares real-estate education, advisory perspectives, and market insights.`,
     metadataBase: new URL(origin),
+    alternates: { canonical: "/" },
     openGraph: {
       type: "website",
-      title: "Rohit — Property, Read Clearly.",
+      title: `${brand.name} — ${brand.line}`,
       description:
-        "Real-estate education for people who would rather understand the decision than follow the noise.",
-      images: [{ url: socialImage, width: 1680, height: 941, alt: "Rohit — Property, Read Clearly." }],
+        `${brand.educationLabel}: clear real-estate thinking for more considered property decisions.`,
+      siteName: brand.name,
+      url: origin,
+      images: [{ url: socialImage, width: 1680, height: 941, alt: `${brand.name} — ${brand.line}` }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Rohit — Property, Read Clearly.",
+      title: `${brand.name} — ${brand.line}`,
       description:
-        "Real-estate education for people who would rather understand the decision than follow the noise.",
+        `${brand.educationLabel}: clear real-estate thinking for more considered property decisions.`,
       images: [socialImage],
     },
   };
@@ -63,11 +68,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const structuredData = JSON.stringify([personJsonLd, organizationJsonLd]).replace(
+    /</g,
+    "\\u003c",
+  );
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
+        className={`${manrope.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
+        <script
+          id="rks-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: structuredData }}
+        />
         <MotionProvider>
           <RouteCurtain>
             <SiteHeader />

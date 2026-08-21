@@ -8,9 +8,9 @@ import { SectionHeading } from "../components/SectionHeading";
 import { insights } from "../lib/content";
 
 export const metadata: Metadata = {
-  title: "Insights",
+  title: "Property Insights | Rohitt Kumar Singh",
   description:
-    "Editorial drafts from Rohit's decision room on property questions, due diligence, comparison, and learning.",
+    "Educational field notes from Rohitt Kumar Singh on property questions, due diligence, comparison, and decision discipline.",
 };
 
 const featuredInsight = insights.find(
@@ -19,7 +19,10 @@ const featuredInsight = insights.find(
 
 export default function InsightsPage() {
   return (
-    <main id="main-content" className="page-shell insight-editorial-index">
+    <main
+      id="main-content"
+      className="page-shell insight-editorial-index authority-insights-page"
+    >
       <PageHero
         index="04 / INSIGHTS"
         eyebrow="NOTES FROM THE DECISION ROOM"
@@ -30,12 +33,12 @@ export default function InsightsPage() {
             <em>Carry better questions.</em>
           </>
         }
-        body="Five complete editorial drafts explore observation, comparison, diligence, price context, and shortlisting. Each remains clearly marked for Rohit's factual review before publication."
+        body="Educational field notes on observation, comparison, due diligence, price context, and shortlisting—written to improve the questions, not make the property decision for you."
         theme="orange"
         aside={<span>READ / QUESTION / VERIFY</span>}
       />
 
-      <section className="featured-note insight-editorial-feature section-pad">
+      <section className="featured-note insight-editorial-feature authority-insights-feature section-pad">
         <figure className="insight-editorial-feature-media">
           <Image
             alt={featuredInsight.hero.alt}
@@ -45,7 +48,10 @@ export default function InsightsPage() {
             src={featuredInsight.hero.src}
             width={featuredInsight.hero.width}
           />
-          <figcaption>{featuredInsight.hero.caption}</figcaption>
+          <figcaption>
+            Licensed editorial stock image. It is not a Rohitt listing, client
+            property, or recommendation.
+          </figcaption>
         </figure>
 
         <article className="insight-editorial-feature-copy">
@@ -56,14 +62,16 @@ export default function InsightsPage() {
           <p className="eyebrow">FEATURED FIELD NOTE / {featuredInsight.index}</p>
           <h2>{featuredInsight.title}</h2>
           <p>{featuredInsight.deck}</p>
-          <span className="draft-chip">{featuredInsight.reviewLabel}</span>
+          <span className="draft-chip authority-insights-label">
+            General educational commentary
+          </span>
           <Link className="text-link" href={`/insights/${featuredInsight.slug}`}>
-            Read the editorial draft <ArrowUpRight aria-hidden="true" size={15} />
+            Read the field note <ArrowUpRight aria-hidden="true" size={15} />
           </Link>
         </article>
       </section>
 
-      <section className="insight-index insight-editorial-library section-pad section-ink">
+      <section className="insight-index insight-editorial-library authority-insights-library section-pad section-ink">
         <SectionHeading
           light
           eyebrow={`THE EDITORIAL INDEX / 001—00${insights.length}`}
@@ -74,12 +82,12 @@ export default function InsightsPage() {
               <em>carrying forward.</em>
             </>
           }
-          body="These are substantive placeholder articles, not published claims. Images are editorial stock and every draft needs Rohit's review."
+          body="Each note offers a decision discipline you can adapt, then asks you to verify facts, documents, professional requirements, and local rules for your own circumstances."
         />
 
         <div className="insight-editorial-card-grid">
           {insights.map((insight) => (
-            <article className="insight-editorial-card" key={insight.slug}>
+            <article className="insight-editorial-card authority-insights-card" key={insight.slug}>
               <Link
                 aria-label={`Read ${insight.title}`}
                 className="insight-editorial-card-media"
@@ -102,9 +110,9 @@ export default function InsightsPage() {
                   <Link href={`/insights/${insight.slug}`}>{insight.title}</Link>
                 </h3>
                 <p>{insight.summary}</p>
-                <small>{insight.reviewLabel}</small>
+                <small>General education · verify for your circumstances</small>
                 <Link className="insight-editorial-card-link" href={`/insights/${insight.slug}`}>
-                  Read draft <ArrowUpRight aria-hidden="true" size={15} />
+                  Read field note <ArrowUpRight aria-hidden="true" size={15} />
                 </Link>
               </div>
             </article>
@@ -112,7 +120,7 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      <section className="insight-editorial-method section-pad">
+      <section className="insight-editorial-method authority-insights-method section-pad">
         <figure className="insight-editorial-method-media">
           <CinematicMedia
             poster="/media/interior-walkthrough-poster.jpg"
@@ -127,7 +135,7 @@ export default function InsightsPage() {
             controlLabel="editorial interior video"
           />
           <figcaption>
-            Editorial stock footage—not a Rohit listing, project,
+            Editorial stock footage—not a Rohitt listing, project,
             recommendation, or learner property.
           </figcaption>
         </figure>
@@ -137,40 +145,36 @@ export default function InsightsPage() {
           <p>
             Every field note is designed to separate an observation from a
             claim, an assumption from evidence, and a general learning prompt
-            from property-specific advice. Final articles should add Rohit&apos;s
-            reviewed examples and cite reliable sources wherever factual or
-            jurisdiction-sensitive information appears.
+            from property-specific advice. Factual and jurisdiction-sensitive
+            points still need current, independent verification before they are
+            used in a real decision.
           </p>
         </div>
       </section>
 
-      <section className="newsletter insight-editorial-newsletter section-pad section-blue">
+      <section className="newsletter insight-editorial-newsletter authority-insights-first-access section-pad section-blue">
         <div>
-          <p className="eyebrow eyebrow-light">THE FIELD NOTE / PREVIEW</p>
+          <p className="eyebrow eyebrow-light">BEFORE YOU BUY / COMING SOON</p>
           <h2>
-            One useful question
+            Carry the questions
             <br />
-            <em>at a time.</em>
+            <em>into the next visit.</em>
           </h2>
         </div>
-        <div className="newsletter-form">
+        <div className="newsletter-form authority-insights-first-access__copy">
           <p>
-            The newsletter name, cadence, provider, and sending address require
-            Rohit&apos;s approval before this preview accepts subscriptions.
+            Rohitt&apos;s first field guide is still being written. There is no PDF
+            or checkout today; you can email the Hundred Yards team to ask for
+            a first-access update.
           </p>
-          <form>
-            <label className="sr-only" htmlFor="newsletter-email">Email address</label>
-            <input
-              disabled
-              id="newsletter-email"
-              placeholder="Subscriptions open after launch"
-              type="email"
-            />
-            <button disabled type="button" aria-label="Newsletter signup unavailable in preview">
-              <ArrowUpRight aria-hidden="true" />
-            </button>
-          </form>
-          <small>Preview only. No email address is collected on this page.</small>
+          <Link
+            className="button button-light"
+            href="/contact?interest=field-guide#contact-form"
+          >
+            Join the first-access list
+            <ArrowUpRight aria-hidden="true" size={17} />
+          </Link>
+          <small>The contact route prepares an email; this page collects no address.</small>
         </div>
       </section>
     </main>

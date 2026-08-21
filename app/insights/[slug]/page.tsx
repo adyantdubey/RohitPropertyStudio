@@ -27,13 +27,13 @@ export async function generateMetadata({ params }: InsightPageProps): Promise<Me
     title: insight.title,
     description: insight.summary,
     openGraph: {
-      title: `${insight.title} — Rohit Editorial Draft`,
+      title: `${insight.title} — Rohitt Kumar Singh`,
       description: insight.summary,
       images: [{ url: insight.hero.src, alt: insight.hero.alt }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `${insight.title} — Rohit Editorial Draft`,
+      title: `${insight.title} — Rohitt Kumar Singh`,
       description: insight.summary,
       images: [insight.hero.src],
     },
@@ -50,13 +50,16 @@ export default async function InsightPage({ params }: InsightPageProps) {
   const nextInsight = insights[(currentIndex + 1) % insights.length];
 
   return (
-    <main id="main-content" className="page-shell insight-editorial-article-page">
+    <main
+      id="main-content"
+      className="page-shell insight-editorial-article-page authority-insight-article"
+    >
       <PageHero
         index={`${insight.index} / FIELD NOTE`}
-        eyebrow={`${insight.category.toUpperCase()} / EDITORIAL DRAFT`}
+        eyebrow={`${insight.category.toUpperCase()} / EDUCATIONAL FIELD NOTE`}
         title={<>{insight.title}</>}
         body={insight.deck}
-        aside={<span>{insight.readTime.toUpperCase()} / ROHIT REVIEW REQUIRED</span>}
+        aside={<span>{insight.readTime.toUpperCase()} / VERIFY FOR YOUR CONTEXT</span>}
         media={{
           poster: insight.hero.src,
           alt: insight.hero.alt,
@@ -69,7 +72,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
         }}
       />
 
-      <article className="insight-editorial-article">
+      <article className="insight-editorial-article authority-insight-article__content">
         <figure className="insight-editorial-article-hero section-pad">
           <Image
             alt={insight.hero.alt}
@@ -80,8 +83,11 @@ export default async function InsightPage({ params }: InsightPageProps) {
             width={insight.hero.width}
           />
           <figcaption>
-            <span>{insight.hero.caption}</span>
-            <strong>{insight.reviewLabel}</strong>
+            <span>
+              Licensed editorial stock image. It is not a Rohitt listing, client
+              property, or recommendation.
+            </span>
+            <strong>GENERAL EDUCATIONAL COMMENTARY</strong>
           </figcaption>
         </figure>
 
@@ -95,7 +101,11 @@ export default async function InsightPage({ params }: InsightPageProps) {
             <span>FIELD NOTE / {insight.index}</span>
             <strong>{insight.category}</strong>
             <small>{insight.readTime}</small>
-            <p>Placeholder article body. Factual review and Rohit&apos;s approved examples are still required.</p>
+            <p>
+              Use this note to improve the questions you carry. Verify facts,
+              documents, professional requirements, and local rules for your
+              own circumstances.
+            </p>
           </aside>
 
           <div className="insight-editorial-sections">
@@ -145,7 +155,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
             <h2>A thinking prompt, not a property conclusion.</h2>
           </div>
           <p>
-            This draft provides general educational material only. It does not
+            This field note provides general educational material only. It does not
             assess a property or provide financial, investment, legal, tax,
             engineering, valuation, brokerage, or property-specific advice.
             Information, terminology, and professional requirements can vary by
@@ -155,16 +165,34 @@ export default async function InsightPage({ params }: InsightPageProps) {
       </article>
 
       {relatedProduct ? (
-        <section className="insight-editorial-related section-pad section-blue">
+        <section className="insight-editorial-related authority-insight-article__related section-pad section-blue">
           <div>
             <p className="eyebrow eyebrow-light">RELATED WORKING RESOURCE</p>
             <h2>{relatedProduct.title}</h2>
           </div>
           <div>
-            <strong>{relatedProduct.collectionRole}</strong>
-            <p>{relatedProduct.bestWhen}</p>
-            <Link className="button button-light" href={`/courses/${relatedProduct.slug}`}>
-              Explore the resource <ArrowUpRight aria-hidden="true" size={17} />
+            <strong>
+              {relatedProduct.slug === "before-you-buy-field-guide"
+                ? "Coming soon"
+                : "In development"}
+            </strong>
+            <p>
+              {relatedProduct.slug === "before-you-buy-field-guide"
+                ? "The first field-guide edition is still being written; no PDF or purchase is available today."
+                : "This Academy concept is still being developed; no product, enrolment, or payment is available today."}
+            </p>
+            <Link
+              className="button button-light"
+              href={
+                relatedProduct.slug === "before-you-buy-field-guide"
+                  ? "/contact?interest=field-guide#contact-form"
+                  : `/courses/${relatedProduct.slug}`
+              }
+            >
+              {relatedProduct.slug === "before-you-buy-field-guide"
+                ? "Ask about the field guide"
+                : "View development status"}
+              <ArrowUpRight aria-hidden="true" size={17} />
             </Link>
           </div>
         </section>
