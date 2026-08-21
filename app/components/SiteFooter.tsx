@@ -11,7 +11,7 @@ export function SiteFooter() {
       </div>
 
       <div className="footer-lead">
-        <p className="eyebrow eyebrow-light">WHEN YOU ARE READY</p>
+        <p className="eyebrow eyebrow-light">ROHIT / PROPERTY DECISION STUDIO</p>
         <h2>
           Learn the process.
           <em>Keep the judgement.</em>
@@ -33,8 +33,8 @@ export function SiteFooter() {
             ROHIT
           </TransitionLink>
           <p>
-            Clear frameworks, practical tools, and focused learning for more
-            considered property decisions.
+            Rohit&apos;s clear frameworks, practical tools, and focused learning
+            for more considered property decisions.
           </p>
         </div>
 
@@ -56,8 +56,8 @@ export function SiteFooter() {
         </nav>
 
         <div className="footer-coordinate">
-          <span>FRAME / VERIFY</span>
-          <span>COMPARE / DECIDE</span>
+          <span>THE ROHIT METHOD</span>
+          <span>FRAME / VERIFY / DECIDE</span>
           <small>INDIA / DIGITAL LEARNING</small>
         </div>
       </div>

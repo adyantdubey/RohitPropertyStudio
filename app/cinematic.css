@@ -5054,6 +5054,51 @@ body:has(.mobile-menu.is-open) .site-header .brand-copy small {
   line-height: 1.55;
 }
 
+/* Rohit resource covers use a quieter editorial artifact language: the R is
+   the recognisable signature, while the older orbit/grid treatment recedes. */
+
+.course-cover {
+  border: 1px solid rgba(17, 20, 18, 0.26);
+  box-shadow: 18px 24px 46px rgba(8, 11, 9, 0.2);
+}
+
+.course-cover .cover-grid {
+  opacity: 0.14;
+  background-size: 100% 18%;
+}
+
+.course-cover .cover-orbit {
+  display: none;
+}
+
+.course-cover .cover-title small {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+}
+
+.course-cover .cover-title strong {
+  font-family: var(--cin-serif);
+  font-weight: 500;
+  line-height: 0.98;
+}
+
+.course-cover .cover-mark {
+  right: -0.03em;
+  bottom: -0.18em;
+  left: auto;
+  color: currentColor;
+  font-family: var(--cin-serif);
+  font-size: clamp(150px, 17vw, 260px);
+  font-style: italic;
+  opacity: 0.15;
+}
+
+.course-cover .cover-code,
+.course-cover .cover-foot {
+  font-size: 7px;
+}
+
 .course-editorial-card-specs {
   display: grid;
   margin: 0;
@@ -6009,5 +6054,1570 @@ body:has(.mobile-menu.is-open) .site-header .brand-copy small {
   .insight-editorial-method-media > .cinematic-media {
     height: 62svh !important;
     min-height: 450px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Visual audit corrections
+   This layer is intentionally last: the editorial routes are now independent
+   from the legacy card and PageHero class system above.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --cin-serif: var(--font-playfair, "Playfair Display"), Georgia, serif;
+  --cin-label-size: 9px;
+  --cin-meta-size: 11px;
+  --cin-body-small: 12px;
+  --cin-body-size: 14px;
+  --cin-focus: #c47749;
+}
+
+/* A consistent, visible keyboard treatment across light, dark, and media UI. */
+
+:is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--cin-focus);
+  outline-offset: 4px;
+}
+
+:is(.section-ink, .section-blue, .cin-section-dark, .cin-section-forest, .site-footer, .mobile-menu)
+  :is(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline-color: var(--cin-paper);
+}
+
+:is(.course-editorial-card-image-link, .insight-editorial-card-media):focus-visible {
+  outline-offset: -6px;
+}
+
+:is(a, button) {
+  touch-action: manipulation;
+}
+
+/* Shared editorial hero: readable Playfair metrics, unclipped swashes, and
+   complete paper / forest / ink / copper art direction. */
+
+.editorial-page-hero.cinematic-page-hero {
+  min-height: max(760px, 92svh);
+}
+
+.editorial-page-hero .cinematic-page-hero__meta {
+  right: 4vw;
+  align-items: center;
+  color: currentColor;
+  font-size: var(--cin-label-size);
+  font-weight: 650;
+  line-height: 1.45;
+  opacity: 0.74;
+}
+
+.editorial-page-hero .cinematic-page-hero__meta::after {
+  margin-left: auto;
+  content: "R / PROPERTY DECISION STUDIO";
+  letter-spacing: 0.16em;
+}
+
+.editorial-page-hero .cinematic-page-hero__copy {
+  max-width: min(82vw, 1320px);
+}
+
+.editorial-page-hero .cinematic-page-hero__title-mask {
+  overflow: clip;
+  margin-block: -0.11em -0.09em;
+  padding-block: 0.11em 0.09em;
+}
+
+.editorial-page-hero .cinematic-page-hero__title {
+  max-width: 1180px;
+  margin: 0;
+  font-weight: 450;
+  letter-spacing: -0.058em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.editorial-page-hero .cinematic-page-hero__title em {
+  font-weight: 450;
+}
+
+.editorial-page-hero .cinematic-page-hero__body {
+  max-width: 540px;
+  color: #4b4f4a;
+  font-size: var(--cin-body-size);
+  line-height: 1.76;
+}
+
+.editorial-page-hero .cinematic-page-hero__aside {
+  padding: 7px 10px;
+  background: rgba(10, 13, 11, 0.46);
+  color: #fff;
+  font-size: var(--cin-label-size);
+  font-weight: 650;
+  line-height: 1;
+}
+
+.editorial-page-hero .cinematic-page-hero__measure strong {
+  font-size: var(--cin-label-size);
+}
+
+.editorial-page-hero.cinematic-page-hero--ink,
+.editorial-page-hero.cinematic-page-hero--blue {
+  color: #fff;
+}
+
+.editorial-page-hero.cinematic-page-hero--ink .cinematic-page-hero__scrim {
+  background: linear-gradient(90deg, #111412 0%, rgba(17, 20, 18, 0.96) 40%, rgba(17, 20, 18, 0.54) 61%, rgba(17, 20, 18, 0.08) 82%);
+}
+
+.editorial-page-hero.cinematic-page-hero--blue .cinematic-page-hero__scrim {
+  background: linear-gradient(90deg, #17362d 0%, rgba(23, 54, 45, 0.96) 40%, rgba(23, 54, 45, 0.52) 62%, rgba(23, 54, 45, 0.08) 83%);
+}
+
+.editorial-page-hero.cinematic-page-hero--ink .cinematic-page-hero__body,
+.editorial-page-hero.cinematic-page-hero--blue .cinematic-page-hero__body {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.editorial-page-hero.cinematic-page-hero--orange {
+  background: var(--cin-copper);
+  color: var(--cin-carbon);
+}
+
+.editorial-page-hero.cinematic-page-hero--orange .cinematic-page-hero__grid {
+  border-color: rgba(17, 20, 18, 0.32);
+}
+
+.editorial-page-hero.cinematic-page-hero--orange .cinematic-page-hero__scrim {
+  background: linear-gradient(90deg, #b56f45 0%, rgba(181, 111, 69, 0.97) 40%, rgba(181, 111, 69, 0.68) 60%, rgba(181, 111, 69, 0.12) 84%);
+}
+
+.editorial-page-hero.cinematic-page-hero--orange .cinematic-page-hero__body {
+  color: rgba(17, 20, 18, 0.78);
+}
+
+.editorial-page-hero.cinematic-page-hero--orange .cinematic-page-hero__measure span {
+  background: rgba(17, 20, 18, 0.36);
+}
+
+/* Live video sits below a low-cost solid/gradient header instead of a large
+   backdrop-filter surface. Compact headers are deliberately opaque. */
+
+body:has(.editorial-page-hero) .site-header {
+  background: rgba(244, 241, 233, 0.98);
+  backdrop-filter: none;
+}
+
+body:has(.editorial-page-hero.cinematic-page-hero--ink) .site-header:not(.is-compact),
+body:has(.editorial-page-hero.cinematic-page-hero--blue) .site-header:not(.is-compact) {
+  border-bottom-color: rgba(255, 255, 255, 0.24);
+  background: linear-gradient(180deg, rgba(12, 17, 14, 0.88), rgba(12, 17, 14, 0.36));
+  color: #fff;
+  backdrop-filter: none;
+}
+
+body:has(.editorial-page-hero.cinematic-page-hero--orange) .site-header:not(.is-compact) {
+  border-bottom-color: rgba(17, 20, 18, 0.28);
+  background: linear-gradient(180deg, rgba(181, 111, 69, 0.98), rgba(181, 111, 69, 0.7));
+  color: var(--cin-carbon);
+  backdrop-filter: none;
+}
+
+body:has(.editorial-page-hero.cinematic-page-hero--ink) .site-header:not(.is-compact) .brand-mark,
+body:has(.editorial-page-hero.cinematic-page-hero--blue) .site-header:not(.is-compact) .brand-mark {
+  background: var(--cin-paper);
+  color: var(--cin-carbon);
+}
+
+body:has(.editorial-page-hero.cinematic-page-hero--ink) .site-header:not(.is-compact) .brand-copy small,
+body:has(.editorial-page-hero.cinematic-page-hero--ink) .site-header:not(.is-compact) .desktop-nav a span,
+body:has(.editorial-page-hero.cinematic-page-hero--blue) .site-header:not(.is-compact) .brand-copy small,
+body:has(.editorial-page-hero.cinematic-page-hero--blue) .site-header:not(.is-compact) .desktop-nav a span {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.site-header.is-compact {
+  background: rgba(244, 241, 233, 0.985);
+  backdrop-filter: none;
+}
+
+body:has(.mobile-menu.is-open) .site-header {
+  border-bottom-color: rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #fff;
+  backdrop-filter: none;
+}
+
+body:has(.mobile-menu.is-open) .site-header .brand-mark {
+  background: var(--cin-paper);
+  color: var(--cin-carbon);
+}
+
+/* Course collection: pure editorial class hooks, explicit featured state, and
+   intrinsic media rows prevent the title/media collision seen in the audit. */
+
+.course-editorial-catalog-eyebrow {
+  margin: 0 0 22px;
+  color: #5d605b;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: var(--cin-label-size);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.course-editorial-catalog-summary {
+  max-width: 520px;
+  margin: 0;
+  color: #50534f;
+  font-size: var(--cin-body-size);
+  line-height: 1.75;
+}
+
+.course-editorial-stock-disclosure {
+  color: #656862;
+  font-size: var(--cin-meta-size);
+  line-height: 1.6;
+}
+
+.course-editorial-catalog-filters {
+  display: flex;
+  gap: 8px;
+}
+
+.course-editorial-filter {
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: #5a5d58;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: var(--cin-meta-size);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.course-editorial-filter:hover,
+.course-editorial-filter.is-active,
+.course-editorial-filter[aria-pressed="true"] {
+  border-color: var(--cin-carbon);
+  background: var(--cin-carbon);
+  color: #fff;
+}
+
+.course-editorial-catalog-count {
+  margin: 0;
+  color: #565954;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: var(--cin-meta-size);
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.course-editorial-card-grid--single .course-editorial-card {
+  grid-column: 1 / -1;
+}
+
+.course-editorial-card,
+.course-editorial-card:first-child {
+  grid-column: span 6;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: clip;
+  isolation: isolate;
+}
+
+.course-editorial-card--featured,
+.course-editorial-card--single,
+.course-editorial-card:first-child.course-editorial-card--featured,
+.course-editorial-card:first-child.course-editorial-card--single {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.course-editorial-card-media,
+.course-editorial-card:first-child .course-editorial-card-media {
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  aspect-ratio: 16 / 10;
+}
+
+.course-editorial-card--featured .course-editorial-card-media,
+.course-editorial-card--single .course-editorial-card-media {
+  height: 100%;
+  min-height: 650px;
+  aspect-ratio: auto;
+}
+
+.course-editorial-card-image-link {
+  display: block;
+}
+
+.course-editorial-card-image {
+  object-fit: cover;
+}
+
+.course-editorial-card-coordinate,
+.course-editorial-card-icon,
+.course-editorial-card-media figcaption {
+  position: absolute;
+  z-index: 3;
+}
+
+.course-editorial-card-coordinate {
+  top: 20px;
+  left: 20px;
+  color: #fff;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: var(--cin-label-size);
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.course-editorial-card-media figcaption {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--cin-label-size);
+  line-height: 1.5;
+}
+
+.course-editorial-card-content {
+  min-width: 0;
+  min-height: 100%;
+  padding: clamp(30px, 3.6vw, 54px);
+}
+
+.course-editorial-card-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--cin-line);
+  color: #60635e;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: var(--cin-meta-size);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.course-editorial-card .course-editorial-card-content h3 {
+  margin: clamp(34px, 4vw, 62px) 0 0;
+  font-size: clamp(40px, 4.1vw, 64px);
+  letter-spacing: -0.048em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.course-editorial-card--featured .course-editorial-card-content h3,
+.course-editorial-card--single .course-editorial-card-content h3 {
+  font-size: clamp(48px, 5.4vw, 80px);
+}
+
+.course-editorial-card-subtitle {
+  margin-top: 15px;
+  color: #595c57;
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.course-editorial-card-description {
+  max-width: 610px;
+  margin: 27px 0 0;
+  color: #4f524e;
+  font-size: 13px;
+  line-height: 1.72;
+}
+
+.course-editorial-card-use small,
+.course-editorial-card-output small,
+.course-editorial-card-specs dt {
+  color: #5a5d58;
+  font-size: var(--cin-label-size);
+  line-height: 1.5;
+}
+
+.course-editorial-card-use p,
+.course-editorial-card-output p {
+  color: #535651;
+  font-size: var(--cin-body-small);
+  line-height: 1.62;
+}
+
+.course-editorial-card-specs dd {
+  color: #343733;
+  font-size: var(--cin-body-small);
+  line-height: 1.5;
+}
+
+.course-editorial-card-specs dd strong {
+  font-size: 26px;
+  line-height: 1.15;
+}
+
+.course-editorial-card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  margin-top: auto;
+  padding-top: 30px;
+  color: var(--cin-forest);
+  font-size: 11px;
+  font-weight: 780;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .course-editorial-card:hover .course-editorial-card-image {
+    filter: saturate(1.03) contrast(1.02);
+    transform: scale(1.035);
+  }
+
+  .course-editorial-card-link:hover svg {
+    transform: translate(3px, -3px);
+  }
+}
+
+/* Comparison stays semantically tabular while clearly advertising overflow. */
+
+.course-editorial-comparison-cue {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.course-editorial-comparison-table-wrap {
+  padding-bottom: 14px;
+  overscroll-behavior-inline: contain;
+  scrollbar-color: var(--cin-copper) rgba(255, 255, 255, 0.12);
+  scrollbar-gutter: stable;
+}
+
+.course-editorial-comparison-table-wrap::-webkit-scrollbar {
+  height: 7px;
+}
+
+.course-editorial-comparison-table-wrap::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.course-editorial-comparison-table-wrap::-webkit-scrollbar-thumb {
+  border-radius: 99px;
+  background: var(--cin-copper);
+}
+
+.course-editorial-comparison-row,
+.course-editorial-comparison-row--head {
+  display: table-row;
+}
+
+.course-editorial-comparison-table th,
+.course-editorial-comparison-table td {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--cin-body-small);
+  line-height: 1.65;
+}
+
+.course-editorial-comparison-table thead th {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: var(--cin-label-size);
+}
+
+.course-editorial-comparison-table tbody th {
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.course-editorial-comparison-table small {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--cin-label-size);
+}
+
+/* Five editorial cards finish with a deliberate 6/6 row instead of an empty
+   third-column hole. The same rule works for any 3n + 2 card count. */
+
+.insight-editorial-card-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.insight-editorial-card {
+  grid-column: span 4;
+}
+
+.insight-editorial-card:nth-last-child(2):nth-child(3n + 1),
+.insight-editorial-card:last-child:nth-child(3n + 2) {
+  grid-column: span 6;
+}
+
+.insight-editorial-article-meta {
+  font-size: var(--cin-meta-size);
+  line-height: 1.5;
+}
+
+.insight-editorial-card h3 {
+  line-height: 1.04;
+}
+
+.insight-editorial-card-content > p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--cin-body-size);
+  line-height: 1.72;
+}
+
+.insight-editorial-card-content > small {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--cin-label-size);
+}
+
+.insight-editorial-card-link {
+  font-size: 11px;
+}
+
+/* Product/course editorial small print remains visibly secondary, not tiny. */
+
+.course-editorial-opener-media figcaption,
+.about-editorial-page figcaption,
+.results-editorial-page figcaption,
+.insight-editorial-index figcaption,
+.insight-editorial-article-page figcaption,
+.product-editorial-hero__media figcaption,
+.product-editorial-inside__visual figcaption {
+  font-size: var(--cin-label-size);
+}
+
+.product-editorial-hero__title h1 {
+  line-height: 0.9;
+}
+
+.product-editorial-purpose__lead h2,
+.product-editorial-fit h2,
+.product-editorial-inside__intro h2,
+.product-editorial-includes__heading h2 {
+  line-height: 0.98;
+}
+
+.product-editorial-purpose dt,
+.product-editorial-fit__grid article > span,
+.product-editorial-includes__grid span,
+.product-editorial-purchase small,
+.product-editorial-hero__index,
+.product-editorial-hero__action > p span,
+.product-editorial-hero__scroll,
+.product-editorial-hero__facts small {
+  font-size: var(--cin-label-size);
+}
+
+.product-editorial-purpose dd,
+.product-editorial-inside__intro > p,
+.product-editorial-curriculum p,
+.product-editorial-hero__facts > span {
+  font-size: var(--cin-body-small);
+}
+
+.product-editorial-disclaimer {
+  color: #555853;
+  font-size: var(--cin-body-small);
+}
+
+.cin-hero-title h1 {
+  line-height: 0.84;
+}
+
+.cin-hero-title-line {
+  overflow: clip;
+  margin-block: -0.08em;
+  padding-block: 0.08em;
+}
+
+.cin-offer-intro h2,
+.cin-offer-copy h3,
+.cin-closing-copy h2,
+.footer-lead h2 {
+  line-height: 0.92;
+}
+
+/* Home offer mode is progressive: stacked is valid before hydration and for
+   reduced-motion/mobile visitors; pinned mode retains the cinematic sequence. */
+
+.cin-offer-price {
+  display: flex;
+  min-width: 115px;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cin-offer-price small {
+  color: rgba(255, 255, 255, 0.64);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: var(--cin-label-size);
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.cin-offer-price strong {
+  color: #fff;
+  font-family: var(--cin-serif);
+  font-size: 34px;
+  font-weight: 450;
+  line-height: 1.1;
+}
+
+.cin-offer-facts > span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: var(--cin-body-small);
+}
+
+.cin-offer-facts small {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: var(--cin-label-size);
+}
+
+.cin-offer-story[data-offer-mode="stacked"] .cin-offer-stage {
+  min-height: auto;
+  overflow: visible;
+  padding-block: clamp(95px, 10vw, 150px);
+}
+
+.cin-offer-story[data-offer-mode="stacked"] .cin-offer-intro {
+  width: min(100%, 700px);
+  margin-bottom: 62px;
+}
+
+.cin-offer-story[data-offer-mode="stacked"] .cin-offer-panels {
+  position: relative;
+  display: grid;
+  gap: 0;
+}
+
+.cin-offer-story[data-offer-mode="stacked"] .cin-offer-panel {
+  position: relative;
+  inset: auto;
+  min-height: 720px;
+  padding: 56px 0 88px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  pointer-events: auto;
+  opacity: 1;
+  transform: none;
+}
+
+.cin-offer-story[data-offer-mode="stacked"] .cin-offer-nav {
+  display: none;
+}
+
+/* Mobile navigation remains usable on short devices and with larger text. */
+
+.mobile-menu {
+  grid-template-rows: auto auto auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-bottom: max(38px, calc(24px + env(safe-area-inset-bottom)));
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu nav {
+  align-self: start;
+  width: 100%;
+  margin-block: clamp(30px, 7vh, 72px);
+}
+
+.mobile-menu > p {
+  padding-bottom: env(safe-area-inset-bottom);
+  line-height: 1.4;
+}
+
+/* Poster-first video loading indicator and branded route transition. */
+
+.cinematic-media[data-media-state="loading"]::before {
+  position: absolute;
+  z-index: 7;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cin-copper), #e8b48e, transparent);
+  content: "";
+  transform: translateX(-70%);
+  animation: cin-media-loading 1.15s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes cin-media-loading {
+  50% {
+    transform: translateX(34%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+html[data-route-transition="true"] {
+  cursor: progress;
+  overflow: hidden;
+}
+
+.route-curtain {
+  background: var(--cin-paper) !important;
+}
+
+.route-curtain__mark {
+  color: var(--cin-forest);
+  font-weight: 500;
+  line-height: 0.82;
+}
+
+.route-curtain__label {
+  color: #50534f;
+  font-size: var(--cin-meta-size);
+  font-weight: 700;
+}
+
+.route-curtain__line {
+  height: 2px !important;
+}
+
+@media (max-width: 1100px) {
+  .insight-editorial-card {
+    grid-column: span 6;
+  }
+
+  .insight-editorial-card:nth-last-child(2):nth-child(3n + 1),
+  .insight-editorial-card:last-child:nth-child(3n + 2) {
+    grid-column: span 6;
+  }
+
+  .insight-editorial-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .course-editorial-comparison-cue {
+    position: static;
+    display: flex;
+    width: auto;
+    height: auto;
+    align-items: center;
+    gap: 7px;
+    overflow: visible;
+    margin: 50px 0 -44px;
+    clip: auto;
+    color: rgba(255, 255, 255, 0.74);
+    font-family: var(--font-geist-mono), monospace;
+    font-size: var(--cin-meta-size);
+    font-weight: 650;
+    letter-spacing: 0.07em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    white-space: normal;
+  }
+
+  .course-editorial-comparison-table-wrap {
+    margin-top: 62px;
+    box-shadow: inset -24px 0 22px -24px rgba(255, 255, 255, 0.65);
+  }
+
+  .course-editorial-comparison-table thead th:first-child,
+  .course-editorial-comparison-table tbody th {
+    position: sticky;
+    z-index: 2;
+    left: 0;
+    background: var(--cin-carbon);
+    box-shadow: 14px 0 18px -18px rgba(255, 255, 255, 0.7);
+  }
+
+  .course-editorial-comparison-table thead th:first-child {
+    z-index: 3;
+  }
+}
+
+@media (max-width: 960px) {
+  .course-editorial-opener,
+  .course-editorial-catalog-header,
+  .course-editorial-boundary {
+    grid-template-columns: 1fr;
+  }
+
+  .course-editorial-catalog-header {
+    gap: 36px;
+  }
+
+  .course-editorial-catalog-intro,
+  .course-editorial-catalog-summary,
+  .course-editorial-stock-disclosure {
+    max-width: 680px;
+  }
+
+  .course-editorial-role-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .course-editorial-role-grid li:last-child {
+    grid-column: 1 / -1;
+    min-height: 320px;
+    border-top: 1px solid rgba(17, 20, 18, 0.28);
+  }
+
+  .course-editorial-card,
+  .course-editorial-card:first-child,
+  .course-editorial-card--featured,
+  .course-editorial-card--single,
+  .course-editorial-card:first-child.course-editorial-card--featured,
+  .course-editorial-card:first-child.course-editorial-card--single {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  .course-editorial-card--featured .course-editorial-card-media,
+  .course-editorial-card--single .course-editorial-card-media,
+  .course-editorial-card:first-child .course-editorial-card-media {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .course-editorial-card--featured .course-editorial-card-content h3,
+  .course-editorial-card--single .course-editorial-card-content h3 {
+    font-size: clamp(44px, 8vw, 68px);
+  }
+
+  .editorial-page-hero.cinematic-page-hero {
+    display: flex;
+    min-height: max(780px, 100svh);
+    flex-direction: column;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__meta {
+    right: 22px;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__meta::after {
+    display: none;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__copy {
+    width: 100%;
+    max-width: 100%;
+    margin-top: auto;
+    padding-bottom: clamp(34px, 7vh, 70px);
+  }
+
+  .editorial-page-hero .cinematic-page-hero__title {
+    font-size: clamp(66px, 12.5vw, 112px);
+    line-height: 0.92;
+  }
+
+  .editorial-page-hero.cinematic-page-hero--ink .cinematic-page-hero__scrim {
+    background: linear-gradient(180deg, #111412 0%, rgba(17, 20, 18, 0.72) 38%, rgba(17, 20, 18, 0.88) 70%, #111412 100%);
+  }
+
+  .editorial-page-hero.cinematic-page-hero--blue .cinematic-page-hero__scrim {
+    background: linear-gradient(180deg, #17362d 0%, rgba(23, 54, 45, 0.68) 38%, rgba(23, 54, 45, 0.88) 70%, #17362d 100%);
+  }
+
+  .editorial-page-hero.cinematic-page-hero--orange .cinematic-page-hero__scrim {
+    background: linear-gradient(180deg, #b56f45 0%, rgba(181, 111, 69, 0.68) 38%, rgba(181, 111, 69, 0.9) 70%, #b56f45 100%);
+  }
+}
+
+@media (max-width: 700px) {
+  .cin-hero {
+    display: flex;
+    min-height: max(780px, 100svh);
+    flex-direction: column;
+  }
+
+  .cin-hero-title {
+    margin-top: clamp(82px, 14vh, 124px);
+  }
+
+  .cin-hero-title h1 {
+    line-height: 0.88;
+  }
+
+  .cin-hero-bottom {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .editorial-page-hero.cinematic-page-hero {
+    min-height: max(820px, 100svh);
+    padding: 104px 20px 38px;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__grid {
+    inset: 70px 12px 12px;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__meta {
+    top: 98px;
+    right: 20px;
+    left: 20px;
+    gap: 12px;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__copy {
+    padding-bottom: 22px;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__title {
+    font-size: clamp(54px, 16.3vw, 84px);
+    letter-spacing: -0.052em;
+    line-height: 0.94;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__title em {
+    margin-left: 0;
+  }
+
+  .editorial-page-hero .cinematic-page-hero__body {
+    max-width: 96%;
+    margin-top: 30px;
+    font-size: var(--cin-body-size);
+    line-height: 1.7;
+  }
+
+  .course-editorial-role-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .course-editorial-role-grid li:last-child {
+    grid-column: auto;
+    border-top: 0;
+  }
+
+  .course-editorial-catalog-header h2 {
+    font-size: clamp(46px, 13.2vw, 68px);
+    line-height: 0.98;
+  }
+
+  .course-editorial-catalog-filters {
+    width: calc(100% + 20px);
+    overflow-x: auto;
+    padding: 0 20px 8px 0;
+    flex-wrap: nowrap;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .course-editorial-filter {
+    min-height: 44px;
+    flex: 0 0 auto;
+  }
+
+  .course-editorial-card-media,
+  .course-editorial-card:first-child .course-editorial-card-media,
+  .course-editorial-card--featured .course-editorial-card-media,
+  .course-editorial-card--single .course-editorial-card-media {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+  }
+
+  .course-editorial-card-content {
+    padding: 27px 22px 31px;
+  }
+
+  .course-editorial-card-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .course-editorial-card .course-editorial-card-content h3,
+  .course-editorial-card--featured .course-editorial-card-content h3,
+  .course-editorial-card--single .course-editorial-card-content h3 {
+    margin-top: 31px;
+    font-size: clamp(38px, 11.5vw, 55px);
+    line-height: 1;
+  }
+
+  .course-editorial-card-use,
+  .course-editorial-card-output {
+    grid-template-columns: 76px minmax(0, 1fr);
+    gap: 15px;
+  }
+
+  .course-editorial-card-specs {
+    grid-template-columns: 1fr;
+  }
+
+  .course-editorial-card-specs > div,
+  .course-editorial-card-specs > div:last-child {
+    padding: 17px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--cin-line);
+  }
+
+  .course-editorial-card-specs > div:last-child {
+    border-bottom: 0;
+  }
+
+  .course-editorial-comparison-cue {
+    margin-top: 40px;
+  }
+
+  .course-editorial-comparison-table-wrap {
+    margin-right: -20px;
+  }
+
+  .insight-editorial-card {
+    grid-column: 1 / -1;
+  }
+
+  .insight-editorial-card:nth-last-child(2):nth-child(3n + 1),
+  .insight-editorial-card:last-child:nth-child(3n + 2) {
+    grid-column: 1 / -1;
+  }
+
+  .cin-offer-action {
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 22px;
+  }
+
+  .cin-offer-price strong {
+    font-size: 30px;
+  }
+}
+
+@media (max-height: 760px) and (min-width: 701px) {
+  .cin-hero,
+  .editorial-page-hero.cinematic-page-hero,
+  .product-editorial-hero,
+  .product-editorial-hero__media {
+    min-height: 760px;
+  }
+
+  .cin-hero-title {
+    margin-top: 68px;
+  }
+
+  .cin-hero-title h1 {
+    font-size: clamp(70px, 9.2vw, 138px);
+  }
+}
+
+@media (max-height: 720px) {
+  .mobile-menu nav {
+    margin-block: 24px;
+  }
+
+  .mobile-menu nav a {
+    min-height: 56px;
+  }
+
+  .mobile-menu nav a strong {
+    font-size: clamp(31px, 8.5vh, 45px);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  [data-parallax],
+  .cinematic-media__motion,
+  .cin-hero-title,
+  .cin-hero-index {
+    transform: none !important;
+  }
+
+  .course-editorial-card:hover .course-editorial-card-image,
+  .insight-editorial-card:hover .insight-editorial-card-media img {
+    filter: inherit;
+    transform: none;
+  }
+
+  .cinematic-media__pause {
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-media[data-media-state="loading"]::before {
+    animation: none;
+    transform: none;
+  }
+
+  .cin-offer-story .cin-offer-stage {
+    min-height: auto;
+    overflow: visible;
+    padding-block: clamp(95px, 10vw, 150px);
+  }
+
+  .cin-offer-story .cin-offer-intro {
+    width: min(100%, 700px);
+    margin-bottom: 62px;
+  }
+
+  .cin-offer-story .cin-offer-panels {
+    position: relative;
+    display: grid;
+    gap: 0;
+  }
+
+  .cin-offer-story .cin-offer-panel {
+    position: relative;
+    inset: auto;
+    min-height: 720px;
+    padding: 56px 0 88px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    pointer-events: auto;
+    opacity: 1;
+    transform: none;
+  }
+
+  .cin-offer-story .cin-offer-nav {
+    display: none;
+  }
+}
+
+/* Meaningful small copy must remain comfortably readable on ordinary laptop,
+   high-DPI Windows, and mobile displays. Only miniature cover coordinates stay
+   below this floor because they are decorative rather than instructional. */
+
+:root {
+  --cin-label-size: 10px;
+}
+
+.brand-copy small,
+.eyebrow,
+.cin-kicker,
+.footer-coordinate,
+.checkout-topbar,
+.checkout-step > span,
+.checkout-step small,
+.cin-checkout-summary .eyebrow,
+.cin-checkout-intro__media figcaption span,
+.cin-contact-routes__media figcaption span,
+.rohit-desk__availability,
+.rohit-desk__demo-label,
+.rohit-desk__eyebrow,
+.rohit-desk__suggestion > span,
+.rohit-desk__composer label,
+.contact-form__kicker,
+.contact-form-success__eyebrow,
+.faq-item__index,
+.cin-contact-form__facts dt {
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.footer-bottom {
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.brand-copy small {
+  color: #5d605b;
+  letter-spacing: 0.1em;
+}
+
+.checkout-fields label,
+.contact-field label {
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.checkout-fields input,
+.contact-field input,
+.contact-field select,
+.contact-field textarea,
+.rohit-desk__composer input {
+  color: var(--cin-carbon);
+  font-size: 14px;
+}
+
+.checkout-fields input::placeholder,
+.contact-field input::placeholder,
+.contact-field textarea::placeholder,
+.rohit-desk__composer input::placeholder {
+  color: #6b6e69;
+  opacity: 1;
+}
+
+.payment-placeholder p,
+.checkout-consent,
+.contact-consent,
+.contact-form__submit-row > p,
+.cin-checkout-summary .order-lines > div,
+.cin-checkout-summary .order-total > small,
+.cin-checkout-disclosure,
+.cin-checkout-summary ul,
+.cin-contact-form__facts dd,
+.rohit-desk__suggestion,
+.rohit-desk__reply p,
+.rohit-desk__contact-link,
+.faq-item__answer p {
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.cin-checkout-summary .order-lines span,
+.cin-checkout-summary .order-total > small,
+.cin-checkout-disclosure,
+.cin-checkout-summary ul {
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.cin-checkout-summary .order-lines strong {
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.cin-checkout-cover .cover-foot,
+.cin-checkout-cover .cover-code {
+  font-size: 7px;
+}
+
+.cin-contact-form__facts dd {
+  color: #41443f;
+}
+
+.cin-contact-aside-media figcaption,
+.cin-success-media figcaption,
+.about-editorial-stock-note,
+.course-editorial-opener-media figcaption,
+.about-editorial-page figcaption,
+.results-editorial-page figcaption,
+.insight-editorial-index figcaption,
+.insight-editorial-article-page figcaption,
+.product-editorial-hero__media figcaption,
+.product-editorial-inside__visual figcaption {
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   Header legibility and rendering-cost pass
+   -------------------------------------------------------------------------- */
+
+.site-header,
+.site-header.is-compact {
+  grid-template-columns: minmax(220px, 1fr) auto minmax(130px, 1fr);
+  background: rgba(244, 241, 233, 0.975);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition-duration: 240ms;
+}
+
+.site-header.is-compact {
+  background: rgba(244, 241, 233, 0.99);
+}
+
+.brand-copy strong {
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: 0.18em;
+  line-height: 1.15;
+}
+
+.brand-copy small {
+  color: #555853;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  line-height: 1.35;
+}
+
+.desktop-nav {
+  gap: clamp(22px, 2.2vw, 38px);
+}
+
+.desktop-nav a {
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  padding-block: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.desktop-nav a span {
+  color: #656863;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1;
+}
+
+.desktop-nav a::after {
+  height: 2px;
+}
+
+.header-cta {
+  min-height: 44px;
+  padding-block: 7px;
+  border-bottom: 1px solid currentColor;
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.015em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+body:has(.cin-hero) .site-header:not(.is-compact) .brand-copy small,
+body:has(.cin-hero) .site-header:not(.is-compact) .desktop-nav a span,
+body:has(.editorial-page-hero.cinematic-page-hero--ink) .site-header:not(.is-compact) .brand-copy small,
+body:has(.editorial-page-hero.cinematic-page-hero--ink) .site-header:not(.is-compact) .desktop-nav a span,
+body:has(.editorial-page-hero.cinematic-page-hero--blue) .site-header:not(.is-compact) .brand-copy small,
+body:has(.editorial-page-hero.cinematic-page-hero--blue) .site-header:not(.is-compact) .desktop-nav a span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.mobile-menu-meta,
+.mobile-menu nav a span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1.4;
+}
+
+.mobile-menu-meta {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.mobile-menu nav a strong {
+  font-size: clamp(38px, 8vw, 58px);
+  line-height: 1.06;
+}
+
+.mobile-menu > p {
+  font-size: 20px;
+}
+
+.menu-button {
+  width: 48px;
+  height: 48px;
+}
+
+/* Remove live backdrop sampling from video and sticky surfaces. More opaque
+   fills retain separation without forcing continuous repaint underneath. */
+
+.cinematic-media__pause,
+.cin-tension-card figcaption,
+.product-editorial-hero__facts,
+.purchase-bar {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.cinematic-media__pause {
+  background: rgba(8, 11, 9, 0.74);
+}
+
+.cin-tension-card figcaption {
+  background: rgba(12, 16, 13, 0.8);
+}
+
+.product-editorial-hero__facts {
+  background: rgba(17, 20, 18, 0.9);
+}
+
+.purchase-bar {
+  background: rgba(244, 241, 233, 0.99);
+}
+
+/* Natural colour replaces full-surface CSS image filters. Motion remains a
+   single transform-only hover, avoiding filter animation and repaints. */
+
+.cin-method-frame img,
+.cin-offer-image > img,
+.about-editorial-portrait-image,
+.about-editorial-context-image img,
+.results-editorial-process-image img,
+.insight-editorial-feature-media img,
+.insight-editorial-card-media img,
+.insight-editorial-article-hero img,
+.cin-contact-routes__media img,
+.cin-contact-aside-media img,
+.cin-checkout-intro__media img,
+.cin-success-media img,
+.course-editorial-card-image {
+  filter: none;
+}
+
+.insight-editorial-card-media img,
+.course-editorial-card-image {
+  transition-property: transform;
+}
+
+.insight-editorial-card:hover .insight-editorial-card-media img,
+.course-editorial-card:hover .course-editorial-card-image {
+  filter: none;
+}
+
+.cin-offer-image::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 11, 9, 0.08), rgba(8, 11, 9, 0.42));
+  content: "";
+  pointer-events: none;
+}
+
+.cin-offer-image .course-cover {
+  z-index: 2;
+  box-shadow: 0 24px 62px rgba(0, 0, 0, 0.3);
+}
+
+.cin-tension-card {
+  box-shadow: 0 18px 42px rgba(24, 27, 23, 0.13);
+}
+
+.cin-resource-concierge {
+  box-shadow: 0 28px 64px rgba(0, 0, 0, 0.2);
+}
+
+.cin-checkout-cover .course-cover {
+  box-shadow: 12px 18px 32px rgba(0, 0, 0, 0.3);
+}
+
+.course-cover {
+  box-shadow: 12px 18px 34px rgba(8, 11, 9, 0.17);
+}
+
+.product-editorial-hero__cover {
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.28));
+}
+
+/* MotionProvider exposes this quality signal for Save-Data, constrained
+   hardware, and explicit reduced-motion preferences. The fallback preserves
+   layout and imagery while dropping paint-heavy decoration and transitions. */
+
+html[data-motion-quality="reduced"] {
+  scroll-behavior: auto;
+}
+
+html[data-motion-quality="reduced"] :where(*, *::before, *::after) {
+  animation-delay: 0s !important;
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-delay: 0s !important;
+  transition-duration: 0.01ms !important;
+}
+
+html[data-motion-quality="reduced"] :is(
+  [data-parallax],
+  .cinematic-media__motion,
+  .cin-hero-title,
+  .cin-hero-index,
+  .cin-method-frame,
+  .cin-offer-panel,
+  .cinematic-page-hero__grid,
+  .cinematic-page-hero__title,
+  .cinematic-page-hero__title-wrap,
+  .cinematic-page-hero__meta,
+  .cinematic-page-hero__body,
+  .cinematic-page-hero__actions,
+  .cinematic-page-hero__media-mask,
+  .cinematic-page-hero__measure-line
+) {
+  transform: none !important;
+}
+
+html[data-motion-quality="reduced"] :is(
+  .cinematic-page-hero__title,
+  .cinematic-page-hero__meta,
+  .cinematic-page-hero__body,
+  .cinematic-page-hero__actions,
+  .cinematic-page-hero__media-mask,
+  .cinematic-page-hero__measure-line
+) {
+  opacity: 1 !important;
+  visibility: visible !important;
+  clip-path: none !important;
+}
+
+html[data-motion-quality="reduced"] :is(img, video) {
+  filter: none !important;
+}
+
+html[data-motion-quality="reduced"] :is(
+  .site-header,
+  .cinematic-media__pause,
+  .cin-tension-card figcaption,
+  .product-editorial-hero__facts,
+  .purchase-bar
+) {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+html[data-motion-quality="reduced"] :is(
+  .cin-tension-card,
+  .cin-offer-image .course-cover,
+  .cin-resource-concierge,
+  .cin-checkout-cover .course-cover,
+  .course-cover,
+  .product-editorial-hero__cover
+) {
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+html[data-motion-quality="reduced"] :is(
+  .architecture-r,
+  .teaser-portrait > span,
+  .portrait-r
+) {
+  mix-blend-mode: normal;
+}
+
+html[data-motion-quality="reduced"] .mobile-menu::before {
+  background-image: none;
+}
+
+html[data-motion-quality="reduced"] .mobile-menu::after {
+  display: none;
+}
+
+@media (max-width: 980px) {
+  .site-header,
+  .site-header.is-compact {
+    grid-template-columns: 1fr auto;
+    height: 72px;
+    padding-inline: 20px;
+  }
+
+  .desktop-nav,
+  .header-cta {
+    display: none;
+  }
+
+  .menu-button {
+    display: grid;
+  }
+}
+
+@media (max-width: 700px) {
+  .mobile-menu-meta,
+  .mobile-menu nav a span {
+    font-size: 10px;
+  }
+
+  .mobile-menu nav a strong {
+    font-size: clamp(34px, 11vw, 52px);
   }
 }

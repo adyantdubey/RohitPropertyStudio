@@ -44,6 +44,11 @@ export default defineConfig(async () => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
+    // `lucide-react` contains client-marked modules that the RSC and browser
+    // environments must resolve consistently during development.
+    optimizeDeps: {
+      exclude: ["lucide-react"],
+    },
     server: isCodexSeatbeltSandbox
       ? { watch: { useFsEvents: false, usePolling: true } }
       : undefined,

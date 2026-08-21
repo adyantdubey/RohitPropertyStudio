@@ -3,11 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CourseCover } from "./components/CourseCover";
 import { CinematicMedia } from "./components/CinematicMedia";
+import { useMotion } from "./components/MotionProvider";
 import { homeJourneyStages, insights, products } from "./lib/content";
 
 const coverVariant = {
@@ -32,6 +33,22 @@ const insightImages = [
 
 export function HomeExperience() {
   const root = useRef<HTMLElement>(null);
+  const { motionQuality } = useMotion();
+  const [activeOfferIndex, setActiveOfferIndex] = useState(0);
+  const [offersPinned, setOffersPinned] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia(
+      "(min-width: 960px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+    );
+    const syncOfferMode = () =>
+      setOffersPinned(motionQuality === "full" && query.matches);
+
+    syncOfferMode();
+    query.addEventListener("change", syncOfferMode);
+
+    return () => query.removeEventListener("change", syncOfferMode);
+  }, [motionQuality]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -41,7 +58,10 @@ export function HomeExperience() {
     const media = gsap.matchMedia();
     const context = gsap.context(() => {
       media.add("(prefers-reduced-motion: no-preference)", () => {
-        const entrance = gsap.timeline({ defaults: { ease: "power3.out" } });
+        const entrance = gsap.timeline({
+          paused: true,
+          defaults: { ease: "power3.out" },
+        });
         entrance
           .from(".cin-hero-rule", { scaleX: 0, duration: 0.65, transformOrigin: "left" })
           .from(
@@ -55,18 +75,25 @@ export function HomeExperience() {
             0.42,
           );
 
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: ".cin-hero",
-              start: "top top",
-              end: "bottom top",
-              scrub: 0.7,
-            },
-          })
-          .to(".cin-hero-media .cinematic-media__motion", { yPercent: 9, scale: 1.02, ease: "none" }, 0)
-          .to(".cin-hero-title", { yPercent: -5, ease: "none" }, 0)
-          .to(".cin-hero-index", { yPercent: -18, ease: "none" }, 0);
+        let entranceObserver: MutationObserver | null = null;
+        const entranceFrame = window.requestAnimationFrame(() => {
+          const playEntrance = () => entrance.play(0);
+
+          if (document.documentElement.hasAttribute("data-route-transition")) {
+            entranceObserver = new MutationObserver(() => {
+              if (document.documentElement.hasAttribute("data-route-transition")) return;
+              entranceObserver?.disconnect();
+              entranceObserver = null;
+              playEntrance();
+            });
+            entranceObserver.observe(document.documentElement, {
+              attributes: true,
+              attributeFilter: ["data-route-transition"],
+            });
+          } else {
+            playEntrance();
+          }
+        });
 
         ScrollTrigger.batch(".cin-reveal", {
           start: "top 88%",
@@ -81,88 +108,11 @@ export function HomeExperience() {
             }),
         });
 
-        gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((item) => {
-          const amount = Number(item.dataset.parallax ?? 8);
-          gsap.fromTo(
-            item,
-            { yPercent: -amount / 2 },
-            {
-              yPercent: amount / 2,
-              ease: "none",
-              scrollTrigger: {
-                trigger: item.parentElement ?? item,
-                start: "top bottom",
-                end: "bottom top",
-                scrub: 0.7,
-              },
-            },
-          );
-        });
-
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: ".cin-tension",
-              start: "top 72%",
-              end: "center 42%",
-              scrub: 0.7,
-            },
-          })
-          .from(".cin-tension-card:nth-child(1)", { xPercent: -18, rotate: -5 }, 0)
-          .from(".cin-tension-card:nth-child(2)", { yPercent: 22, rotate: 4 }, 0)
-          .from(".cin-tension-card:nth-child(3)", { xPercent: 20, rotate: 7 }, 0)
-          .to(".cin-tension-thread", { scaleX: 1, transformOrigin: "left" }, 0.2);
-
-        const steps = gsap.utils.toArray<HTMLElement>(".cin-method-step");
-        const frames = gsap.utils.toArray<HTMLElement>(".cin-method-frame");
-        const setMethod = (index: number) => {
-          steps.forEach((step, stepIndex) => step.classList.toggle("is-active", stepIndex === index));
-          frames.forEach((frame, frameIndex) => frame.classList.toggle("is-active", frameIndex === index));
+        return () => {
+          window.cancelAnimationFrame(entranceFrame);
+          entranceObserver?.disconnect();
+          entrance.kill();
         };
-        steps.forEach((step, index) => {
-          ScrollTrigger.create({
-            trigger: step,
-            start: "top 58%",
-            end: "bottom 42%",
-            onEnter: () => setMethod(index),
-            onEnterBack: () => setMethod(index),
-          });
-        });
-
-        media.add("(min-width: 960px)", () => {
-          const panels = gsap.utils.toArray<HTMLElement>(".cin-offer-panel");
-          const setOffer = (index: number) => {
-            panels.forEach((panel, panelIndex) => panel.classList.toggle("is-active", panelIndex === index));
-          };
-          const offerTrigger = ScrollTrigger.create({
-            trigger: ".cin-offer-story",
-            start: "top top",
-            end: () => `+=${window.innerHeight * 2.8}`,
-            pin: ".cin-offer-stage",
-            scrub: 0.65,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => setOffer(Math.min(2, Math.floor(self.progress * 3))),
-          });
-          setOffer(0);
-          return () => offerTrigger.kill();
-        });
-
-        gsap.fromTo(
-          ".cin-proof-line",
-          { scaleX: 0 },
-          {
-            scaleX: 1,
-            transformOrigin: "left",
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".cin-proof",
-              start: "top 72%",
-              end: "center 45%",
-              scrub: 0.65,
-            },
-          },
-        );
       });
     }, root);
 
@@ -172,13 +122,151 @@ export function HomeExperience() {
     };
   }, []);
 
+  useEffect(() => {
+    if (motionQuality !== "full") return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    const node = root.current;
+    if (!node) return;
+
+    const media = gsap.matchMedia();
+    const context = gsap.context(() => {
+      media.add(
+        "(min-width: 768px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+        () => {
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: ".cin-hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: 0.7,
+              },
+            })
+            .to(
+              ".cin-hero-media .cinematic-media__motion",
+              { yPercent: 9, scale: 1.02, ease: "none" },
+              0,
+            )
+            .to(".cin-hero-title", { yPercent: -5, ease: "none" }, 0)
+            .to(".cin-hero-index", { yPercent: -18, ease: "none" }, 0);
+
+          gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((item) => {
+            const amount = Number(item.dataset.parallax ?? 8);
+            gsap.fromTo(
+              item,
+              { yPercent: -amount / 2 },
+              {
+                yPercent: amount / 2,
+                ease: "none",
+                scrollTrigger: {
+                  trigger: item.parentElement ?? item,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 0.7,
+                },
+              },
+            );
+          });
+
+          gsap
+            .timeline({
+              scrollTrigger: {
+                trigger: ".cin-tension",
+                start: "top 72%",
+                end: "center 42%",
+                scrub: 0.7,
+              },
+            })
+            .from(".cin-tension-card:nth-child(1)", { xPercent: -18, rotate: -5 }, 0)
+            .from(".cin-tension-card:nth-child(2)", { yPercent: 22, rotate: 4 }, 0)
+            .from(".cin-tension-card:nth-child(3)", { xPercent: 20, rotate: 7 }, 0)
+            .to(".cin-tension-thread", { scaleX: 1, transformOrigin: "left" }, 0.2);
+
+          const steps = gsap.utils.toArray<HTMLElement>(".cin-method-step");
+          const frames = gsap.utils.toArray<HTMLElement>(".cin-method-frame");
+          const setMethod = (index: number) => {
+            steps.forEach((step, stepIndex) =>
+              step.classList.toggle("is-active", stepIndex === index),
+            );
+            frames.forEach((frame, frameIndex) =>
+              frame.classList.toggle("is-active", frameIndex === index),
+            );
+          };
+          steps.forEach((step, index) => {
+            ScrollTrigger.create({
+              trigger: step,
+              start: "top 58%",
+              end: "bottom 42%",
+              onEnter: () => setMethod(index),
+              onEnterBack: () => setMethod(index),
+            });
+          });
+
+          gsap.fromTo(
+            ".cin-proof-line",
+            { scaleX: 0 },
+            {
+              scaleX: 1,
+              transformOrigin: "left",
+              ease: "none",
+              scrollTrigger: {
+                trigger: ".cin-proof",
+                start: "top 72%",
+                end: "center 45%",
+                scrub: 0.65,
+              },
+            },
+          );
+
+          return () => setMethod(0);
+        },
+      );
+
+      media.add(
+        "(min-width: 960px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+        () => {
+          let currentOfferIndex = 0;
+          const setOffer = (index: number) => {
+            if (index === currentOfferIndex) return;
+            currentOfferIndex = index;
+            setActiveOfferIndex(index);
+          };
+          const offerTrigger = ScrollTrigger.create({
+            trigger: ".cin-offer-story",
+            start: "top top",
+            end: () => `+=${window.innerHeight * 2.8}`,
+            pin: ".cin-offer-stage",
+            scrub: 0.65,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) =>
+              setOffer(Math.min(2, Math.floor(self.progress * 3))),
+          });
+
+          return () => {
+            offerTrigger.kill();
+            setActiveOfferIndex(0);
+          };
+        },
+      );
+    }, root);
+
+    return () => {
+      media.revert();
+      context.revert();
+    };
+  }, [motionQuality]);
+
   return (
     <main ref={root} id="main-content" className="cin-home">
       <section className="cin-hero">
         <CinematicMedia
           className="cin-hero-media"
-          poster="/media/hero-poster.jpg"
+          poster="/media/hero-aerial-poster.jpg"
+          mobilePoster="/media/hero-aerial-poster-mobile.jpg"
           videoSrc="/media/hero-aerial.mp4"
+          mobileVideoSrc="/media/hero-aerial-mobile.mp4"
           alt="Aerial view of a contemporary residence and its architectural setting"
           width={1800}
           height={1013}
@@ -191,7 +279,7 @@ export function HomeExperience() {
         </CinematicMedia>
 
         <div className="cin-hero-top cin-hero-reveal">
-          <span>ROHIT / PROPERTY EDUCATION</span>
+          <span>ROHIT / PROPERTY DECISION STUDIO</span>
           <span>INDIA / DIGITAL LEARNING</span>
         </div>
         <span className="cin-hero-rule" aria-hidden="true" />
@@ -206,9 +294,9 @@ export function HomeExperience() {
 
         <div className="cin-hero-bottom">
           <p className="cin-hero-deck cin-hero-reveal">
-            Rohit turns property research into a process you can inspect—frame
-            the question, read the evidence, expose the trade-offs, and know
-            what to verify next.
+            Rohit&apos;s decision studio is being built around a process you can
+            inspect—frame the question, read the evidence, expose the
+            trade-offs, and know what to verify next.
           </p>
           <div className="cin-hero-actions cin-hero-reveal">
             <Link className="cin-button cin-button-light" href="/courses/property-decision-system">
@@ -262,7 +350,7 @@ export function HomeExperience() {
         <div className="cin-rohit-copy cin-reveal">
           <p className="cin-kicker">THE PERSON BEHIND THE PROCESS</p>
           <h2>A trained eye is not the same as a <em>confident opinion.</em></h2>
-          <p>Rohit teaches the part of real estate that rarely fits inside a sales pitch: how to slow the noise down, examine an assumption, identify the missing expert input, and document the next move.</p>
+          <p>Rohit&apos;s method focuses on the part of real estate that rarely fits inside a sales pitch: how to slow the noise down, examine an assumption, identify the missing expert input, and document the next move.</p>
           <Link className="cin-button cin-button-dark" href="/about">Meet Rohit <ArrowUpRight aria-hidden="true" size={18} /></Link>
         </div>
         <div className="cin-rohit-note cin-reveal"><span>THE STANDARD</span><p>Professional without being distant. Clear without pretending uncertainty has disappeared.</p></div>
@@ -292,28 +380,54 @@ export function HomeExperience() {
         </div>
       </section>
 
-      <section className="cin-offer-story" id="offers">
+      <section
+        className="cin-offer-story"
+        data-offer-mode={offersPinned ? "pinned" : "stacked"}
+        id="offers"
+      >
         <div className="cin-offer-stage">
           <header className="cin-offer-intro"><p className="cin-kicker">THE COLLECTION / 001—003</p><h2>One system.<br /><em>Three ways in.</em></h2></header>
           <div className="cin-offer-panels">
-            {products.map((product, index) => (
-              <article className={`cin-offer-panel${index === 0 ? " is-active" : ""}`} key={product.slug}>
-                <div className="cin-offer-image">
-                  <Image src={index === 0 ? "/media/interior-daylight.jpg" : index === 1 ? "/media/blueprint-hands.jpg" : "/media/facade-detail.jpg"} alt="" width={1800} height={2700} sizes="(max-width: 860px) 100vw, 50vw" />
-                  <CourseCover variant={coverVariant[product.kind]} title={product.shortTitle} />
-                </div>
-                <div className="cin-offer-copy">
-                  <span className="cin-offer-number">0{index + 1} / {product.kind.toUpperCase()}</span>
-                  <h3>{product.title}</h3><p className="cin-offer-tagline">{product.tagline}</p>
-                  <div className="cin-offer-facts">
-                    <span><small>BEST WHEN</small>{product.idealFor[0]}</span>
-                    <span><small>FORMAT</small>{product.format}</span>
-                    <span><small>INCLUDES</small>{product.includes.slice(0, 3).join(" · ")}</span>
+            {products.map((product, index) => {
+              const offerIsActive = index === activeOfferIndex;
+              const offerIsHidden = offersPinned && !offerIsActive;
+
+              return (
+                <article
+                  aria-hidden={offerIsHidden || undefined}
+                  className={`cin-offer-panel${offerIsActive ? " is-active" : ""}`}
+                  inert={offerIsHidden}
+                  key={product.slug}
+                >
+                  <div className="cin-offer-image">
+                    <Image src={index === 0 ? "/media/interior-daylight.jpg" : index === 1 ? "/media/blueprint-hands.jpg" : "/media/facade-detail.jpg"} alt="" width={1800} height={2700} sizes="(max-width: 860px) 100vw, 50vw" />
+                    <CourseCover variant={coverVariant[product.kind]} title={product.shortTitle} />
                   </div>
-                  <div className="cin-offer-action"><strong>{product.price.formatted}</strong><Link className="cin-button cin-button-light" href={`/courses/${product.slug}`}>See inside <ArrowUpRight aria-hidden="true" size={17} /></Link></div>
-                </div>
-              </article>
-            ))}
+                  <div className="cin-offer-copy">
+                    <span className="cin-offer-number">0{index + 1} / {product.kind.toUpperCase()}</span>
+                    <h3>{product.title}</h3><p className="cin-offer-tagline">{product.tagline}</p>
+                    <div className="cin-offer-facts">
+                      <span><small>BEST WHEN</small>{product.idealFor[0]}</span>
+                      <span><small>FORMAT</small>{product.format}</span>
+                      <span><small>INCLUDES</small>{product.includes.slice(0, 3).join(" · ")}</span>
+                    </div>
+                    <div className="cin-offer-action">
+                      <span className="cin-offer-price">
+                        <small>Preview price</small>
+                        <strong>{product.price.formatted}</strong>
+                      </span>
+                      <Link
+                        className="cin-button cin-button-light"
+                        href={`/courses/${product.slug}`}
+                        tabIndex={offerIsHidden ? -1 : undefined}
+                      >
+                        See inside <ArrowUpRight aria-hidden="true" size={17} />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
           <div className="cin-offer-nav" aria-hidden="true">{products.map((product, index) => <span key={product.slug}>0{index + 1}</span>)}</div>
         </div>

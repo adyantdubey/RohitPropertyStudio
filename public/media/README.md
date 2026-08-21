@@ -19,6 +19,10 @@ stand-in disclosure. Replace them with approved brand photography before launch.
 | `blueprint-hands.jpg` | Pexels editorial stock; exact source page must be recorded before production launch | Diligence / article / product detail |
 | `interior-soft.jpg` | Pexels editorial stock; exact source page must be recorded before production launch | Supporting editorial still |
 
+The `*-mobile.mp4`, `*-poster.jpg`, and `*-poster-mobile.jpg` files are locally
+optimised crops or first-frame derivatives of the three Pexels videos listed
+above. They retain the same source and temporary-editorial status.
+
 Pexels assets are used under the [Pexels licence](https://www.pexels.com/license/).
 The licence does not remove the need to avoid implying endorsement or depicting a
 stock subject as Rohit; the site copy and visible captions preserve that boundary.

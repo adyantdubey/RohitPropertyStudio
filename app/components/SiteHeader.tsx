@@ -126,7 +126,7 @@ export function SiteHeader() {
           <span className="brand-mark">R</span>
           <span className="brand-copy">
             <strong>ROHIT</strong>
-            <small>REAL ESTATE / EDUCATION</small>
+            <small>PROPERTY DECISION STUDIO</small>
           </span>
         </TransitionLink>
 
@@ -169,7 +169,7 @@ export function SiteHeader() {
         aria-label="Site navigation"
         role="region"
       >
-        <div className="mobile-menu-meta">NAVIGATION / ROHIT</div>
+        <div className="mobile-menu-meta">ROHIT / PROPERTY DECISION STUDIO</div>
         <nav aria-label="Mobile navigation">
           {links.map((link, index) => (
             <TransitionLink
@@ -195,7 +195,7 @@ export function SiteHeader() {
             <ArrowUpRight aria-hidden="true" />
           </TransitionLink>
         </nav>
-        <p>Property education for clearer thinking.</p>
+        <p>Property, read clearly.</p>
       </div>
     </>
   );

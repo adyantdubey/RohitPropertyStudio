@@ -23,8 +23,11 @@ type ScrollToTopOptions = {
   immediate?: boolean;
 };
 
+export type MotionQuality = "full" | "reduced";
+
 type MotionContextValue = {
   reducedMotion: boolean;
+  motionQuality: MotionQuality;
   smoothScrollEnabled: boolean;
   refreshScrollTriggers: () => void;
   scrollToTop: (options?: ScrollToTopOptions) => void;
@@ -33,8 +36,31 @@ type MotionContextValue = {
 const DESKTOP_FINE_POINTER = "(min-width: 768px) and (pointer: fine)";
 const REDUCED_MOTION = "(prefers-reduced-motion: reduce)";
 
+type NavigatorWithDeviceSignals = Navigator & {
+  connection?: EventTarget & { saveData?: boolean };
+  deviceMemory?: number;
+};
+
+function getMotionQuality(
+  navigatorValue: NavigatorWithDeviceSignals,
+  prefersReducedMotion: boolean,
+): MotionQuality {
+  const cores = navigatorValue.hardwareConcurrency || undefined;
+  const memory = navigatorValue.deviceMemory;
+  const saveData = Boolean(navigatorValue.connection?.saveData);
+  const veryLowCpu = cores !== undefined && cores <= 2;
+  const veryLowMemory = memory !== undefined && memory <= 2;
+  const jointlyConstrained =
+    cores !== undefined && memory !== undefined && cores <= 4 && memory <= 4;
+
+  return prefersReducedMotion || saveData || veryLowCpu || veryLowMemory || jointlyConstrained
+    ? "reduced"
+    : "full";
+}
+
 const MotionContext = createContext<MotionContextValue>({
   reducedMotion: false,
+  motionQuality: "reduced",
   smoothScrollEnabled: false,
   refreshScrollTriggers: () => undefined,
   scrollToTop: () => undefined,
@@ -51,17 +77,35 @@ export function useMotion() {
 export function MotionProvider({ children }: MotionProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
   const refreshFrameRef = useRef(0);
+  const refreshTimerRef = useRef<number | null>(null);
+  const refreshQueuedRef = useRef(false);
+  const lastRefreshRef = useRef(0);
   const disposedRef = useRef(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [motionQuality, setMotionQuality] = useState<MotionQuality>("reduced");
   const [smoothScrollEnabled, setSmoothScrollEnabled] = useState(false);
 
   const refreshScrollTriggers = useCallback(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === "undefined" || refreshQueuedRef.current) return;
 
-    window.cancelAnimationFrame(refreshFrameRef.current);
-    refreshFrameRef.current = window.requestAnimationFrame(() => {
-      if (!disposedRef.current) ScrollTrigger.refresh();
-    });
+    const queueFrame = () => {
+      refreshTimerRef.current = null;
+      refreshFrameRef.current = window.requestAnimationFrame(() => {
+        refreshQueuedRef.current = false;
+        if (disposedRef.current) return;
+        lastRefreshRef.current = performance.now();
+        ScrollTrigger.refresh();
+      });
+    };
+
+    refreshQueuedRef.current = true;
+    const elapsed = performance.now() - lastRefreshRef.current;
+    const delay = Math.max(0, 80 - elapsed);
+    if (delay > 0) {
+      refreshTimerRef.current = window.setTimeout(queueFrame, delay);
+    } else {
+      queueFrame();
+    }
   }, []);
 
   const scrollToTop = useCallback(({ immediate = true }: ScrollToTopOptions = {}) => {
@@ -81,6 +125,8 @@ export function MotionProvider({ children }: MotionProviderProps) {
 
     const desktopQuery = window.matchMedia(DESKTOP_FINE_POINTER);
     const reducedMotionQuery = window.matchMedia(REDUCED_MOTION);
+    const navigatorSignals = navigator as NavigatorWithDeviceSignals;
+    const connection = navigatorSignals.connection;
 
     let removeLenisScrollListener: (() => void) | null = null;
     let tickerCallback: ((time: number) => void) | null = null;
@@ -106,9 +152,19 @@ export function MotionProvider({ children }: MotionProviderProps) {
       destroyLenis();
 
       const shouldReduceMotion = reducedMotionQuery.matches;
+      const nextMotionQuality = getMotionQuality(
+        navigatorSignals,
+        shouldReduceMotion,
+      );
       setReducedMotion(shouldReduceMotion);
+      setMotionQuality(nextMotionQuality);
+      document.documentElement.dataset.motionQuality = nextMotionQuality;
 
-      if (!desktopQuery.matches || shouldReduceMotion) {
+      if (
+        !desktopQuery.matches ||
+        shouldReduceMotion ||
+        nextMotionQuality === "reduced"
+      ) {
         document.documentElement.dataset.motion = "native";
         refreshScrollTriggers();
         return;
@@ -153,6 +209,7 @@ export function MotionProvider({ children }: MotionProviderProps) {
     configureLenis();
     desktopQuery.addEventListener("change", configureLenis);
     reducedMotionQuery.addEventListener("change", configureLenis);
+    connection?.addEventListener("change", configureLenis);
     document.addEventListener("visibilitychange", onVisibilityChange);
 
     void document.fonts.ready.then(() => {
@@ -166,11 +223,18 @@ export function MotionProvider({ children }: MotionProviderProps) {
     return () => {
       disposedRef.current = true;
       window.cancelAnimationFrame(refreshFrameRef.current);
+      if (refreshTimerRef.current !== null) {
+        window.clearTimeout(refreshTimerRef.current);
+        refreshTimerRef.current = null;
+      }
+      refreshQueuedRef.current = false;
       window.removeEventListener("load", refreshScrollTriggers);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       desktopQuery.removeEventListener("change", configureLenis);
       reducedMotionQuery.removeEventListener("change", configureLenis);
+      connection?.removeEventListener("change", configureLenis);
       delete document.documentElement.dataset.motion;
+      delete document.documentElement.dataset.motionQuality;
       destroyLenis();
     };
   }, [refreshScrollTriggers]);
@@ -178,11 +242,12 @@ export function MotionProvider({ children }: MotionProviderProps) {
   const value = useMemo<MotionContextValue>(
     () => ({
       reducedMotion,
+      motionQuality,
       smoothScrollEnabled,
       refreshScrollTriggers,
       scrollToTop,
     }),
-    [reducedMotion, refreshScrollTriggers, scrollToTop, smoothScrollEnabled],
+    [motionQuality, reducedMotion, refreshScrollTriggers, scrollToTop, smoothScrollEnabled],
   );
 
   return <MotionContext.Provider value={value}>{children}</MotionContext.Provider>;

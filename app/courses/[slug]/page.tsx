@@ -20,7 +20,9 @@ const productMedia: Record<
   ProductKind,
   {
     poster: string;
+    mobilePoster?: string;
     videoSrc?: string;
+    mobileVideoSrc?: string;
     alt: string;
     width: number;
     height: number;
@@ -29,8 +31,10 @@ const productMedia: Record<
   }
 > = {
   course: {
-    poster: "/media/interior-daylight.jpg",
+    poster: "/media/interior-walkthrough-poster.jpg",
+    mobilePoster: "/media/interior-walkthrough-poster-mobile.jpg",
     videoSrc: "/media/interior-walkthrough.mp4",
+    mobileVideoSrc: "/media/interior-walkthrough-mobile.mp4",
     alt: "A composed residential interior in warm daylight",
     width: 1800,
     height: 2700,
@@ -38,8 +42,10 @@ const productMedia: Record<
     caption: "Temporary editorial stock media. It is not a Rohit project or listing.",
   },
   pdf: {
-    poster: "/media/blueprint-hands.jpg",
+    poster: "/media/blueprint-process-poster.jpg",
+    mobilePoster: "/media/blueprint-process-poster-mobile.jpg",
     videoSrc: "/media/blueprint-process.mp4",
+    mobileVideoSrc: "/media/blueprint-process-mobile.mp4",
     alt: "Hands reviewing an architectural drawing at a work table",
     width: 2048,
     height: 3072,
@@ -101,7 +107,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="product-editorial-hero__title">
             <p className="cin-kicker">{product.eyebrow}</p>
             <h1>{product.title}</h1>
-            {product.subtitle ? <p className="product-editorial-hero__subtitle">{product.subtitle}</p> : null}
+            {"subtitle" in product && product.subtitle ? (
+              <p className="product-editorial-hero__subtitle">{product.subtitle}</p>
+            ) : null}
             <p className="product-editorial-hero__tagline">{product.tagline}</p>
           </div>
 
@@ -123,7 +131,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <figure className="product-editorial-hero__media">
           <CinematicMedia
             poster={media.poster}
+            mobilePoster={media.mobilePoster}
             videoSrc={media.videoSrc}
+            mobileVideoSrc={media.mobileVideoSrc}
             alt={media.alt}
             width={media.width}
             height={media.height}

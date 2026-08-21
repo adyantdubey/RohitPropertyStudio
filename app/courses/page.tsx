@@ -31,11 +31,13 @@ export default function CoursesPage() {
         aside={<span>LEARN / CARRY / RUN</span>}
       />
 
-      <section className="featured-note course-editorial-opener section-pad">
-        <figure className="note-visual course-editorial-opener-media">
+      <section className="course-editorial-opener section-pad">
+        <figure className="course-editorial-opener-media">
           <CinematicMedia
-            poster="/media/blueprint-hands.jpg"
+            poster="/media/blueprint-process-poster.jpg"
+            mobilePoster="/media/blueprint-process-poster-mobile.jpg"
             videoSrc="/media/blueprint-process.mp4"
+            mobileVideoSrc="/media/blueprint-process-mobile.mp4"
             alt="Hands reviewing architectural drawings on a work table"
             width={2048}
             height={3072}
@@ -92,7 +94,7 @@ export default function CoursesPage() {
         <CourseCatalog />
       </div>
 
-      <section className="course-compare course-editorial-compare section-pad section-ink">
+      <section className="course-editorial-compare section-pad section-ink">
         <SectionHeading
           light
           eyebrow="COMPARE / BEFORE YOU CHOOSE"
@@ -106,14 +108,28 @@ export default function CoursesPage() {
           body="Pricing, access, and formats remain launch placeholders. The comparison below describes the intended learning role of each resource without promising an outcome."
         />
 
-        <div className="comparison-grid course-editorial-comparison-table-wrap">
+        <p
+          className="course-editorial-comparison-cue"
+          id="course-comparison-scroll-hint"
+        >
+          Swipe or use horizontal scroll to review every column
+          <span aria-hidden="true"> →</span>
+        </p>
+        {/* eslint-disable jsx-a11y/no-noninteractive-tabindex -- This overflow region must be keyboard-focusable. */}
+        <div
+          aria-describedby="course-comparison-scroll-hint"
+          aria-label="Resource comparison table; scroll horizontally to review every column"
+          className="course-editorial-comparison-table-wrap"
+          role="region"
+          tabIndex={0}
+        >
           <table className="course-editorial-comparison-table">
             <caption className="sr-only">
               Compare Rohit&apos;s course, field guide, and toolkit by intended use,
               format, working output, and placeholder price.
             </caption>
             <thead>
-              <tr className="comparison-row comparison-head">
+              <tr className="course-editorial-comparison-row course-editorial-comparison-row--head">
                 <th scope="col">Resource</th>
                 <th scope="col">Best when</th>
                 <th scope="col">Format &amp; access</th>
@@ -123,7 +139,7 @@ export default function CoursesPage() {
             </thead>
             <tbody>
               {products.map((product) => (
-                <tr className="comparison-row" key={product.slug}>
+                <tr className="course-editorial-comparison-row" key={product.slug}>
                   <th scope="row">
                     <Link href={`/courses/${product.slug}`}>{product.title}</Link>
                     <small>{product.collectionRole}</small>
@@ -143,6 +159,7 @@ export default function CoursesPage() {
             </tbody>
           </table>
         </div>
+        {/* eslint-enable jsx-a11y/no-noninteractive-tabindex */}
       </section>
 
       <section className="course-editorial-boundary section-pad">

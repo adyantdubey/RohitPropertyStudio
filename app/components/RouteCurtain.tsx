@@ -42,19 +42,24 @@ export function RouteCurtain({
   const router = useRouter();
   const pathname = usePathname();
   const curtainRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLSpanElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const initialIntroCompleteRef = useRef(false);
   const transitioningRef = useRef(false);
   const pendingPathRef = useRef<string | null>(null);
   const shouldScrollRef = useRef(true);
   const { reducedMotion, refreshScrollTriggers, scrollToTop } = useMotion();
   const [announcement, setAnnouncement] = useState("");
+  const [hasInitialLandingIntro] = useState(() => pathname === "/");
 
   const resetCurtain = useCallback(() => {
     const curtain = curtainRef.current;
     if (!curtain) return;
 
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = null;
     timelineRef.current?.kill();
     gsap.set(curtain, {
       yPercent: 100,
@@ -97,19 +102,57 @@ export function RouteCurtain({
         .set(lineRef.current, { scaleX: 0, transformOrigin: "left" })
         .to(curtainRef.current, {
           yPercent: 0,
-          duration: 0.42,
+          duration: 0.34,
           ease: "power4.inOut",
         })
         .to(
           lineRef.current,
-          { scaleX: 1, duration: 0.32, ease: "power3.out" },
-          "-=0.2",
+          { scaleX: 1, duration: 0.24, ease: "power3.out" },
+          "-=0.16",
         );
 
       timeoutRef.current = setTimeout(resetCurtain, 5000);
     },
     [reducedMotion, resetCurtain, router],
   );
+
+  useEffect(() => {
+    if (!hasInitialLandingIntro || initialIntroCompleteRef.current) return;
+    initialIntroCompleteRef.current = true;
+
+    const curtain = curtainRef.current;
+    const content = contentRef.current;
+    const line = lineRef.current;
+    if (!curtain || !content || !line) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      resetCurtain();
+      return;
+    }
+
+    transitioningRef.current = true;
+    document.documentElement.setAttribute("data-route-transition", "true");
+    timelineRef.current?.kill();
+    gsap.set(curtain, {
+      yPercent: 0,
+      autoAlpha: 1,
+      pointerEvents: "auto",
+    });
+    gsap.set(line, { scaleX: 0, transformOrigin: "left" });
+
+    timelineRef.current = gsap
+      .timeline({ onComplete: resetCurtain })
+      .fromTo(
+        content,
+        { y: 10, scale: 0.96 },
+        { y: 0, scale: 1, duration: 0.46, ease: "power3.out" },
+        0,
+      )
+      .to(line, { scaleX: 1, duration: 0.62, ease: "power3.inOut" }, 0.1)
+      .to(curtain, { yPercent: -100, duration: 0.55, ease: "power4.inOut" }, 0.92);
+
+    timeoutRef.current = setTimeout(resetCurtain, 2500);
+  }, [hasInitialLandingIntro, resetCurtain]);
 
   useEffect(() => {
     if (!transitioningRef.current || pendingPathRef.current !== pathname) return;
@@ -137,7 +180,7 @@ export function RouteCurtain({
       });
       timelineRef.current.to(curtainRef.current, {
         yPercent: -100,
-        duration: 0.56,
+        duration: 0.44,
         ease: "power4.inOut",
       });
     });
@@ -168,21 +211,29 @@ export function RouteCurtain({
           display: "grid",
           placeItems: "center",
           overflow: "hidden",
-          visibility: "hidden",
-          pointerEvents: "none",
+          visibility: hasInitialLandingIntro ? "visible" : "hidden",
+          pointerEvents: hasInitialLandingIntro ? "auto" : "none",
           background: "var(--paper, #f1efe8)",
-          transform: "translateY(100%)",
+          transform: hasInitialLandingIntro ? "translateY(0)" : "translateY(100%)",
         }}
       >
         <div className="route-curtain__grid" />
-        <div className="route-curtain__content">
+        <div ref={contentRef} className="route-curtain__content">
           <span className="route-curtain__mark" aria-hidden="true">R</span>
           <small className="route-curtain__label">{label}</small>
         </div>
         <span
           ref={lineRef}
           className="route-curtain__line"
-          style={{ position: "absolute", right: "4vw", bottom: "8vh", left: "4vw", height: 1 }}
+          style={{
+            position: "absolute",
+            right: "4vw",
+            bottom: "8vh",
+            left: "4vw",
+            height: 1,
+            transform: hasInitialLandingIntro ? "scaleX(0)" : undefined,
+            transformOrigin: "left",
+          }}
         />
       </div>
       <p className="sr-only" aria-live="polite" aria-atomic="true">

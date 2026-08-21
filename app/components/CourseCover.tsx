@@ -8,7 +8,7 @@ type CourseCoverProps = {
 export function CourseCover({
   variant,
   title,
-  eyebrow = "ROHIT / PROPERTY EDUCATION",
+  eyebrow = "ROHIT / PROPERTY DECISION STUDIO",
   className = "",
 }: CourseCoverProps) {
   return (
@@ -25,7 +25,7 @@ export function CourseCover({
       </div>
       <span className="cover-mark">R</span>
       <div className="cover-foot">
-        <span>FIELD-TESTED FRAMEWORK</span>
+        <span>PREVIEW EDITION</span>
         <span>ED. 01</span>
       </div>
     </div>

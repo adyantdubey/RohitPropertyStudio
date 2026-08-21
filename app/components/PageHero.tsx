@@ -8,6 +8,7 @@ type PageHeroProps = {
   body: string;
   aside?: ReactNode;
   theme?: "paper" | "blue" | "ink" | "orange";
+  media?: CinematicHeroMedia;
 };
 
 export function PageHero({
@@ -17,9 +18,10 @@ export function PageHero({
   body,
   aside,
   theme = "paper",
+  media: explicitMedia,
 }: PageHeroProps) {
   const pageKey = `${index} ${eyebrow}`.toLowerCase();
-  let media: CinematicHeroMedia = {
+  let fallbackMedia: CinematicHeroMedia = {
     poster: "/media/interior-daylight.jpg",
     alt: "Daylit contemporary property interior",
     width: 1800,
@@ -29,7 +31,7 @@ export function PageHero({
   };
 
   if (pageKey.includes("about")) {
-    media = {
+    fallbackMedia = {
       poster: "/media/rohit-standin.jpg",
       alt: "Temporary stock portrait stand-in beside modern architecture; not Rohit",
       width: 1400,
@@ -39,16 +41,18 @@ export function PageHero({
       showPauseControl: false,
     };
   } else if (pageKey.includes("course")) {
-    media = {
-      poster: "/media/interior-daylight.jpg",
+    fallbackMedia = {
+      poster: "/media/interior-walkthrough-poster.jpg",
+      mobilePoster: "/media/interior-walkthrough-poster-mobile.jpg",
       videoSrc: "/media/interior-walkthrough.mp4",
+      mobileVideoSrc: "/media/interior-walkthrough-mobile.mp4",
       alt: "Slow view through a bright contemporary interior",
       width: 1800,
       height: 1200,
       parallax: 7,
     };
   } else if (pageKey.includes("result")) {
-    media = {
+    fallbackMedia = {
       poster: "/media/blueprint-hands.jpg",
       alt: "Hands reviewing architectural plans and evidence",
       width: 1800,
@@ -57,7 +61,7 @@ export function PageHero({
       showPauseControl: false,
     };
   } else if (pageKey.includes("insight")) {
-    media = {
+    fallbackMedia = {
       poster: "/media/facade-detail.jpg",
       alt: "Close view of a geometric architectural facade",
       width: 1800,
@@ -66,7 +70,7 @@ export function PageHero({
       showPauseControl: false,
     };
   } else if (pageKey.includes("contact")) {
-    media = {
+    fallbackMedia = {
       poster: "/media/interior-soft.jpg",
       alt: "Quiet contemporary interior",
       width: 1800,
@@ -78,14 +82,14 @@ export function PageHero({
 
   return (
     <CinematicPageHero
-      className={`page-hero page-hero-${theme}`}
+      className="editorial-page-hero"
       index={index}
       eyebrow={eyebrow}
       title={title}
       body={body}
       aside={aside}
       theme={theme}
-      media={media}
+      media={explicitMedia ?? fallbackMedia}
     />
   );
 }

@@ -115,8 +115,10 @@ export default function InsightsPage() {
       <section className="insight-editorial-method section-pad">
         <figure className="insight-editorial-method-media">
           <CinematicMedia
-            poster="/media/interior-soft.jpg"
+            poster="/media/interior-walkthrough-poster.jpg"
+            mobilePoster="/media/interior-walkthrough-poster-mobile.jpg"
             videoSrc="/media/interior-walkthrough.mp4"
+            mobileVideoSrc="/media/interior-walkthrough-mobile.mp4"
             alt="A composed residential interior in soft natural light"
             width={1200}
             height={800}

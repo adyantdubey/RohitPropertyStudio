@@ -12,7 +12,6 @@ import {
 } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useMotion } from "./MotionProvider";
 
 type NetworkInformation = EventTarget & {
   saveData?: boolean;
@@ -22,13 +21,22 @@ type NavigatorWithConnection = Navigator & {
   connection?: NetworkInformation;
 };
 
+type VideoWithFrameCallback = HTMLVideoElement & {
+  requestVideoFrameCallback?: (
+    callback: (now: number, metadata: unknown) => void,
+  ) => number;
+  cancelVideoFrameCallback?: (handle: number) => void;
+};
+
 const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export type CinematicMediaProps = {
   poster: string;
+  mobilePoster?: string;
   alt: string;
   videoSrc?: string;
+  mobileVideoSrc?: string;
   className?: string;
   children?: ReactNode;
   width?: number;
@@ -40,6 +48,7 @@ export type CinematicMediaProps = {
   loop?: boolean;
   showPauseControl?: boolean;
   controlLabel?: string;
+  loadingStrategy?: "eager" | "viewport";
 };
 
 /**
@@ -48,8 +57,10 @@ export type CinematicMediaProps = {
  */
 export function CinematicMedia({
   poster,
+  mobilePoster,
   alt,
   videoSrc,
+  mobileVideoSrc,
   className = "",
   children,
   width = 1800,
@@ -61,14 +72,17 @@ export function CinematicMedia({
   loop = true,
   showPauseControl = true,
   controlLabel = "background video",
+  loadingStrategy = priority ? "eager" : "viewport",
 }: CinematicMediaProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const motionRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { refreshScrollTriggers } = useMotion();
+  const videoFrameRef = useRef<number | null>(null);
+  const fallbackFrameRef = useRef<number | null>(null);
   const [preferencesReady, setPreferencesReady] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(true);
   const [saveData, setSaveData] = useState(true);
+  const [sourceEnabled, setSourceEnabled] = useState(false);
   const [inViewport, setInViewport] = useState(false);
   const [pageVisible, setPageVisible] = useState(true);
   const [userPaused, setUserPaused] = useState(false);
@@ -76,8 +90,46 @@ export function CinematicMedia({
   const [isPlaying, setIsPlaying] = useState(false);
 
   const allowVideo = Boolean(
-    preferencesReady && videoSrc && !reducedMotion && !saveData,
+    preferencesReady && (videoSrc || mobileVideoSrc) && !reducedMotion && !saveData,
   );
+  const shouldMountVideo = Boolean(
+    allowVideo && (loadingStrategy === "eager" || sourceEnabled),
+  );
+
+  const cancelPendingFrame = () => {
+    const video = videoRef.current as VideoWithFrameCallback | null;
+    if (videoFrameRef.current !== null) {
+      video?.cancelVideoFrameCallback?.(videoFrameRef.current);
+      videoFrameRef.current = null;
+    }
+    if (fallbackFrameRef.current !== null) {
+      window.cancelAnimationFrame(fallbackFrameRef.current);
+      fallbackFrameRef.current = null;
+    }
+  };
+
+  const revealAfterDecodedFrame = () => {
+    const video = videoRef.current as VideoWithFrameCallback | null;
+    if (!video || video.paused || video.ended) return;
+
+    cancelPendingFrame();
+    if (video.requestVideoFrameCallback) {
+      videoFrameRef.current = video.requestVideoFrameCallback(() => {
+        videoFrameRef.current = null;
+        if (!video.paused && !video.ended) setVideoReady(true);
+      });
+      return;
+    }
+
+    // `playing` already confirms playback in older browsers. Two paint frames
+    // keep the poster in place until the decoded frame can be composited.
+    fallbackFrameRef.current = window.requestAnimationFrame(() => {
+      fallbackFrameRef.current = window.requestAnimationFrame(() => {
+        fallbackFrameRef.current = null;
+        if (!video.paused && !video.ended) setVideoReady(true);
+      });
+    });
+  };
 
   useEffect(() => {
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -102,19 +154,38 @@ export function CinematicMedia({
   useEffect(() => {
     const root = rootRef.current;
     if (!root || !allowVideo) {
+      setSourceEnabled(false);
       setInViewport(false);
       setVideoReady(false);
       setIsPlaying(false);
       return;
     }
 
-    const observer = new IntersectionObserver(
+    const playbackObserver = new IntersectionObserver(
       ([entry]) => setInViewport(Boolean(entry?.isIntersecting)),
-      { rootMargin: "120px 0px", threshold: 0.08 },
+      { rootMargin: "120px 0px", threshold: 0.05 },
     );
-    observer.observe(root);
-    return () => observer.disconnect();
-  }, [allowVideo]);
+    playbackObserver.observe(root);
+
+    const warmupObserver =
+      loadingStrategy === "viewport"
+        ? new IntersectionObserver(
+            ([entry], observer) => {
+              if (entry?.isIntersecting) {
+                setSourceEnabled(true);
+                observer.disconnect();
+              }
+            },
+            { rootMargin: "900px 0px", threshold: 0 },
+          )
+        : null;
+    warmupObserver?.observe(root);
+
+    return () => {
+      playbackObserver.disconnect();
+      warmupObserver?.disconnect();
+    };
+  }, [allowVideo, loadingStrategy]);
 
   useEffect(() => {
     const onVisibilityChange = () => setPageVisible(!document.hidden);
@@ -125,7 +196,7 @@ export function CinematicMedia({
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video || !allowVideo) return;
+    if (!video || !shouldMountVideo) return;
 
     if (!inViewport || !pageVisible || userPaused) {
       video.pause();
@@ -135,7 +206,14 @@ export function CinematicMedia({
     void video.play().catch(() => {
       setIsPlaying(false);
     });
-  }, [allowVideo, inViewport, pageVisible, userPaused]);
+  }, [inViewport, pageVisible, shouldMountVideo, userPaused]);
+
+  useEffect(
+    () => () => {
+      cancelPendingFrame();
+    },
+    [],
+  );
 
   useIsomorphicLayoutEffect(() => {
     const root = rootRef.current;
@@ -171,10 +249,6 @@ export function CinematicMedia({
     return () => mediaQuery.revert();
   }, [parallax, preferencesReady, reducedMotion, saveData]);
 
-  useEffect(() => {
-    if (videoReady) refreshScrollTriggers();
-  }, [refreshScrollTriggers, videoReady]);
-
   const togglePlayback = () => {
     const video = videoRef.current;
     if (!video) return;
@@ -190,7 +264,9 @@ export function CinematicMedia({
 
   const state = !allowVideo
     ? "poster"
-    : !videoReady
+    : !shouldMountVideo
+      ? "poster"
+      : !videoReady
       ? "loading"
       : isPlaying
         ? "playing"
@@ -199,7 +275,7 @@ export function CinematicMedia({
   return (
     <div
       ref={rootRef}
-      className={`cinematic-media${allowVideo ? " cinematic-media--video" : " cinematic-media--poster"}${className ? ` ${className}` : ""}`}
+      className={`cinematic-media${shouldMountVideo ? " cinematic-media--video" : " cinematic-media--poster"}${className ? ` ${className}` : ""}`}
       data-media-state={state}
       style={{
         position: "relative",
@@ -213,39 +289,65 @@ export function CinematicMedia({
         className="cinematic-media__motion"
         style={{ position: "absolute", inset: 0 }}
       >
-        <Image
-          className="cinematic-media__poster"
-          src={poster}
-          alt={alt}
-          width={width}
-          height={height}
-          sizes={sizes}
-          priority={priority}
-          draggable={false}
-          style={{
-            display: "block",
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition,
-          }}
-        />
+        <picture style={{ display: "block", width: "100%", height: "100%" }}>
+          {mobilePoster ? (
+            <source srcSet={mobilePoster} media="(max-width: 767px)" />
+          ) : null}
+          <Image
+            className="cinematic-media__poster"
+            src={poster}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes={sizes}
+            priority={priority && !mobilePoster}
+            loading={priority && mobilePoster ? "eager" : undefined}
+            fetchPriority={priority ? "high" : undefined}
+            draggable={false}
+            style={{
+              display: "block",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition,
+            }}
+          />
+        </picture>
 
-        {allowVideo ? (
+        {shouldMountVideo ? (
           <video
             ref={videoRef}
             className="cinematic-media__video"
-            src={videoSrc}
-            poster={poster}
             muted
             playsInline
             loop={loop}
-            preload="metadata"
+            preload="auto"
             aria-hidden="true"
             tabIndex={-1}
-            onCanPlay={() => setVideoReady(true)}
-            onPlay={() => setIsPlaying(true)}
+            onLoadStart={() => {
+              cancelPendingFrame();
+              setVideoReady(false);
+            }}
+            onPlaying={() => {
+              setIsPlaying(true);
+              revealAfterDecodedFrame();
+            }}
             onPause={() => setIsPlaying(false)}
+            onWaiting={() => {
+              cancelPendingFrame();
+              setVideoReady(false);
+              setIsPlaying(false);
+            }}
+            onStalled={() => {
+              cancelPendingFrame();
+              setVideoReady(false);
+              setIsPlaying(false);
+            }}
+            onError={() => {
+              cancelPendingFrame();
+              setVideoReady(false);
+              setIsPlaying(false);
+            }}
             style={{
               position: "absolute",
               inset: 0,
@@ -256,18 +358,22 @@ export function CinematicMedia({
               opacity: videoReady ? 1 : 0,
               transition: "opacity 400ms ease",
             }}
-          />
+          >
+            {mobileVideoSrc ? (
+              <source src={mobileVideoSrc} media="(max-width: 767px)" />
+            ) : null}
+            {videoSrc ? <source src={videoSrc} /> : null}
+          </video>
         ) : null}
       </div>
 
       {children ? <div className="cinematic-media__overlay">{children}</div> : null}
 
-      {allowVideo && showPauseControl ? (
+      {shouldMountVideo && showPauseControl ? (
         <button
           className="cinematic-media__pause"
           type="button"
           aria-label={`${isPlaying ? "Pause" : "Play"} ${controlLabel}`}
-          aria-pressed={userPaused}
           onClick={togglePlayback}
         >
           {isPlaying ? <Pause aria-hidden="true" size={14} /> : <Play aria-hidden="true" size={14} />}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import "./site.css";
 import "./cinematic.css";
@@ -19,6 +19,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
@@ -28,11 +35,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: {
-      default: "Rohit — Real Estate Education for Clearer Decisions",
+      default: "Rohit — Property Decision Studio",
       template: "%s — Rohit",
     },
     description:
-      "Clear real-estate frameworks, practical field guides, and decision tools by Rohit.",
+      "Rohit’s property decision studio: clear real-estate frameworks, practical field guides, and decision tools.",
     metadataBase: new URL(origin),
     openGraph: {
       type: "website",
@@ -59,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
       >
         <MotionProvider>
           <RouteCurtain>

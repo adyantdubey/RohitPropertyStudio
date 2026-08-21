@@ -74,19 +74,20 @@ export function CourseCatalog({
         : items.filter((item) => item.kind === activeFilter),
     [activeFilter, items],
   );
+  const isSingleResult = visibleProducts.length === 1;
 
   return (
     <section
-      className="course-catalog course-editorial-catalog"
+      className="course-editorial-catalog"
       aria-labelledby="course-catalog-title"
     >
-      <header className="course-catalog__header course-editorial-catalog-header">
+      <header className="course-editorial-catalog-header">
         <div>
-          <p className="course-catalog__eyebrow">THE LEARNING COLLECTION / 001—003</p>
+          <p className="course-editorial-catalog-eyebrow">THE LEARNING COLLECTION / 001—003</p>
           <h2 id="course-catalog-title">{heading}</h2>
         </div>
         <div className="course-editorial-catalog-intro">
-          <p className="course-catalog__summary">
+          <p className="course-editorial-catalog-summary">
             Learn the complete decision structure, carry a focused question set
             into a review, or organise active comparisons in one working record.
             Each resource stands alone.
@@ -99,16 +100,16 @@ export function CourseCatalog({
         </div>
       </header>
 
-      <div className="course-catalog__toolbar course-editorial-catalog-toolbar">
+      <div className="course-editorial-catalog-toolbar">
         <div
-          className="course-catalog__filters"
+          className="course-editorial-catalog-filters"
           role="group"
           aria-label="Filter learning resources by format"
         >
           {filters.map((filter) => (
             <button
               aria-pressed={activeFilter === filter}
-              className={`course-filter${activeFilter === filter ? " is-active" : ""}`}
+              className={`course-editorial-filter${activeFilter === filter ? " is-active" : ""}`}
               key={filter}
               onClick={() => setActiveFilter(filter)}
               type="button"
@@ -117,12 +118,14 @@ export function CourseCatalog({
             </button>
           ))}
         </div>
-        <p className="course-catalog__count" aria-live="polite">
+        <p className="course-editorial-catalog-count" aria-live="polite">
           Showing {visibleProducts.length} of {items.length}
         </p>
       </div>
 
-      <div className="course-catalog__grid course-editorial-card-grid">
+      <div
+        className={`course-editorial-card-grid${isSingleResult ? " course-editorial-card-grid--single" : ""}`}
+      >
         {visibleProducts.map((product) => {
           const media = mediaByKind[product.kind];
           const collectionIndex = items.findIndex((item) => item.slug === product.slug) + 1;
@@ -135,10 +138,10 @@ export function CourseCatalog({
 
           return (
             <article
-              className={`course-card course-editorial-card${product.featured ? " course-card--featured" : ""}`}
+              className={`course-editorial-card${product.featured ? " course-editorial-card--featured" : ""}${isSingleResult ? " course-editorial-card--single" : ""}`}
               key={product.slug}
             >
-              <figure className="course-card__visual course-editorial-card-media">
+              <figure className="course-editorial-card-media">
                 <Link
                   aria-label={`Explore ${product.title}`}
                   className="course-editorial-card-image-link"
@@ -152,18 +155,17 @@ export function CourseCatalog({
                     src={media.src}
                   />
                 </Link>
-                <span className="course-card__coordinate">
+                <span className="course-editorial-card-coordinate">
                   R/{String(collectionIndex).padStart(2, "0")} · {kindLabels[product.kind]}
                 </span>
                 <span className="course-editorial-card-icon" aria-hidden="true">
                   <ProductIcon size={28} strokeWidth={1.25} />
                 </span>
                 <figcaption>{media.caption}</figcaption>
-                <span className="course-card__visual-line" aria-hidden="true" />
               </figure>
 
-              <div className="course-card__content course-editorial-card-content">
-                <div className="course-card__meta">
+              <div className="course-editorial-card-content">
+                <div className="course-editorial-card-meta">
                   <span>{product.collectionRole}</span>
                   <span>{product.level}</span>
                 </div>
@@ -174,19 +176,19 @@ export function CourseCatalog({
                 {product.subtitle ? (
                   <p className="course-editorial-card-subtitle">{product.subtitle}</p>
                 ) : null}
-                <p className="course-card__description">{product.description}</p>
+                <p className="course-editorial-card-description">{product.description}</p>
 
                 <div className="course-editorial-card-use">
                   <small>BEST WHEN</small>
                   <p>{product.bestWhen}</p>
                 </div>
 
-                <div className="course-card__outcome course-editorial-card-output">
+                <div className="course-editorial-card-output">
                   <small>WORKING OUTPUT</small>
                   <p>{product.tangibleOutcome}</p>
                 </div>
 
-                <dl className="course-card__details course-editorial-card-specs">
+                <dl className="course-editorial-card-specs">
                   <div>
                     <dt>Format</dt>
                     <dd>{product.format}</dd>
@@ -197,7 +199,7 @@ export function CourseCatalog({
                   </div>
                 </dl>
 
-                <Link className="course-card__link" href={`/courses/${product.slug}`}>
+                <Link className="course-editorial-card-link" href={`/courses/${product.slug}`}>
                   {kindActions[product.kind]}
                   <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.8} />
                 </Link>

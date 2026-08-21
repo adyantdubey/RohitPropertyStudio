@@ -120,8 +120,10 @@ export default function AboutPage() {
 
         <figure className="about-editorial-process-media">
           <CinematicMedia
-            poster="/media/blueprint-hands.jpg"
+            poster="/media/blueprint-process-poster.jpg"
+            mobilePoster="/media/blueprint-process-poster-mobile.jpg"
             videoSrc="/media/blueprint-process.mp4"
+            mobileVideoSrc="/media/blueprint-process-mobile.mp4"
             alt="Hands reviewing architectural drawings at a work table"
             width={2048}
             height={3072}

@@ -151,7 +151,7 @@ export function CheckoutPanel({ product }: CheckoutPanelProps) {
         aria-labelledby="checkout-product-title"
         className="order-summary cin-checkout-summary"
       >
-        <p className="eyebrow">YOUR SELECTION</p>
+        <p className="eyebrow">ROHIT / YOUR SELECTION</p>
         <div className="cin-checkout-cover" aria-hidden="true">
           <CourseCover
             title={product.shortTitle}

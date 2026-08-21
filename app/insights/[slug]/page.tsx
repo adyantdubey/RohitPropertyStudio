@@ -57,6 +57,16 @@ export default async function InsightPage({ params }: InsightPageProps) {
         title={<>{insight.title}</>}
         body={insight.deck}
         aside={<span>{insight.readTime.toUpperCase()} / ROHIT REVIEW REQUIRED</span>}
+        media={{
+          poster: insight.hero.src,
+          alt: insight.hero.alt,
+          width: insight.hero.width,
+          height: insight.hero.height,
+          sizes: "(max-width: 860px) 100vw, 58vw",
+          objectPosition: "50% 50%",
+          parallax: 6,
+          showPauseControl: false,
+        }}
       />
 
       <article className="insight-editorial-article">
@@ -98,7 +108,7 @@ export default async function InsightPage({ params }: InsightPageProps) {
                 {section.paragraphs.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-                {section.fieldNote ? (
+                {"fieldNote" in section && section.fieldNote ? (
                   <blockquote>
                     <span>FIELD NOTE</span>
                     {section.fieldNote}

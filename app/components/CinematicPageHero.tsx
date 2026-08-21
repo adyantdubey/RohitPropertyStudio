@@ -17,7 +17,9 @@ const useIsomorphicLayoutEffect =
 export type CinematicHeroMedia = Pick<
   CinematicMediaProps,
   | "poster"
+  | "mobilePoster"
   | "videoSrc"
+  | "mobileVideoSrc"
   | "alt"
   | "width"
   | "height"
@@ -25,6 +27,7 @@ export type CinematicHeroMedia = Pick<
   | "objectPosition"
   | "parallax"
   | "showPauseControl"
+  | "loadingStrategy"
 >;
 
 export type CinematicPageHeroProps = {

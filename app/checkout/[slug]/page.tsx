@@ -42,14 +42,14 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
       <h1 className="sr-only">Checkout preview for {product.title}</h1>
       <div className="checkout-topbar">
         <Link href={`/courses/${product.slug}`}><ArrowLeft aria-hidden="true" size={16} /> Back to product</Link>
-        <span>CHECKOUT EXPERIENCE / PROTOTYPE</span>
+        <span>ROHIT / CHECKOUT PROTOTYPE</span>
       </div>
       <section
         aria-labelledby="checkout-intro-title"
         className="checkout-intro cin-checkout-intro"
       >
         <div className="cin-checkout-intro__copy">
-          <p className="eyebrow">REVIEW / UNDERSTAND / PREVIEW</p>
+          <p className="eyebrow">ROHIT / ACCESS REVIEW</p>
           <h2 id="checkout-intro-title">See the path to <em>access.</em></h2>
           <p>
             Review the proposed buyer details, price, delivery, access terms,
