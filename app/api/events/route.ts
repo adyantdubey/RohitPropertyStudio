@@ -17,7 +17,8 @@ export async function POST(request: Request) {
     const path = typeof body.path === "string" && body.path.startsWith("/") ? body.path.slice(0, 160) : "/";
     if (!allowedEvents.has(event)) return new Response(null, { status: 204 });
 
-    env.ACADEMY_ANALYTICS.writeDataPoint({
+    // Optional chaining so a missing binding is a no-op rather than a throw.
+    env.ACADEMY_ANALYTICS?.writeDataPoint({
       blobs: [event, path],
       doubles: [1],
       indexes: ["academy"],

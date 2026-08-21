@@ -91,11 +91,18 @@ export async function POST(request: Request) {
       ).bind(leadId, name, phone, interest, sourcePath, now, now, now).run();
     }
 
-    env.ACADEMY_ANALYTICS.writeDataPoint({
-      blobs: ["early_access_completed", interest, sourcePath],
-      doubles: [1],
-      indexes: ["academy"],
-    });
+    // The lead is already saved. Analytics must never turn a saved lead into an
+    // error for the visitor, so this is guarded separately from the D1 write and
+    // tolerates the binding being absent (Analytics Engine not enabled).
+    try {
+      env.ACADEMY_ANALYTICS?.writeDataPoint({
+        blobs: ["early_access_completed", interest, sourcePath],
+        doubles: [1],
+        indexes: ["academy"],
+      });
+    } catch {
+      // ignored on purpose
+    }
 
     return json({ message: "The team can now contact you when the launch details are confirmed." }, 201);
   } catch (error) {
