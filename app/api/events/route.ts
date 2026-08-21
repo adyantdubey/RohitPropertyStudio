@@ -1,4 +1,4 @@
-import { env } from "cloudflare:workers";
+import { recordEvent } from "../../lib/analytics";
 
 const allowedEvents = new Set([
   "early_access_cta",
@@ -17,12 +17,7 @@ export async function POST(request: Request) {
     const path = typeof body.path === "string" && body.path.startsWith("/") ? body.path.slice(0, 160) : "/";
     if (!allowedEvents.has(event)) return new Response(null, { status: 204 });
 
-    // Optional chaining so a missing binding is a no-op rather than a throw.
-    env.ACADEMY_ANALYTICS?.writeDataPoint({
-      blobs: [event, path],
-      doubles: [1],
-      indexes: ["academy"],
-    });
+    recordEvent(event, path);
   } catch {
     // Analytics must never block the visitor experience.
   }

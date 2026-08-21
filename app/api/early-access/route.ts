@@ -1,4 +1,5 @@
 import { env } from "cloudflare:workers";
+import { recordEvent } from "../../lib/analytics";
 
 const interests = new Set(["course-launch", "team-training", "property-enquiry", "general"]);
 
@@ -91,18 +92,9 @@ export async function POST(request: Request) {
       ).bind(leadId, name, phone, interest, sourcePath, now, now, now).run();
     }
 
-    // The lead is already saved. Analytics must never turn a saved lead into an
-    // error for the visitor, so this is guarded separately from the D1 write and
-    // tolerates the binding being absent (Analytics Engine not enabled).
-    try {
-      env.ACADEMY_ANALYTICS?.writeDataPoint({
-        blobs: ["early_access_completed", interest, sourcePath],
-        doubles: [1],
-        indexes: ["academy"],
-      });
-    } catch {
-      // ignored on purpose
-    }
+    // The lead is already saved; recordEvent never throws, so analytics can never
+    // turn a saved lead into an error for the visitor.
+    recordEvent("early_access_completed", interest, sourcePath);
 
     return json({ message: "The team can now contact you when the launch details are confirmed." }, 201);
   } catch (error) {

@@ -21,12 +21,6 @@
       "migrations_dir": "migrations"
     }
   ],
-  "analytics_engine_datasets": [
-    {
-      "binding": "ACADEMY_ANALYTICS",
-      "dataset": "rohit_academy_events"
-    }
-  ],
   "observability": {
     "enabled": true
   }
