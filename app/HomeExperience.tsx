@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { TransitionLink as Link } from "./components/RouteCurtain";
 import Image from "next/image";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { useEffect, useRef, useState } from "react";

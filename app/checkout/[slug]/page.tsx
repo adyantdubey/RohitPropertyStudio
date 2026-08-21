@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "../../components/RouteCurtain";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, LockKeyhole } from "lucide-react";
 import { getProductBySlug, products } from "../../lib/content";

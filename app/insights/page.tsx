@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "../components/RouteCurtain";
 import { ArrowUpRight, Clock3 } from "lucide-react";
 import { CinematicMedia } from "../components/CinematicMedia";
 import { PageHero } from "../components/PageHero";

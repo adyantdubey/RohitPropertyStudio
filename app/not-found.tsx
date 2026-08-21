@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { TransitionLink as Link } from "./components/RouteCurtain";
 import { ArrowUpRight } from "lucide-react";
 import { brand } from "./lib/brand";
 

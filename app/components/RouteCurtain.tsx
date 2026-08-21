@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
   createContext,
@@ -248,17 +247,18 @@ export function RouteCurtain({
 }
 
 export type TransitionLinkProps = Omit<
-  ComponentProps<typeof Link>,
+  ComponentProps<"a">,
   "href" | "onClick"
 > & {
   href: string;
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
+  scroll?: boolean;
 };
 
 export function TransitionLink({
+  children,
   href,
   onClick,
-  prefetch = false,
   scroll = true,
   target,
   ...props
@@ -293,8 +293,8 @@ export function TransitionLink({
       return;
     }
 
-    // Query-only changes do not update usePathname, so let Next handle every
-    // same-path navigation without placing it behind the curtain.
+    // Same-path query/hash links stay native. This keeps filters and in-page
+    // destinations reliable without involving the client router.
     if (destination.pathname === current.pathname) {
       return;
     }
@@ -306,13 +306,13 @@ export function TransitionLink({
   };
 
   return (
-    <Link
+    <a
       {...props}
       href={href}
-      prefetch={prefetch}
       target={target}
-      scroll={scroll}
       onClick={handleClick}
-    />
+    >
+      {children}
+    </a>
   );
 }

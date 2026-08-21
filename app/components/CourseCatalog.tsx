@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "./RouteCurtain";
 import { ArrowUpRight, FileText, PanelsTopLeft, Presentation } from "lucide-react";
 import { useMemo, useState } from "react";
 import {

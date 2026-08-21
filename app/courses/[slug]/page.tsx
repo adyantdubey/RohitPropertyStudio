@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { TransitionLink as Link } from "../../components/RouteCurtain";
 import { notFound } from "next/navigation";
 import { ArrowDown, ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { CinematicMedia } from "../../components/CinematicMedia";

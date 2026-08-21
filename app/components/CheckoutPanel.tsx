@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { TransitionLink as Link } from "./RouteCurtain";
 import { ArrowUpRight, LockKeyhole } from "lucide-react";
 import type { Product } from "../lib/content";
 
