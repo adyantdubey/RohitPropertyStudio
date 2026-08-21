@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "./RouteCurtain";
 import { ArrowUpRight, FileText, PanelsTopLeft, Presentation } from "lucide-react";
 import { useMemo, useState } from "react";
 import {
@@ -15,7 +15,7 @@ export type CatalogProduct = Product;
 type CatalogFilter = "all" | ProductKind;
 
 type ReleaseCopy = {
-  status: "Prepared / launch setup pending" | "Coming soon" | "In development";
+  status: "Launch list open" | "Coming soon" | "On the roadmap";
   summary: string;
   availability: string;
   action: string;
@@ -32,27 +32,27 @@ const releaseCopy: Record<string, ReleaseCopy> = {
   "before-you-buy-field-guide": {
     status: "Coming soon",
     summary:
-      "Rohitt is developing the first edition as a practical, general-education companion for the questions that deserve time before a property commitment.",
+      "A practical buyer PDF for property visits, project comparison, document questions, and the professional checks that deserve follow-up.",
     availability:
-      "There is no finished PDF or purchase gateway today. Release details will be shared only after the guide is complete and reviewed.",
+      "Join the first-access list and hear when the reviewed first edition is ready.",
     action: "Join the first-access list",
     href: "/contact?interest=field-guide#contact-form",
   },
   "basics-of-real-estate-training-deck": {
-    status: "Prepared / launch setup pending",
+    status: "Launch list open",
     summary:
-      "A real 49-slide PowerPoint resource carrying 100 Yards branding, covering real-estate foundations, property formats, construction, approvals, areas, charges, UDS, and payment-plan examples.",
+      "A prepared 49-slide visual foundation covering the industry, property formats, construction, approvals, area terminology, charges, UDS, and payment plans.",
     availability:
-      "The training file exists. Pricing, buyer licence, payment, protected delivery, support, and refund terms are still being configured.",
-    action: "View the prepared resource",
+      "Preview the resource now and join the list for reviewed launch access.",
+    action: "Preview the training deck",
     href: "/courses/basics-of-real-estate-training-deck",
   },
   "deal-room-toolkit": {
-    status: "In development",
+    status: "On the roadmap",
     summary:
-      "A supporting review toolkit is being explored. Its contents, format, licence, and release date have not been finalised.",
-    availability: "No toolkit or download is available today.",
-    action: "View development status",
+      "A planned toolkit for keeping comparisons, documents, assumptions, risks, and professional follow-ups in one working system.",
+    availability: "Follow the Academy roadmap for future release details.",
+    action: "Explore the concept",
     href: "/courses/deal-room-toolkit",
   },
 };
@@ -79,7 +79,7 @@ type CourseCatalogProps = {
 
 export function CourseCatalog({
   items = products,
-  heading = "One prepared resource. Two ideas still taking shape.",
+  heading = "Choose where you want to begin.",
 }: CourseCatalogProps) {
   const [activeFilter, setActiveFilter] = useState<CatalogFilter>("all");
   const orderedItems = useMemo(
@@ -115,20 +115,18 @@ export function CourseCatalog({
       <header className="course-editorial-catalog-header authority-academy-catalog__header">
         <div>
           <p className="course-editorial-catalog-eyebrow">
-            ACADEMY ROADMAP / CURRENT STATUS
+            THE ACADEMY COLLECTION / CURRENT ACCESS
           </p>
           <h2 id="course-catalog-title">{heading}</h2>
         </div>
         <div className="course-editorial-catalog-intro">
           <p className="course-editorial-catalog-summary">
-            The 49-slide Basics of Real Estate deck is a prepared training
-            resource. Before You Buy and The Deal Room remain future concepts.
-            Purchase and protected download are not open yet.
+            Begin with the 49-slide Basics of Real Estate deck, join the list
+            for the upcoming Before You Buy PDF, and follow the toolkit roadmap.
           </p>
           <p className="course-editorial-stock-disclosure">
-            The featured cover comes from the uploaded 100 Yards training deck.
-            Remaining photography is licensed editorial stock, not product
-            content, a Rohitt listing, or evidence of a client outcome.
+            The featured cover is taken from the uploaded 100 Yards training
+            deck. Other images are temporary editorial photography.
           </p>
         </div>
       </header>
@@ -147,7 +145,7 @@ export function CourseCatalog({
               onClick={() => setActiveFilter(filter)}
               type="button"
             >
-              {filter === "all" ? "All planned resources" : kindLabels[filter]}
+              {filter === "all" ? "All resources" : kindLabels[filter]}
             </button>
           ))}
         </div>

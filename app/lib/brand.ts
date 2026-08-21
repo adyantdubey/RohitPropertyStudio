@@ -5,8 +5,8 @@ export const brand = {
   professionalTitle: "Managing Director",
   organizationName: "Hundred Yards Realtor Pvt Ltd",
   credential: "Managing Director · Hundred Yards Realtor Pvt Ltd",
-  line: "Real estate, made legible.",
-  educationLabel: "RKS Property Studio",
+  line: "Property, with clarity.",
+  educationLabel: "Rohitt Property Academy",
   mediaLabel: "Reel Se Real Estate",
   companyContact: {
     email: "sales@100yards.in",
@@ -29,10 +29,10 @@ export const brand = {
     companyLinkedIn: "https://www.linkedin.com/company/100-yards/",
   },
   navigation: [
-    { href: "/about", label: "About" },
     { href: "/advisory", label: "Advisory" },
     { href: "/courses", label: "Academy" },
-    { href: "/insights", label: "Insights" },
+    { href: "/about", label: "About" },
+    { href: "/results", label: "Client Stories" },
     { href: "/media", label: "Reel Se Real Estate" },
     { href: "/contact", label: "Contact" },
   ],

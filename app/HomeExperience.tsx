@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { TransitionLink as Link } from "./components/RouteCurtain";
 import Image from "next/image";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -9,6 +9,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CinematicMedia } from "./components/CinematicMedia";
 import { useMotion } from "./components/MotionProvider";
 import { brand } from "./lib/brand";
+import {
+  companyServices,
+  companySource,
+  customerStories,
+  featuredProperties,
+} from "./lib/companyContent";
 
 const methodImages = [
   "/media/blueprint-hands.jpg",
@@ -21,111 +27,75 @@ const methodImages = [
 const authoritySteps = [
   {
     number: "01",
-    title: "Define the brief",
+    title: "Understand what fits",
     description:
-      "Put the purpose, location, budget frame, timing, and non-negotiables into one useful starting point.",
+      "The team begins with your goals, preferred locations, budget, timing, and the way you intend to use the property.",
   },
   {
     number: "02",
-    title: "Read the market",
+    title: "Curate relevant options",
     description:
-      "Build context around the segment and location before individual options begin competing for attention.",
+      "Projects are shortlisted against your requirement so the search becomes more focused and easier to compare.",
   },
   {
     number: "03",
-    title: "Compare the options",
+    title: "Visit and compare",
     description:
-      "Review fit, trade-offs, and open questions in a consistent frame rather than relying on first impressions.",
+      "Site visits, virtual walkthroughs, location context, and project trade-offs are brought into one useful conversation.",
   },
   {
     number: "04",
-    title: "Verify the detail",
+    title: "Coordinate the detail",
     description:
-      "Route legal, financial, technical, and property-specific questions to the right qualified professionals.",
+      "Hundred Yards supports the loan, legal-verification, documentation, and registration conversations around the transaction.",
   },
   {
     number: "05",
-    title: "Choose the next step",
+    title: "Support the close",
     description:
-      "Move forward only when the decision, the evidence, and the remaining uncertainty are clear enough to explain.",
+      "The relationship continues through negotiation, paperwork, registration, and the hand-offs that follow selection.",
   },
 ] as const;
 
-const authorityPaths = [
-  {
-    number: "01",
-    label: "PROPERTY ADVISORY",
-    title: "Buy or invest with Hundred Yards",
-    copy: "Bring a real requirement to a Bengaluru-based team working across buyer representation, investment consultation, market analysis, and end-to-end property support.",
-    detail: "For homebuyers, investors, NRIs, and businesses",
-    href: "/advisory",
-    action: "Plan a consultation",
-    image: "/media/interior-daylight.jpg",
-    mark: "HY",
-  },
-  {
-    number: "02",
-    label: "LEARNING",
-    title: "Learn with Rohitt",
-    copy: "Start with the prepared 49-slide Basics of Real Estate training deck, then follow the field guide and practical tools as they are developed.",
-    detail: "A real training deck, plus the upcoming buyer PDF",
-    href: "/courses",
-    action: "Explore the academy",
-    image: "/media/blueprint-hands.jpg",
-    mark: brand.initials,
-  },
-  {
-    number: "03",
-    label: brand.mediaLabel.toUpperCase(),
-    title: "Watch the property conversation unfold",
-    copy: "A focused editorial home for Rohitt’s public real-estate videos and the questions behind them—without manufactured reach or borrowed authority.",
-    detail: "Public videos, field observations, and leadership notes",
-    href: "/media",
-    action: "Enter the media room",
-    image: "/media/hero-poster.jpg",
-    mark: "RSR",
-  },
-] as const;
+const authorityPaths = featuredProperties.map((property, index) => ({
+  number: String(index + 1).padStart(2, "0"),
+  label: "FEATURED OPPORTUNITY",
+  title: property.name,
+  copy: `${property.developer} · ${property.configuration}.`,
+  detail: property.location,
+  href: property.href,
+  action: "View current details",
+  image: property.image,
+  mark: String(index + 1).padStart(2, "0"),
+}));
 
-const publicRecord = [
-  {
-    number: "01",
-    title: "Managing Director",
-    copy: `${brand.organizationName} publishes its Managing Director profile; this site uses ${brand.name} as the public-facing name.`,
-  },
-  {
-    number: "02",
-    title: brand.credential,
-    copy: "Experience wording follows the published Hundred Yards company biography; it is not presented as an independently audited statistic.",
-  },
-  {
-    number: "03",
-    title: "Bengaluru",
-    copy: "The company’s published contact presence is based in Kalyan Nagar, Bengaluru.",
-  },
-] as const;
+const publicRecord = customerStories.slice(0, 3).map((story, index) => ({
+  number: String(index + 1).padStart(2, "0"),
+  title: story.name,
+  copy: story.summary,
+}));
 
 const editorialDoors = [
   {
     href: "/media",
     image: "/media/hero-poster.jpg",
     meta: `${brand.mediaLabel} / VIDEO`,
-    title: "Real estate, from the public conversation inward.",
-    copy: "Follow Rohitt’s public video series and discover the thinking that sits behind each short-form story.",
+    title: "Walkthroughs, market conversations, and property stories.",
+    copy: "Follow Rohitt’s public video series for project visits, locality context, buyer education, and market observations.",
   },
   {
     href: "/insights",
     image: "/media/facade-detail.jpg",
-    meta: "FIELD NOTES / READ",
-    title: "Questions worth carrying into the next conversation.",
-    copy: "Longer-form notes on property context, comparison, verification, and responsible decision-making.",
+    meta: "PROPERTY INSIGHTS / READ",
+    title: "Bengaluru property insights for real buyer questions.",
+    copy: "Explore location guides, project comparisons, buyer education, and market context in a practical editorial format.",
   },
   {
     href: "/courses",
     image: "/media/blueprint-hands.jpg",
     meta: "ACADEMY / LEARN",
-    title: "Turn useful questions into a repeatable practice.",
-    copy: "See the prepared 49-slide training deck and follow the buyer field guide as it develops.",
+    title: "Build your real-estate foundation with the Academy.",
+    copy: "Preview the prepared 49-slide training deck and join the first-access list for the upcoming buyer field guide.",
   },
 ] as const;
 
@@ -384,33 +354,34 @@ export function HomeExperience() {
 
         <div className="cin-hero-title">
           <span className="cin-hero-kicker cin-hero-reveal">{brand.line.toUpperCase()}</span>
-          <h1 aria-label="Real estate, led with clarity.">
-            <span className="cin-hero-title-line"><span>Real estate,</span></span>
-            <span className="cin-hero-title-line cin-hero-title-offset"><span>led with clarity.</span></span>
+          <h1 aria-label="Find the right property. Move with clarity.">
+            <span className="cin-hero-title-line"><span>Find the</span></span>
+            <span className="cin-hero-title-line cin-hero-title-offset"><span>right property.</span></span>
+            <span className="cin-hero-title-line"><span>Move with clarity.</span></span>
           </h1>
         </div>
 
         <div className="cin-hero-bottom">
           <p className="cin-hero-deck cin-hero-reveal">
-            {brand.name} leads {brand.organizationName} and builds practical
-            real-estate education for clearer, better-informed decisions.
+            Residential, investment, NRI, and commercial property advisory
+            through Hundred Yards—led by {brand.name}.
           </p>
           <div className="cin-hero-actions cin-hero-reveal authority-home-hero__paths">
             <Link className="cin-button cin-button-light" href="/advisory">
-              Buy or invest with Hundred Yards <ArrowUpRight aria-hidden="true" size={18} />
+              Explore property advisory <ArrowUpRight aria-hidden="true" size={18} />
             </Link>
             <Link className="cin-link cin-link-light" href="/courses">
-              Learn with {brand.shortName} <ArrowRight aria-hidden="true" size={15} />
+              Explore the Academy <ArrowRight aria-hidden="true" size={15} />
             </Link>
           </div>
           <div className="cin-hero-index cin-hero-reveal">
             <span>01</span>
-            <p>{brand.credential}<br />Published by Hundred Yards</p>
+            <p>{brand.credential}<br />Bengaluru</p>
           </div>
         </div>
 
         <a className="cin-hero-scroll" href="#perspective" aria-label={`Continue to ${brand.shortName}'s professional profile`}>
-          <span>DISCOVER THE WORK</span>
+          <span>EXPLORE THE STUDIO</span>
           <ArrowDown aria-hidden="true" size={15} />
         </a>
         <p className="authority-media-disclosure cin-hero-reveal">
@@ -419,25 +390,25 @@ export function HomeExperience() {
       </section>
 
       <section className="cin-perspective cin-section authority-home-intro" id="perspective">
-        <div className="cin-section-index cin-reveal"><span>01</span><i /><small>THE POSITION</small></div>
+        <div className="cin-section-index cin-reveal"><span>01</span><i /><small>HOW WE CAN HELP</small></div>
         <div className="cin-perspective-copy cin-reveal">
-          <p className="cin-kicker">LEADERSHIP / ADVISORY / EDUCATION</p>
-          <h2>One public identity.<em> Two clear ways to begin.</em></h2>
-          <p>Work with the Hundred Yards team on an active property requirement, or learn with {brand.shortName} through practical resources built for stronger questions and clearer next steps.</p>
+          <p className="cin-kicker">PROPERTY ADVISORY / MARKET INSIGHT / EDUCATION</p>
+          <h2>A property team for the search.<em> A clearer guide through the process.</em></h2>
+          <p>Discover residential and investment opportunities with Hundred Yards, or build your real-estate foundations through {brand.shortName}&apos;s practical Academy resources.</p>
         </div>
-        <blockquote className="cin-reveal authority-home-intro__statement"><span>THE STANDARD</span>Clarity in the brief. Transparency in the process. Independent verification where it matters.</blockquote>
+        <blockquote className="cin-reveal authority-home-intro__statement"><span>THE PROMISE</span>Relevant options, straight answers, and support that continues beyond the first site visit.</blockquote>
       </section>
 
       <section className="cin-tension cin-section cin-section-stone authority-home-context">
         <div className="cin-tension-copy cin-reveal">
-          <p className="cin-kicker">THE DECISION ENVIRONMENT</p>
-          <h2>More property options.<br /><em>A more deliberate brief.</em></h2>
-          <p>Whether the next step is advisory or education, useful work begins with the requirement—not a manufactured promise.</p>
+          <p className="cin-kicker">SERVICES BUILT AROUND THE CLIENT</p>
+          <h2>From finding a home<br /><em>to completing the transaction.</em></h2>
+          <p>Buyer representation, investment advice, NRI coordination, seller support, and practical help through documentation and registration.</p>
         </div>
         <div className="cin-tension-stage" aria-label="Property research organised into a clearer process">
-          <figure className="cin-tension-card"><Image src="/media/interior-daylight.jpg" alt="Bright contemporary apartment interior" width={1800} height={2700} sizes="(max-width: 700px) 64vw, 34vw" /><figcaption>LIVE / THE REQUIREMENT</figcaption></figure>
-          <figure className="cin-tension-card"><Image src="/media/blueprint-hands.jpg" alt="Hands reviewing architectural drawings" width={2048} height={3072} sizes="(max-width: 700px) 58vw, 34vw" /><figcaption>READ / THE DETAIL</figcaption></figure>
-          <figure className="cin-tension-card"><Image src="/media/facade-detail.jpg" alt="Close architectural facade detail" width={1800} height={1170} sizes="(max-width: 700px) 36vw, 20vw" /><figcaption>CHOOSE / THE NEXT STEP</figcaption></figure>
+          <figure className="cin-tension-card"><Image src="/media/interior-daylight.jpg" alt="Bright contemporary apartment interior" width={1800} height={2700} sizes="(max-width: 700px) 64vw, 34vw" /><figcaption>{companyServices[0].title.toUpperCase()}</figcaption></figure>
+          <figure className="cin-tension-card"><Image src="/media/blueprint-hands.jpg" alt="Hands reviewing architectural drawings" width={2048} height={3072} sizes="(max-width: 700px) 58vw, 34vw" /><figcaption>{companyServices[1].title.toUpperCase()}</figcaption></figure>
+          <figure className="cin-tension-card"><Image src="/media/facade-detail.jpg" alt="Close architectural facade detail" width={1800} height={1170} sizes="(max-width: 700px) 36vw, 20vw" /><figcaption>{companyServices[3].title.toUpperCase()}</figcaption></figure>
           <span className="cin-tension-thread" aria-hidden="true" />
         </div>
       </section>
@@ -449,17 +420,17 @@ export function HomeExperience() {
         </figure>
         <div className="cin-rohit-copy cin-reveal">
           <p className="cin-kicker">{brand.name.toUpperCase()}</p>
-          <h2>Real-estate leadership with an <em>educator&apos;s instinct.</em></h2>
-          <p>{brand.organizationName} publishes {brand.shortName} as its {brand.professionalTitle.toLowerCase()} and credits him with more than a decade of hands-on real-estate experience. His public work now connects leadership, advisory context, and accessible education from Bengaluru.</p>
+          <h2>Market experience with an <em>educator&apos;s instinct.</em></h2>
+          <p>As Managing Director of Hundred Yards, {brand.shortName} brings more than a decade of company-published real-estate experience to homebuyers, investors, NRIs, businesses, and the professionals learning alongside them.</p>
           <Link className="cin-button cin-button-dark" href="/about">Meet {brand.shortName} <ArrowUpRight aria-hidden="true" size={18} /></Link>
         </div>
-        <div className="cin-rohit-note cin-reveal"><span>PUBLIC PROFILE</span><p>{brand.credential}. Published by Hundred Yards; source context is retained on the About page.</p></div>
+        <div className="cin-rohit-note cin-reveal"><span>LEADERSHIP</span><p>{brand.credential}. Bengaluru-based advisory, public market education, and customer-first service.</p></div>
       </section>
 
       <section className="cin-method cin-section cin-section-dark authority-home-journey" id="method">
         <header className="cin-section-head cin-reveal">
-          <div><p className="cin-kicker">A RESPONSIBLE DECISION JOURNEY / 01—05</p><h2>Begin with the brief.<br /><em>Keep the detail visible.</em></h2></div>
-          <p>A practical sequence for organising a conversation—not a guarantee, valuation, or substitute for qualified advice.</p>
+          <div><p className="cin-kicker">HOW HUNDRED YARDS SUPPORTS YOU / 01—05</p><h2>From first conversation<br /><em>to a confident next step.</em></h2></div>
+          <p>A connected advisory experience across discovery, comparison, visits, coordination, and completion.</p>
         </header>
         <div className="cin-method-layout">
           <div className="cin-method-visual cin-reveal">
@@ -486,7 +457,7 @@ export function HomeExperience() {
         id="offers"
       >
         <div className="cin-offer-stage">
-          <header className="cin-offer-intro"><p className="cin-kicker">CHOOSE YOUR PATH / 001—003</p><h2>One profile.<br /><em>Two primary ways to begin.</em></h2></header>
+          <header className="cin-offer-intro"><p className="cin-kicker">CURRENT PROPERTY OPPORTUNITIES / 001—003</p><h2>Homes and locations<br /><em>worth exploring now.</em></h2></header>
           <div className="cin-offer-panels">
             {authorityPaths.map((path, index) => {
               const offerIsActive = index === activeOfferIndex;
@@ -508,9 +479,9 @@ export function HomeExperience() {
                     <span className="cin-offer-number">{path.number} / {path.label}</span>
                     <h3>{path.title}</h3><p className="cin-offer-tagline">{path.copy}</p>
                     <div className="cin-offer-facts">
-                      <span><small>START HERE</small>{path.detail}</span>
-                      <span><small>BASED IN</small>Bengaluru, India</span>
-                      <span><small>LED BY</small>{brand.name}</span>
+                      <span><small>LOCATION</small>{path.detail}</span>
+                      <span><small>ADVISORY</small>Hundred Yards</span>
+                      <span><small>DETAILS</small>Live on 100yards.in</span>
                     </div>
                     <div className="cin-offer-action">
                       <span className="cin-offer-price"><small>PATH</small><strong>{path.number}</strong></span>
@@ -533,8 +504,8 @@ export function HomeExperience() {
 
       <section className="cin-inside cin-section authority-field-guide" id="training-deck-preview">
         <header className="cin-section-head cin-reveal">
-          <div><p className="cin-kicker">PREPARED / THE 100 YARDS TRAINING DECK</p><h2>Real-estate foundations,<br /><em>in 49 visual slides.</em></h2></div>
-          <p>The file exists. A current-content review, price, licence, payment, protected delivery, support, and refund terms are being prepared before sales open.</p>
+          <div><p className="cin-kicker">ROHITT PROPERTY ACADEMY / FIRST RESOURCE</p><h2>Real-estate foundations,<br /><em>in 49 visual slides.</em></h2></div>
+          <p>Build a practical understanding of property types, construction, approvals, area terminology, charges, UDS, and payment plans.</p>
         </header>
         <div className="cin-artifact-grid authority-field-guide__grid">
           <figure className="cin-artifact cin-reveal authority-field-guide__cover">
@@ -543,19 +514,19 @@ export function HomeExperience() {
           </figure>
           <article className="cin-artifact cin-reveal authority-field-guide__card">
             <div className="cin-artifact-preview cin-artifact-preview-1" aria-hidden="true"><span>100 YARDS / FOUNDATION TRAINING</span><strong>PPTX</strong><i /><i /><i /></div>
-            <span>LAUNCH SETUP PENDING</span>
+            <span>JOIN THE LAUNCH LIST</span>
             <h3>Basics of Real Estate</h3>
-            <p>A two-part PowerPoint introduction to property types, construction, approvals, area language, charges, UDS, and payment-plan concepts.</p>
-            <Link className="cin-button cin-button-dark" href="/courses/basics-of-real-estate-training-deck">View the prepared resource <ArrowUpRight aria-hidden="true" size={17} /></Link>
-            <Link className="cin-link" href="/courses#field-guide">The buyer PDF is also coming soon <ArrowRight aria-hidden="true" size={15} /></Link>
+            <p>A two-part PowerPoint foundation for aspiring professionals, new team members, buyers, and anyone who wants the language of real estate explained clearly.</p>
+            <Link className="cin-button cin-button-dark" href="/courses/basics-of-real-estate-training-deck">Preview the training deck <ArrowUpRight aria-hidden="true" size={17} /></Link>
+            <Link className="cin-link" href="/courses#field-guide">Before You Buy PDF · coming soon <ArrowRight aria-hidden="true" size={15} /></Link>
           </article>
         </div>
       </section>
 
       <section className="cin-proof cin-section cin-section-forest authority-public-record" id="proof">
         <header className="cin-section-head cin-reveal">
-          <div><p className="cin-kicker">PUBLIC RECORD / WITH SOURCE CONTEXT</p><h2>Authority should be<br /><em>possible to trace.</em></h2></div>
-          <p>These profile statements follow Hundred Yards&apos; published company material. No transaction count, return, or client outcome is implied.</p>
+          <div><p className="cin-kicker">CUSTOMER STORIES / PUBLISHED BY HUNDRED YARDS</p><h2>What clients remember<br /><em>about the experience.</em></h2></div>
+          <p>First-party customer feedback currently published by Hundred Yards, summarised here with source context.</p>
         </header>
         <div className="cin-proof-path cin-reveal">
           <span className="cin-proof-line" aria-hidden="true" />
@@ -563,12 +534,12 @@ export function HomeExperience() {
             <div key={number}><span>{number}</span><Check aria-hidden="true" size={16} /><h3>{title}</h3><p>{copy}</p></div>
           ))}
         </div>
-        <a className="cin-link cin-link-light cin-reveal" href="https://100yards.in/about-us/" rel="noreferrer" target="_blank">Read the published company profile <ArrowUpRight aria-hidden="true" size={15} /></a>
+        <a className="cin-link cin-link-light cin-reveal" href={companySource.website} rel="noreferrer" target="_blank">Read all published customer feedback <ArrowUpRight aria-hidden="true" size={15} /></a>
       </section>
 
       <section className="cin-journal cin-section authority-editorial-doors">
         <header className="cin-section-head cin-reveal">
-          <div><p className="cin-kicker">THE PUBLIC WORK</p><h2>Watch. Read.<br /><em>Learn at your pace.</em></h2></div>
+          <div><p className="cin-kicker">ROHITT&apos;S PUBLIC WORK</p><h2>Watch the market.<br /><em>Learn what matters.</em></h2></div>
           <Link className="cin-link" href="/media">Enter {brand.mediaLabel} <ArrowRight aria-hidden="true" size={15} /></Link>
         </header>
         <div className="cin-journal-grid">
@@ -585,9 +556,9 @@ export function HomeExperience() {
         <div className="cin-closing-media" aria-hidden="true"><Image data-parallax="10" src="/media/interior-soft.jpg" alt="" width={1200} height={800} sizes="100vw" /></div>
         <div className="cin-closing-shade" />
         <div className="cin-closing-copy cin-reveal">
-          <p className="cin-kicker">CHOOSE THE CONVERSATION</p><h2>A real requirement.<br /><em>Or a better way to learn.</em></h2>
-          <p>Start with Hundred Yards for an active property brief, or enter Rohitt&apos;s learning collection for education and practical tools.</p>
-          <div><Link className="cin-button cin-button-light" href="/advisory">Buy or invest <ArrowUpRight aria-hidden="true" size={18} /></Link><Link className="cin-link cin-link-light" href="/courses">Learn with {brand.shortName} <ArrowRight aria-hidden="true" size={15} /></Link></div>
+          <p className="cin-kicker">YOUR NEXT MOVE</p><h2>Find your property.<br /><em>Or strengthen your knowledge.</em></h2>
+          <p>Speak with Hundred Yards about buying, selling, or investing—or explore Rohitt&apos;s Academy for practical real-estate learning.</p>
+          <div><Link className="cin-button cin-button-light" href="/advisory">Speak with the property team <ArrowUpRight aria-hidden="true" size={18} /></Link><Link className="cin-link cin-link-light" href="/courses">Visit the Academy <ArrowRight aria-hidden="true" size={15} /></Link></div>
         </div>
       </section>
     </main>

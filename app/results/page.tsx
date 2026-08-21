@@ -1,69 +1,43 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight, Check, FileSearch, ShieldCheck } from "lucide-react";
+import { TransitionLink as Link } from "../components/RouteCurtain";
+import { ArrowUpRight, Check, Quote } from "lucide-react";
 import { PageHero } from "../components/PageHero";
 import { SectionHeading } from "../components/SectionHeading";
+import { companySource, customerStories } from "../lib/companyContent";
 
 export const metadata: Metadata = {
-  title: "Evidence & Standards | Rohitt Kumar Singh",
+  title: "Client Stories | Hundred Yards",
   description:
-    "The evidence standard behind Rohitt Kumar Singh's public work: sourced claims, consent, context, and no invented testimonials.",
+    "First-party customer experiences published by Hundred Yards, including property shortlisting, site visits, remote walkthroughs, and transaction support.",
 };
 
-const publicEvidence = [
-  {
-    number: "01",
-    title: "Leadership role",
-    description:
-      "Hundred Yards' official company biography identifies Rohit Kumar Singh as Managing Director.",
-    source: "Official Hundred Yards biography",
-    href: "https://100yards.in/about-us/",
-  },
-  {
-    number: "02",
-    title: "Registered company",
-    description:
-      "Public corporate records identify Hundred Yards Realtor Private Limited, incorporated in 2023, and list Rohit Kumar Singh as a director.",
-    source: "Public company record",
-    href: "https://www.indiafilings.com/search/hundred-yards-realtor-private-limited-cin-U68100KA2023PTC180028",
-  },
-  {
-    number: "03",
-    title: "Professional scope",
-    description:
-      "The company's public channels describe buyer and seller representation, investment consultation, market analysis, and end-to-end property support.",
-    source: "Official Hundred Yards website",
-    href: "https://100yards.in/",
-  },
-] as const;
-
 const publicationRules = [
-  "Name the source behind every factual claim.",
-  "Obtain explicit consent for every client quotation, portrait, and shared artifact.",
-  "Keep dates, locations, circumstances, and limitations beside performance context.",
-  "Never imply guaranteed returns, appreciation, approval, or a transaction outcome.",
-  "Correct or remove claims when the supporting source changes.",
+  "Relevant options instead of an overwhelming project list",
+  "Straight conversations without pressure to decide",
+  "Support from the first site visit through registration",
+  "Virtual walkthroughs and local coordination for remote buyers",
+  "Clear information around pricing, charges, and the next step",
 ] as const;
 
 const caseStructure = [
   {
     number: "001",
-    title: "Starting context",
+    title: "A focused shortlist",
     description:
-      "What the person was trying to understand, with private financial and property information removed.",
+      "Clients describe the value of seeing options that match their requirement rather than spending time on unrelated projects.",
   },
   {
     number: "002",
-    title: "Work performed",
+    title: "Advice without pressure",
     description:
-      "The specific visit, comparison, discussion, or professional verification that actually occurred.",
+      "Published feedback highlights clear trade-offs, patient answers, and room to make the final decision at the buyer’s pace.",
   },
   {
     number: "003",
-    title: "Documented change",
+    title: "Support through completion",
     description:
-      "What became clearer or better organised—without turning process evidence into a promised result.",
+      "Site visits, virtual walkthroughs, registration coordination, and continued availability make the journey feel connected.",
   },
 ] as const;
 
@@ -74,18 +48,18 @@ export default function ResultsPage() {
       className="page-shell results-editorial-page authority-evidence-page"
     >
       <PageHero
-        index="03 / EVIDENCE"
-        eyebrow="PUBLIC FACTS / PUBLICATION STANDARD"
+        index="03 / CLIENT STORIES"
+        eyebrow="CUSTOMER EXPERIENCES / PUBLISHED BY HUNDRED YARDS"
         title={
           <>
-            Credibility should be
+            Property journeys,
             <br />
-            <em>possible to inspect.</em>
+            <em>remembered for the right reasons.</em>
           </>
         }
-        body="This is not a testimonial gallery. It separates what can be sourced today from the standard future client stories must meet before publication."
+        body="First-party feedback from people who describe relevant shortlists, patient guidance, remote walkthroughs, and support through the transaction."
         theme="ink"
-        aside={<span>SOURCES / CONSENT / CONTEXT</span>}
+        aside={<span>SHORTLIST / VISIT / SUPPORT / COMPLETE</span>}
       />
 
       <section className="results-editorial-opener authority-evidence-opener section-pad">
@@ -105,22 +79,20 @@ export default function ResultsPage() {
         </figure>
 
         <div className="results-editorial-opener-copy">
-          <p className="eyebrow">EVIDENCE BEFORE IMPRESSION</p>
+          <p className="eyebrow">THE CUSTOMER EXPERIENCE</p>
           <h2>
-            Trust is stronger
+            Guidance that feels
             <br />
-            <em>when the source stays visible.</em>
+            <em>clear, patient, and useful.</em>
           </h2>
           <p>
-            Rohitt&apos;s public role and Hundred Yards&apos; company identity can be
-            connected to public sources. Client outcomes require a different
-            standard: permission, context, and evidence for every meaningful
-            statement.
+            The most useful feedback is not about spectacle. It is about being
+            understood, seeing relevant projects, getting honest explanations,
+            and knowing the team remains available after the first visit.
           </p>
           <p>
-            No learner results are published because the Academy has not
-            launched. No names, quotations, portraits, transaction totals, or
-            financial outcomes have been invented to fill that space.
+            The stories below are concise summaries of first-party testimonials
+            currently published on the official Hundred Yards website.
           </p>
         </div>
       </section>
@@ -128,30 +100,31 @@ export default function ResultsPage() {
       <section className="results-standard results-editorial-standard authority-evidence-sources section-pad section-ink">
         <SectionHeading
           light
-          eyebrow="WHAT CAN BE SOURCED TODAY"
+          eyebrow="PUBLISHED CUSTOMER FEEDBACK"
           title={
             <>
-              Public identity,
+              Real people.
               <br />
-              <em>with the trail attached.</em>
+              <em>Consistent themes.</em>
             </>
           }
-          body="These links support the narrow claims shown here. They do not independently validate every marketing statement made elsewhere."
+          body="Four customer experiences, summarised from the company’s current first-party testimonial collection."
         />
 
         <div className="results-editorial-case-grid authority-evidence-source-grid">
-          {publicEvidence.map((item) => (
-            <article key={item.number}>
-              <span>{item.number}</span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+          {customerStories.map((item, index) => (
+            <article key={item.name}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{item.name}</h3>
+              <p>{item.summary}</p>
+              <small>{item.context}</small>
               <a
                 className="text-link"
-                href={item.href}
+                href={companySource.website}
                 rel="noreferrer"
                 target="_blank"
               >
-                {item.source}
+                View the published source
                 <ArrowUpRight aria-hidden="true" size={15} />
               </a>
             </article>
@@ -161,15 +134,15 @@ export default function ResultsPage() {
 
       <section className="results-editorial-case-structure authority-evidence-standard section-pad">
         <SectionHeading
-          eyebrow="CASE FILE / THE THREE-PART RECORD"
+          eyebrow="WHAT CLIENTS VALUE"
           title={
             <>
-              Situation. Work.
+              Relevance. Transparency.
               <br />
-              <em>Documented change.</em>
+              <em>Follow-through.</em>
             </>
           }
-          body="If a real client story is published later, it must show the process without exposing private information or implying a guaranteed outcome."
+          body="Across the published feedback, three qualities appear repeatedly in how clients describe the Hundred Yards experience."
         />
         <div className="results-editorial-case-grid">
           {caseStructure.map((item) => (
@@ -185,17 +158,17 @@ export default function ResultsPage() {
       <section className="results-standard results-editorial-standard authority-evidence-gate section-pad section-orange">
         <div className="evidence-board results-editorial-evidence-board">
           <div className="evidence-visual results-editorial-reserved-file">
-            <span className="evidence-index">CLIENT CASE / NONE PUBLISHED</span>
-            <FileSearch aria-hidden="true" size={36} />
-            <strong>No testimonial is being simulated</strong>
+            <span className="evidence-index">HUNDRED YARDS / SERVICE STANDARD</span>
+            <Quote aria-hidden="true" size={36} />
+            <strong>A better property experience is built in the details</strong>
             <p>
-              A future case opens only after its source, wording, context,
-              evidence, and consent have been reviewed.
+              Useful shortlists, clear explanations, responsive coordination,
+              and support through completion are the standard to keep raising.
             </p>
           </div>
 
           <div className="evidence-checklist results-editorial-checklist">
-            <p className="eyebrow">THE PUBLICATION GATE</p>
+            <p className="eyebrow">THE EXPERIENCE CLIENTS DESCRIBE</p>
             {publicationRules.map((item) => (
               <div key={item}>
                 <Check aria-hidden="true" size={17} />
@@ -207,35 +180,33 @@ export default function ResultsPage() {
       </section>
 
       <section className="results-editorial-boundary authority-evidence-boundary section-pad">
-        <ShieldCheck aria-hidden="true" size={30} />
+        <Quote aria-hidden="true" size={30} />
         <div>
-          <p className="eyebrow">THE CLAIM BOUNDARY</p>
-          <h2>No borrowed credibility.</h2>
+          <p className="eyebrow">SOURCE NOTE</p>
+          <h2>First-party feedback, clearly labelled.</h2>
         </div>
         <p>
-          No fictional clients, generated endorsements, unattributed
-          quotations, unsupported awards, learner counts, transaction totals,
-          appreciation percentages, or claims that education caused a
-          financial result.
+          These summaries are based on testimonials published by Hundred Yards.
+          They are not independently audited and do not promise that every
+          property journey will have the same outcome.
         </p>
       </section>
 
       <section className="story-invite results-editorial-invite authority-evidence-invite section-pad section-blue">
         <div>
-          <p className="eyebrow eyebrow-light">HAVE A PROFESSIONAL QUESTION?</p>
+          <p className="eyebrow eyebrow-light">START YOUR PROPERTY CONVERSATION</p>
           <h2>
-            Ask for the source,
+            Let the next client story
             <br />
-            <em>scope, or context.</em>
+            <em>begin with your goals.</em>
           </h2>
         </div>
         <p>
-          The contact route opens an email to the Hundred Yards team. It does
-          not collect a testimonial or claim that an enquiry becomes an
-          engagement.
+          Speak with the Hundred Yards team about a home, investment, sale,
+          commercial requirement, or NRI property search.
         </p>
         <Link className="button button-light" href="/contact?type=other#contact-form">
-          Contact the team <ArrowUpRight aria-hidden="true" size={18} />
+          Book a property consultation <ArrowUpRight aria-hidden="true" size={18} />
         </Link>
       </section>
     </main>

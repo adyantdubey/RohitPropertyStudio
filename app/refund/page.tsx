@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { TransitionLink as Link } from "../components/RouteCurtain";
 import { LegalDocument } from "../components/LegalDocument";
 
 export const metadata: Metadata = {

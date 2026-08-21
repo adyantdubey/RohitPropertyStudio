@@ -2,7 +2,7 @@ type CourseCoverProps = {
   variant: "system" | "field" | "room";
   title: string;
   eyebrow?: string;
-  status?: "Prepared / launch setup pending" | "Coming soon" | "In development";
+  status?: "Launch list open" | "Coming soon" | "On the roadmap";
   className?: string;
 };
 
@@ -10,7 +10,7 @@ export function CourseCover({
   variant,
   title,
   eyebrow = "ROHITT KUMAR SINGH / PROPERTY ACADEMY",
-  status = "In development",
+  status = "On the roadmap",
   className = "",
 }: CourseCoverProps) {
   return (

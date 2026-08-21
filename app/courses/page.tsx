@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "../components/RouteCurtain";
 import { ArrowUpRight, BookOpenCheck, ShieldCheck } from "lucide-react";
 import { CourseCatalog } from "../components/CourseCatalog";
 import { PageHero } from "../components/PageHero";
 
 export const metadata: Metadata = {
-  title: "Property Academy | Rohitt Kumar Singh",
+  title: "Property Academy",
   description:
     "Explore Rohitt Kumar Singh's prepared 49-slide Basics of Real Estate training deck and the Property Academy roadmap.",
 };
@@ -14,21 +14,21 @@ export const metadata: Metadata = {
 const roadmap = [
   {
     number: "01",
-    status: "PREPARED / LAUNCH SETUP PENDING",
+    status: "49-SLIDE DECK / FIRST ACCESS",
     title: "Basics of Real Estate — Training Deck",
-    copy: "A real 49-slide PowerPoint resource. Content review, pricing, licence, payment, protected delivery, support, and refund terms are being prepared before sales open.",
+    copy: "A visual foundation covering property types, construction, approvals, area terminology, charges, UDS, and payment-plan concepts.",
   },
   {
     number: "02",
     status: "COMING SOON",
     title: "Before You Buy — Field Guide",
-    copy: "The next planned release. The guide is still being written and reviewed; no finished PDF is available today.",
+    copy: "A practical buyer PDF designed for property visits, project comparison, due-diligence questions, and professional follow-ups.",
   },
   {
     number: "03",
-    status: "IN DEVELOPMENT",
+    status: "ON THE ROADMAP",
     title: "The Deal Room",
-    copy: "A supporting toolkit concept. Contents, file formats, licence, and release date are not yet final.",
+    copy: "A planned toolkit for organising property comparisons, documents, assumptions, risks, and next actions.",
   },
 ] as const;
 
@@ -40,17 +40,17 @@ export default function CoursesPage() {
     >
       <PageHero
         index="02 / ACADEMY"
-        eyebrow="ROHITT'S PROPERTY EDUCATION / PRE-LAUNCH"
+        eyebrow="ROHITT PROPERTY ACADEMY / PRACTICAL REAL-ESTATE LEARNING"
         title={
           <>
-            Learn before
+            Understand real estate
             <br />
-            <em>you commit.</em>
+            <em>from the ground up.</em>
           </>
         }
-        body="The Academy now has a real first resource: a 49-slide Basics of Real Estate training deck. The purchase layer is being prepared responsibly; the field guide and toolkit remain on the roadmap."
-        theme="blue"
-        aside={<span>FIELD GUIDE / COURSES / TOOLS</span>}
+        body="Start with the prepared 49-slide Basics of Real Estate deck, then follow the upcoming Before You Buy field guide and practical property tools."
+        theme="ink"
+        aside={<span>LEARN / APPLY / RETURN TO THE FIELD</span>}
       />
 
       <section
@@ -73,7 +73,7 @@ export default function CoursesPage() {
         </figure>
 
         <article className="course-editorial-opener-copy authority-academy-flagship__copy">
-          <p className="eyebrow">PREPARED RESOURCE / LAUNCH SETUP PENDING</p>
+          <p className="eyebrow">FEATURED RESOURCE / JOIN THE LAUNCH LIST</p>
           <h2>
             Basics of Real Estate
             <br />
@@ -85,16 +85,15 @@ export default function CoursesPage() {
             construction, approvals, areas, charges, UDS, and payment plans.
           </p>
           <p>
-            The resource exists. Sales remain closed until its current-content
-            review, price, buyer licence, payment, protected delivery, support,
-            and refund terms are ready. The raw 154 MB file is never exposed by
-            this public website.
+            Designed for aspiring property professionals, new team members,
+            buyers, and anyone who wants the language of real estate explained
+            visually and without unnecessary jargon.
           </p>
           <Link
             className="button button-dark authority-academy-primary-cta"
             href="/contact?interest=training-deck#contact-form"
           >
-            Ask about launch access
+            Join the launch list
             <ArrowUpRight aria-hidden="true" size={17} />
           </Link>
         </article>
@@ -105,8 +104,8 @@ export default function CoursesPage() {
         className="course-editorial-roles authority-academy-roadmap section-pad section-orange"
       >
         <header>
-          <p className="eyebrow">THE HONEST ROADMAP / 001—003</p>
-          <h2 id="academy-roadmap-title">What exists—and what does not.</h2>
+          <p className="eyebrow">THE ACADEMY COLLECTION / 001—003</p>
+          <h2 id="academy-roadmap-title">Start with the foundation. Build toward the field.</h2>
         </header>
         <ol className="course-editorial-role-grid">
           {roadmap.map((item) => (
@@ -131,22 +130,21 @@ export default function CoursesPage() {
       <section className="course-editorial-boundary authority-academy-boundary section-pad">
         <ShieldCheck aria-hidden="true" size={30} />
         <div>
-          <p className="eyebrow">RESOURCE READY / STOREFRONT NOT YET OPEN</p>
-          <h2>A real training deck, without a pretend checkout.</h2>
+          <p className="eyebrow">LAUNCH ACCESS / COMING SOON</p>
+          <h2>Be first to know when access opens.</h2>
         </div>
         <div>
           <p>
-            The deck file exists, but this site has no payment gateway, learner
-            account, or protected delivery today. Its reviewed content, pricing,
-            access, licence, delivery, support, and refund terms will be
-            published before purchase opens.
+            Checkout is not live yet. Join the launch list and the Hundred Yards
+            team will share the reviewed price, access, licence, delivery,
+            support, and refund terms before any purchase opens.
           </p>
           <Link
             className="button button-dark"
             href="/contact?interest=training-deck#contact-form"
           >
             <BookOpenCheck aria-hidden="true" size={17} />
-            Ask about the training deck
+            Join the training-deck list
           </Link>
         </div>
       </section>

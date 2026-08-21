@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "../components/RouteCurtain";
 import { ArrowUpRight, ExternalLink, Film, Play } from "lucide-react";
 import { CinematicMedia } from "../components/CinematicMedia";
 import { PageHero } from "../components/PageHero";
@@ -9,29 +9,29 @@ import { brand } from "../lib/brand";
 
 export const metadata: Metadata = {
   title: brand.mediaLabel,
-  description: `${brand.mediaLabel} is ${brand.name}’s public real-estate video and editorial hub—field observations, property questions, market context, and leadership notes without fabricated social metrics.`,
+  description: `${brand.mediaLabel} is ${brand.name}’s video hub for project walkthroughs, location intelligence, buyer education, market context, and leadership conversations.`,
 };
 
 const editorialLanes = [
   {
     number: "01",
-    title: "The property question",
-    copy: "Begin with one practical question a buyer, seller, or investor may need to frame before the next conversation.",
+    title: "Project walkthroughs",
+    copy: "See projects, sample homes, surroundings, layouts, amenities, and the details that deserve a closer look.",
   },
   {
     number: "02",
-    title: "The market context",
-    copy: "Separate a useful location or segment observation from the assumptions and time-sensitive data around it.",
+    title: "Location intelligence",
+    copy: "Understand Bengaluru micro-markets through connectivity, neighbourhood maturity, development, and everyday use.",
   },
   {
     number: "03",
-    title: "The field view",
-    copy: "Use site-side observations to explain what deserves closer review without presenting a property conclusion from a short video.",
+    title: "Buyer education",
+    copy: "Make property types, costs, approvals, construction, layouts, and the buying process easier to understand.",
   },
   {
     number: "04",
-    title: "The leadership note",
-    copy: "Connect customer experience, team standards, technology, and transparency to the work of real-estate advisory.",
+    title: "Market and leadership",
+    copy: "Follow conversations about customer experience, team standards, technology, and the direction of the market.",
   },
 ] as const;
 
@@ -56,14 +56,14 @@ export default function MediaPage() {
         eyebrow={`${brand.mediaLabel.toUpperCase()} / PUBLIC VIDEO`}
         title={
           <>
-            From reel to
+            Real estate,
             <br />
-            <em>real-estate context.</em>
+            <em>seen from the field.</em>
           </>
         }
-        body={`${brand.name} uses #ReelSeRealEstate in his public posts. This hub gives that active content label a considered home for video, field observations, and the questions behind the screen.`}
-        aside={<span>WATCH / QUESTION / CONTINUE</span>}
-        theme="orange"
+        body={`Follow ${brand.name} through project walkthroughs, location guides, buyer education, market conversations, and the leadership view behind Hundred Yards.`}
+        aside={<span>WALKTHROUGHS / LOCATIONS / BUYER EDUCATION</span>}
+        theme="ink"
         media={{
           poster: "/media/hero-aerial-poster.jpg",
           mobilePoster: "/media/hero-aerial-poster-mobile.jpg",
@@ -99,15 +99,14 @@ export default function MediaPage() {
         <article className="insight-editorial-feature-copy authority-media-intro__copy">
           <div className="insight-editorial-article-meta">
             <span>PUBLIC SERIES</span>
-            <span><Film aria-hidden="true" size={14} /> NO METRICS FABRICATED</span>
+            <span><Film aria-hidden="true" size={14} /> PROJECTS / MARKETS / PEOPLE</span>
           </div>
           <p className="eyebrow">#{brand.mediaLabel.replaceAll(" ", "")}</p>
-          <h2>Short form, with the context left in.</h2>
+          <h2>Short-form property content with a field point of view.</h2>
           <p>
-            The series name is evidenced by Rohitt&apos;s public social posts. This
-            site does not infer ownership of a registered mark, invent audience
-            numbers, or manufacture an episode archive. Only owner-supplied or
-            approved videos, captions, thumbnails, dates, and links should appear here.
+            Reel Se Real Estate brings the property conversation closer to the
+            places, projects, decisions, and questions people are already
+            navigating in Bengaluru and beyond.
           </p>
           <a className="text-link" href={brand.sourceLinks.facebook} rel="noreferrer" target="_blank">
             Watch on Facebook <ExternalLink aria-hidden="true" size={15} />
@@ -118,15 +117,15 @@ export default function MediaPage() {
       <section className="insight-index insight-editorial-library section-pad section-ink authority-media-lanes">
         <SectionHeading
           light
-          eyebrow="THE EDITORIAL LENS / 001—004"
+          eyebrow="WHAT YOU&apos;LL FIND / 001—004"
           title={
             <>
-              Four ways to make a
+              Four ways to experience
               <br />
-              <em>short video more useful.</em>
+              <em>the market with Rohitt.</em>
             </>
           }
-          body="These are editorial lanes for the owned hub, not claims about an existing episode count or publishing cadence."
+          body="A clear content system spanning projects, locations, buyer education, and the leadership conversations behind the work."
         />
         <div className="insight-editorial-card-grid authority-media-lanes__grid">
           {editorialLanes.map((lane, index) => (
@@ -142,8 +141,8 @@ export default function MediaPage() {
               </div>
               <div className="insight-editorial-card-content">
                 <div className="insight-editorial-article-meta">
-                  <span>EDITORIAL LANE / {lane.number}</span>
-                  <span>FORMAT TO BE APPROVED</span>
+                  <span>VIDEO SERIES / {lane.number}</span>
+                  <span>{brand.mediaLabel.toUpperCase()}</span>
                 </div>
                 <h3>{lane.title}</h3>
                 <p>{lane.copy}</p>
@@ -167,13 +166,11 @@ export default function MediaPage() {
           </figcaption>
         </figure>
         <div className="insight-editorial-method-copy">
-          <p className="eyebrow">WATCH AT THE SOURCE</p>
-          <h2>No copied reach. No invented archive.</h2>
+          <p className="eyebrow">CONTINUE THE CONVERSATION</p>
+          <h2>Watch and follow on Rohitt&apos;s public channels.</h2>
           <p>
-            Until original video files, captions, thumbnails, and publishing
-            permissions are supplied, the authoritative viewing experience remains
-            on Rohitt&apos;s public profiles. This page links there directly and does
-            not display follower, view, engagement, or episode counts.
+            Follow current videos, professional posts, project visits, and
+            real-estate conversations directly on Rohitt&apos;s Facebook and LinkedIn profiles.
           </p>
           <div className="authority-media-sources__links">
             {channelLinks.map((channel) => (
@@ -191,21 +188,20 @@ export default function MediaPage() {
         <div>
           <p className="eyebrow eyebrow-light">MEDIA / SPEAKING / COLLABORATION</p>
           <h2>
-            Bring a real audience
+            Bring the right audience
             <br />
-            <em>and a useful brief.</em>
+            <em>into the conversation.</em>
           </h2>
         </div>
         <div className="newsletter-form authority-media-cta__copy">
           <p>
-            For a video collaboration, interview, speaking invitation, or
-            partnership, share the audience, format, date, distribution plan, and
-            intended outcome. Availability and scope are confirmed separately.
+            Invite Rohitt for a video collaboration, interview, speaking
+            engagement, property conversation, or industry partnership.
           </p>
           <Link className="button button-light" href="/contact?type=partnership#contact-form">
-            Send a media brief <ArrowUpRight aria-hidden="true" size={17} />
+            Discuss a collaboration <ArrowUpRight aria-hidden="true" size={17} />
           </Link>
-          <small>{brand.mediaLabel} is used here as a public editorial label; no social-performance claim is implied.</small>
+          <small>Availability and format are confirmed by the team.</small>
         </div>
       </section>
     </main>

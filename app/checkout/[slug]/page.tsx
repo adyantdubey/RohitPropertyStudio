@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "../../components/RouteCurtain";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, LockKeyhole } from "lucide-react";
 import { getProductBySlug, products } from "../../lib/content";
@@ -33,10 +33,10 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
   const isFieldGuide = slug === "before-you-buy-field-guide";
   const isTrainingDeck = slug === "basics-of-real-estate-training-deck";
   const status = isTrainingDeck
-    ? "Launch setup pending"
+    ? "Launch list open"
     : isFieldGuide
       ? "Coming soon"
-      : "In development";
+      : "On the roadmap";
 
   return (
     <main
@@ -56,17 +56,18 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
       >
         <div className="cin-checkout-intro__copy">
           <LockKeyhole aria-hidden="true" size={28} />
-          <p className="eyebrow">{status.toUpperCase()} / NO CHECKOUT</p>
+          <p className="eyebrow">{status.toUpperCase()} / JOIN THE LAUNCH LIST</p>
           <h1 id="purchase-unavailable-title">
-            Nothing is being sold
+            Launch access
             <br />
-            <em>on this page.</em>
+            <em>is coming soon.</em>
           </h1>
           <p>
             {isTrainingDeck
-              ? `${product.title} exists as a prepared 49-slide resource, but its commercial setup is not complete.`
-              : `${product.title} is ${status.toLowerCase()}.`} There is no payment
-            gateway, order, protected download, account, or access promise today.
+              ? `The prepared 49-slide ${product.title} resource is entering its launch-access stage.`
+              : `${product.title} is ${status.toLowerCase()}.`} Join the list to
+            receive reviewed pricing, licence, delivery, support, and refund
+            details before any payment opens.
           </p>
           <div className="authority-commerce-unavailable__actions">
             <Link className="button button-dark" href="/courses">
@@ -84,7 +85,7 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
               }
             >
               {isTrainingDeck
-                ? "Ask about launch access"
+                ? "Join the training-deck list"
                 : isFieldGuide
                 ? "Join the first-access list"
                 : "Ask about the Academy roadmap"}
@@ -102,8 +103,8 @@ export default async function CheckoutPage({ params }: CheckoutPageProps) {
             width={isTrainingDeck ? 1920 : 1800}
           />
           <figcaption>
-            <span>PURCHASE / UNAVAILABLE</span>
-            <strong>Release details come before payment.</strong>
+            <span>ACADEMY / FIRST ACCESS</span>
+            <strong>Join now. Purchase only when the full offer is ready.</strong>
           </figcaption>
         </figure>
       </section>

@@ -1,63 +1,48 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "../components/RouteCurtain";
 import { ArrowUpRight, Check, ExternalLink, ShieldCheck } from "lucide-react";
 import { CinematicMedia } from "../components/CinematicMedia";
 import { PageHero } from "../components/PageHero";
 import { SectionHeading } from "../components/SectionHeading";
 import { brand } from "../lib/brand";
+import { companyServices } from "../lib/companyContent";
 
 export const metadata: Metadata = {
   title: "Property Advisory with Hundred Yards",
   description: `Start a property conversation with ${brand.name} and ${brand.organizationName} for buyer representation, seller representation, investment consultation, or market analysis in Bengaluru.`,
 };
 
-const advisoryRoutes = [
-  {
-    number: "01",
-    title: "Buyer representation",
-    copy: "Bring the purpose, preferred locations, property type, budget frame, and timing so the Hundred Yards team can understand the requirement before discussing options.",
-  },
-  {
-    number: "02",
-    title: "Seller representation",
-    copy: "Begin with the property context, ownership and documentation status, intended timeline, and the support required for a responsible sales conversation.",
-  },
-  {
-    number: "03",
-    title: "Investment consultation",
-    copy: "Frame the objective, time horizon, constraints, and risk questions before evaluating residential, plotted, commercial, or other investment opportunities.",
-  },
-  {
-    number: "04",
-    title: "Market analysis",
-    copy: "Request context around a location or property segment while keeping data sources, assumptions, timing, and the limits of any comparison visible.",
-  },
-] as const;
+const advisoryRoutes = companyServices.map((service, index) => ({
+  number: String(index + 1).padStart(2, "0"),
+  title: service.title,
+  copy: service.description,
+  outcome: service.outcome,
+}));
 
 const audiences = [
-  "Homebuyers looking for a structured place to begin",
-  "Investors comparing property categories or locations",
-  "NRIs who need a Bengaluru-based coordination path",
-  "Sellers who want to discuss representation and next steps",
-  "Businesses exploring commercial or investment opportunities",
+  "First-time and experienced homebuyers",
+  "Residential and plotted-property investors",
+  "NRIs who need dependable local coordination",
+  "Owners preparing to take a property to market",
+  "Businesses exploring commercial opportunities",
 ] as const;
 
 const firstConversation = [
   {
     number: "01",
-    title: "Your requirement",
-    copy: "What you are trying to buy, sell, compare, or understand—and why the timing matters now.",
+    title: "Discover",
+    copy: "Hundred Yards understands your goals, preferred locations, budget, timing, and non-negotiables.",
   },
   {
     number: "02",
-    title: "The decision frame",
-    copy: "Location, property category, use case, budget context, time horizon, and non-negotiables.",
+    title: "Shortlist",
+    copy: "The team curates relevant opportunities, coordinates visits, and helps you compare projects and locations.",
   },
   {
     number: "03",
-    title: "The support route",
-    copy: "Whether the next useful step is a team conversation, market context, a property shortlist, or independent professional review.",
+    title: "Complete",
+    copy: "Negotiation, finance, legal-verification, documentation, registration, and after-sales hand-offs are coordinated around the transaction.",
   },
 ] as const;
 
@@ -69,14 +54,14 @@ export default function AdvisoryPage() {
         eyebrow={`${brand.organizationName.toUpperCase()} / BENGALURU`}
         title={
           <>
-            Bring the brief.
+            Your property search,
             <br />
-            <em>Build the right route.</em>
+            <em>supported end to end.</em>
           </>
         }
-        body={`${brand.name}, ${brand.professionalTitle}, opens the door to a Hundred Yards-backed property conversation for buyers, sellers, investors, NRIs, and businesses.`}
-        aside={<span>BUY / SELL / INVEST / ANALYSE</span>}
-        theme="blue"
+        body={`Buy, sell, or invest with a Bengaluru-based Hundred Yards team led by ${brand.name}—with relevant options, market context, and practical transaction support.`}
+        aside={<span>BUY / INVEST / SELL / NRI / COMMERCIAL</span>}
+        theme="ink"
         media={{
           poster: "/media/interior-walkthrough-poster.jpg",
           mobilePoster: "/media/interior-walkthrough-poster-mobile.jpg",
@@ -110,22 +95,20 @@ export default function AdvisoryPage() {
         </figure>
 
         <article className="course-editorial-opener-copy authority-advisory-intro__copy">
-          <p className="eyebrow">A CONSULTATION, NOT A PROMISE</p>
+          <p className="eyebrow">PROPERTY ADVISORY / BENGALURU</p>
           <h2>
-            Start with what you need,
+            More than a list of projects.
             <br />
-            <em>not what someone wants to sell.</em>
+            <em>A team through the journey.</em>
           </h2>
           <p>
-            Hundred Yards publishes a service scope spanning buyer and seller
-            representation, investment consultation, market analysis, and
-            end-to-end support. The first conversation is designed to understand
-            fit and route the requirement; it does not guarantee availability,
-            appreciation, finance, legal clearance, or a transaction result.
+            Hundred Yards supports homebuyers, investors, NRIs, sellers, and
+            businesses across property discovery, shortlisting, project visits,
+            comparisons, negotiation, documentation, and registration.
           </p>
           <div className="authority-advisory-intro__actions">
             <Link className="button button-dark" href="/contact?type=property#contact-form">
-              Share your requirement <ArrowUpRight aria-hidden="true" size={17} />
+              Speak with the property team <ArrowUpRight aria-hidden="true" size={17} />
             </Link>
             <a className="text-link" href="https://100yards.in/" rel="noreferrer" target="_blank">
               Visit Hundred Yards <ExternalLink aria-hidden="true" size={15} />
@@ -136,8 +119,8 @@ export default function AdvisoryPage() {
 
       <section className="course-editorial-roles section-pad section-orange authority-advisory-routes" aria-labelledby="advisory-routes-title">
         <header>
-          <p className="eyebrow">PUBLISHED SERVICE SCOPE / 001—004</p>
-          <h2 id="advisory-routes-title">Choose the conversation that matches the brief.</h2>
+          <p className="eyebrow">HOW HUNDRED YARDS CAN HELP / 001—006</p>
+          <h2 id="advisory-routes-title">Property support built around real needs.</h2>
         </header>
         <ol className="course-editorial-role-grid authority-advisory-routes__grid">
           {advisoryRoutes.map((route) => (
@@ -146,8 +129,9 @@ export default function AdvisoryPage() {
               <small>HUNDRED YARDS / ADVISORY</small>
               <h3>{route.title}</h3>
               <p>{route.copy}</p>
+              <p><strong>{route.outcome}</strong></p>
               <Link href="/contact?type=property#contact-form">
-                Start this route <ArrowUpRight aria-hidden="true" size={15} />
+                Enquire about this service <ArrowUpRight aria-hidden="true" size={15} />
               </Link>
             </li>
           ))}
@@ -156,16 +140,16 @@ export default function AdvisoryPage() {
 
       <section className="about-editorial-process section-pad authority-advisory-audience">
         <div className="about-editorial-process-copy">
-          <p className="eyebrow">WHO CAN BEGIN HERE</p>
+          <p className="eyebrow">WHO WE WORK WITH</p>
           <h2>
-            Different requirements.
+            Different property goals.
             <br />
-            <em>One clear intake.</em>
+            <em>One connected team.</em>
           </h2>
           <p>
-            Hundred Yards’ published audience includes homebuyers, investors,
-            NRIs, and businesses across residential, plotted, commercial, and
-            investment opportunities.
+            From a first home in Bengaluru to an investment, remote purchase,
+            commercial requirement, or property sale, the advisory starts with
+            the outcome that matters to you.
           </p>
           <ul className="about-editorial-process-list">
             {audiences.map((audience) => (
@@ -190,15 +174,15 @@ export default function AdvisoryPage() {
       <section className="results-standard results-editorial-standard section-pad section-ink authority-advisory-conversation">
         <SectionHeading
           light
-          eyebrow="THE FIRST CONVERSATION / 001—003"
+          eyebrow="THE HUNDRED YARDS JOURNEY / 001—003"
           title={
             <>
-              Enough context to make
+              Discover. Shortlist.
               <br />
-              <em>the next step useful.</em>
+              <em>Complete with support.</em>
             </>
           }
-          body="The enquiry is an intake, not an engagement agreement. Scope, availability, team ownership, and any applicable commercial terms are confirmed separately."
+          body="A simple service journey that keeps market search, property comparison, and transaction coordination connected."
         />
         <div className="results-editorial-case-grid authority-advisory-conversation__grid">
           {firstConversation.map((item) => (
@@ -233,20 +217,19 @@ export default function AdvisoryPage() {
 
       <section className="story-invite results-editorial-invite section-pad section-blue authority-advisory-cta">
         <div>
-          <p className="eyebrow eyebrow-light">YOUR REQUIREMENT / BENGALURU</p>
+          <p className="eyebrow eyebrow-light">PROPERTY CONSULTATION / BENGALURU</p>
           <h2>
-            Give the conversation
+            Tell us what you are
             <br />
-            <em>a useful starting point.</em>
+            <em>looking for.</em>
           </h2>
         </div>
         <p>
-          Share the property type, preferred location, purpose, timing, and the
-          question you need help routing. Avoid sending confidential documents or
-          payment details through an initial enquiry.
+          Share the property type, preferred location, budget range, and timing.
+          The Hundred Yards team will respond with the most relevant next step.
         </p>
         <Link className="button button-light" href="/contact?type=property#contact-form">
-          Start a property enquiry <ArrowUpRight aria-hidden="true" size={18} />
+          Book a property consultation <ArrowUpRight aria-hidden="true" size={18} />
         </Link>
       </section>
     </main>

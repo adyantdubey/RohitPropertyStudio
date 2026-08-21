@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "../../components/RouteCurtain";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { PageHero } from "../../components/PageHero";
-import { getProductBySlug, insights } from "../../lib/content";
+import { getProductBySlug } from "../../lib/content";
+import { marketInsights as insights } from "../../lib/marketInsights";
 
 type InsightPageProps = {
   params: Promise<{ slug: string }>;
@@ -55,11 +56,12 @@ export default async function InsightPage({ params }: InsightPageProps) {
       className="page-shell insight-editorial-article-page authority-insight-article"
     >
       <PageHero
-        index={`${insight.index} / FIELD NOTE`}
-        eyebrow={`${insight.category.toUpperCase()} / EDUCATIONAL FIELD NOTE`}
+        index={`${insight.index} / PROPERTY INSIGHT`}
+        eyebrow={`${insight.category.toUpperCase()} / ROHITT PROPERTY INSIGHTS`}
         title={<>{insight.title}</>}
         body={insight.deck}
-        aside={<span>{insight.readTime.toUpperCase()} / VERIFY FOR YOUR CONTEXT</span>}
+        aside={<span>{insight.readTime.toUpperCase()} / BENGALURU PROPERTY EDUCATION</span>}
+        theme="ink"
         media={{
           poster: insight.hero.src,
           alt: insight.hero.alt,
@@ -84,27 +86,25 @@ export default async function InsightPage({ params }: InsightPageProps) {
           />
           <figcaption>
             <span>
-              Licensed editorial stock image. It is not a Rohitt listing, client
-              property, or recommendation.
+              Editorial architecture image used for property education.
             </span>
-            <strong>GENERAL EDUCATIONAL COMMENTARY</strong>
+            <strong>ROHITT PROPERTY INSIGHTS</strong>
           </figcaption>
         </figure>
 
         <section className="insight-editorial-thesis section-pad section-orange">
-          <p className="eyebrow">THE WORKING THESIS</p>
+          <p className="eyebrow">THE CENTRAL IDEA</p>
           <p>{insight.thesis}</p>
         </section>
 
         <div className="insight-editorial-body section-pad">
           <aside className="insight-editorial-article-rail">
-            <span>FIELD NOTE / {insight.index}</span>
+            <span>PROPERTY INSIGHT / {insight.index}</span>
             <strong>{insight.category}</strong>
             <small>{insight.readTime}</small>
             <p>
-              Use this note to improve the questions you carry. Verify facts,
-              documents, professional requirements, and local rules for your
-              own circumstances.
+              Use this guide to understand the topic, then confirm current
+              project information and professional requirements for your circumstances.
             </p>
           </aside>
 
@@ -133,9 +133,9 @@ export default async function InsightPage({ params }: InsightPageProps) {
           <div>
             <p className="eyebrow eyebrow-light">CARRY FORWARD</p>
             <h2>
-              Three questions for
+              Three ideas to
               <br />
-              <em>the working record.</em>
+              <em>carry forward.</em>
             </h2>
           </div>
           <ol>
@@ -151,15 +151,13 @@ export default async function InsightPage({ params }: InsightPageProps) {
         <section className="insight-editorial-disclaimer section-pad">
           <ShieldCheck aria-hidden="true" size={28} />
           <div>
-            <p className="eyebrow">EDUCATIONAL BOUNDARY</p>
-            <h2>A thinking prompt, not a property conclusion.</h2>
+            <p className="eyebrow">A PRACTICAL NOTE</p>
+            <h2>Use the insight. Verify the property.</h2>
           </div>
           <p>
-            This field note provides general educational material only. It does not
-            assess a property or provide financial, investment, legal, tax,
-            engineering, valuation, brokerage, or property-specific advice.
-            Information, terminology, and professional requirements can vary by
-            place and circumstance; verify relevant details independently.
+            This article is general property education. Current inventory,
+            pricing, approvals, charges, timelines, and property-specific legal,
+            financial, tax, valuation, or technical matters require current verification.
           </p>
         </section>
       </article>

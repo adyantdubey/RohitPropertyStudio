@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import { TransitionLink as Link } from "../components/RouteCurtain";
 import { ArrowDownRight, Clock3, Mail, MapPin, Phone, ShieldCheck } from "lucide-react";
 import {
   ContactForm,
@@ -10,7 +10,7 @@ import { PageHero } from "../components/PageHero";
 import { SectionHeading } from "../components/SectionHeading";
 
 export const metadata: Metadata = {
-  title: "Contact Rohitt Kumar Singh",
+  title: "Contact",
   description:
     "Contact the Hundred Yards team about Rohitt Kumar Singh's training deck, upcoming field guide, property guidance, or a professional collaboration.",
 };
@@ -23,32 +23,36 @@ const enquiryRoutes: Array<{
 }> = [
   {
     number: "01",
-    title: "Basics of Real Estate deck",
-    copy: "Ask about launch access to the prepared 49-slide 100 Yards training resource.",
-    href: "/contact?interest=training-deck#contact-form",
-  },
-  {
-    number: "02",
-    title: "Before You Buy",
-    copy: "Ask to hear when the first verified field-guide edition is ready.",
-    href: "/contact?interest=field-guide#contact-form",
-  },
-  {
-    number: "03",
-    title: "Property guidance",
-    copy: "Share the market, objective, and help needed; availability and scope are confirmed separately.",
+    title: "Buy a home",
+    copy: "Share your preferred Bengaluru locations, configuration, budget range, and purchase timing.",
     href: "/contact?type=property#contact-form",
   },
   {
+    number: "02",
+    title: "Invest in property",
+    copy: "Discuss residential, plotted, or commercial opportunities and the market context you need.",
+    href: "/contact?type=investment#contact-form",
+  },
+  {
+    number: "03",
+    title: "Sell or manage a remote search",
+    copy: "Ask about seller representation, NRI coordination, video walkthroughs, and local transaction support.",
+    href: "/contact?type=nri#contact-form",
+  },
+  {
     number: "04",
-    title: "Speaking & partnerships",
-    copy: "Share the audience, format, dates, and the purpose of the collaboration.",
-    href: "/contact?type=partnership#contact-form",
+    title: "Academy & partnerships",
+    copy: "Join the training-deck or buyer-PDF list, or discuss speaking, media, and professional collaborations.",
+    href: "/contact?interest=training-deck#contact-form",
   },
 ];
 
 const topicMap: Record<string, ContactTopic> = {
   property: "property",
+  investment: "investment",
+  seller: "seller",
+  nri: "nri",
+  commercial: "commercial",
   partnership: "partnership",
   other: "other",
 };
@@ -61,19 +65,19 @@ const interestMap: Record<string, ContactTopic> = {
 
 const contactNotes = [
   {
-    question: "Does this form submit on the website?",
+    question: "How is my enquiry sent?",
     answer:
-      "No. It prepares an email in your own mail application. You review and send that email directly to sales@100yards.in.",
+      "The form prepares an email in your own mail application. Review it and send it directly to sales@100yards.in; the website itself stores nothing.",
   },
   {
-    question: "Can I buy the training deck today?",
+    question: "When can I access the training deck?",
     answer:
-      "Not yet. The 49-slide PowerPoint file exists, but its review, price, buyer licence, payment, protected delivery, support, and refund terms are still being prepared.",
+      "The 49-slide deck is prepared and the launch list is open. Pricing, licence, protected delivery, support, and refund terms will be shared before access opens.",
   },
   {
-    question: "Can the website approve a property?",
+    question: "When can I contact the property team?",
     answer:
-      "No. Website material is general education. Property-specific legal, tax, financial, technical, valuation, and engineering questions require appropriately qualified professionals.",
+      "Hundred Yards publishes property-consultation hours every day from 09:00 to 20:00. Availability for a specific call or site visit is confirmed by the team.",
   },
 ] as const;
 
@@ -108,13 +112,14 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         eyebrow="ROHITT KUMAR SINGH / HUNDRED YARDS"
         title={
           <>
-            Bring the context.
+            Let&apos;s talk about
             <br />
-            <em>Start the conversation.</em>
+            <em>your next property move.</em>
           </>
         }
-        body="Choose the reason for writing, then send your note directly to the Hundred Yards team through your own email application."
-        aside={<span>TRAINING / PROPERTY / PARTNERSHIPS</span>}
+        body="Buy, invest, sell, explore an NRI or commercial requirement, join an Academy launch list, or discuss a collaboration with Rohitt and Hundred Yards."
+        aside={<span>PROPERTY / ACADEMY / PARTNERSHIPS</span>}
+        theme="ink"
       />
 
       <section
@@ -135,7 +140,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           />
           <figcaption>
             <span>ROUTE / 01—04</span>
-            <strong>Begin with context, not urgency.</strong>
+            <strong>Choose the conversation that fits your goal.</strong>
           </figcaption>
         </figure>
         <div className="cin-contact-routes__list">
@@ -145,7 +150,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               <h2>{route.title}</h2>
               <p>{route.copy}</p>
               <Link className="text-link" href={route.href}>
-                Use this route
+                Start this enquiry
                 <ArrowDownRight aria-hidden="true" size={15} />
               </Link>
             </article>
@@ -155,7 +160,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
       <section className="desk-section section-pad section-blue authority-contact-handoff">
         <div>
-          <p className="eyebrow eyebrow-light">VERIFIED COMPANY CONTACT</p>
+          <p className="eyebrow eyebrow-light">DIRECT COMPANY CONTACT</p>
           <h2>
             Your note goes to
             <br />
@@ -164,8 +169,8 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
         </div>
         <div>
           <p>
-            The current handoff uses the company&apos;s published email address.
-            The website does not claim to submit, queue, or store an enquiry.
+            Call during the published consultation hours or prepare an email to
+            the Bengaluru-based Hundred Yards team.
           </p>
           <a className="button button-light" href="mailto:sales@100yards.in">
             <Mail aria-hidden="true" size={17} />
@@ -210,14 +215,13 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               src="/media/blueprint-hands.jpg"
               width={1800}
             />
-            <figcaption>CONTEXT BEFORE CONCLUSIONS</figcaption>
+            <figcaption>PROPERTY / ACADEMY / COLLABORATION</figcaption>
           </figure>
           <ShieldCheck aria-hidden="true" size={24} />
-          <p className="eyebrow">A NOTE ON ADVICE</p>
+          <p className="eyebrow">KEEP YOUR FIRST MESSAGE SIMPLE</p>
           <p>
-            Academy material is educational. Do not send confidential property
-            documents, identity documents, bank details, payment information,
-            or other sensitive information through ordinary email.
+            Share the goal and basic context first. Do not email confidential
+            property documents, identity documents, bank details, or payment information.
           </p>
         </aside>
       </section>
@@ -225,12 +229,12 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
       <section className="faq-section section-pad section-ink cin-contact-faq authority-contact-faq">
         <SectionHeading
           light
-          eyebrow="BEFORE YOU WRITE"
+          eyebrow="BEFORE YOU CONTACT THE TEAM"
           title={
             <>
-              The current path,
+              What happens
               <br />
-              <em>plainly stated.</em>
+              <em>from here.</em>
             </>
           }
         />

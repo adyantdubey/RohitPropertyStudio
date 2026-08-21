@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { TransitionLink as Link } from "../../components/RouteCurtain";
 import { notFound } from "next/navigation";
 import { ArrowDown, ArrowUpRight, Check, ShieldCheck } from "lucide-react";
 import { CinematicMedia } from "../../components/CinematicMedia";
@@ -10,7 +10,7 @@ type ProductPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-type ReleaseStatus = "Prepared / launch setup pending" | "Coming soon" | "In development";
+type ReleaseStatus = "Launch list open" | "Coming soon" | "On the roadmap";
 
 type ReleaseDetails = {
   status: ReleaseStatus;
@@ -31,45 +31,45 @@ const coverVariant = {
 const releaseDetails: Record<string, ReleaseDetails> = {
   "before-you-buy-field-guide": {
     status: "Coming soon",
-    kicker: "FIRST PLANNED ACADEMY RELEASE",
+    kicker: "BUYER FIELD GUIDE / COMING SOON",
     description:
-      "Rohitt is developing Before You Buy as a practical field guide for people who want to slow the decision down, ask better questions, and keep a clearer record before a property commitment.",
+      "Before You Buy is being developed as a practical companion for property visits, project comparisons, document questions, and professional follow-ups before a commitment.",
     availability:
-      "The guide is still being written and reviewed. There is no finished PDF, download, price, delivery promise, or purchase gateway today.",
+      "Join the first-access list and the Hundred Yards team will share the reviewed edition, price, access, and delivery details when they are ready.",
     knownToday: [
-      "It is being developed as general property education.",
-      "It will not approve a property or replace qualified professional advice.",
-      "Its final contents, format, price, licence, and release date will be published only after confirmation.",
+      "A field-ready structure for observations and open questions.",
+      "Prompts for project, location, document, and professional-review conversations.",
+      "A concise record you can return to after a site visit.",
     ],
     cta: "Join the first-access list",
     href: "/contact?interest=field-guide#contact-form",
   },
   "basics-of-real-estate-training-deck": {
-    status: "Prepared / launch setup pending",
-    kicker: "UPLOADED 100 YARDS TRAINING RESOURCE",
+    status: "Launch list open",
+    kicker: "49-SLIDE FOUNDATION TRAINING",
     description:
-      "Basics of Real Estate is a prepared 49-slide PowerPoint resource carrying 100 Yards branding. It moves from industry and property fundamentals into construction, approvals, area language, common charges, UDS, and payment-plan examples.",
+      "Basics of Real Estate is a prepared 49-slide visual foundation carrying 100 Yards branding. It moves from industry and property fundamentals into construction, approvals, area language, common charges, UDS, and payment plans.",
     availability:
-      "The source deck exists. A current-content review, price, buyer licence, payment, protected delivery, support, and refund terms must be completed before sales open.",
+      "Preview what is inside and join the launch list. Reviewed pricing, licence, protected delivery, support, and refund terms will be shared before access opens.",
     knownToday: [
-      "It is a 49-slide PowerPoint-format training resource.",
-      "Its two parts cover real-estate basics, property formats, development, construction, approvals, areas, charges, UDS, and payment plans.",
-      "It is general educational material carrying 100 Yards branding, not property-specific advice.",
+      "49 visual training slides across two structured parts.",
+      "Property categories, home formats, Vaastu basics, amenities, development, and construction.",
+      "Approvals, area terminology, common charges, UDS, and payment-plan examples.",
     ],
-    cta: "Ask about launch access",
+    cta: "Join the launch list",
     href: "/contact?interest=training-deck#contact-form",
   },
   "deal-room-toolkit": {
-    status: "In development",
-    kicker: "FUTURE SUPPORTING CONCEPT",
+    status: "On the roadmap",
+    kicker: "PLANNED PROPERTY REVIEW TOOLKIT",
     description:
-      "Rohitt is exploring a supporting toolkit for people who want to keep property questions, comparisons, and professional follow-ups more organised.",
+      "The Deal Room is a planned working toolkit for keeping property comparisons, documents, assumptions, risks, and professional follow-ups organised.",
     availability:
-      "There is no finished toolkit, template pack, download, licence, price, or release date today.",
+      "Follow the Academy roadmap and ask the team to notify you when the format and release plan are confirmed.",
     knownToday: [
-      "The concept is intended to support organisation, not make decisions for a buyer.",
-      "Its contents and file formats are still being developed.",
-      "No download or payment is available.",
+      "A consistent comparison workspace for multiple properties.",
+      "Document, assumption, and risk tracking in one place.",
+      "A concise decision memo for the questions that remain open.",
     ],
     cta: "Ask about the Academy roadmap",
     href: "/contact?interest=academy#contact-form",
@@ -174,9 +174,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {"subtitle" in product && product.subtitle ? (
               <p className="product-editorial-hero__subtitle">{product.subtitle}</p>
             ) : null}
-            <p className="product-editorial-hero__tagline">
-              {release.availability}
-            </p>
+            <p className="product-editorial-hero__tagline">{release.description}</p>
           </div>
 
           <div className="product-editorial-hero__action authority-academy-detail__action">
@@ -223,8 +221,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         <div className="product-editorial-hero__facts" aria-label="Release status">
           <span><small>STATUS</small>{release.status}</span>
-          <span><small>ACCESS</small>{isTrainingDeck ? "Launch setup pending" : "Not open"}</span>
-          <span><small>PAYMENT</small>Not available</span>
+          <span><small>ACCESS</small>{isTrainingDeck ? "Join launch list" : "Coming soon"}</span>
+          <span><small>PAYMENT</small>Not live yet</span>
         </div>
       </section>
 
@@ -233,17 +231,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
         id="status"
       >
         <div className="product-editorial-purpose__lead">
-          <p className="cin-kicker">CURRENT STATUS / HONESTLY STATED</p>
+          <p className="cin-kicker">THE RESOURCE / WHAT TO EXPECT</p>
           <h2>
             {isTrainingDeck
-              ? "The training resource exists. The storefront does not."
+              ? "A practical foundation in the language of real estate."
               : isFieldGuide
-                ? "The first edition is taking shape."
-                : "The concept is still taking shape."}
+                ? "A field companion for the questions that matter."
+                : "A working system for property comparison."}
           </h2>
         </div>
         <div className="product-editorial-purpose__body">
-          <p>{release.description}</p>
           <p>{release.availability}</p>
           <p className="product-editorial-disclaimer">
             <ShieldCheck aria-hidden="true" size={18} />
@@ -258,29 +255,29 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <section className="product-editorial-fit authority-academy-detail__known">
         <header>
-          <p className="cin-kicker">WHAT IS CONFIRMED TODAY</p>
+          <p className="cin-kicker">INSIDE / AT A GLANCE</p>
           <h2>
-            A clear status.
+            Useful structure.
             <br />
-            <em>No invented offer.</em>
+            <em>Clear launch expectations.</em>
           </h2>
         </header>
         <div className="product-editorial-fit__grid">
           <article>
-            <span>01 / KNOWN TODAY</span>
+            <span>01 / WHAT YOU&apos;LL FIND</span>
             {release.knownToday.map((item) => (
               <p key={item}><Check aria-hidden="true" size={16} />{item}</p>
             ))}
           </article>
           <article>
-            <span>02 / NOT OPEN TODAY</span>
-            <p><i aria-hidden="true">×</i>No checkout or payment collection</p>
-            <p><i aria-hidden="true">×</i>No instant download or learner access</p>
+            <span>02 / LAUNCH NOTE</span>
+            <p><i aria-hidden="true">—</i>Checkout and payment are not live yet</p>
+            <p><i aria-hidden="true">—</i>No payment details are collected on this site</p>
             <p>
-              <i aria-hidden="true">×</i>
+              <i aria-hidden="true">—</i>
               {isTrainingDeck
-                ? "No published price, buyer licence, support, or refund terms"
-                : "No promised curriculum, result, or release date"}
+                ? "Price, licence, delivery, support, and refund terms will be shared before launch"
+                : "Final format, access, and release details will be announced when confirmed"}
             </p>
           </article>
         </div>
@@ -292,10 +289,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <h2>{product.title}</h2>
           <p>
             {isTrainingDeck
-              ? "Ask to hear when reviewed launch access is ready."
+              ? "Join the list for reviewed launch access and pricing."
               : isFieldGuide
-              ? "Ask to hear when the first verified edition is ready."
-              : "Ask the team about the Academy roadmap."}
+              ? "Join the list for the first reviewed edition."
+              : "Follow the Academy roadmap and future release plan."}
           </p>
         </div>
         <Link className="cin-button cin-button-dark" href={release.href}>
