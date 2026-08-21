@@ -44,3 +44,5 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+
+_claude_transfer/
