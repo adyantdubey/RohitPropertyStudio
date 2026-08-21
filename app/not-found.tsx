@@ -1,26 +1,3 @@
-import { TransitionLink as Link } from "./components/RouteCurtain";
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { ArrowUpRight } from "lucide-react";
-import { brand } from "./lib/brand";
-
-export default function NotFound() {
-  return (
-    <main id="main-content" className="not-found-page">
-      <div className="not-found-plan" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-        <strong>404</strong>
-      </div>
-      <p className="eyebrow">RKS / DATUM NOT FOUND / 404</p>
-      <h1>This address<br /><em>isn&apos;t on the plan.</em></h1>
-      <p>
-        The page may have moved. Return to {brand.name}&apos;s studio or continue
-        into the academy.
-      </p>
-      <div>
-        <Link className="button button-dark" href="/">Return home <ArrowUpRight aria-hidden="true" size={17} /></Link>
-        <Link className="text-link" href="/courses">Enter the academy <ArrowUpRight aria-hidden="true" size={15} /></Link>
-      </div>
-    </main>
-  );
-}
+export default function NotFound() { return <main id="main-content" className="not-found"><div className="shell"><p className="eyebrow">404</p><h1>This page is not part of the course.</h1><p>The website has been simplified around Rohit&apos;s foundational real-estate course. Start with the main course page.</p><a className="button button--gold" href="/">Explore the course <ArrowUpRight size={17} aria-hidden="true" /></a></div></main>; }
