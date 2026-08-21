@@ -1,4 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
+import { brand } from "../lib/brand";
+import { RksMark } from "./RksMark";
 import { TransitionLink } from "./RouteCurtain";
 
 export function SiteFooter() {
@@ -11,40 +13,44 @@ export function SiteFooter() {
       </div>
 
       <div className="footer-lead">
-        <p className="eyebrow eyebrow-light">ROHIT / PROPERTY DECISION STUDIO</p>
+        <p className="eyebrow eyebrow-light">
+          {brand.name.toUpperCase()} / {brand.educationLabel.toUpperCase()}
+        </p>
         <h2>
-          Learn the process.
-          <em>Keep the judgement.</em>
+          Read the market.
+          <em>Make the decision yours.</em>
         </h2>
         <div className="footer-actions">
           <TransitionLink className="button button-light" href="/courses">
-            Explore courses <ArrowUpRight aria-hidden="true" size={17} />
+            Enter the academy <ArrowUpRight aria-hidden="true" size={17} />
           </TransitionLink>
           <TransitionLink className="text-link text-link-light" href="/contact">
-            Ask a question <ArrowUpRight aria-hidden="true" size={15} />
+            Start a conversation <ArrowUpRight aria-hidden="true" size={15} />
           </TransitionLink>
         </div>
       </div>
 
       <div className="footer-grid">
         <div>
-          <TransitionLink className="footer-brand" href="/">
-            <span>R</span>
-            ROHIT
+          <TransitionLink className="footer-brand" href="/" aria-label={`${brand.name} — home`}>
+            <span aria-hidden="true">
+              <RksMark />
+            </span>
+            {brand.name}
           </TransitionLink>
           <p>
-            Rohit&apos;s clear frameworks, practical tools, and focused learning
-            for more considered property decisions.
+            Clear property education, advisory perspectives, and market
+            commentary from {brand.name}, {brand.credential}.
           </p>
         </div>
 
         <nav className="footer-links" aria-labelledby="footer-explore-title">
-          <strong id="footer-explore-title">Explore</strong>
-          <TransitionLink href="/about">About</TransitionLink>
-          <TransitionLink href="/courses">Courses</TransitionLink>
-          <TransitionLink href="/results">Results</TransitionLink>
-          <TransitionLink href="/insights">Insights</TransitionLink>
-          <TransitionLink href="/contact">Contact</TransitionLink>
+          <strong id="footer-explore-title">Navigate</strong>
+          {brand.navigation.map((link) => (
+            <TransitionLink key={link.href} href={link.href}>
+              {link.label}
+            </TransitionLink>
+          ))}
         </nav>
 
         <nav className="footer-links" aria-labelledby="footer-information-title">
@@ -56,14 +62,14 @@ export function SiteFooter() {
         </nav>
 
         <div className="footer-coordinate">
-          <span>THE ROHIT METHOD</span>
-          <span>FRAME / VERIFY / DECIDE</span>
-          <small>INDIA / DIGITAL LEARNING</small>
+          <span>{brand.name.toUpperCase()}</span>
+          <span>{brand.professionalTitle.toUpperCase()}</span>
+          <small>{brand.organizationName.toUpperCase()}</small>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} ROHIT</span>
+        <span>© {new Date().getFullYear()} {brand.name.toUpperCase()}</span>
         <p>
           Educational content only. Not financial, investment, legal, tax,
           valuation, or property-specific advice.

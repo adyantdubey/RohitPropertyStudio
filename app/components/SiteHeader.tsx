@@ -3,14 +3,11 @@
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { brand } from "../lib/brand";
+import { RksMark } from "./RksMark";
 import { TransitionLink } from "./RouteCurtain";
 
-const links = [
-  { href: "/about", label: "About" },
-  { href: "/courses", label: "Courses" },
-  { href: "/results", label: "Results" },
-  { href: "/insights", label: "Insights" },
-];
+const links = brand.navigation.filter(({ href }) => href !== "/contact");
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -27,7 +24,7 @@ export function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    const desktopQuery = window.matchMedia("(min-width: 861px)");
+    const desktopQuery = window.matchMedia("(min-width: 1181px)");
     const closeAtDesktop = (event: MediaQueryListEvent) => {
       if (event.matches) setOpen(false);
     };
@@ -122,11 +119,13 @@ export function SiteHeader() {
         Skip to content
       </a>
       <header className={`site-header${compact ? " is-compact" : ""}`}>
-        <TransitionLink className="brand" href="/" aria-label="Rohit — home">
-          <span className="brand-mark">R</span>
+        <TransitionLink className="brand" href="/" aria-label={`${brand.name} — home`}>
+          <span className="brand-mark" aria-hidden="true">
+            <RksMark />
+          </span>
           <span className="brand-copy">
-            <strong>ROHIT</strong>
-            <small>PROPERTY DECISION STUDIO</small>
+            <strong>{brand.name}</strong>
+            <small>{brand.educationLabel}</small>
           </span>
         </TransitionLink>
 
@@ -138,14 +137,18 @@ export function SiteHeader() {
               href={link.href}
               aria-current={isActive(link.href) ? "page" : undefined}
             >
-              <span>0{index + 1}</span>
+              <span>{String(index + 1).padStart(2, "0")}</span>
               {link.label}
             </TransitionLink>
           ))}
         </nav>
 
-        <TransitionLink className="header-cta" href="/contact">
-          Start here <ArrowUpRight aria-hidden="true" size={16} />
+        <TransitionLink
+          className="header-cta"
+          href="/contact"
+          aria-current={isActive("/contact") ? "page" : undefined}
+        >
+          Contact <ArrowUpRight aria-hidden="true" size={16} />
         </TransitionLink>
 
         <button
@@ -169,7 +172,9 @@ export function SiteHeader() {
         aria-label="Site navigation"
         role="region"
       >
-        <div className="mobile-menu-meta">ROHIT / PROPERTY DECISION STUDIO</div>
+        <div className="mobile-menu-meta">
+          {brand.name.toUpperCase()} / {brand.educationLabel.toUpperCase()}
+        </div>
         <nav aria-label="Mobile navigation">
           {links.map((link, index) => (
             <TransitionLink
@@ -179,7 +184,7 @@ export function SiteHeader() {
               tabIndex={open ? 0 : -1}
               onClick={() => setOpen(false)}
             >
-              <span>0{index + 1}</span>
+              <span>{String(index + 1).padStart(2, "0")}</span>
               <strong>{link.label}</strong>
               <ArrowUpRight aria-hidden="true" />
             </TransitionLink>
@@ -190,12 +195,12 @@ export function SiteHeader() {
             tabIndex={open ? 0 : -1}
             onClick={() => setOpen(false)}
           >
-            <span>05</span>
-            <strong>Contact</strong>
+            <span>{String(links.length + 1).padStart(2, "0")}</span>
+            <strong>{brand.navigation.at(-1)?.label ?? "Contact"}</strong>
             <ArrowUpRight aria-hidden="true" />
           </TransitionLink>
         </nav>
-        <p>Property, read clearly.</p>
+        <p>{brand.line}</p>
       </div>
     </>
   );

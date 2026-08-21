@@ -1,11 +1,11 @@
-import { products } from "../../lib/content";
-
-const catalogContext = products
-  .map(
-    (product) =>
-      `${product.title} (${product.kind}, ${product.price.formatted} placeholder price): ${product.description} Includes: ${product.includes.join(", ")}.`,
-  )
-  .join("\n");
+const brandContext = `
+Rohitt Kumar Singh is presented on this site as Managing Director of Hundred Yards Realtor Pvt Ltd and a Bengaluru-based real-estate educator.
+The public property-advisory path introduces Hundred Yards and directs people to a human enquiry; it does not provide an automated recommendation.
+“Basics of Real Estate” is a prepared 49-slide PowerPoint training deck carrying 100 Yards branding. Its review, price, buyer licence, payment, protected delivery, support, and refund terms are still being prepared, so purchase is not open.
+The planned “Before You Buy — Property Due Diligence Field Guide” is coming soon. No PDF is currently delivered, no price is published, and no payment is collected.
+The review toolkit is in development. Its final scope, access terms, pricing, and release date are not announced.
+The Insights section contains general educational reading about property decision-making and due diligence.
+`.trim();
 
 export async function POST(request: Request) {
   let question = "";
@@ -48,11 +48,11 @@ export async function POST(request: Request) {
         {
           role: "system",
           content:
-            "You are Rohit Desk, a concise course concierge. Answer only from the supplied catalogue. Never assess a property, promise returns, or give financial, legal, tax, investment, valuation, engineering, or property-specific advice. If the catalogue cannot answer, say that the question needs Rohit's human context and recommend the contact form. Clearly call all prices placeholder prices.",
+            "You are the RKS site guide, a concise navigation assistant for Rohitt Kumar Singh's website. Answer only from the supplied site context. Never assess a property, recommend an investment, promise returns, invent an availability date or price, or give financial, legal, tax, valuation, engineering, brokerage, or property-specific advice. If the context cannot answer, say so plainly and recommend the human enquiry route.",
         },
         {
           role: "user",
-          content: `CATALOGUE:\n${catalogContext}\n\nQUESTION:\n${question}`,
+          content: `SITE CONTEXT:\n${brandContext}\n\nQUESTION:\n${question}`,
         },
       ],
     }),

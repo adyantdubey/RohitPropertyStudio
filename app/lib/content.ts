@@ -1,12 +1,12 @@
 /**
- * Shared editorial content for the Rohit website.
+ * Shared editorial content for the Rohitt Kumar Singh website.
  *
- * PLACEHOLDER DATA: prices, access terms, formats, and product details must be
- * reviewed and replaced with Rohit's approved commercial copy before launch.
+ * Editorial content source. The uploaded training deck is a real prepared
+ * resource; prices, access, licence, support, and delivery terms remain pending.
  */
 
 export type ContentStatus = "placeholder";
-export type ProductKind = "course" | "pdf" | "toolkit";
+export type ProductKind = "deck" | "pdf" | "toolkit";
 
 export interface ContentMeta {
   status: ContentStatus;
@@ -122,71 +122,72 @@ export const contentMeta = {
   status: "placeholder",
   isPlaceholder: true,
   notice:
-    "Editorial and commercial placeholder data. Review prices, access terms, formats, and policies before launch.",
+    "The training deck is a prepared resource. No digital product, price, checkout, or delivery promise is live until its review and commercial terms are approved.",
 } as const satisfies ContentMeta;
 
 export const navigation = [
   { label: "About", href: "/about" },
-  { label: "Courses", href: "/courses" },
-  { label: "Results", href: "/results" },
+  { label: "Advisory", href: "/advisory" },
+  { label: "Academy", href: "/courses" },
   { label: "Insights", href: "/insights" },
+  { label: "Reel Se Real Estate", href: "/media" },
   { label: "Contact", href: "/contact" },
 ] as const satisfies readonly NavigationItem[];
 
 export const rohitEditorialProfile = {
   status: "placeholder",
-  name: "Rohit",
-  role: "Real estate educator",
+  name: "Rohitt Kumar Singh",
+  role: "Managing Director · Hundred Yards Realtor Pvt Ltd",
   positioning:
-    "A calmer way to frame, review, and document property decisions—without pretending uncertainty has disappeared.",
+    "A Bengaluru-based real-estate leader and educator focused on making consequential property decisions easier to understand.",
   portrait: {
-    src: "/media/rohit-standin.jpg",
-    alt: "A stock stand-in photographed from behind between two modern buildings",
-    width: 1400,
-    height: 2100,
+    src: "/media/facade-detail.jpg",
+    alt: "A close architectural study of a contemporary facade",
+    width: 1800,
+    height: 1170,
     caption:
-      "Editorial stock stand-in. This photograph does not depict Rohit and must be replaced with his approved portrait before launch.",
+      "Temporary editorial architecture. No stock person is presented as Rohitt; an approved portrait will replace this panel when supplied.",
   },
   launchNeeds: [
-    "Rohit's approved portrait and image-use confirmation",
-    "A verified short and long biography",
-    "Verified career milestones, dates, markets, and roles",
-    "Approved first-person wording or quotations",
-    "Confirmed public role, service scope, and location",
+    "Rohitt's approved portrait and image-use confirmation",
+    "Approved first-person biography and quotation",
+    "Confirmed career milestones and credential documents",
+    "Approved Hundred Yards logo kit and usage permission",
+    "Final Academy files, prices, delivery, support, and commercial terms",
   ],
 } as const;
 
 export const aboutStoryChapters = [
   {
     number: "01",
-    title: "The beginning",
-    marker: "ORIGIN / AWAITING ROHIT",
+    title: "A market-facing career",
+    marker: "PRACTICE / BENGALURU",
     prompt:
-      "Insert the verified moment, place, or experience that first made property decisions feel consequential to Rohit.",
+      "Rohitt's public professional profile places him in Greater Bengaluru, working across sales, leadership, and real-estate decision-making.",
     status: "placeholder",
   },
   {
     number: "02",
-    title: "The work",
-    marker: "PRACTICE / AWAITING ROHIT",
+    title: "Hundred Yards",
+    marker: "LEADERSHIP / MANAGING DIRECTOR",
     prompt:
-      "Document only verified roles, responsibilities, markets, and projects—and explain what the work taught rather than inflating its scale.",
+      "As Managing Director of Hundred Yards Realtor Pvt Ltd, Rohitt's published focus is transparent guidance, market understanding, and end-to-end support for serious property decisions.",
     status: "placeholder",
   },
   {
     number: "03",
-    title: "The teaching turn",
-    marker: "METHOD / AWAITING ROHIT",
+    title: "Education in public",
+    marker: "MEDIA / REEL SE REAL ESTATE",
     prompt:
-      "Add Rohit's verified reason for translating experience into courses, field guides, or practical tools.",
+      "His public content turns project walkthroughs, location context, diligence questions, and comparison logic into useful starting points for buyers and learners.",
     status: "placeholder",
   },
   {
     number: "04",
     title: "The work now",
-    marker: "NOW / AWAITING ROHIT",
+    marker: "ADVISORY + ACADEMY",
     prompt:
-      "State Rohit's current educational focus, audience, and service boundaries in his approved words.",
+      "The personal brand now gives two clear routes: a human Hundred Yards advisory conversation, or independent educational material from RKS Property Studio.",
     status: "placeholder",
   },
 ] as const satisfies readonly AboutStoryChapter[];
@@ -267,34 +268,34 @@ export const homeJourneyStages = [
 
 export const faqs = [
   {
-    question: "Which resource should I begin with?",
+    question: "What can I access today?",
     answer:
-      "Choose The Property Decision System for guided, end-to-end learning; Before You Buy for a focused diligence reference; or The Deal Room when you understand the fundamentals and need an organised review toolkit.",
+      "The Advisory, Insights, and contact routes are available now. The 49-slide Basics of Real Estate training deck is prepared, but payment and protected delivery are not open. Before You Buy and the toolkit remain in development.",
   },
   {
-    question: "Are these resources financial or investment advice?",
+    question: "Can I register interest in the field guide?",
     answer:
-      "No. Every resource is educational and general in nature. Property decisions require independent verification and, where appropriate, qualified legal, tax, financial, valuation, and technical advice.",
+      "Yes. Use the first-access enquiry on the Academy or Contact page. It records the subject for your email to the Hundred Yards team; it does not take payment or promise a release date.",
   },
   {
-    question: "How will I receive a digital product?",
+    question: "Are the learning materials financial or investment advice?",
     answer:
-      "After confirmed payment, access instructions will appear on screen and be sent to the email address used at checkout.",
+      "No. The learning material is general and educational. Property decisions require independent verification and, where appropriate, qualified legal, tax, financial, valuation, and technical advice.",
   },
   {
-    question: "Can Rohit review a specific property for me?",
+    question: "Can Rohitt review a specific property for me?",
     answer:
-      "Use the contact form to describe what you need. Availability, scope, and any applicable professional boundaries will be confirmed before an engagement is discussed.",
+      "Use the Advisory or Contact route to describe the need. A human team member can confirm availability, scope, the responsible entity, and any professional boundaries before an engagement is discussed.",
   },
   {
-    question: "How long does course access last?",
+    question: "Is there a payment gateway on this site?",
     answer:
-      "Course-access terms shown on this preview are placeholders. The confirmed access period will be displayed clearly on the product and checkout pages before purchase.",
+      "No. Prices, payment collection, digital delivery, access recovery, tax treatment, and receipts will only appear after the products and merchant setup are ready.",
   },
   {
-    question: "What is the refund policy?",
+    question: "Who receives a property enquiry?",
     answer:
-      "Refund eligibility depends on the product and whether digital access has begun. The approved policy will be shown on each product page and again before payment.",
+      "The current contact path is labelled for the Hundred Yards team. The site does not imply that every message reaches Rohitt personally or that submitting an enquiry creates an advisory or brokerage engagement.",
   },
 ] as const satisfies readonly FaqItem[];
 
@@ -310,14 +311,14 @@ export const insights = [
       "A viewing is a source of observations, claims, and new questions. Treating it as a verdict gives atmosphere more authority than evidence.",
     readTime: "5 min read",
     status: "placeholder",
-    reviewLabel: "Editorial draft — Rohit review required",
+    reviewLabel: "RKS Property Note · Educational reading",
     hero: {
       src: "/media/interior-daylight.jpg",
       alt: "A sunlit residential interior with a dining counter, plants, and contrasting materials",
       width: 1800,
       height: 2700,
       caption:
-        "Editorial stock image for this draft. It is not a Rohit project, listing, or learner property.",
+        "Temporary editorial stock image. It is not a Rohitt or Hundred Yards project, listing, or learner property.",
     },
     thesis:
       "Leave with a record you can inspect later: what you observed, what somebody told you, what you inferred, and what still needs verification.",
@@ -364,14 +365,14 @@ export const insights = [
       "A compact score feels objective. It can also hide the reasons two properties are difficult to compare in the first place.",
     readTime: "7 min read",
     status: "placeholder",
-    reviewLabel: "Editorial draft — Rohit review required",
+    reviewLabel: "RKS Property Note · Educational reading",
     hero: {
       src: "/media/blueprint-hands.jpg",
       alt: "Hands reviewing several architectural drawings on a working desk",
       width: 2048,
       height: 3072,
       caption:
-        "Editorial stock image for this draft. The plans are illustrative and are not linked to Rohit or a learner case.",
+        "Temporary editorial stock image. The plans are illustrative and are not linked to Rohitt, Hundred Yards, or a learner case.",
     },
     thesis:
       "Compare from the decision outward: establish what matters, preserve the evidence behind each judgement, and keep trade-offs visible instead of burying them in a total.",
@@ -418,14 +419,14 @@ export const insights = [
       "A concern becomes more useful when it is named precisely, tied to a source, and given a responsible verification path.",
     readTime: "6 min read",
     status: "placeholder",
-    reviewLabel: "Editorial draft — Rohit review required",
+    reviewLabel: "RKS Property Note · Educational reading",
     hero: {
       src: "/media/facade-detail.jpg",
       alt: "Close view of a geometric building facade in warm daylight",
       width: 1800,
       height: 1170,
       caption:
-        "Editorial stock image for this draft. It does not identify a defect, Rohit project, or learner property.",
+        "Temporary editorial stock image. It does not identify a defect, Rohitt or Hundred Yards project, or learner property.",
     },
     thesis:
       "A red-flag register should slow interpretation down: state the concern, preserve the evidence, identify who can assess it, and record what happens next.",
@@ -472,14 +473,14 @@ export const insights = [
       "A price is easy to repeat and difficult to interpret well. Context determines what can responsibly be compared and what still needs verification.",
     readTime: "4 min read",
     status: "placeholder",
-    reviewLabel: "Editorial draft — Rohit review required",
+    reviewLabel: "RKS Property Note · Educational reading",
     hero: {
       src: "/media/hero-poster.jpg",
       alt: "Aerial editorial view of a modern residence within a neighbourhood",
       width: 1800,
       height: 1013,
       caption:
-        "Editorial stock image for this draft. The property is not presented as a Rohit listing, project, recommendation, or transaction.",
+        "Temporary editorial stock image. The property is not presented as a Rohitt or Hundred Yards listing, project, recommendation, or transaction.",
     },
     thesis:
       "Before comparing a price, define the object, source, date, terms, and assumptions attached to it. Similar-looking numbers may describe materially different things.",
@@ -513,7 +514,7 @@ export const insights = [
       "Make material differences visible before comparing figures.",
       "Keep price analysis separate from personal suitability and specialist advice.",
     ],
-    relatedProductSlug: "property-decision-system",
+    relatedProductSlug: "basics-of-real-estate-training-deck",
   },
   {
     slug: "your-shortlist-is-a-hypothesis",
@@ -526,14 +527,14 @@ export const insights = [
       "A shortlist is most useful when it explains why each option remains under consideration—and what evidence could remove it.",
     readTime: "5 min read",
     status: "placeholder",
-    reviewLabel: "Editorial draft — Rohit review required",
+    reviewLabel: "RKS Property Note · Educational reading",
     hero: {
       src: "/media/interior-soft.jpg",
       alt: "A bright residential hallway leading toward a small dining area",
       width: 1800,
       height: 1170,
       caption:
-        "Editorial stock image for this draft. It is not a Rohit project, listing, recommendation, or learner property.",
+        "Temporary editorial stock image. It is not a Rohitt or Hundred Yards project, listing, recommendation, or learner property.",
     },
     thesis:
       "Write down why an option entered the shortlist, which assumptions support it, and what evidence would change your mind. Then test every option consistently.",
@@ -573,100 +574,99 @@ export const insights = [
 
 export const products = [
   {
-    slug: "property-decision-system",
-    kind: "course",
+    slug: "basics-of-real-estate-training-deck",
+    kind: "deck",
     featured: true,
     status: "placeholder",
     isPlaceholder: true,
-    eyebrow: "THE FLAGSHIP COURSE",
-    title: "The Property Decision System",
-    shortTitle: "Decision System",
-    tagline: "A structured way to move from first interest to an informed next step.",
-    collectionRole: "Learn the system",
+    eyebrow: "THE 100 YARDS TRAINING DECK",
+    title: "Basics of Real Estate",
+    subtitle: "A 49-Slide Foundation Training Deck",
+    shortTitle: "Real Estate Basics",
+    tagline:
+      "A visual foundation in the property types, construction process, approvals, areas, charges, and transaction language used in Indian real estate.",
+    collectionRole: "Build the foundation",
     bestWhen:
-      "You want an end-to-end learning path before or alongside active property research.",
+      "You are entering real estate or need a structured refresher on the industry's essential language and development process.",
     tangibleOutcome:
-      "A documented criteria set, review workflow, risk register, and decision memo practice.",
+      "A reusable PowerPoint reference spanning industry fundamentals, construction, approvals, area definitions, charges, and payment-plan concepts.",
     description:
-      "A guided learning experience for people who want to understand how a property decision is framed, researched, compared, documented, and escalated to the right professionals.",
+      "A prepared 49-slide PowerPoint training resource carrying 100 Yards branding. Part one introduces the industry, property categories, home formats, Vaastu basics, and amenities. Part two moves through development, construction, approvals, area terminology, charges, guidance value, UDS, and payment-plan examples.",
     price: {
-      amount: 4900,
+      amount: 0,
       currency: "INR",
-      formatted: "₹4,900",
+      formatted: "Launch setup pending",
       isPlaceholder: true,
     },
-    level: "Foundation to intermediate",
-    format: "Self-paced video course + workbook",
-    access: "Placeholder: 12 months of course access",
-    delivery: "Online access after confirmed payment",
-    primaryCta: "Enter the Course",
-    secondaryCta: "View the Curriculum",
+    level: "Foundation",
+    format: "49-slide PowerPoint presentation (.pptx)",
+    access: "Prepared asset — purchase access is not open",
+    delivery: "Protected delivery will be configured before sales open",
+    primaryCta: "Ask about launch access",
+    secondaryCta: "View the training-deck scope",
     idealFor: [
-      "First-time learners who need an end-to-end mental model",
-      "Buyers or investors who want a more organised evaluation process",
-      "Professionals who want a consistent way to document questions and trade-offs",
+      "New real-estate team members who need a visual foundation",
+      "Property learners who want key terminology in one structured resource",
+      "Sales and training teams preparing an introductory learning session",
     ],
     notFor: [
-      "Anyone seeking guaranteed returns or property recommendations",
-      "Anyone looking for a substitute for qualified professional advice",
-      "Anyone expecting the course to approve or reject a specific transaction",
+      "Anyone seeking a property recommendation or guaranteed return",
+      "Anyone using training material as a substitute for current legal, tax, financial, or technical advice",
+      "Anyone expecting every regulatory example to apply unchanged across locations and dates",
     ],
     outcomes: [
-      "Define an objective and explicit decision criteria",
-      "Read market information with attention to source and context",
-      "Build a structured first-pass property review",
-      "Recognise when specialist verification is required",
-      "Compare options and document unresolved risks",
-      "Create a concise decision memo for the next step",
+      "Recognise major real-estate and property categories",
+      "Understand common residential formats and amenity language",
+      "Follow the broad property-development and construction sequence",
+      "Distinguish carpet, built-up, and super built-up area concepts",
+      "Read common approval, charge, UDS, and payment-plan terminology",
     ],
     includes: [
-      "Six structured learning modules",
-      "Course workbook",
-      "Decision criteria canvas",
-      "Property review worksheet",
-      "Risk and questions register",
-      "Decision memo template",
+      "One PowerPoint-format presentation file",
+      "49 visual training slides",
+      "Two-part foundation-to-transaction learning sequence",
+      "Property, construction, approval, area, and charge examples",
     ],
     sections: [
       {
         number: "01",
-        title: "Frame the Decision",
+        title: "Industry and Real-Estate Overview",
         description:
-          "Objectives, constraints, criteria, and the questions that belong at the beginning.",
+          "A starting view of the industry, its development in India, and the major property categories.",
       },
       {
         number: "02",
-        title: "Read the Context",
+        title: "Property and Home Formats",
         description:
-          "Market signals, sources, local context, and the difference between information and interpretation.",
+          "Residential, commercial, and industrial real estate alongside common home configurations.",
       },
       {
         number: "03",
-        title: "Screen the Property",
+        title: "Vaastu and Amenities",
         description:
-          "A consistent first review of fit, condition, documentation, numbers, and open questions.",
+          "Introductory visual material on Vaastu directions and the amenity language used in projects.",
       },
       {
         number: "04",
-        title: "Build the Diligence Map",
+        title: "Development and Construction",
         description:
-          "What to collect, what to observe, what to verify, and which professional may need to verify it.",
+          "The broad development sequence, construction stages, cement grades, and common formwork systems.",
       },
       {
         number: "05",
-        title: "Compare the Trade-offs",
+        title: "Approvals and Area Language",
         description:
-          "A disciplined comparison of options, assumptions, risks, and opportunity costs.",
+          "Commencement, occupancy, and completion certificates plus carpet, built-up, super built-up, FAR, and FSI concepts.",
       },
       {
         number: "06",
-        title: "Prepare the Next Step",
+        title: "Charges, UDS, and Payment Plans",
         description:
-          "Decision records, escalation questions, and a responsible path forward.",
+          "Guidance value, UDS, common project charges, and worked payment-plan examples.",
       },
     ],
     disclaimer:
-      "Educational content only. This course does not provide property-specific financial, investment, legal, tax, technical, or valuation advice.",
+      "General educational material only. Regulatory references, charges, terminology, and examples should receive a current editorial review before launch and must not replace qualified location-specific professional advice.",
   },
   {
     slug: "before-you-buy-field-guide",
@@ -685,19 +685,19 @@ export const products = [
     tangibleOutcome:
       "A repeatable field record for observations, open questions, requested documents, and next checks.",
     description:
-      "A concise, portable reference for organising the questions, records, observations, and professional checks that may matter during a property review.",
+      "A concise, portable reference in development for organising the questions, records, observations, and professional checks that may matter during a property review.",
     price: {
-      amount: 799,
+      amount: 0,
       currency: "INR",
-      formatted: "₹799",
+      formatted: "Coming soon",
       isPlaceholder: true,
     },
     level: "All levels",
-    format: "Digital PDF field guide",
-    access: "Placeholder: personal-use digital licence",
-    delivery: "Instant download after confirmed payment",
-    primaryCta: "Get the Field Guide",
-    secondaryCta: "Preview Sample Pages",
+    format: "Planned digital PDF field guide",
+    access: "Coming soon — licence terms not announced",
+    delivery: "No file or payment flow is live",
+    primaryCta: "Join the first-access list",
+    secondaryCta: "See the planned purpose",
     idealFor: [
       "Learners preparing for a property visit or document review",
       "People who want a concise companion rather than a full course",
@@ -774,19 +774,19 @@ export const products = [
     tangibleOutcome:
       "A working comparison, assumptions register, document tracker, risk log, and decision memo.",
     description:
-      "A practical set of templates for people who understand the fundamentals and want a repeatable workspace for comparing properties and documenting open questions.",
+      "A planned set of templates for people who understand the fundamentals and want a repeatable workspace for comparing properties and documenting open questions.",
     price: {
-      amount: 1499,
+      amount: 0,
       currency: "INR",
-      formatted: "₹1,499",
+      formatted: "In development",
       isPlaceholder: true,
     },
     level: "Intermediate",
-    format: "Downloadable workbook + PDF templates",
-    access: "Placeholder: personal-use digital licence",
-    delivery: "Instant download after confirmed payment",
-    primaryCta: "Open the Deal Room",
-    secondaryCta: "See What Is Included",
+    format: "Planned workbook + PDF templates",
+    access: "In development — licence terms not announced",
+    delivery: "Not available for purchase or delivery",
+    primaryCta: "Join the interest list",
+    secondaryCta: "See the planned direction",
     idealFor: [
       "Learners actively comparing more than one option",
       "People who want a reusable property-review workspace",

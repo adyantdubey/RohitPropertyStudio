@@ -1,19 +1,60 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LegalDocument } from "../components/LegalDocument";
 
-export const metadata: Metadata = { title: "Refund Policy" };
+export const metadata: Metadata = {
+  title: "Sales & Refund Status",
+  description:
+    "Current pre-launch sales and refund status for Rohitt Kumar Singh's Property Academy.",
+};
 
 export default function RefundPage() {
   return (
-    <LegalDocument code="LGL / 03" title="Refund Policy" intro="Product-specific terms will be stated plainly before payment.">
-      <h2>Digital products</h2>
-      <p>The approved policy must explain eligibility once a PDF, template, toolkit, or other digital file has been delivered or accessed, together with any rights required by applicable law.</p>
-      <h2>Course access</h2>
-      <p>The final policy will specify any request window, access or consumption limits, exclusions, and the evidence needed to investigate technical access problems.</p>
-      <h2>Duplicate or incorrect charges</h2>
-      <p>Verified duplicate charges and billing errors will be investigated promptly. Customers should include the purchase email and order reference when contacting support.</p>
-      <h2>How to request help</h2>
-      <p>The verified support email, response window, payment processor, and refund timing will be inserted before checkout is enabled.</p>
+    <LegalDocument
+      code="LGL / 03"
+      title="Sales & Refund Status"
+      intro="The Academy is pre-launch, so no sale, charge, order, delivery, or refund can currently occur on this website."
+    >
+      <p><strong>Last updated:</strong> 21 August 2026</p>
+
+      <h2>No sales are open</h2>
+      <p>
+        Before You Buy is coming soon, while the course and toolkit concepts are
+        in development. This website has no live product, price, checkout,
+        payment processor, order confirmation, download, or learner account.
+      </p>
+
+      <h2>No charge means no website refund</h2>
+      <p>
+        Because this website cannot collect a payment, it cannot create a charge
+        or process a refund. A page, message, or screen on this site is not proof
+        of purchase.
+      </p>
+
+      <h2>Before any future sale</h2>
+      <p>
+        If paid Academy products are introduced, the applicable seller, price,
+        taxes, format, licence, delivery method, access terms, support path, and
+        refund or cancellation rules will be presented before payment. Those
+        terms must reflect the actual product and applicable law.
+      </p>
+
+      <h2>Unexpected payment request</h2>
+      <p>
+        Do not enter card, bank, UPI, or identity information on any page that
+        claims to be this website&apos;s Academy checkout today. If someone claims
+        to have charged you through this site, contact your payment provider and
+        notify the Hundred Yards team at
+        {" "}<a href="mailto:sales@100yards.in">sales@100yards.in</a>.
+      </p>
+
+      <h2>Field-guide updates</h2>
+      <p>
+        To ask about the unfinished field guide, use the
+        {" "}<Link href="/contact?interest=field-guide#contact-form">
+          first-access contact route
+        </Link>. It prepares an email and does not take payment.
+      </p>
     </LegalDocument>
   );
 }

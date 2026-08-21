@@ -1,11 +1,13 @@
-# Rohit Property Studio
+# Rohitt Kumar Singh — Modern Property Authority
 
-A cinematic real-estate education and digital-resource website built with React,
-Vinext, GSAP, and Cloudflare Workers.
+A cinematic personal-brand website for Rohitt Kumar Singh, Managing Director of
+Hundred Yards Realtor Pvt Ltd. It is built with React, Vinext, GSAP, and
+Cloudflare Workers.
 
-The public app is ready for Cloudflare hosting. Checkout and contact submission
-are intentionally preview-only until payment, email, and persistence services are
-connected.
+The public app is ready for Cloudflare hosting. The Property Academy is visibly
+pre-launch: there is no PDF, price, payment gateway, order, or digital delivery
+today. Contact prepares a message in the visitor's own email app and sends
+nothing from the website itself.
 
 ## Requirements
 
@@ -21,7 +23,7 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-For Rohit Desk, copy `.env.example` to `.env.local` and add a Mistral API key.
+For the optional RKS site guide endpoint, copy `.env.example` to `.env.local` and add a Mistral API key.
 Without a key, the interface remains usable and returns its honest local fallback.
 
 ## Validate
@@ -56,7 +58,7 @@ Cloudflare prints the public
 `https://rohit-property-studio.<account>.workers.dev` address after deployment.
 No purchased domain is required.
 
-To enable Rohit Desk in production, add the key as a Cloudflare runtime secret:
+To enable the optional site guide in production, add the key as a Cloudflare runtime secret:
 
 ```bash
 npx wrangler secret put MISTRAL_API_KEY
@@ -67,11 +69,17 @@ Worker variable in `wrangler.jsonc`.
 
 ## Automatic deploys from GitHub
 
-In Cloudflare, open **Workers & Pages → Create application → Import a
-repository**, select this repository and `main`, then use:
+Automatic deployment is not enabled merely by pushing this repository. Connect
+the existing Worker to GitHub first: open **Workers & Pages →
+rohit-property-studio → Settings → Builds → Connect**, select this repository,
+choose `main` as the production branch, then use:
 
 - Build command: `npm run build`
 - Deploy command: `npm run deploy:built`
+
+Optionally enable non-production branch builds to receive a preview Worker URL
+for pull requests. Once the Git connection exists, pushes to `main` trigger the
+production build and deploy automatically.
 
 Keep `MISTRAL_API_KEY` in the Worker's **Variables and Secrets**, not in GitHub
 or the build environment.
@@ -81,9 +89,9 @@ or the build environment.
 - App Router pages and route handlers under `app/`
 - static editorial media under `public/media/`
 - Cloudflare Images-backed `next/image` optimization
-- `/api/ask` as the current server-side Mistral endpoint
+- `/api/ask` as an optional, bounded server-side Mistral site-guide endpoint
 - no database or payment processor connected yet
 
-Payments can be added later through a server-side provider such as Stripe. That
-integration should verify webhooks on the Worker and persist orders before the
+Payments can be added later through a server-side provider. That integration
+must verify successful payment server-side and persist the order before any
 download route is unlocked.

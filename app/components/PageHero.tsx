@@ -32,11 +32,21 @@ export function PageHero({
 
   if (pageKey.includes("about")) {
     fallbackMedia = {
-      poster: "/media/rohit-standin.jpg",
-      alt: "Temporary stock portrait stand-in beside modern architecture; not Rohit",
-      width: 1400,
-      height: 1867,
-      objectPosition: "50% 42%",
+      poster: "/media/facade-detail.jpg",
+      alt: "Geometric contemporary facade used as editorial architecture",
+      width: 1800,
+      height: 1170,
+      objectPosition: "50% 50%",
+      parallax: 6,
+      showPauseControl: false,
+    };
+  } else if (pageKey.includes("academy")) {
+    fallbackMedia = {
+      poster: "/media/blueprint-process-poster.jpg",
+      mobilePoster: "/media/blueprint-process-poster-mobile.jpg",
+      alt: "Hands reviewing architectural drawings on a work table",
+      width: 1920,
+      height: 1080,
       parallax: 6,
       showPauseControl: false,
     };

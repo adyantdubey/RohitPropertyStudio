@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { HomeExperience } from "./HomeExperience";
+import { brand } from "./lib/brand";
 
 export const metadata: Metadata = {
-  title: { absolute: "Rohit — Real Estate Education for Clearer Decisions" },
+  title: {
+    absolute: `${brand.name} — Real Estate Leadership, Advisory & Education`,
+  },
   description:
-    "Explore Rohit's real-estate courses, field guides, and practical decision tools.",
+    `${brand.name} is ${brand.professionalTitle} at ${brand.organizationName}. Explore Hundred Yards-backed property advisory, practical real-estate learning, and ${brand.mediaLabel}.`,
 };
 
 export default function Home() {
