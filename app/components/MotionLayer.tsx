@@ -114,10 +114,25 @@ export function MotionLayer() {
               value: target,
               duration: 1.05,
               ease: "power2.out",
-              onUpdate: () => { element.textContent = `${Math.round(counter.value)}${suffix}`; },
+              onUpdate: () => { element.textContent = `${Math.round(counter.value).toLocaleString("en-IN")}${suffix}`; },
             });
           },
         });
+      });
+
+      /* --- self-drawing lines (charts) --- */
+      document.querySelectorAll<SVGPathElement>("path[data-draw]").forEach((element) => {
+        const length = element.getTotalLength();
+        gsap.fromTo(
+          element,
+          { strokeDasharray: length, strokeDashoffset: length },
+          {
+            strokeDashoffset: 0,
+            duration: 1.6,
+            ease: "power2.inOut",
+            scrollTrigger: { trigger: element, start: "top 82%", once: true },
+          },
+        );
       });
 
       /* --- media wipes --- */

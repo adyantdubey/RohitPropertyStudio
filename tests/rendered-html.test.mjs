@@ -27,11 +27,20 @@ test("server-renders the home page without depending on JavaScript", async () =>
   assert.match(html, /not a course learner/i);
 });
 
-test("makes no price, payment or guarantee claim before launch", async () => {
+test("makes no course price, payment or guarantee claim before launch", async () => {
   const html = await (await render()).text();
-  assert.doesNotMatch(html, /₹|Buy now|Proceed to payment|guaranteed outcome/i);
+  assert.doesNotMatch(html, /Buy now|Proceed to payment|guaranteed outcome/i);
   assert.match(html, /No payment collected/i);
   assert.match(html, /To be announced/i);
+});
+
+test("market figures always name their source", async () => {
+  const html = await (await render()).text();
+  // A rupee figure is allowed only as sourced market context, never as a course price.
+  if (/₹\s?[\d,]+/.test(html)) {
+    assert.match(html, /Knight Frank|Reserve Bank of India/);
+    assert.match(html, /not a recommendation/i);
+  }
 });
 
 test("keeps the cinematic hero working with no video file present", async () => {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { ArrowDown, ArrowUpRight, Check, ChevronRight } from "lucide-react";
 import { AmbientBackdrop } from "./components/AmbientBackdrop";
+import { MarketContext } from "./components/MarketContext";
 import { ClosingCta } from "./components/ClosingCta";
 import { CurriculumRail } from "./components/CurriculumRail";
 import { AreaVisualizer } from "./components/LearningTools";
@@ -43,6 +44,9 @@ export default function HomePage() {
       {/* ---------- act 1 · the hero ---------- */}
       <section className="hero" id="top">
         <AmbientBackdrop video={media.heroVideo} poster={media.heroPoster} />
+        <div className="hero__portrait" aria-hidden="true">
+          <Image src="/media/rohit-kumar-singh.jpg" alt="" width={1764} height={2352} priority sizes="42vw" />
+        </div>
 
         <div className="shell hero__inner">
           <div className="hero__grid">
@@ -208,6 +212,9 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ---------- act 8b · market context ---------- */}
+      <MarketContext />
+
       {/* ---------- act 9a · proof ---------- */}
       <section className="section surface-deep" id="reviews">
         <div className="shell">
@@ -259,8 +266,14 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid grid--3">
-            {academyResources.slice(0, 3).map((resource, index) => (
-              <a className="card card--link" href={resource.href} key={resource.number} data-reveal data-reveal-delay={String(index)}>
+            <a className="card card--link" href="/resources#ask" data-reveal>
+              <span className="card__index">New · AI guide</span>
+              <h3>Ask the Academy</h3>
+              <p className="card__body">Put any property term to an AI guide trained on the course vocabulary. It explains; it never advises on a project or price.</p>
+              <span className="card__cta">Ask a question <ArrowUpRight size={14} aria-hidden="true" /></span>
+            </a>
+            {academyResources.slice(0, 2).map((resource, index) => (
+              <a className="card card--link" href={resource.href} key={resource.number} data-reveal data-reveal-delay={String(index + 1)}>
                 <span className="card__index">{resource.number} · {resource.type}</span>
                 <h3>{resource.title}</h3>
                 <p className="card__body">{resource.description}</p>

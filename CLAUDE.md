@@ -79,6 +79,33 @@ To switch the hero video on, drop `public/video/hero.mp4` in and set `media.hero
 
 Video is disabled outright under reduced motion and Save-Data, and pauses off-screen.
 
+## AI layer (Workers AI)
+
+`wrangler.jsonc` declares `"ai": { "binding": "AI" }`. Workers AI runs on the FREE plan
+(~10k neurons/day) — unlike Analytics Engine it needs no account upgrade. Everything is
+built to degrade: if the binding is absent, quota is spent, or the model errors,
+`/api/ask` returns `{ fallback: true }` and the client answers from the glossary + a
+WhatsApp link. The AI is never load-bearing.
+
+- Route: `app/api/ask/route.ts` — model `@cf/meta/llama-3.1-8b-instruct`, streamed SSE,
+  answers capped at 320 tokens, per-visitor and per-isolate daily limits in memory.
+- The system prompt is generated from `siteContent.ts` (glossary + chapters) and hard-rules
+  the model to vocabulary education only: no legal/tax/price/investment advice, no
+  project assessments, no invented statistics. Keep those rules if you touch the prompt.
+- UI: `app/components/AcademyGuide.tsx`, section `#ask` on /resources. The glossary's
+  no-match state hands its query over via the `academy:guide-ask` window event.
+- Local `wrangler dev --local` cannot run the model (needs Cloudflare auth) — the route
+  falls back, which is itself the test. The streaming path is verified on production.
+
+## Market data rules
+
+`app/lib/marketData.ts` feeds the "Market context, source-dated" homepage section.
+Every figure carries `source` and `asOf`, and both render. Historical published figures
+only — never forecasts, never unsourced numbers. `hpiSeries` stays EMPTY until someone
+fills it from RBI's official House Price Index download (rbi.org.in → Statistics); the
+self-drawing chart appears automatically once ≥6 quarters exist. The homepage test suite
+enforces that any ₹ figure is accompanied by a named source.
+
 ## Brand assets
 
 `/brandkit` is an internal, `noindex`, unlinked route holding the artboards for
@@ -111,3 +138,6 @@ This site makes verifiable claims only.
 - Do not import a CSS file without creating it. That broke the build once.
 - Do not add `playwright` to `package.json`. Screenshot tooling belongs in the sandbox, not in
   the Cloudflare build.
+- Do not remove the AI fallback paths — the site must sell with the AI completely dead.
+- After every rebuild, restart `wrangler dev` before screenshotting: it snapshots the asset
+  directory at startup and serves stale hashes otherwise.

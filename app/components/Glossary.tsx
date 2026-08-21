@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search } from "lucide-react";
+import { Search, Sparkles } from "lucide-react";
 import { glossaryTerms } from "../lib/siteContent";
 
 export function Glossary() {
@@ -28,7 +28,21 @@ export function Glossary() {
             <p>{item.definition}</p>
           </article>
         ))}
-        {matches.length === 0 && <p className="glossary__empty">No matching term yet. Try a broader search.</p>}
+        {matches.length === 0 && (
+          <div className="glossary__empty">
+            <p>No glossary entry matches that directly.</p>
+            <button
+              className="text-link glossary__ask"
+              type="button"
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent("academy:guide-ask", { detail: { question: query.trim() } }));
+                document.getElementById("ask")?.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
+            >
+              <Sparkles size={14} aria-hidden="true" /> Ask the AI guide about “{query.trim().slice(0, 60)}”
+            </button>
+          </div>
+        )}
       </div>
 
       <p className="tool__note">

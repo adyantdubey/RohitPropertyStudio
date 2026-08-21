@@ -39,6 +39,12 @@ npm run deploy
 Secrets (`MISTRAL_API_KEY`, Turnstile keys) live in the Worker's **Variables and Secrets**,
 never in the repository or the build environment.
 
+## The AI guide
+
+The "Ask the Academy" panel on /resources is powered by Cloudflare Workers AI on the free
+plan — no API key. If the model is unavailable or the daily free quota is spent, the panel
+answers from the built-in glossary and points to WhatsApp instead, so nothing breaks.
+
 ## Adding video
 
 `public/video/` is empty on purpose — the hero renders a generated skyline canvas, so the site

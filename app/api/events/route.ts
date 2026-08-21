@@ -8,6 +8,8 @@ const allowedEvents = new Set([
   "payment_tool_used",
   "whatsapp_clicked",
   "hundred_yards_clicked",
+  "guide_used",
+  "guide_fallback",
 ]);
 
 export async function POST(request: Request) {

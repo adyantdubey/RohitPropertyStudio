@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Check, ChevronDown } from "lucide-react";
+import { AcademyGuide } from "../components/AcademyGuide";
 import { AmbientBackdrop } from "../components/AmbientBackdrop";
 import { ClosingCta } from "../components/ClosingCta";
 import { Glossary } from "../components/Glossary";
@@ -24,9 +25,9 @@ export default function ResourcesPage() {
             <p data-enter>Explore foundational terms through simple tools tied directly to the course curriculum.</p>
           </div>
           <div className="page-hero__aside" data-enter>
-            <strong>Four resources</strong>
-            <p>One searchable reference, two interactive learning models and one focused site-visit checklist.</p>
-            <a className="text-link" href="#area-visualizer">Start with the area tool <ChevronDown size={15} aria-hidden="true" /></a>
+            <strong>Five resources</strong>
+            <p>An AI guide, a searchable reference, two interactive learning models and one focused site-visit checklist.</p>
+            <a className="text-link" href="#ask">Start by asking the guide <ChevronDown size={15} aria-hidden="true" /></a>
           </div>
         </div>
       </section>
@@ -39,6 +40,22 @@ export default function ResourcesPage() {
               <div><small>{resource.type}</small><strong>{resource.title}</strong></div>
             </a>
           ))}
+        </div>
+      </section>
+
+      <section className="section surface-dark" id="ask">
+        <div className="shell">
+          <div className="head">
+            <div className="head__main">
+              <p className="eyebrow">Ask the Academy</p>
+              <h2 data-split>Put any property term to the AI guide.</h2>
+            </div>
+            <p className="head__note" data-reveal>
+              Trained on the same vocabulary the course teaches. It explains terms; it does not give
+              advice on projects, prices or investments.
+            </p>
+          </div>
+          <div data-reveal><AcademyGuide /></div>
         </div>
       </section>
 
