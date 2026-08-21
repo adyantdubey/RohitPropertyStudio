@@ -1,81 +1,31 @@
 import { ArrowUpRight } from "lucide-react";
-import { brand } from "../lib/brand";
-import { RksMark } from "./RksMark";
-import { TransitionLink } from "./RouteCurtain";
+import { brand, course } from "../lib/siteContent";
 
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="footer-signal" aria-hidden="true">
-        <span />
-        <span />
-        <span />
-      </div>
-
-      <div className="footer-lead">
-        <p className="eyebrow eyebrow-light">
-          {brand.name.toUpperCase()} / {brand.educationLabel.toUpperCase()}
-        </p>
-        <h2>
-          Your next property move,
-          <em>supported from the start.</em>
-        </h2>
-        <div className="footer-actions">
-          <TransitionLink className="button button-light" href="/advisory">
-            Explore property advisory <ArrowUpRight aria-hidden="true" size={17} />
-          </TransitionLink>
-          <TransitionLink className="text-link text-link-light" href="/courses">
-            Visit the Academy <ArrowUpRight aria-hidden="true" size={15} />
-          </TransitionLink>
-        </div>
-      </div>
-
-      <div className="footer-grid">
+      <div className="site-footer__main shell">
         <div>
-          <TransitionLink className="footer-brand" href="/" aria-label={`${brand.name} — home`}>
-            <span aria-hidden="true">
-              <RksMark />
-            </span>
-            {brand.name}
-          </TransitionLink>
-          <p>
-            Property advisory, market insight, and practical real-estate
-            education from {brand.name}, {brand.credential}.
-          </p>
+          <span className="eyebrow">Rohit Real Estate Academy</span>
+          <h2>Start with the language.<br />Move with more clarity.</h2>
         </div>
-
-        <nav className="footer-links" aria-labelledby="footer-explore-title">
-          <strong id="footer-explore-title">Navigate</strong>
-          {brand.navigation.map((link) => (
-            <TransitionLink key={link.href} href={link.href}>
-              {link.label}
-            </TransitionLink>
-          ))}
-          <TransitionLink href="/insights">Property insights</TransitionLink>
-        </nav>
-
-        <nav className="footer-links" aria-labelledby="footer-information-title">
-          <strong id="footer-information-title">Information</strong>
-          <TransitionLink href="/privacy">Privacy</TransitionLink>
-          <TransitionLink href="/terms">Terms</TransitionLink>
-          <TransitionLink href="/refund">Refund policy</TransitionLink>
-          <TransitionLink href="/disclaimer">Disclaimer</TransitionLink>
-        </nav>
-
-        <div className="footer-coordinate">
-          <span>{brand.name.toUpperCase()}</span>
-          <span>{brand.professionalTitle.toUpperCase()}</span>
-          <small>{brand.organizationName.toUpperCase()}</small>
+        <div className="site-footer__actions">
+          <a className="button button--gold" href={course.whatsapp} target="_blank" rel="noreferrer">
+            Join early access <ArrowUpRight size={17} aria-hidden="true" />
+          </a>
+          <a className="text-link" href={brand.companyUrl} target="_blank" rel="noreferrer">
+            Visit Hundred Yards <ArrowUpRight size={15} aria-hidden="true" />
+          </a>
         </div>
       </div>
-
-      <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} {brand.name.toUpperCase()}</span>
-        <p>
-          Educational content only. Not financial, investment, legal, tax,
-          valuation, or property-specific advice.
-        </p>
-        <a href="#main-content">BACK TO TOP ↑</a>
+      <div className="site-footer__bottom shell">
+        <p>© {new Date().getFullYear()} {brand.name}</p>
+        <nav aria-label="Legal navigation">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/refund">Refund status</a>
+          <a href="/disclaimer">Disclaimer</a>
+        </nav>
       </div>
     </footer>
   );

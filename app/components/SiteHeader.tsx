@@ -1,207 +1,69 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { brand } from "../lib/brand";
-import { RksMark } from "./RksMark";
-import { TransitionLink } from "./RouteCurtain";
-
-const links = brand.navigation.filter(({ href }) => href !== "/contact");
+import { brand, course, navigation } from "../lib/siteContent";
 
 export function SiteHeader() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [compact, setCompact] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setCompact(window.scrollY > 70);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const desktopQuery = window.matchMedia("(min-width: 1181px)");
-    const closeAtDesktop = (event: MediaQueryListEvent) => {
-      if (event.matches) setOpen(false);
-    };
-
-    desktopQuery.addEventListener("change", closeAtDesktop);
-    return () => desktopQuery.removeEventListener("change", closeAtDesktop);
-  }, []);
 
   useEffect(() => {
     if (!open) return;
-
-    const menu = menuRef.current;
-    const trigger = menuButtonRef.current;
-    if (!menu || !trigger) return;
-
-    const previouslyFocused =
-      document.activeElement instanceof HTMLElement
-        ? document.activeElement
-        : trigger;
-    const previousOverflow = document.body.style.overflow;
-    const inertTargets = [
-      document.querySelector<HTMLElement>("main"),
-      document.querySelector<HTMLElement>(".site-footer"),
-      document.querySelector<HTMLElement>(".brand"),
-      document.querySelector<HTMLElement>(".header-cta"),
-      document.querySelector<HTMLElement>(".desktop-nav"),
-    ].filter((target): target is HTMLElement => Boolean(target));
-    const priorInert = inertTargets.map((target) =>
-      target.hasAttribute("inert"),
-    );
-
-    document.body.style.overflow = "hidden";
-    inertTargets.forEach((target) => target.setAttribute("inert", ""));
-
-    const getFocusable = () => [
-      trigger,
-      ...Array.from(
-        menu.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
-        ),
-      ),
-    ];
-
-    const focusFrame = window.requestAnimationFrame(() => {
-      getFocusable()[1]?.focus();
-    });
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        setOpen(false);
-        return;
-      }
-
-      if (event.key !== "Tab") return;
-      const focusable = getFocusable();
-      const first = focusable[0];
-      const last = focusable.at(-1);
-      if (!first || !last) return;
-
-      if (event.shiftKey && document.activeElement === first) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && document.activeElement === last) {
-        event.preventDefault();
-        first.focus();
-      } else if (!focusable.includes(document.activeElement as HTMLElement)) {
-        event.preventDefault();
-        first.focus();
-      }
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
     };
-
-    document.addEventListener("keydown", onKeyDown);
-
+    document.body.classList.add("menu-open");
+    window.addEventListener("keydown", closeOnEscape);
     return () => {
-      window.cancelAnimationFrame(focusFrame);
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = previousOverflow;
-      inertTargets.forEach((target, index) => {
-        if (!priorInert[index]) target.removeAttribute("inert");
-      });
-      if (document.contains(previouslyFocused)) previouslyFocused.focus();
+      document.body.classList.remove("menu-open");
+      window.removeEventListener("keydown", closeOnEscape);
     };
   }, [open]);
 
-  const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(`${href}/`);
-
   return (
-    <>
-      <a className="skip-link" href="#main-content">
-        Skip to content
+    <header className="site-header">
+      <a className="site-brand" href="/" aria-label={`${brand.name}, home`}>
+        <span className="site-brand__mark" aria-hidden="true">RK</span>
+        <span>
+          <strong>{brand.name}</strong>
+          <small>Real Estate Academy</small>
+        </span>
       </a>
-      <header className={`site-header${compact ? " is-compact" : ""}`}>
-        <TransitionLink className="brand" href="/" aria-label={`${brand.name} — home`}>
-          <span className="brand-mark" aria-hidden="true">
-            <RksMark />
-          </span>
-          <span className="brand-copy">
-            <strong>{brand.name}</strong>
-            <small>{brand.educationLabel}</small>
-          </span>
-        </TransitionLink>
 
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          {links.map((link, index) => (
-            <TransitionLink
-              key={link.href}
-              className={isActive(link.href) ? "is-active" : ""}
-              href={link.href}
-              aria-current={isActive(link.href) ? "page" : undefined}
-            >
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              {link.label}
-            </TransitionLink>
-          ))}
-        </nav>
+      <nav className="desktop-nav" aria-label="Primary navigation">
+        {navigation.map((item) => (
+          <a key={item.href} href={item.href}>{item.label}</a>
+        ))}
+      </nav>
 
-        <TransitionLink
-          className="header-cta"
-          href="/contact"
-          aria-current={isActive("/contact") ? "page" : undefined}
-        >
-          Contact <ArrowUpRight aria-hidden="true" size={16} />
-        </TransitionLink>
+      <a className="button button--gold header-cta" href={course.whatsapp} target="_blank" rel="noreferrer">
+        Join early access <ArrowUpRight size={16} aria-hidden="true" />
+      </a>
 
-        <button
-          ref={menuButtonRef}
-          className="menu-button"
-          type="button"
-          aria-label={open ? "Close navigation" : "Open navigation"}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((value) => !value)}
-        >
-          {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
-        </button>
-      </header>
-
-      <div
-        ref={menuRef}
-        className={`mobile-menu${open ? " is-open" : ""}`}
-        id="mobile-menu"
-        aria-hidden={!open}
-        aria-label="Site navigation"
-        role="region"
+      <button
+        className="menu-toggle"
+        type="button"
+        aria-expanded={open}
+        aria-controls="mobile-navigation"
+        aria-label={open ? "Close navigation" : "Open navigation"}
+        onClick={() => setOpen((value) => !value)}
       >
-        <div className="mobile-menu-meta">
-          {brand.name.toUpperCase()} / {brand.educationLabel.toUpperCase()}
-        </div>
+        {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+      </button>
+
+      <div id="mobile-navigation" className={`mobile-navigation${open ? " is-open" : ""}`} aria-hidden={!open}>
         <nav aria-label="Mobile navigation">
-          {links.map((link, index) => (
-            <TransitionLink
-              aria-current={isActive(link.href) ? "page" : undefined}
-              key={link.href}
-              href={link.href}
-              tabIndex={open ? 0 : -1}
-              onClick={() => setOpen(false)}
-            >
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{link.label}</strong>
-              <ArrowUpRight aria-hidden="true" />
-            </TransitionLink>
+          {navigation.map((item) => (
+            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</a>
           ))}
-          <TransitionLink
-            aria-current={isActive("/contact") ? "page" : undefined}
-            href="/contact"
-            tabIndex={open ? 0 : -1}
-            onClick={() => setOpen(false)}
-          >
-            <span>{String(links.length + 1).padStart(2, "0")}</span>
-            <strong>{brand.navigation.at(-1)?.label ?? "Contact"}</strong>
-            <ArrowUpRight aria-hidden="true" />
-          </TransitionLink>
+          <a href="/about" onClick={() => setOpen(false)}>About Rohit</a>
+          <a href="/contact" onClick={() => setOpen(false)}>Contact</a>
         </nav>
-        <p>{brand.line}</p>
+        <a className="button button--gold" href={course.whatsapp} target="_blank" rel="noreferrer">
+          Join early access <ArrowUpRight size={16} aria-hidden="true" />
+        </a>
       </div>
-    </>
+    </header>
   );
 }

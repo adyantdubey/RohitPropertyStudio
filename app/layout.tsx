@@ -1,95 +1,43 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { Geist_Mono, Manrope, Playfair_Display } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import "./site.css";
-import "./cinematic.css";
-import "./authority.css";
-import { MotionProvider } from "./components/MotionProvider";
-import { RouteCurtain } from "./components/RouteCurtain";
+import "./course-site.css";
+import { MotionLayer } from "./components/MotionLayer";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
-import { brand, organizationJsonLd, personJsonLd } from "./lib/brand";
+import { brand, course, courseJsonLd, personJsonLd } from "./lib/siteContent";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
+const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], display: "swap" });
+const playfair = Playfair_Display({ variable: "--font-playfair", subsets: ["latin"], display: "swap" });
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
   const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host") ?? "localhost:3000";
   const protocol = requestHeaders.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const socialImage = `${origin}/og-cinematic.png`;
-
   return {
-    title: {
-      default: `${brand.name} — ${brand.line}`,
-      template: `%s — ${brand.name}`,
-    },
-    description:
-      `${brand.name}, ${brand.professionalTitle} of ${brand.organizationName}: property advisory, Bengaluru market insights, project conversations, and practical real-estate education.`,
+    title: { default: `${course.title} — ${brand.name}`, template: `%s — ${brand.name}` },
+    description: course.description,
     metadataBase: new URL(origin),
     alternates: { canonical: "/" },
-    openGraph: {
-      type: "website",
-      title: `${brand.name} — ${brand.line}`,
-      description:
-        `Explore property advisory with Hundred Yards and practical real-estate learning through ${brand.educationLabel}.`,
-      siteName: brand.name,
-      url: origin,
-      images: [{ url: socialImage, width: 1680, height: 941, alt: `${brand.name} — ${brand.line}` }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${brand.name} — ${brand.line}`,
-      description:
-        `Explore property advisory with Hundred Yards and practical real-estate learning through ${brand.educationLabel}.`,
-      images: [socialImage],
-    },
+    openGraph: { type: "website", title: `${course.title} — ${brand.name}`, description: course.description, siteName: brand.academy, url: origin, images: [{ url: "/course/cover.png", width: 1600, height: 900, alt: `${course.title} course preview` }] },
+    twitter: { card: "summary_large_image", title: `${course.title} — ${brand.name}`, description: course.description, images: ["/course/cover.png"] },
   };
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const structuredData = JSON.stringify([personJsonLd, organizationJsonLd]).replace(
-    /</g,
-    "\\u003c",
-  );
-
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const structuredData = JSON.stringify([personJsonLd, courseJsonLd]).replace(/</g, "\\u003c");
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${manrope.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased`}
-      >
-        <script
-          id="rks-structured-data"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: structuredData }}
-        />
-        <MotionProvider>
-          <RouteCurtain>
-            <SiteHeader />
-            {children}
-            <SiteFooter />
-          </RouteCurtain>
-        </MotionProvider>
+    <html lang="en">
+      <body className={`${manrope.variable} ${playfair.variable}`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
+        <a className="skip-link" href="#main-content">Skip to content</a>
+        <MotionLayer />
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+        <a className="mobile-cta" href={course.whatsapp} target="_blank" rel="noreferrer">Join early access</a>
       </body>
     </html>
   );
