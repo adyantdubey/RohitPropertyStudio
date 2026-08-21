@@ -71,6 +71,9 @@
 .rail.is-pinned .rail__viewport { overflow: hidden; scroll-snap-type: none; padding-bottom: 0; }
 .rail.is-pinned { padding-bottom: clamp(40px, 5vw, 64px); }
 .rail__track { display: flex; gap: clamp(16px, 2vw, 28px); }
+/* End spacer: guarantees the last panel gets the same breathing room as the
+   first, and makes the scroll container's scrollWidth include it. */
+.rail__track::after { content: ""; flex: 0 0 max(var(--shell-pad), calc((100vw - var(--shell-max)) / 2)); }
 .rail__panel {
   position: relative; flex: none; width: clamp(300px, 40vw, 520px);
   display: grid; align-content: space-between; gap: var(--s-6);

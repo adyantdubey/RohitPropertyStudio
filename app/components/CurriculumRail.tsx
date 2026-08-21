@@ -29,8 +29,13 @@ export function CurriculumRail() {
     gsap.registerPlugin(ScrollTrigger);
     section.classList.add("is-pinned");
 
+    const viewport = track.parentElement as HTMLElement;
+
     const context = gsap.context(() => {
-      const distance = () => Math.max(track.scrollWidth - window.innerWidth + 80, 0);
+      // Measure on the scroll container itself: its scrollWidth includes the
+      // track, the leading padding and the end spacer, so the scrub always
+      // travels exactly far enough to show the last chapter at any width.
+      const distance = () => Math.max(viewport.scrollWidth - viewport.clientWidth, 0);
       const tween = gsap.to(track, {
         x: () => -distance(),
         ease: "none",
