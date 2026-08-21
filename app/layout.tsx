@@ -41,14 +41,14 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s — ${brand.name}`,
     },
     description:
-      `${brand.name}, ${brand.professionalTitle} of ${brand.organizationName}, shares real-estate education, advisory perspectives, and market insights.`,
+      `${brand.name}, ${brand.professionalTitle} of ${brand.organizationName}: property advisory, Bengaluru market insights, project conversations, and practical real-estate education.`,
     metadataBase: new URL(origin),
     alternates: { canonical: "/" },
     openGraph: {
       type: "website",
       title: `${brand.name} — ${brand.line}`,
       description:
-        `${brand.educationLabel}: clear real-estate thinking for more considered property decisions.`,
+        `Explore property advisory with Hundred Yards and practical real-estate learning through ${brand.educationLabel}.`,
       siteName: brand.name,
       url: origin,
       images: [{ url: socialImage, width: 1680, height: 941, alt: `${brand.name} — ${brand.line}` }],
@@ -57,7 +57,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: `${brand.name} — ${brand.line}`,
       description:
-        `${brand.educationLabel}: clear real-estate thinking for more considered property decisions.`,
+        `Explore property advisory with Hundred Yards and practical real-estate learning through ${brand.educationLabel}.`,
       images: [socialImage],
     },
   };

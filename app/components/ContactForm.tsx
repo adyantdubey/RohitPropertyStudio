@@ -9,6 +9,10 @@ export type ContactTopic =
   | "field-guide"
   | "academy"
   | "property"
+  | "investment"
+  | "seller"
+  | "nri"
+  | "commercial"
   | "partnership"
   | "other";
 
@@ -23,6 +27,10 @@ const topicLabels: Record<ContactTopic, string> = {
   "field-guide": "Before You Buy — first access",
   academy: "Property Academy roadmap",
   property: "Property guidance",
+  investment: "Property investment consultation",
+  seller: "Sell a property",
+  nri: "NRI property assistance",
+  commercial: "Commercial property enquiry",
   partnership: "Speaking or partnership",
   other: "General enquiry",
 };
@@ -77,12 +85,11 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
       onSubmit={handleSubmit}
     >
       <div className="contact-form__intro authority-contact-form__intro">
-        <p className="contact-form__kicker">Write to the company team</p>
-        <h2 id="contact-form-title">Give the question the context it needs.</h2>
+        <p className="contact-form__kicker">Speak with Hundred Yards</p>
+        <h2 id="contact-form-title">Tell us what you are looking for.</h2>
         <p>
-          This form prepares an email in your own mail application. Nothing is
-          submitted to or stored by this website. Review the message, then send
-          it directly to the Hundred Yards team.
+          Share your property goal, preferred location, budget range, timing,
+          or Academy question. The form prepares an email for the Hundred Yards team.
         </p>
         <dl className="cin-contact-form__facts authority-contact-form__facts">
           <div>
@@ -160,7 +167,11 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
             </option>
             <option value="field-guide">Before You Buy — first access</option>
             <option value="academy">Property Academy roadmap</option>
-            <option value="property">Property guidance</option>
+              <option value="property">Buy a home</option>
+              <option value="investment">Property investment</option>
+              <option value="seller">Sell a property</option>
+              <option value="nri">NRI property assistance</option>
+              <option value="commercial">Commercial property</option>
             <option value="partnership">Speaking or partnership</option>
             <option value="other">General enquiry</option>
           </select>
@@ -172,7 +183,7 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
             id="contact-message"
             name="message"
             maxLength={1500}
-            placeholder="What are you trying to understand, plan, or decide?"
+            placeholder="Tell us the property type, location, budget range, timing, or Academy resource you are interested in."
             required
             rows={5}
           />
@@ -188,15 +199,14 @@ export function ContactForm({ defaultTopic }: ContactFormProps) {
 
         <div className="contact-form__submit-row authority-contact-form__submit-row">
           <p id="contact-response-note">
-            Recipient: Hundred Yards team at {recipient}. You choose whether to
-            send the prepared email.
+            Your message will open in your email application, addressed to {recipient}.
           </p>
           <button
             aria-describedby="contact-response-note"
             className="contact-form__submit"
             type="submit"
           >
-            <span>Open email to 100 Yards</span>
+            <span>Prepare my enquiry</span>
             <Send aria-hidden="true" size={17} strokeWidth={1.8} />
           </button>
         </div>

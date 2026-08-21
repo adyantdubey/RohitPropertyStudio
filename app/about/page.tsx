@@ -6,6 +6,7 @@ import { CinematicMedia } from "../components/CinematicMedia";
 import { PageHero } from "../components/PageHero";
 import { SectionHeading } from "../components/SectionHeading";
 import { brand } from "../lib/brand";
+import { trustValues } from "../lib/companyContent";
 
 export const metadata: Metadata = {
   title: `About ${brand.name}`,
@@ -15,57 +16,35 @@ export const metadata: Metadata = {
 const publicStory = [
   {
     number: "01",
-    marker: "EXPERIENCE / PUBLISHED PROFILE",
+    marker: "EXPERIENCE / REAL ESTATE",
     title: "More than a decade in real estate",
-    copy: "Hundred Yards’ official company biography credits its Managing Director with over a decade of hands-on experience in the real-estate sector. That wording is retained as a published company claim, not presented as an independently audited statistic.",
+    copy: "Hundred Yards credits Rohitt with more than a decade of hands-on real-estate experience across market-facing, customer, and leadership roles.",
   },
   {
     number: "02",
-    marker: "FOUNDATION / PUBLISHED PROFILE",
+    marker: "FOUNDATION / ENGINEERING",
     title: "Engineering-trained",
-    copy: "The same official biography describes him as an Electronics & Communication engineering graduate and connects that foundation to analytical, strategic decision-making.",
+    copy: "An Electronics & Communication engineering background informs the analytical, structured way he approaches markets, teams, and customer decisions.",
   },
   {
     number: "03",
     marker: "LEADERSHIP / BENGALURU",
     title: `Managing Director, ${brand.organizationName}`,
-    copy: "Hundred Yards’ public company profile identifies him as Managing Director. The company publishes its contact presence in Kalyan Nagar, Bengaluru.",
+    copy: "As Managing Director, he leads a customer-focused real-estate advisory working from Kalyan Nagar, Bengaluru.",
   },
   {
     number: "04",
     marker: "PUBLIC EDUCATION / VIDEO",
     title: brand.mediaLabel,
-    copy: "Rohitt’s public posts use #ReelSeRealEstate as an active real-estate content series. This site treats it as a public editorial label, not as a registered mark or a claim of ownership.",
+    copy: "Through Reel Se Real Estate, he brings project visits, market observations, buyer education, and leadership conversations into public view.",
   },
 ] as const;
 
-const publishedPrinciples = [
-  {
-    number: "01",
-    title: "Transparency",
-    copy: "Keep information, expectations, process, and the boundaries of a recommendation clear enough to question.",
-  },
-  {
-    number: "02",
-    title: "Reliability",
-    copy: "Make the quality of follow-through as important as the quality of the first conversation.",
-  },
-  {
-    number: "03",
-    title: "Understanding",
-    copy: "Begin with the buyer, seller, investor, NRI, or business brief before narrowing the route.",
-  },
-  {
-    number: "04",
-    title: "Service Excellence",
-    copy: "Connect market expertise, personalised guidance, and transaction support into one accountable experience.",
-  },
-  {
-    number: "05",
-    title: "Timely Execution",
-    copy: "Keep communication and the next action moving without replacing verification with avoidable urgency.",
-  },
-] as const;
+const publishedPrinciples = trustValues.map((principle, index) => ({
+  number: String(index + 1).padStart(2, "0"),
+  title: principle.title,
+  copy: principle.copy,
+}));
 
 const sourceLinks = [
   {
@@ -93,13 +72,14 @@ export default function AboutPage() {
         eyebrow={`${brand.name.toUpperCase()} / PUBLIC PROFILE`}
         title={
           <>
-            Leadership, with
+            Real-estate leadership,
             <br />
-            <em>a teacher&apos;s clarity.</em>
+            <em>made useful to people.</em>
           </>
         }
-        body={`${brand.name} is ${brand.professionalTitle} at ${brand.organizationName}. His public work connects Bengaluru real-estate leadership, advisory context, and accessible property education.`}
+        body={`${brand.name} is ${brand.professionalTitle} at ${brand.organizationName}. He connects market experience, customer-first advisory, team leadership, and accessible property education.`}
         aside={<span>LEADERSHIP / ADVISORY / EDUCATION</span>}
+        theme="ink"
         media={{
           poster: "/media/hero-aerial-poster.jpg",
           mobilePoster: "/media/hero-aerial-poster-mobile.jpg",
@@ -136,40 +116,33 @@ export default function AboutPage() {
         </figure>
 
         <div className="about-manifesto about-editorial-manifesto authority-about-intro__copy">
-          <p className="eyebrow">THE PUBLIC ROLE</p>
+          <p className="eyebrow">THE LEADERSHIP ROLE</p>
           <blockquote>
             <span>{brand.name.toUpperCase()}</span>
             {brand.professionalTitle}
             <em> / {brand.organizationName}</em>
           </blockquote>
           <p>
-            Hundred Yards publishes a leadership profile built around analytical
-            decision-making, customer-centred service, technology-informed
-            advisory, transparency, and personalised solutions. This site turns
-            that public record into a clear personal platform without inventing
-            transactions, results, or professional credentials.
+            Rohitt leads Hundred Yards with a focus on transparent advice,
+            personalised property solutions, market knowledge, technology, and
+            dependable support across the customer journey.
           </p>
-          <p className="about-editorial-role-note">
-            Name note: this personal brand uses “{brand.name},” matching the
-            public creator spelling. The official company biography and corporate
-            records use “Rohit Kumar Singh.” Source links preserve the wording used
-            by each publisher.
-          </p>
+          <p className="about-editorial-role-note">Bengaluru-based · Managing Director · Real-estate educator and digital creator</p>
         </div>
       </section>
 
       <section className="story-rail about-editorial-story section-pad section-ink authority-about-story">
         <SectionHeading
           light
-          eyebrow="THE PUBLIC STORY / SOURCE CONTEXT RETAINED"
+          eyebrow="THE EXPERIENCE BEHIND THE WORK"
           title={
             <>
-              A profile built from
+              Market experience.
               <br />
-              <em>facts people can trace.</em>
+              <em>Leadership with a clear point of view.</em>
             </>
           }
-          body="These chapters use published company and public-profile material. Personal or family details are intentionally excluded because they do not establish professional authority."
+          body="A career that brings together analytical training, hands-on property experience, company leadership, and public education."
         />
 
         <div className="timeline-grid about-editorial-chapters authority-about-story__grid">
@@ -186,17 +159,16 @@ export default function AboutPage() {
 
       <section className="about-editorial-process section-pad authority-about-bridge">
         <div className="about-editorial-process-copy">
-          <p className="eyebrow">WHERE THE WORK MEETS</p>
+          <p className="eyebrow">ONE LEADER / THREE PUBLIC ROLES</p>
           <h2>
-            From an active brief
+            Advisory. Leadership.
             <br />
-            <em>to an informed audience.</em>
+            <em>Education in public.</em>
           </h2>
           <p>
-            The advisory path belongs to Hundred Yards and begins with a real
-            property requirement. The education path belongs to Rohitt&apos;s public
-            platform and begins with a useful question. Each has its own scope,
-            call to action, and professional boundary.
+            Rohitt&apos;s work moves between active property advisory through
+            Hundred Yards, leadership of a growing real-estate team, and practical
+            education for buyers and professionals.
           </p>
           <ul className="about-editorial-process-list">
             <li><Check aria-hidden="true" size={16} /> Property advisory through Hundred Yards.</li>
@@ -227,15 +199,15 @@ export default function AboutPage() {
 
       <section className="principles about-editorial-principles section-pad authority-about-principles">
         <SectionHeading
-          eyebrow="PUBLISHED HUNDRED YARDS POSITIONING"
+          eyebrow="THE HUNDRED YARDS TRUST FRAMEWORK"
           title={
             <>
-              Five principles shaping
+              Five principles behind
               <br />
-              <em>the public brand.</em>
+              <em>the customer experience.</em>
             </>
           }
-          body="Hundred Yards publishes these five ideas as its TRUST framework. The explanations below translate that framework into concise website language rather than presenting them as quotations from Rohitt."
+          body="Transparency, reliability, understanding, service excellence, and timely execution guide how Hundred Yards wants every client interaction to feel."
         />
 
         <div className="principle-list about-editorial-principle-list">
@@ -265,12 +237,11 @@ export default function AboutPage() {
           </figcaption>
         </figure>
         <div className="about-editorial-context-copy">
-          <p className="eyebrow">THE PUBLIC RECORD / READ THE SOURCES</p>
-          <h2>Context stays attached to the claim.</h2>
+          <p className="eyebrow">HUNDRED YARDS / OFFICIAL CHANNELS</p>
+          <h2>Explore the company behind the advisory.</h2>
           <p>
-            Titles, experience wording, location, and company positioning should
-            remain easy to verify. If the source changes, this profile should be
-            reviewed rather than quietly preserving an outdated statement.
+            Discover the team, current property opportunities, Bengaluru office,
+            and the public channels where Rohitt continues the real-estate conversation.
           </p>
           <ul className="authority-about-sources__list">
             {sourceLinks.map((source) => (
@@ -287,18 +258,18 @@ export default function AboutPage() {
       </section>
 
       <section className="about-closing about-editorial-closing section-pad section-blue authority-about-closing">
-        <p className="eyebrow eyebrow-light">NEXT / CHOOSE THE WORK</p>
+        <p className="eyebrow eyebrow-light">WORK WITH ROHITT &amp; HUNDRED YARDS</p>
         <h2>
-          Bring a property brief.
+          Start your property search.
           <br />
-          <em>Or begin with the learning.</em>
+          <em>Or begin with the Academy.</em>
         </h2>
         <div className="authority-about-closing__actions">
           <Link className="button button-light" href="/advisory">
-            Buy or invest with Hundred Yards <ArrowUpRight aria-hidden="true" size={18} />
+            Explore property advisory <ArrowUpRight aria-hidden="true" size={18} />
           </Link>
           <Link className="text-link text-link-light" href="/courses">
-            Learn with {brand.shortName} <ArrowUpRight aria-hidden="true" size={16} />
+            Visit the Academy <ArrowUpRight aria-hidden="true" size={16} />
           </Link>
         </div>
       </section>

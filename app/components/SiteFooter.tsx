@@ -17,15 +17,15 @@ export function SiteFooter() {
           {brand.name.toUpperCase()} / {brand.educationLabel.toUpperCase()}
         </p>
         <h2>
-          Read the market.
-          <em>Make the decision yours.</em>
+          Your next property move,
+          <em>supported from the start.</em>
         </h2>
         <div className="footer-actions">
-          <TransitionLink className="button button-light" href="/courses">
-            Enter the academy <ArrowUpRight aria-hidden="true" size={17} />
+          <TransitionLink className="button button-light" href="/advisory">
+            Explore property advisory <ArrowUpRight aria-hidden="true" size={17} />
           </TransitionLink>
-          <TransitionLink className="text-link text-link-light" href="/contact">
-            Start a conversation <ArrowUpRight aria-hidden="true" size={15} />
+          <TransitionLink className="text-link text-link-light" href="/courses">
+            Visit the Academy <ArrowUpRight aria-hidden="true" size={15} />
           </TransitionLink>
         </div>
       </div>
@@ -39,8 +39,8 @@ export function SiteFooter() {
             {brand.name}
           </TransitionLink>
           <p>
-            Clear property education, advisory perspectives, and market
-            commentary from {brand.name}, {brand.credential}.
+            Property advisory, market insight, and practical real-estate
+            education from {brand.name}, {brand.credential}.
           </p>
         </div>
 
@@ -51,6 +51,7 @@ export function SiteFooter() {
               {link.label}
             </TransitionLink>
           ))}
+          <TransitionLink href="/insights">Property insights</TransitionLink>
         </nav>
 
         <nav className="footer-links" aria-labelledby="footer-information-title">

@@ -9,16 +9,16 @@
 
 :root {
   --authority-ivory: #f3efe6;
-  --authority-ivory-soft: #e8e1d4;
-  --authority-ink: #111511;
-  --authority-midnight: #17264a;
-  --authority-midnight-deep: #0d1730;
-  --authority-brass: #b99a48;
-  --authority-brass-light: #d9c47b;
-  --authority-mineral: #6d7c83;
-  --authority-line: rgba(17, 21, 17, 0.17);
+  --authority-midnight: #101b32;
+  --authority-brass: #b8943f;
+  --authority-ivory-soft: color-mix(in srgb, var(--authority-ivory) 94%, var(--authority-midnight));
+  --authority-ink: var(--authority-midnight);
+  --authority-midnight-deep: var(--authority-midnight);
+  --authority-brass-light: color-mix(in srgb, var(--authority-brass) 22%, var(--authority-ivory));
+  --authority-mineral: color-mix(in srgb, var(--authority-midnight) 62%, var(--authority-ivory));
+  --authority-line: rgba(16, 27, 50, 0.17);
   --authority-line-light: rgba(243, 239, 230, 0.24);
-  --authority-shadow: 0 30px 90px rgba(13, 23, 48, 0.12);
+  --authority-shadow: 0 30px 90px rgba(16, 27, 50, 0.12);
   --authority-serif: var(--font-playfair), Georgia, serif;
   --authority-sans: var(--font-manrope), var(--font-geist-sans), Arial, sans-serif;
   --authority-mono: var(--font-geist-mono), "SFMono-Regular", Consolas, monospace;
@@ -32,7 +32,7 @@
   --blue: var(--authority-midnight);
   --blue-dark: var(--authority-midnight-deep);
   --orange: var(--authority-brass);
-  --muted: #596268;
+  --muted: color-mix(in srgb, var(--authority-midnight) 64%, var(--authority-ivory));
   --line: var(--authority-line);
   --serif: var(--authority-serif);
   --cin-paper: var(--authority-ivory);
@@ -98,17 +98,18 @@ main {
 .button-blue,
 .authority-button--primary {
   background: var(--authority-midnight);
-  color: #fff;
-  box-shadow: 0 18px 48px rgba(23, 38, 74, 0.2);
+  color: var(--authority-ivory);
+  box-shadow: 0 18px 48px rgba(16, 27, 50, 0.2);
 }
 
 .button-blue:hover:not(:disabled),
 .authority-button--primary:hover:not(:disabled) {
-  box-shadow: 0 22px 58px rgba(23, 38, 74, 0.27);
+  box-shadow: 0 22px 58px rgba(16, 27, 50, 0.27);
 }
 
 .button-dark {
-  background: var(--authority-ink);
+  background: var(--authority-midnight);
+  color: var(--authority-ivory);
 }
 
 .section-blue {
@@ -116,7 +117,8 @@ main {
 }
 
 .section-orange {
-  background: var(--authority-brass);
+  border-block: 1px solid var(--authority-line);
+  background: var(--authority-ivory);
 }
 
 .text-link,
@@ -127,7 +129,7 @@ main {
 
 .cinematic-media__poster,
 .cinematic-media__video {
-  background: #d8d5cc;
+  background: var(--authority-ivory-soft);
 }
 
 .cinematic-media__pause {
@@ -227,7 +229,7 @@ main {
   padding: 0 16px;
   border: 1px solid var(--authority-midnight);
   background: var(--authority-midnight);
-  color: #fff;
+  color: var(--authority-ivory);
   font-size: 0.74rem;
   font-weight: 800;
 }
@@ -572,7 +574,7 @@ main {
   bottom: 17px;
   padding-top: 9px;
   border-top: 1px solid rgba(243, 239, 230, 0.48);
-  color: #fff;
+  color: var(--authority-ivory);
   font-family: var(--authority-mono);
   font-size: 0.7rem;
   font-weight: 700;
@@ -660,7 +662,7 @@ main {
   right: 18px;
   bottom: 16px;
   left: 18px;
-  color: #fff;
+  color: var(--authority-ivory);
   font-family: var(--authority-mono);
   font-size: 0.7rem;
   font-weight: 700;
@@ -695,7 +697,7 @@ main {
 
 .authority-field-guide__card p {
   max-width: 540px;
-  color: #283037;
+  color: var(--authority-midnight);
 }
 
 .authority-field-guide__card .cin-button {
@@ -1155,8 +1157,8 @@ main {
   }
 
   .cin-hero-title h1 {
-    font-size: clamp(3.5rem, 17vw, 5.75rem);
-    line-height: 0.9;
+    font-size: clamp(2.65rem, 11.5vw, 4.65rem);
+    line-height: 0.88;
   }
 
   .cin-hero-title-offset {
@@ -1238,5 +1240,346 @@ main {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   FINAL BRAND COLOUR CONTRACT
+
+   The public UI uses three colours only: Midnight Navy, Warm Ivory, and
+   Heritage Brass. Softer surfaces and rules are tonal mixes/opacity of those
+   same colours. Photography keeps its natural colour under one navy grade.
+   ------------------------------------------------------------------------- */
+
+body,
+.page-shell,
+.cin-home,
+.authority-about,
+.authority-advisory,
+.authority-media,
+.authority-academy-page,
+.authority-insights-page,
+.authority-evidence-page,
+.authority-contact-page,
+.authority-insight-article,
+.authority-academy-detail {
+  background: var(--authority-ivory);
+  color: var(--authority-midnight);
+}
+
+.section-orange,
+.authority-advisory-routes,
+.authority-academy-roadmap,
+.authority-about-sources,
+.authority-evidence-gate,
+.insight-editorial-thesis {
+  border-color: var(--authority-line);
+  background: var(--authority-ivory);
+  color: var(--authority-midnight);
+}
+
+.cin-section-stone,
+.authority-field-guide__card,
+.authority-academy-card__availability,
+.authority-contact-form__handoff-note {
+  background: var(--authority-ivory-soft);
+  color: var(--authority-midnight);
+}
+
+#contact-form,
+#field-guide,
+#status {
+  scroll-margin-top: 96px;
+}
+
+.section-blue,
+.section-ink,
+.cin-section-dark,
+.cin-section-forest,
+.authority-home-paths,
+.authority-home-paths .cin-offer-stage,
+.authority-public-record,
+.authority-advisory-conversation,
+.authority-media-lanes,
+.authority-media-cta,
+.authority-advisory-cta,
+.authority-about-closing,
+.authority-insights-first-access,
+.authority-evidence-invite,
+.authority-contact-handoff,
+.authority-legal-page__header,
+.authority-commerce-unavailable__topbar,
+.authority-access-unavailable__masthead,
+.site-footer {
+  background: var(--authority-midnight);
+  color: var(--authority-ivory);
+}
+
+:is(
+  .section-blue,
+  .section-ink,
+  .cin-section-dark,
+  .cin-section-forest,
+  .authority-home-paths,
+  .authority-public-record,
+  .authority-advisory-conversation,
+  .authority-media-lanes,
+  .authority-media-cta,
+  .authority-advisory-cta,
+  .authority-about-closing,
+  .authority-insights-first-access,
+  .authority-evidence-invite,
+  .authority-contact-handoff,
+  .site-footer
+) :is(h1, h2, h3, h4, p, li, span, strong, small, a, em, blockquote) {
+  color: inherit;
+}
+
+.editorial-page-hero.cinematic-page-hero--paper,
+.editorial-page-hero.cinematic-page-hero--blue,
+.editorial-page-hero.cinematic-page-hero--ink,
+.editorial-page-hero.cinematic-page-hero--orange {
+  background: var(--authority-midnight);
+  color: var(--authority-ivory);
+}
+
+.editorial-page-hero .cinematic-page-hero__scrim {
+  background: linear-gradient(
+    90deg,
+    rgba(16, 27, 50, 0.98) 0%,
+    rgba(16, 27, 50, 0.9) 43%,
+    rgba(16, 27, 50, 0.34) 72%,
+    rgba(16, 27, 50, 0.12) 100%
+  );
+}
+
+.editorial-page-hero :is(
+  .cinematic-page-hero__title,
+  .cinematic-page-hero__meta,
+  .cinematic-page-hero__body,
+  .cinematic-page-hero__aside,
+  em
+) {
+  color: var(--authority-ivory);
+}
+
+.editorial-page-hero .cinematic-page-hero__body,
+.editorial-page-hero .cinematic-page-hero__aside {
+  color: rgba(243, 239, 230, 0.82);
+}
+
+.authority-home-hero .cin-hero-shade,
+.authority-home-closing .cin-closing-shade {
+  background:
+    linear-gradient(90deg, rgba(16, 27, 50, 0.9), rgba(16, 27, 50, 0.28) 62%, rgba(16, 27, 50, 0.56)),
+    linear-gradient(180deg, rgba(16, 27, 50, 0.42), transparent 42%, rgba(16, 27, 50, 0.76));
+}
+
+.authority-home-hero :is(h1, p, span, a),
+.authority-home-closing :is(h2, p, span, a, em) {
+  color: var(--authority-ivory);
+}
+
+.site-header,
+.site-header.is-compact,
+body:has(.cin-hero) .site-header:not(.is-compact),
+body:has(.editorial-page-hero) .site-header:not(.is-compact) {
+  border-color: var(--authority-line);
+  background: rgba(243, 239, 230, 0.985) !important;
+  background-image: none !important;
+  color: var(--authority-midnight);
+}
+
+.site-header :is(.brand, .brand-mark, .brand-copy, .brand-copy small, .desktop-nav a, .desktop-nav a span, .menu-button) {
+  color: var(--authority-midnight) !important;
+}
+
+.site-header .header-cta {
+  color: var(--authority-ivory) !important;
+}
+
+.site-header .menu-button[aria-expanded="true"] {
+  color: var(--authority-ivory) !important;
+}
+
+.desktop-nav a::after,
+.desktop-nav a.is-active::after,
+.site-header .brand-mark::after {
+  background: var(--authority-brass);
+}
+
+.header-cta,
+.button-dark,
+.button-blue,
+.cin-button-dark,
+.contact-form__submit {
+  border-color: var(--authority-midnight);
+  background: var(--authority-midnight);
+  color: var(--authority-ivory);
+}
+
+.button-light,
+.cin-button-light {
+  border-color: var(--authority-ivory);
+  background: var(--authority-ivory);
+  color: var(--authority-midnight);
+}
+
+.authority-academy-primary-cta,
+.authority-academy-detail__action .cin-button,
+.authority-insights-first-access .button,
+.course-editorial-card--featured .course-editorial-card-link {
+  border-color: var(--authority-brass);
+  background: var(--authority-brass);
+  color: var(--authority-midnight);
+}
+
+.button:hover,
+.cin-button:hover,
+.header-cta:hover,
+.contact-form__submit:hover {
+  border-color: var(--authority-brass);
+  box-shadow: none;
+}
+
+.text-link,
+.cin-link,
+.course-editorial-card-link,
+.insight-editorial-card-link {
+  text-decoration-color: var(--authority-brass);
+}
+
+.eyebrow,
+.cin-kicker,
+.course-editorial-catalog-eyebrow,
+.cinematic-page-hero__meta span,
+.cin-section-index span,
+.cin-offer-number,
+.insight-editorial-article-meta span:first-child {
+  color: var(--authority-brass);
+}
+
+.section-orange .eyebrow,
+.authority-advisory-routes .eyebrow,
+.authority-academy-roadmap .eyebrow,
+.insight-editorial-thesis .eyebrow {
+  color: var(--authority-midnight);
+}
+
+.authority-field-guide__card,
+.authority-academy-card,
+.authority-insights-card,
+.authority-media-lane,
+.authority-contact-route,
+.results-editorial-case-grid article {
+  border-color: var(--authority-line);
+}
+
+.course-editorial-filter {
+  border-color: var(--authority-line);
+  background: transparent;
+  color: var(--authority-midnight);
+}
+
+.course-editorial-filter.is-active,
+.course-editorial-filter:hover {
+  border-color: var(--authority-midnight);
+  background: var(--authority-midnight);
+  color: var(--authority-ivory);
+}
+
+.authority-academy-card--flagship {
+  border-color: var(--authority-brass);
+  box-shadow: 0 0 0 1px var(--authority-brass);
+}
+
+input,
+select,
+textarea {
+  border-color: var(--authority-line);
+  background: var(--authority-ivory);
+  color: var(--authority-midnight);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--authority-brass);
+  box-shadow: 0 1px var(--authority-brass);
+  outline: none;
+}
+
+.route-curtain {
+  background: var(--authority-midnight) !important;
+  color: var(--authority-ivory);
+}
+
+.route-curtain__line {
+  background: var(--authority-brass);
+}
+
+.route-curtain__mark,
+.route-curtain__label {
+  color: var(--authority-ivory);
+}
+
+.site-footer,
+.site-footer a,
+.site-footer p,
+.site-footer span,
+.site-footer strong,
+.site-footer small,
+.site-footer h2,
+.site-footer em {
+  color: var(--authority-ivory);
+}
+
+.footer-signal span,
+.site-footer .footer-brand span,
+.footer-links a::after {
+  background: var(--authority-brass);
+}
+
+.authority-path-card__mark,
+.cinematic-media__pause,
+.authority-about-monogram {
+  border-color: rgba(243, 239, 230, 0.36);
+  background: rgba(16, 27, 50, 0.86);
+  color: var(--authority-ivory);
+}
+
+.authority-field-guide__card p,
+.authority-contact-form p,
+.authority-contact-route p,
+.authority-academy-card p,
+.authority-insights-card p {
+  color: rgba(16, 27, 50, 0.76);
+}
+
+.cinematic-media__poster,
+.cinematic-media__video,
+.cin-tension-card img,
+.cin-journal-card img,
+.insight-editorial-card img,
+.course-editorial-card img {
+  filter: saturate(0.88) contrast(1.03) sepia(0.035);
+}
+
+.cinematic-media:hover .cinematic-media__poster,
+.cinematic-media:hover .cinematic-media__video,
+.cin-journal-card:hover img,
+.insight-editorial-card:hover img,
+.course-editorial-card:hover img {
+  filter: saturate(0.92) contrast(1.04) sepia(0.02);
+}
+
+@media (max-width: 700px) {
+  .editorial-page-hero .cinematic-page-hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(16, 27, 50, 0.62) 0%,
+      rgba(16, 27, 50, 0.72) 44%,
+      rgba(16, 27, 50, 0.96) 100%
+    );
   }
 }

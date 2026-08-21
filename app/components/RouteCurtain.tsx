@@ -47,9 +47,11 @@ export function RouteCurtain({
   const lineRef = useRef<HTMLSpanElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hashScrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const initialIntroCompleteRef = useRef(false);
   const transitioningRef = useRef(false);
   const pendingPathRef = useRef<string | null>(null);
+  const pendingHashRef = useRef("");
   const shouldScrollRef = useRef(true);
   const { reducedMotion, refreshScrollTriggers, scrollToTop } = useMotion();
   const [announcement, setAnnouncement] = useState("");
@@ -70,6 +72,7 @@ export function RouteCurtain({
     if (lineRef.current) gsap.set(lineRef.current, { scaleX: 0 });
     transitioningRef.current = false;
     pendingPathRef.current = null;
+    pendingHashRef.current = "";
     document.documentElement.removeAttribute("data-route-transition");
   }, []);
 
@@ -79,6 +82,7 @@ export function RouteCurtain({
 
       const destination = new URL(href, window.location.href);
       pendingPathRef.current = destination.pathname;
+      pendingHashRef.current = destination.hash;
       shouldScrollRef.current = scroll;
 
       if (reducedMotion || !curtainRef.current) {
@@ -159,11 +163,43 @@ export function RouteCurtain({
     if (!transitioningRef.current || pendingPathRef.current !== pathname) return;
 
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (hashScrollTimeoutRef.current) clearTimeout(hashScrollTimeoutRef.current);
     timeoutRef.current = null;
-    if (shouldScrollRef.current) scrollToTop({ immediate: true });
+    hashScrollTimeoutRef.current = null;
+    const pendingHash = pendingHashRef.current;
+    if (shouldScrollRef.current && !pendingHash) {
+      scrollToTop({ immediate: true });
+    }
 
     const frame = window.requestAnimationFrame(() => {
       refreshScrollTriggers();
+      if (shouldScrollRef.current && pendingHash) {
+        const targetId = decodeURIComponent(pendingHash.slice(1));
+        const scrollToTarget = (attempt: number) => {
+          const target = document.getElementById(targetId);
+          if (!target && attempt < 12) {
+            hashScrollTimeoutRef.current = setTimeout(
+              () => scrollToTarget(attempt + 1),
+              50,
+            );
+            return;
+          }
+          if (!target) return;
+
+          window.scrollTo({
+            top: Math.max(0, window.scrollY + target.getBoundingClientRect().top - 96),
+            behavior: "auto",
+          });
+
+          if (attempt === 0) {
+            hashScrollTimeoutRef.current = setTimeout(
+              () => scrollToTarget(1),
+              160,
+            );
+          }
+        };
+        scrollToTarget(0);
+      }
       timelineRef.current?.kill();
       timelineRef.current = gsap.timeline({
         onComplete: () => {
@@ -193,6 +229,7 @@ export function RouteCurtain({
     () => () => {
       timelineRef.current?.kill();
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (hashScrollTimeoutRef.current) clearTimeout(hashScrollTimeoutRef.current);
       document.documentElement.removeAttribute("data-route-transition");
     },
     [],

@@ -25,16 +25,16 @@ export default function SuccessPage() {
           <div className="success-signal">
             <Info aria-hidden="true" />
           </div>
-          <p className="eyebrow">PRE-LAUNCH / NO ORDER CREATED</p>
+          <p className="eyebrow">ACADEMY / LAUNCH ACCESS</p>
           <h1 id="no-order-title">
-            There is no purchase
+            No order was found.
             <br />
-            <em>or access area yet.</em>
+            <em>Join the launch list instead.</em>
           </h1>
           <p className="success-lead">
-            The Property Academy does not currently accept payment, issue
-            orders, deliver downloads, or create learner accounts. This route
-            cannot confirm or unlock anything.
+            Academy checkout is not live yet, so this page cannot confirm a
+            payment or unlock a resource. Return to the Academy or join the
+            first-access list for launch details.
           </p>
           <div className="success-actions authority-access-unavailable__actions">
             <Link className="button button-dark" href="/courses">
@@ -59,7 +59,7 @@ export default function SuccessPage() {
             src="/media/facade-detail.jpg"
             width={1800}
           />
-          <figcaption>ACCESS / NOT YET AVAILABLE</figcaption>
+          <figcaption>ACADEMY / FIRST ACCESS</figcaption>
         </figure>
       </section>
     </main>
