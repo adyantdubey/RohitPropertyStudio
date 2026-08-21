@@ -32,7 +32,10 @@ export function SlideGallery() {
             className="slide-card reveal"
             key={slide.src}
             type="button"
-            onClick={() => setActive(index)}
+            onClick={() => {
+              setActive(index);
+              window.dispatchEvent(new CustomEvent("academy:track", { detail: { event: "course_preview_opened" } }));
+            }}
             aria-label={`Open course preview: ${slide.label}`}
           >
             <span className="slide-card__image">

@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { brand, course, navigation } from "../lib/siteContent";
+import { brand, navigation } from "../lib/siteContent";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -37,7 +37,7 @@ export function SiteHeader() {
         ))}
       </nav>
 
-      <a className="button button--gold header-cta" href={course.whatsapp} target="_blank" rel="noreferrer">
+      <a className="button button--gold header-cta" href="/contact#early-access-form" data-track="early_access_cta">
         Join early access <ArrowUpRight size={16} aria-hidden="true" />
       </a>
 
@@ -57,10 +57,8 @@ export function SiteHeader() {
           {navigation.map((item) => (
             <a key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</a>
           ))}
-          <a href="/about" onClick={() => setOpen(false)}>About Rohit</a>
-          <a href="/contact" onClick={() => setOpen(false)}>Contact</a>
         </nav>
-        <a className="button button--gold" href={course.whatsapp} target="_blank" rel="noreferrer">
+        <a className="button button--gold" href="/contact#early-access-form" onClick={() => setOpen(false)} data-track="early_access_cta">
           Join early access <ArrowUpRight size={16} aria-hidden="true" />
         </a>
       </div>

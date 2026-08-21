@@ -13,9 +13,20 @@
   "images": {
     "binding": "IMAGES"
   },
-  "vars": {
-    "MISTRAL_MODEL": "mistral-small-latest"
-  },
+  "d1_databases": [
+    {
+      "binding": "ACADEMY_DB",
+      "database_name": "rohit-academy-leads",
+      "database_id": "e25fd25b-325d-4764-96a4-8a5ad498325d",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "analytics_engine_datasets": [
+    {
+      "binding": "ACADEMY_ANALYTICS",
+      "dataset": "rohit_academy_events"
+    }
+  ],
   "observability": {
     "enabled": true
   }

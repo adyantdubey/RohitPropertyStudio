@@ -28,12 +28,40 @@ export function MotionLayer() {
         },
       });
 
+      document.querySelectorAll<HTMLElement>("[data-count]").forEach((element) => {
+        const target = Number(element.dataset.count || "0");
+        const suffix = element.dataset.countSuffix || "";
+        const counter = { value: 0 };
+        ScrollTrigger.create({
+          trigger: element,
+          start: "top 92%",
+          once: true,
+          onEnter: () => {
+            gsap.to(counter, {
+              value: target,
+              duration: 0.9,
+              ease: "power2.out",
+              onUpdate: () => { element.textContent = `${Math.round(counter.value)}${suffix}`; },
+            });
+          },
+        });
+      });
+
+      document.querySelectorAll<HTMLElement>("[data-media-reveal]").forEach((element) => {
+        gsap.fromTo(element, { clipPath: "inset(0 0 100% 0)" }, {
+          clipPath: "inset(0 0 0% 0)",
+          duration: 0.78,
+          ease: "power2.out",
+          scrollTrigger: { trigger: element, start: "top 88%", once: true },
+        });
+      });
+
       if (window.matchMedia("(min-width: 800px) and (pointer: fine)").matches) {
-        gsap.to(".portrait-parallax", {
+        document.querySelectorAll<HTMLElement>(".portrait-parallax").forEach((element) => gsap.to(element, {
           yPercent: 4,
           ease: "none",
-          scrollTrigger: { trigger: ".instructor-portrait", start: "top bottom", end: "bottom top", scrub: 0.6 },
-        });
+          scrollTrigger: { trigger: element.parentElement ?? element, start: "top bottom", end: "bottom top", scrub: 0.6 },
+        }));
       }
     });
 
