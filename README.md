@@ -1,13 +1,10 @@
-# Rohitt Kumar Singh — Modern Property Authority
+# Rohit Kumar Singh — Real Estate Academy
 
-A cinematic personal-brand website for Rohitt Kumar Singh, Managing Director of
-Hundred Yards Realtor Pvt Ltd. It is built with React, Vinext, GSAP, and
-Cloudflare Workers.
+A cinematic personal-brand and course site for Rohit Kumar Singh, Managing Director of
+Hundred Yards Realtor Pvt Ltd. Built with React 19, vinext, GSAP and Cloudflare Workers.
 
-The public app is ready for Cloudflare hosting. The Property Academy is visibly
-pre-launch: there is no PDF, price, payment gateway, order, or digital delivery
-today. Contact prepares a message in the visitor's own email app and sends
-nothing from the website itself.
+The Property Academy is visibly pre-launch: there is no PDF, price, payment gateway, order or
+digital delivery today. The early-access form records interest only.
 
 ## Requirements
 
@@ -23,75 +20,45 @@ npm run dev
 
 Open `http://localhost:3000`.
 
-For the optional RKS site guide endpoint, copy `.env.example` to `.env.local` and add a Mistral API key.
-Without a key, the interface remains usable and returns its honest local fallback.
-
 ## Validate
 
 ```bash
 npm run lint
-npm test
+npm test          # builds, then checks the server-rendered HTML of the main pages
 ```
 
-`npm test` creates a production build and checks the rendered home, course, and
-not-found pages.
+## Deploy
 
-## Preview the Cloudflare Worker locally
-
-```powershell
-Copy-Item .dev.vars.example .dev.vars
-npm run preview:worker
-```
-
-The real `.dev.vars` file is ignored by Git.
-
-## Deploy to Cloudflare
-
-Authenticate once, then deploy:
+Pushing to `main` triggers the Cloudflare build and deploy. To deploy by hand:
 
 ```bash
 npx wrangler login
 npm run deploy
 ```
 
-Cloudflare prints the public
-`https://rohit-property-studio.<account>.workers.dev` address after deployment.
-No purchased domain is required.
+Secrets (`MISTRAL_API_KEY`, Turnstile keys) live in the Worker's **Variables and Secrets**,
+never in the repository or the build environment.
 
-To enable the optional site guide in production, add the key as a Cloudflare runtime secret:
+## Adding video
 
-```bash
-npx wrangler secret put MISTRAL_API_KEY
-```
+`public/video/` is empty on purpose — the hero renders a generated skyline canvas, so the site
+looks finished with no video at all. Video is an upgrade layer. See `public/video/README.md`
+for the file budget, the ffmpeg command, and the one-line switch that turns it on.
 
-Never commit that key. `MISTRAL_MODEL` is already configured as a non-secret
-Worker variable in `wrangler.jsonc`.
+## Regenerating brand images
 
-## Automatic deploys from GitHub
+`/brandkit` is an internal, unlinked, `noindex` route containing the artboards behind
+`public/brand/cover.png`, `og.png` and `hero-poster.jpg`. Build, serve, and screenshot the
+`#cover`, `#og` and `#poster` elements to regenerate them.
 
-Automatic deployment is not enabled merely by pushing this repository. Connect
-the existing Worker to GitHub first: open **Workers & Pages →
-rohit-property-studio → Settings → Builds → Connect**, select this repository,
-choose `main` as the production branch, then use:
-
-- Build command: `npm run build`
-- Deploy command: `npm run deploy:built`
-
-Optionally enable non-production branch builds to receive a preview Worker URL
-for pull requests. Once the Git connection exists, pushes to `main` trigger the
-production build and deploy automatically.
-
-Keep `MISTRAL_API_KEY` in the Worker's **Variables and Secrets**, not in GitHub
-or the build environment.
-
-## Current architecture
+## Architecture
 
 - App Router pages and route handlers under `app/`
-- static editorial media under `public/media/`
-- Cloudflare Images-backed `next/image` optimization
-- `/api/ask` as an optional, bounded server-side Mistral site-guide endpoint
-- no database or payment processor connected yet
+- Design tokens and stylesheets under `app/styles/` — see `CLAUDE.md` for the surface system
+- `AmbientBackdrop` (canvas + optional video) and `MotionLayer` (the whole motion vocabulary)
+- `/api/early-access` writes to the D1 database; `/api/events` writes to Analytics Engine
+- Cloudflare Images-backed image optimisation
+- No payment processor connected. Any future integration must verify payment server-side and
+  persist the order before unlocking a download route.
 
-Payments can be added later through a server-side provider. That integration
-must verify successful payment server-side and persist the order before any
-download route is unlocked.
+`CLAUDE.md` holds the design, motion and content rules this site is built to.

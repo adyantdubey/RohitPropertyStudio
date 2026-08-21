@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Manrope, Playfair_Display } from "next/font/google";
-import "./globals.css";
-import "./course-site.css";
-import "./academy-expansion.css";
+import "./styles/tokens.css";
+import "./styles/base.css";
+import "./styles/components.css";
+import "./styles/home.css";
+import "./styles/pages.css";
 import { EventTracker } from "./components/EventTracker";
 import { MotionLayer } from "./components/MotionLayer";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
+import { StickyCta } from "./components/StickyCta";
 import { brand, course, courseJsonLd, personJsonLd } from "./lib/siteContent";
 
 const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"], display: "swap" });
@@ -22,8 +25,15 @@ export async function generateMetadata(): Promise<Metadata> {
     title: { default: `${course.title} — ${brand.name}`, template: `%s — ${brand.name}` },
     description: course.description,
     metadataBase: new URL(origin),
-    openGraph: { type: "website", title: `${course.title} — ${brand.name}`, description: course.description, siteName: brand.academy, url: origin, images: [{ url: "/course/cover.png", width: 1600, height: 900, alt: `${course.title} course preview` }] },
-    twitter: { card: "summary_large_image", title: `${course.title} — ${brand.name}`, description: course.description, images: ["/course/cover.png"] },
+    openGraph: {
+      type: "website",
+      title: `${course.title} — ${brand.name}`,
+      description: course.description,
+      siteName: brand.academy,
+      url: origin,
+      images: [{ url: "/brand/og.png", width: 1200, height: 630, alt: `${course.title} — ${brand.name}` }],
+    },
+    twitter: { card: "summary_large_image", title: `${course.title} — ${brand.name}`, description: course.description, images: ["/brand/og.png"] },
   };
 }
 
@@ -39,7 +49,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <SiteHeader />
         {children}
         <SiteFooter />
-        <a className="mobile-cta" href="/contact#early-access-form" data-track="early_access_cta">Join early access</a>
+        <StickyCta />
       </body>
     </html>
   );

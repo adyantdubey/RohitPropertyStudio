@@ -30,6 +30,19 @@ export const course = {
     "mailto:sales@100yards.in?subject=Basics%20of%20Real%20Estate%20-%20Early%20Access",
 } as const;
 
+/**
+ * Cinematic media. The hero renders a generated skyline canvas on its own; a video
+ * file, when one exists, simply layers on top of it.
+ *
+ * To switch the hero video on: drop the encoded file at public/video/hero.mp4 and
+ * change heroVideo below to "/video/hero.mp4". Nothing else needs to change.
+ * Keep it under 2.5 MB. See public/video/README.md for the shopping list.
+ */
+export const media = {
+  heroVideo: "",
+  heroPoster: "/brand/hero-poster.jpg",
+} as const;
+
 export const verifiedStats = [
   { value: 49, suffix: "", label: "Original course slides", source: "Course file" },
   { value: 4, suffix: "", label: "Structured learning chapters", source: "Course curriculum" },

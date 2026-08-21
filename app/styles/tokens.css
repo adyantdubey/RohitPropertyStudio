@@ -1,0 +1,85 @@
+/* ============================================================
+   Design tokens — 100 Yards Academy
+   Single source of truth for colour, type, space and motion.
+   ============================================================ */
+:root {
+  /* --- ground & surface --- */
+  --deep:        #0d0e10;   /* cinematic ground, hero + video */
+  --carbon:      #17191c;   /* primary dark surface */
+  --carbon-2:    #1e2126;   /* raised dark surface */
+  --carbon-3:    #262a30;   /* hairline-lifted dark surface */
+  --silver:      #d0cfca;   /* primary light surface + dark-surface text */
+  --silver-2:    #e2e1dc;   /* raised light surface */
+  --gold:        #c6a15b;
+  --gold-hi:     #e3c78e;
+  --gold-deep:   #6f5526;   /* accessible gold on light surfaces */
+
+  /* --- text roles (dark surfaces) --- */
+  --on-dark:        #d8d7d2;
+  --on-dark-soft:   #a4a49f;
+  --on-dark-faint:  #74757a;
+  /* --- text roles (light surfaces) --- */
+  --on-light:       #1b1d20;
+  --on-light-soft:  #55585d;
+  --on-light-faint: #82858a;
+
+  /* --- hairlines --- */
+  --line-dark:  #2c3035;
+  --line-light: #bcbab3;
+
+  /* --- semantic (bound per surface) --- */
+  --ink: var(--on-dark);
+  --ink-soft: var(--on-dark-soft);
+  --ink-faint: var(--on-dark-faint);
+  --line: var(--line-dark);
+  --ground: var(--carbon);
+  --accent: var(--gold);
+
+  /* --- type --- */
+  --serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --sans:  var(--font-manrope), Manrope, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --t-micro: 11px;
+  --t-label: 12.5px;
+  --t-small: 14px;
+  --t-body:  16.5px;
+  --t-lead:  clamp(17px, 1.35vw, 20px);
+  --t-h4:    clamp(17px, 1.4vw, 20px);
+  --t-h3:    clamp(19px, 1.7vw, 23px);
+  --t-h2:    clamp(31px, 3.9vw, 56px);
+  --t-h1:    clamp(40px, 5.9vw, 84px);
+  --t-display: clamp(42px, 6.5vw, 94px);
+  --t-numeral: clamp(34px, 3.6vw, 54px);
+
+  /* --- space --- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 44px; --s-8: 60px;
+  --s-9: 80px; --s-10: clamp(72px, 9vw, 128px);
+
+  --shell-max: 1280px;
+  --shell-pad: clamp(20px, 4vw, 40px);
+  --shell: min(var(--shell-max), calc(100vw - (2 * var(--shell-pad))));
+  --header-h: 74px;
+
+  /* --- motion --- */
+  --e-out:   cubic-bezier(.22, .61, .36, 1);
+  --e-inout: cubic-bezier(.65, .05, .36, 1);
+  --d-fast: .22s;
+  --d-base: .42s;
+  --d-slow: .72s;
+
+  /* --- depth --- */
+  --z-base: 1;
+  --z-sticky: 60;
+  --z-header: 100;
+  --z-overlay: 500;
+  --z-veil: 900;
+}
+
+/* Surface contracts. Every block that flips ground colour uses one of these,
+   and every colour inside is read from the semantic tokens above — never a literal. */
+.surface-deep  { --ink: var(--on-dark);  --ink-soft: var(--on-dark-soft);  --ink-faint: var(--on-dark-faint);  --line: var(--line-dark);  --accent: var(--gold);      --ground: var(--deep);    background: var(--ground); color: var(--ink); }
+.surface-dark  { --ink: var(--on-dark);  --ink-soft: var(--on-dark-soft);  --ink-faint: var(--on-dark-faint);  --line: var(--line-dark);  --accent: var(--gold);      --ground: var(--carbon);  background: var(--ground); color: var(--ink); }
+.surface-raise { --ink: var(--on-dark);  --ink-soft: var(--on-dark-soft);  --ink-faint: var(--on-dark-faint);  --line: var(--line-dark);  --accent: var(--gold);      --ground: var(--carbon-2); background: var(--ground); color: var(--ink); }
+.surface-light { --ink: var(--on-light); --ink-soft: var(--on-light-soft); --ink-faint: var(--on-light-faint); --line: var(--line-light); --accent: var(--gold-deep); --ground: var(--silver); background: var(--ground); color: var(--ink); }
+.surface-gold  { --ink: #14161a;         --ink-soft: #3b3122;              --ink-faint: #5d5039;              --line: #a8873f;           --accent: #14161a;          --ground: var(--gold);   background: var(--ground); color: var(--ink); }

@@ -104,7 +104,7 @@ export function EarlyAccessForm({ siteKey }: { siteKey?: string }) {
 
   if (status === "success") {
     return (
-      <div className="early-access-success" role="status">
+      <div className="form__success" role="status">
         <CheckCircle2 size={34} aria-hidden="true" />
         <p className="eyebrow">Interest recorded</p>
         <h3>You are on the early-access list.</h3>
@@ -114,26 +114,26 @@ export function EarlyAccessForm({ siteKey }: { siteKey?: string }) {
   }
 
   return (
-    <form className="early-access-form" ref={formRef} onSubmit={submit} id="early-access-form">
-      <div className="early-access-form__heading">
+    <form className="form" ref={formRef} onSubmit={submit} id="early-access-form">
+      <div className="form__heading">
         <p className="eyebrow">Course launch list</p>
         <h2>Receive the confirmed launch details.</h2>
         <p>Tell us how to reach you. This form records interest only; it does not create an order or collect payment.</p>
       </div>
 
-      <div className="form-field form-field--full">
+      <div className="field field--full">
         <label htmlFor="early-name">Full name</label>
         <input id="early-name" name="name" type="text" autoComplete="name" minLength={2} maxLength={100} required placeholder="Your name" />
       </div>
-      <div className="form-field">
+      <div className="field">
         <label htmlFor="early-email">Email</label>
         <input id="early-email" name="email" type="email" autoComplete="email" maxLength={160} placeholder="you@example.com" />
       </div>
-      <div className="form-field">
+      <div className="field">
         <label htmlFor="early-phone">Phone or WhatsApp</label>
         <input id="early-phone" name="phone" type="tel" autoComplete="tel" maxLength={30} placeholder="+91 …" />
       </div>
-      <div className="form-field form-field--full">
+      <div className="field field--full">
         <label htmlFor="early-interest">I am interested as</label>
         <select id="early-interest" name="interest" defaultValue="course-launch">
           <option value="course-launch">An individual learner</option>
@@ -142,22 +142,22 @@ export function EarlyAccessForm({ siteKey }: { siteKey?: string }) {
           <option value="general">A general enquiry</option>
         </select>
       </div>
-      <div className="form-honeypot" aria-hidden="true">
+      <div className="form__honeypot" aria-hidden="true">
         <label htmlFor="early-website">Website</label>
         <input id="early-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
-      <label className="form-consent form-field--full">
+      <label className="form__consent">
         <input name="consent" type="checkbox" required />
         <span>I agree that the Hundred Yards team may use these details to respond about my selected enquiry. See the <a href="/privacy">privacy notice</a>.</span>
       </label>
-      {siteKey && <div className="turnstile-slot form-field--full" ref={widgetContainer} />}
-      <div className="early-access-form__submit form-field--full">
+      {siteKey && <div className="turnstile-slot" ref={widgetContainer} />}
+      <div className="form__submit">
         <button className="button button--gold" type="submit" disabled={status === "submitting"}>
           {status === "submitting" ? "Recording interest…" : "Join early access"} <ArrowRight size={17} aria-hidden="true" />
         </button>
         <p>Use either email or phone. We do not ask for payment details here.</p>
       </div>
-      {status === "error" && <p className="form-message form-message--error" role="alert">{message} You can also contact <a href="mailto:sales@100yards.in">sales@100yards.in</a>.</p>}
+      {status === "error" && <p className="form__message form__message--error" role="alert">{message} You can also contact <a href="mailto:sales@100yards.in">sales@100yards.in</a>.</p>}
     </form>
   );
 }
