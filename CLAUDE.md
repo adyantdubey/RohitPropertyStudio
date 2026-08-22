@@ -97,6 +97,29 @@ WhatsApp link. The AI is never load-bearing.
 - Local `wrangler dev --local` cannot run the model (needs Cloudflare auth) — the route
   falls back, which is itself the test. The streaming path is verified on production.
 
+## Property Lab rules
+
+`/lab` holds five instruments plus the YouTube rail. The contract:
+
+- Statutory rates (stamp duty, registration, cess, surcharge, GST) live ONLY in
+  `app/lib/labData.ts` with `source`/`asOf`, and every tool renders them with a verify link.
+  When a rate changes in law, that file is the single place to update.
+- Everything user-adjustable is a slider with an illustrative default — never present a
+  default as "today's rate". No tool judges a deal, predicts a price, or offers advice;
+  each carries a boundary note. Keep that when editing copy.
+- The Deal Decoder reuses `/api/ask` with `mode: "decode"` — same Workers AI model, same
+  rate limits, same glossary/WhatsApp fallback. Do not add a second AI route.
+- Quiz questions in `labData.ts` must stay answerable from the course material alone.
+
+## YouTube integration
+
+`/api/videos` fetches the public channel feed (`labData.youtube.feedUrl`), parses it with
+regex (no XML parser needed for Atom entries), caches 6h at the edge, and returns
+`{videos: []}` on ANY failure — the `YouTubeRail` component then collapses to a plain
+channel card, so the site never depends on YouTube. Thumbnails come from i.ytimg.com; the
+iframe (youtube-nocookie.com) loads only after a click. The feed cannot be reached from the
+dev sandbox — the empty-fallback path IS the local test; the full rail appears on production.
+
 ## Market data rules
 
 `app/lib/marketData.ts` feeds the "Market context, source-dated" homepage section.

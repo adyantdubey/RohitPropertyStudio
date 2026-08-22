@@ -12,6 +12,7 @@ export const brand = {
   phoneHref: "tel:+919916866667",
   email: "sales@100yards.in",
   facebook: "https://www.facebook.com/rohitt.kumar.singh.2025?mibextid=wwXIfr",
+  youtube: "https://www.youtube.com/@RealtorRohitSingh",
 } as const;
 
 export const course = {
@@ -165,6 +166,7 @@ export const faqs = [
 
 export const navigation = [
   { label: "Course", href: "/course" },
+  { label: "Property Lab", href: "/lab" },
   { label: "About Rohitt", href: "/about" },
   { label: "Client Stories", href: "/stories" },
   { label: "Resources", href: "/resources" },
@@ -179,7 +181,7 @@ export const personJsonLd = {
   worksFor: { "@type": "Organization", name: brand.company, url: brand.companyUrl },
   image: "/media/rohit-kumar-singh.jpg",
   url: "/about",
-  sameAs: [brand.facebook, brand.aboutUrl],
+  sameAs: [brand.facebook, brand.youtube, brand.aboutUrl],
 };
 
 export const courseJsonLd = {

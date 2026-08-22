@@ -51,6 +51,22 @@ function underLimit(ip: string) {
   return true;
 }
 
+function decodePrompt() {
+  return [
+    `You are the Deal Decoder for ${brand.academy} (Bengaluru, India). The user pastes a fragment of a builder's quote, brochure or listing.`,
+    ``,
+    `Do exactly two things, in plain English for a beginner:`,
+    `1. TRANSLATE: explain what each term or number in the fragment actually means (SBUA, carpet, PLC, EDC, IDC, clubhouse charge, corpus, khata, CLP and so on).`,
+    `2. VERIFY: list the 3-5 specific things the buyer should ask for or check in writing before relying on this fragment.`,
+    ``,
+    `Hard rules:`,
+    `1. NEVER judge whether the deal or price is good or bad, and never estimate a fair price. You translate and point to verification only.`,
+    `2. No legal, tax or investment advice. For anything project-specific, suggest the Hundred Yards team on WhatsApp (+91 99168 66667) or a qualified professional.`,
+    `3. Under 150 words. Short lines. No markdown headings.`,
+    `4. Never invent facts about the project — you only see the fragment.`,
+  ].join("\n");
+}
+
 function systemPrompt() {
   const glossary = glossaryTerms.map((item) => `- ${item.term}: ${item.definition}`).join("\n");
   const chapters = courseModules.map((m) => `${m.number}. ${m.title} — ${m.copy}`).join("\n");
@@ -75,7 +91,7 @@ function systemPrompt() {
   ].join("\n");
 }
 
-type AskBody = { question?: unknown; history?: unknown };
+type AskBody = { question?: unknown; history?: unknown; mode?: unknown };
 type Turn = { role: "user" | "assistant"; content: string };
 
 function json(body: object, status = 200) {
@@ -90,7 +106,9 @@ export async function POST(request: Request) {
     return json({ fallback: true, reason: "bad_request" }, 400);
   }
 
-  const question = typeof body.question === "string" ? body.question.trim().slice(0, 300) : "";
+  const mode = body.mode === "decode" ? "decode" : "ask";
+  const maxLength = mode === "decode" ? 700 : 300;
+  const question = typeof body.question === "string" ? body.question.trim().slice(0, maxLength) : "";
   if (question.length < 2) return json({ fallback: true, reason: "empty" }, 400);
 
   const history: Turn[] = Array.isArray(body.history)
@@ -109,7 +127,7 @@ export async function POST(request: Request) {
   try {
     const result = await ai.run(MODEL, {
       messages: [
-        { role: "system", content: systemPrompt() },
+        { role: "system", content: mode === "decode" ? decodePrompt() : systemPrompt() },
         ...history,
         { role: "user", content: question },
       ],

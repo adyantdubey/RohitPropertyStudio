@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MessageCircle, Phone, MonitorPlay } from "lucide-react";
 import { brand, course, navigation } from "../lib/siteContent";
 
 /**
@@ -23,6 +23,9 @@ export function SiteFooter() {
           </a>
           <a href={brand.phoneHref}>
             <Phone size={16} aria-hidden="true" /> Call <strong>{brand.phoneDisplay}</strong>
+          </a>
+          <a href={brand.youtube} target="_blank" rel="noreferrer" data-track="youtube_clicked">
+            <MonitorPlay size={16} aria-hidden="true" /> YouTube <strong>@RealtorRohitSingh</strong>
           </a>
           <a className="text-link" href={brand.companyUrl} target="_blank" rel="noreferrer" data-track="hundred_yards_clicked">
             Visit Hundred Yards <ArrowUpRight size={14} aria-hidden="true" />

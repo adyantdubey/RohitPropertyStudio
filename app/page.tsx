@@ -7,6 +7,7 @@ import { ClosingCta } from "./components/ClosingCta";
 import { CurriculumRail } from "./components/CurriculumRail";
 import { AreaVisualizer } from "./components/LearningTools";
 import { ReviewMarquee } from "./components/ReviewMarquee";
+import { YouTubeRail } from "./components/lab/YouTubeRail";
 import { SlideGallery } from "./components/SlideGallery";
 import { StatRail } from "./components/StatRail";
 import {
@@ -204,6 +205,9 @@ export default function HomePage() {
             </p>
             <div className="instructor__links" data-reveal data-reveal-delay="3">
               <a className="text-link" href="/about">Read Rohitt&apos;s profile <ChevronRight size={15} aria-hidden="true" /></a>
+              <a className="text-link" href={brand.youtube} target="_blank" rel="noreferrer" data-track="youtube_clicked">
+                Watch Rohitt on YouTube <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
               <a className="text-link" href={brand.aboutUrl} target="_blank" rel="noreferrer" data-track="hundred_yards_clicked">
                 Official Hundred Yards profile <ArrowUpRight size={14} aria-hidden="true" />
               </a>
@@ -237,6 +241,22 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ---------- act 9a+ · watch ---------- */}
+      <section className="section section--tight surface-dark" id="watch">
+        <div className="shell">
+          <div className="head">
+            <div className="head__main">
+              <p className="eyebrow">From the field</p>
+              <h2 data-split>The same lessons, walking through real projects.</h2>
+            </div>
+            <p className="head__note" data-reveal>
+              Property tours, area deep dives and market answers on Rohitt&apos;s channel.
+            </p>
+          </div>
+          <div data-reveal><YouTubeRail limit={3} /></div>
+        </div>
+      </section>
+
       {/* ---------- act 9b · who it is for ---------- */}
       <section className="section surface-dark">
         <div className="shell audience__grid">
@@ -265,7 +285,13 @@ export default function HomePage() {
               back to a real learning objective.
             </p>
           </div>
-          <div className="grid grid--3">
+          <div className="grid grid--4">
+            <a className="card card--link" href="/lab" data-reveal>
+              <span className="card__index">New · Simulators</span>
+              <h3>Property Lab</h3>
+              <p className="card__body">The true cost of a quoted price, rent vs buy over fifteen years, EMI room, an AI deal decoder and a ten-question quiz.</p>
+              <span className="card__cta">Enter the Lab <ArrowUpRight size={14} aria-hidden="true" /></span>
+            </a>
             <a className="card card--link" href="/resources#ask" data-reveal>
               <span className="card__index">New · AI guide</span>
               <h3>Ask the Academy</h3>

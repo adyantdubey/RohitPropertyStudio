@@ -81,6 +81,35 @@ test("server-renders the course curriculum page", async () => {
   assert.match(html, /Learning focus/i);
 });
 
+test("server-renders the Property Lab with all five instruments", async () => {
+  const response = await render("/lab");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /True Cost Simulator/i);
+  assert.match(html, /Rent vs Buy/i);
+  assert.match(html, /EMI (&amp;|&) Eligibility/i);
+  assert.match(html, /Deal Decoder/i);
+  assert.match(html, /Property IQ Quiz/i);
+  // statutory rates must carry their source and a verify pointer
+  assert.match(html, /Stamps (&amp;|&) Registration/i);
+  assert.match(html, /Kaveri/i);
+});
+
+test("the videos api degrades to an empty list when the feed is unreachable", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("test", `videos-${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const response = await worker.fetch(
+    new Request("http://localhost/api/videos"),
+    { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
+    { waitUntil() {}, passThroughOnException() {} },
+  );
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.ok(Array.isArray(data.videos));
+  assert.match(data.channel, /youtube\.com/);
+});
+
 test("returns a course-focused not-found response", async () => {
   const response = await render("/this-route-does-not-exist");
   assert.equal(response.status, 404);

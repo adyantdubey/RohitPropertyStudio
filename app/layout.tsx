@@ -6,6 +6,7 @@ import "./styles/base.css";
 import "./styles/components.css";
 import "./styles/home.css";
 import "./styles/pages.css";
+import "./styles/lab.css";
 import { EventTracker } from "./components/EventTracker";
 import { MotionLayer } from "./components/MotionLayer";
 import { SiteFooter } from "./components/SiteFooter";

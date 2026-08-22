@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, BookOpen, Building2, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, BookOpen, Building2, Mail, Phone, MonitorPlay } from "lucide-react";
 import { AmbientBackdrop } from "../components/AmbientBackdrop";
 import { EarlyAccessForm } from "../components/EarlyAccessForm";
 import { brand, course } from "../lib/siteContent";
@@ -64,6 +64,7 @@ export default function ContactPage() {
               </a>
               <a href={course.email}><span><Mail size={16} aria-hidden="true" />Email</span><strong>{brand.email}</strong></a>
               <a href={brand.phoneHref}><span><Phone size={16} aria-hidden="true" />Call</span><strong>{brand.phoneDisplay}</strong></a>
+              <a href={brand.youtube} target="_blank" rel="noreferrer" data-track="youtube_clicked"><span><MonitorPlay size={16} aria-hidden="true" />YouTube</span><strong>@RealtorRohitSingh</strong></a>
             </div>
             <div className="contact-note">
               <strong>What happens next</strong>

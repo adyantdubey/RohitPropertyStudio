@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
 import { AmbientBackdrop } from "../components/AmbientBackdrop";
 import { ClosingCta } from "../components/ClosingCta";
+import { YouTubeRail } from "../components/lab/YouTubeRail";
 import { brand, course, profileTimeline, teachingPrinciples } from "../lib/siteContent";
 
 export const metadata: Metadata = {
@@ -99,7 +100,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section surface-deep">
+      <section className="section surface-deep" id="watch">
+        <div className="shell">
+          <div className="head">
+            <div className="head__main">
+              <p className="eyebrow">Watch Rohitt work</p>
+              <h2 data-split>Field lessons, on camera.</h2>
+            </div>
+            <p className="head__note" data-reveal>
+              The channel carries what a website cannot: Rohitt walking real Bengaluru projects and
+              answering the questions buyers actually ask.
+            </p>
+          </div>
+          <div data-reveal><YouTubeRail /></div>
+        </div>
+      </section>
+
+      <section className="section surface-dark">
         <div className="shell bridge__grid">
           <div className="bridge__mark" data-reveal aria-hidden="true">100<span>YARDS</span></div>
           <div className="bridge__body" data-reveal data-reveal-delay="1">
