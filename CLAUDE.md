@@ -43,6 +43,14 @@ Load order matters; `app/layout.tsx` imports them in this order:
 | `styles/home.css` | the homepage acts |
 | `styles/pages.css` | page hero and the inner-page blocks |
 
+**ONE navy.** `--navy: #101a2e` is the only dark ground; `--deep/--carbon/--carbon-2/--carbon-3`
+are aliases of it and must stay that way — depth comes from hairlines and type, never shades.
+At most ONE ivory `surface-light` band per page; the rest stays navy. Numbered markers
+(01/02) exist only where order is real: course chapters and journey steps. Roughly half the
+content is deliberately un-boxed (top-rule lists, not bordered cards) and most sections do
+NOT animate — restraint is the anti-AI-look policy. `.annot` is the human margin-note voice;
+`.sketch-word`/`.sketch-ring` are the two hand-drawn marks (use sparingly — two per site).
+
 **Surfaces, not colours.** A section never sets its own background and text colour. It picks
 `surface-deep`, `surface-dark`, `surface-raise`, `surface-light` or `surface-gold`, and every
 colour inside reads `var(--ink)`, `var(--ink-soft)`, `var(--ink-faint)`, `var(--line)` or
@@ -178,3 +186,6 @@ This site makes verifiable claims only.
 - Do not remove the AI fallback paths — the site must sell with the AI completely dead.
 - After every rebuild, restart `wrangler dev` before screenshotting: it snapshots the asset
   directory at startup and serves stale hashes otherwise.
+- `wrangler dev --local` has a quirk: a lazy `next/image` whose URL is DUPLICATED elsewhere on
+  the page may never load locally. `vinext start` renders it correctly and production always
+  has — verify image loading with `vinext start`, not wrangler.

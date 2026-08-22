@@ -66,10 +66,10 @@ export function JourneyRail() {
       <div className="shell rail__head">
         <div className="head">
           <div className="head__main">
-            <p className="eyebrow">04 · The buyer&apos;s journey</p>
+            <p className="eyebrow">The buyer&apos;s journey</p>
             <h2 data-split>Seven doors between shortlisting and holding the keys.</h2>
           </div>
-          <p className="head__note" data-reveal>
+          <p className="head__note">
             What happens at each step, and the paper to collect before walking through the next door.
           </p>
         </div>

@@ -21,11 +21,13 @@ test("server-renders the home page without depending on JavaScript", async () =>
   // The brand spells it with two t's. This catches any regression to one t
   // (scoped to the name — the folder path in font URLs is not page content).
   assert.doesNotMatch(html, /Rohit(?!t) Kumar Singh/);
-  assert.match(html, /Learn the language of property before you sell, advise or invest/i);
+  assert.match(html, /Learn the/i);
+  assert.match(html, /of property before you sell, advise or invest/i);
+  assert.match(html, /sketch-word/); // the hand-drawn underline is present
   assert.match(html, /49-slide visual foundation/i);
   assert.match(html, /See the actual material before launch/i);
   assert.match(html, /A practical map for real property conversations/i);
-  assert.match(html, /Hundred Yards client feedback/i);
+  assert.match(html, /What Hundred Yards clients say/i);
   assert.match(html, /not a course learner/i);
 });
 

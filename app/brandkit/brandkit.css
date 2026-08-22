@@ -1,5 +1,5 @@
 .brandkit { display: grid; gap: 40px; padding: 40px; background: #212e46; }
-.board { position: relative; overflow: hidden; background: #080d18; color: #d8d7d2; }
+.board { position: relative; overflow: hidden; background: #101a2e; color: #d8d7d2; }
 .board__grid {
   position: absolute; inset: 0;
   background-image:

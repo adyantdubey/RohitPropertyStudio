@@ -4,12 +4,14 @@
    ============================================================ */
 :root {
   /* --- ground & surface ---
-     Deep navy, single hue family (~222deg) so every dark surface reads as one
-     material. Gold holds 7.1:1 on --carbon and silver body text 12:1. */
-  --deep:        #080d18;   /* cinematic ground, hero + video */
-  --carbon:      #101a2e;   /* primary dark surface */
-  --carbon-2:    #172338;   /* raised dark surface */
-  --carbon-3:    #212e46;   /* hairline-lifted dark surface */
+     ONE navy. Every dark surface is the same ink so the site reads as a single
+     material — depth comes from hairlines and type, never from shade-shifting.
+     The aliases below all resolve to it; do not reintroduce variants. */
+  --navy:        #101a2e;
+  --deep:        var(--navy);
+  --carbon:      var(--navy);
+  --carbon-2:    var(--navy);
+  --carbon-3:    var(--navy);
   --silver:      #d0cfca;   /* primary light surface + dark-surface text */
   --silver-2:    #e2e1dc;   /* raised light surface */
   --gold:        #c6a15b;

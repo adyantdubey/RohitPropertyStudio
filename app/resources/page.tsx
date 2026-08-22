@@ -35,7 +35,7 @@ export default function ResourcesPage() {
       <section className="surface-dark">
         <div className="shell resource-index__grid">
           {academyResources.map((resource) => (
-            <a className="resource-index__item" href={resource.href} key={resource.number} data-reveal>
+            <a className="resource-index__item" href={resource.href} key={resource.number}>
               <span>{resource.number}</span>
               <div><small>{resource.type}</small><strong>{resource.title}</strong></div>
             </a>
@@ -48,14 +48,14 @@ export default function ResourcesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Ask the Academy</p>
-              <h2 data-split>Put any property term to the AI guide.</h2>
+              <h2>Put any property term to the AI guide.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               Trained on the same vocabulary the course teaches. It explains terms; it does not give
               advice on projects, prices or investments.
             </p>
           </div>
-          <div data-reveal><AcademyGuide /></div>
+          <AcademyGuide />
         </div>
       </section>
 
@@ -64,14 +64,14 @@ export default function ResourcesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Property glossary</p>
-              <h2 data-split>Plain-language definitions with visible boundaries.</h2>
+              <h2>Plain-language definitions with visible boundaries.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               Search the terms that appear in the course. Each definition is intentionally general and
               should be checked against the current project and jurisdiction.
             </p>
           </div>
-          <div data-reveal><Glossary /></div>
+          <Glossary />
         </div>
       </section>
 
@@ -80,37 +80,37 @@ export default function ResourcesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Area terminology visualizer</p>
-              <h2 data-split>One usable area. Several possible labels around it.</h2>
+              <h2>One usable area. Several possible labels around it.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               Change the example values and watch the relationships move. The tool teaches comparison
               discipline; it does not calculate a real project area.
             </p>
           </div>
-          <div data-reveal><AreaVisualizer /></div>
+          <AreaVisualizer />
         </div>
       </section>
 
-      <section className="section surface-light" id="payment-plan">
+      <section className="section surface-dark" id="payment-plan">
         <div className="shell">
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Payment-plan explorer</p>
-              <h2 data-split>Read a schedule as a sequence, not a single percentage.</h2>
+              <h2>Read a schedule as a sequence, not a single percentage.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               Select each illustrative milestone to see how instalments accumulate over time.
             </p>
           </div>
-          <div data-reveal><PaymentPlanExplorer /></div>
+          <PaymentPlanExplorer />
         </div>
       </section>
 
       <section className="section surface-deep" id="site-visit">
         <div className="shell boundary__grid">
-          <div data-reveal>
+          <div>
             <p className="eyebrow">Site-visit questions</p>
-            <h2 data-split>Carry better questions into the room.</h2>
+            <h2>Carry better questions into the room.</h2>
             <p className="head__note">
               This checklist does not assess a project. It helps you identify the details that still need
               to be shown, explained or independently verified.
@@ -118,7 +118,7 @@ export default function ResourcesPage() {
           </div>
           <ol className="numbered">
             {siteVisitQuestions.map((question, index) => (
-              <li key={question} data-reveal>
+              <li key={question}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <p>{question}</p>
                 <Check size={17} aria-hidden="true" />
@@ -130,11 +130,11 @@ export default function ResourcesPage() {
 
       <section className="section surface-dark">
         <div className="shell notes__grid">
-          <div data-reveal>
+          <div>
             <p className="eyebrow">Next in the studio</p>
-            <h2 data-split>Source-dated Bengaluru learning notes.</h2>
+            <h2>Source-dated Bengaluru learning notes.</h2>
           </div>
-          <div data-reveal data-reveal-delay="1">
+          <div>
             <p>
               Future market notes can use official housing-price and regulatory sources, with the source
               and update date beside every number. They will be published only when there is a reliable

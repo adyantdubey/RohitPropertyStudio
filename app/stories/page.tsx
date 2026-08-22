@@ -39,16 +39,15 @@ export default function StoriesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Hundred Yards property clients</p>
-              <h2 data-split>What clear guidance looked like in real conversations.</h2>
+              <h2>In their words</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               Concise paraphrases of feedback published by Hundred Yards, labelled for their actual context.
             </p>
           </div>
           <div className="story-grid">
-            {clientFeedback.map((story, index) => (
-              <article className="story-card" key={story.name} data-reveal data-reveal-delay={String(index)}>
-                <div className="story-card__num">0{index + 1}</div>
+            {clientFeedback.map((story) => (
+              <article className="story-card" key={story.name}>
                 <p className="eyebrow">{story.theme}</p>
                 <blockquote>“{story.quote}”</blockquote>
                 <footer><strong>{story.name}</strong><span>Hundred Yards property client · not a course learner</span></footer>
@@ -63,9 +62,9 @@ export default function StoriesPage() {
 
       <section className="section surface-dark">
         <div className="shell boundary__grid">
-          <div data-reveal>
+          <div>
             <p className="eyebrow">Our evidence standard</p>
-            <h2 data-split>No simulated students. No borrowed success numbers.</h2>
+            <h2>No simulated students. No borrowed success numbers.</h2>
             <p className="head__note">
               Future learner evidence will be kept separate from brokerage and property-service evidence
               so visitors always know what a testimonial supports.
@@ -73,7 +72,7 @@ export default function StoriesPage() {
           </div>
           <ul className="checklist">
             {evidenceStandards.map((standard) => (
-              <li key={standard} data-reveal><Check size={18} aria-hidden="true" /><span>{standard}</span></li>
+              <li key={standard}><Check size={18} aria-hidden="true" /><span>{standard}</span></li>
             ))}
           </ul>
         </div>
@@ -81,8 +80,8 @@ export default function StoriesPage() {
 
       <section className="section surface-deep">
         <div className="shell bridge__grid">
-          <div className="bridge__mark" data-reveal aria-hidden="true">100<span>YARDS</span></div>
-          <div className="bridge__body" data-reveal data-reveal-delay="1">
+          <div className="bridge__mark" aria-hidden="true">100<span>YARDS</span></div>
+          <div className="bridge__body">
             <p className="eyebrow">The practice behind the teaching</p>
             <h2>Hundred Yards provides the professional context, not a substitute for course evidence.</h2>
             <p>

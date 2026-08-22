@@ -154,14 +154,13 @@
 /* ---------- cards ---------- */
 .card {
   display: flex; flex-direction: column; gap: var(--s-3);
-  border: 1px solid var(--line); padding: clamp(22px, 2.4vw, 32px);
-  background: color-mix(in srgb, var(--ink) 3%, transparent);
-  transition: border-color var(--d-base) var(--e-out), transform var(--d-base) var(--e-out), background-color var(--d-base) var(--e-out);
+  border-top: 1px solid var(--line); padding: clamp(18px, 2vw, 26px) 0 0;
+  transition: border-color var(--d-base) var(--e-out), transform var(--d-base) var(--e-out);
 }
 .card__index { color: var(--accent); font-size: var(--t-label); font-weight: 800; letter-spacing: .1em; font-variant-numeric: tabular-nums; }
 .card__body { color: var(--ink-soft); font-size: var(--t-small); line-height: 1.72; }
 .card--link { text-decoration: none; }
-.card--link:hover { border-color: var(--accent); transform: translateY(-4px); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.card--link:hover { border-top-color: var(--accent); transform: translateY(-4px); }
 .card__cta { display: inline-flex; align-items: center; gap: 7px; margin-top: auto; padding-top: var(--s-4); color: var(--accent); font-size: 13px; font-weight: 800; }
 
 .grid { display: grid; gap: clamp(14px, 1.6vw, 22px); }
@@ -185,11 +184,9 @@
 
 /* ---------- ticker ---------- */
 .ticker { overflow: hidden; border-bottom: 1px solid var(--line); padding-block: 14px; }
-.ticker__track { display: flex; width: max-content; gap: 44px; animation: ticker 38s linear infinite; }
+.ticker__track { display: flex; flex-wrap: wrap; justify-content: center; width: 100%; gap: 14px 44px; }
 .ticker__track span { display: inline-flex; align-items: center; gap: 44px; color: var(--ink-faint); font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; white-space: nowrap; }
 .ticker__track span::after { content: "◆"; color: var(--accent); font-size: 8px; letter-spacing: 0; }
-@keyframes ticker { to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) { .ticker__track { animation: none; } }
 
 /* ---------- slide gallery ---------- */
 .gallery { display: grid; grid-template-columns: repeat(6, 1fr); gap: clamp(16px, 2vw, 28px); }
@@ -227,23 +224,31 @@
 .lightbox__nav button:hover, .lightbox__close:hover { border-color: var(--gold); background: var(--gold); color: var(--deep); }
 .lightbox__close { position: absolute; top: -56px; right: 0; }
 
-/* ---------- review marquee ---------- */
-.marquee { display: grid; gap: clamp(14px, 1.6vw, 22px); overflow: hidden; }
-.marquee__row { display: flex; width: max-content; gap: clamp(14px, 1.6vw, 22px); animation: marquee-a 56s linear infinite; }
-.marquee:hover .marquee__row, .marquee:focus-within .marquee__row { animation-play-state: paused; }
-@keyframes marquee-a { to { transform: translateX(calc(-50% - clamp(7px, .8vw, 11px))); } }
-@media (prefers-reduced-motion: reduce) {
-  .marquee__row { animation: none; flex-wrap: wrap; width: 100%; }
+/* ---------- editorial reviews ---------- */
+.pullquote { display: grid; gap: var(--s-5); max-width: 880px; }
+.pullquote blockquote {
+  font-family: var(--serif); font-size: clamp(26px, 3.2vw, 44px); font-weight: 500;
+  line-height: 1.25; letter-spacing: -.02em; text-wrap: balance;
 }
-.review {
-  width: clamp(300px, 33vw, 420px); flex: none;
-  display: grid; gap: var(--s-4); align-content: start;
-  border: 1px solid var(--line); padding: clamp(22px, 2.2vw, 30px);
-}
-.review__theme { color: var(--accent); font-size: var(--t-micro); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-.review blockquote { font-family: var(--serif); font-size: 19px; line-height: 1.45; }
-.review figcaption { font-size: 13.5px; font-weight: 800; }
+.pullquote blockquote::before { content: "“"; color: var(--accent); }
+.pullquote blockquote::after { content: "”"; color: var(--accent); }
+.pullquote figcaption { font-size: 13.5px; font-weight: 800; }
+.pullquote figcaption span { color: var(--ink-faint); font-weight: 600; }
+.review-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); margin-top: clamp(28px, 4vw, 48px); }
+@media (max-width: 680px) { .review-row { grid-template-columns: minmax(0, 1fr); } }
+.review { display: grid; gap: 10px; align-content: start; border-top: 1px solid var(--line); padding-top: var(--s-4); }
+.review blockquote { font-family: var(--serif); font-size: 18px; line-height: 1.5; }
+.review figcaption { font-size: 13px; font-weight: 800; }
 .review figcaption span { display: block; margin-top: 3px; color: var(--ink-faint); font-size: 11.5px; font-weight: 600; }
+
+/* ---------- annotations: the human hand ---------- */
+.annot { color: var(--ink-faint); font-family: var(--serif); font-size: 13.5px; font-style: italic; letter-spacing: 0; }
+.sketch-word { position: relative; display: inline-block; }
+.sketch-word svg { position: absolute; left: -2%; bottom: -.14em; width: 104%; height: .22em; overflow: visible; }
+.sketch-word path { fill: none; stroke: var(--gold); stroke-width: 5; stroke-linecap: round; opacity: .85; }
+.sketch-ring { position: relative; display: inline-block; }
+.sketch-ring svg { position: absolute; inset: -22% -14%; width: 128%; height: 144%; overflow: visible; pointer-events: none; }
+.sketch-ring path { fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linecap: round; opacity: .8; }
 
 /* ---------- accordion (FAQ) ---------- */
 .accordion { border-top: 1px solid var(--line); }

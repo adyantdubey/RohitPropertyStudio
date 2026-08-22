@@ -49,19 +49,19 @@ export default function CoursePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Fit before purchase</p>
-              <h2 data-split>Know whether this foundation matches your starting point.</h2>
+              <h2>Is this course for you?</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               The course is deliberately introductory. It organises vocabulary; it does not replace
               specialist review or guarantee an outcome.
             </p>
           </div>
           <div className="grid grid--2">
-            <article className="card fit-card fit-card--yes" data-reveal>
+            <article className="card fit-card fit-card--yes">
               <p className="eyebrow">Designed for</p>
               <ul>{audiences.map((item) => <li key={item}><Check size={17} aria-hidden="true" />{item}</li>)}</ul>
             </article>
-            <article className="card fit-card" data-reveal data-reveal-delay="1">
+            <article className="card fit-card">
               <p className="eyebrow eyebrow--plain">Not designed for</p>
               <ul>{notFor.map((item) => <li key={item}><X size={17} aria-hidden="true" />{item}</li>)}</ul>
             </article>
@@ -74,16 +74,16 @@ export default function CoursePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Course curriculum</p>
-              <h2 data-split>Four chapters. One coherent foundation.</h2>
+              <h2>Four chapters. One coherent foundation.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               Each chapter moves from recognition to context, giving learners a clearer vocabulary for
               the next conversation.
             </p>
           </div>
           <div className="curriculum-list">
             {courseModules.map((module) => (
-              <article className="curriculum-item" key={module.number} data-reveal>
+              <article className="curriculum-item" key={module.number}>
                 <span className="curriculum-item__num">{module.number}</span>
                 <div><h3>{module.title}</h3><p>{module.copy}</p></div>
                 <div className="curriculum-item__focus"><small>Learning focus</small><p>{module.outcome}</p></div>
@@ -98,9 +98,9 @@ export default function CoursePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Six real previews</p>
-              <h2 data-split>Judge the teaching material directly.</h2>
+              <h2>Judge the teaching material directly.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               Every image below is a genuine slide from the supplied course deck.
             </p>
           </div>
@@ -108,29 +108,29 @@ export default function CoursePage() {
         </div>
       </section>
 
-      <section className="section surface-light" id="terminology-demo">
+      <section className="section surface-dark" id="terminology-demo">
         <div className="shell">
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Interactive lesson</p>
-              <h2 data-split>See why area labels should not be compared blindly.</h2>
+              <h2>See why area labels should not be compared blindly.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               Adjust the illustration to understand how a broader quoted area can grow around the same
               usable carpet area.
             </p>
           </div>
-          <div data-reveal><AreaVisualizer /></div>
+          <div><AreaVisualizer /></div>
         </div>
       </section>
 
       <section className="section surface-dark">
         <div className="shell format__grid">
-          <div data-reveal>
+          <div>
             <p className="eyebrow">What is confirmed today</p>
-            <h2 data-split>A real course preview with an honest launch status.</h2>
+            <h2>A real course preview with an honest launch status.</h2>
           </div>
-          <dl className="offer__facts" data-reveal data-reveal-delay="1">
+          <dl className="offer__facts">
             <div><dt>Course</dt><dd>{course.title}</dd></div>
             <div><dt>Core material</dt><dd>{course.format}</dd></div>
             <div><dt>Level</dt><dd>{course.level}</dd></div>
@@ -142,23 +142,23 @@ export default function CoursePage() {
 
       <section className="section surface-deep">
         <div className="shell boundary__grid">
-          <div data-reveal>
+          <div>
             <p className="eyebrow">Professional boundary</p>
-            <h2 data-split>Foundational knowledge is a starting point, not a property verdict.</h2>
+            <h2>Foundational knowledge is a starting point, not a property verdict.</h2>
           </div>
           <ul className="checklist">
             {courseBoundaries.map((boundary) => (
-              <li key={boundary} data-reveal><Check size={18} aria-hidden="true" /><span>{boundary}</span></li>
+              <li key={boundary}><Check size={18} aria-hidden="true" /><span>{boundary}</span></li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="section surface-light" id="faq">
+      <section className="section surface-dark" id="faq">
         <div className="shell faq__grid">
-          <div className="faq__intro" data-reveal>
+          <div className="faq__intro">
             <p className="eyebrow">Course questions</p>
-            <h2>Everything currently confirmed.</h2>
+            <h2>Questions, answered plainly</h2>
             <p>These answers will be updated when pricing, delivery and access terms are final.</p>
           </div>
           <div className="accordion">

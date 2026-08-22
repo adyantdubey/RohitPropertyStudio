@@ -1,29 +1,31 @@
 import { clientFeedback } from "../lib/siteContent";
 
 /**
- * Hundred Yards property-service feedback — deliberately labelled as such,
- * because the course has not launched and has no learner reviews yet.
+ * One voice carries the section; the others sit quietly beneath it. Static on
+ * purpose — an auto-scrolling wall of praise reads as manufactured, a single
+ * well-chosen sentence reads as chosen by a person.
  */
-export function ReviewMarquee() {
-  // Duplicated once so the loop is seamless; the copy is hidden from assistive tech.
-  const items = [...clientFeedback, ...clientFeedback];
-
-  const card = (review: (typeof clientFeedback)[number], key: string, duplicate: boolean) => (
-    <figure className="review" key={key} aria-hidden={duplicate || undefined}>
-      <span className="review__theme">{review.theme}</span>
-      <blockquote>“{review.quote}”</blockquote>
-      <figcaption>
-        {review.name}
-        <span>Hundred Yards property client · not a course learner</span>
-      </figcaption>
-    </figure>
-  );
-
+export function EditorialReviews() {
+  const [lead, ...rest] = clientFeedback;
   return (
-    <div className="marquee">
-      <div className="marquee__row">
-        {items.map((review, index) => card(review, `r-${index}`, index >= clientFeedback.length))}
+    <>
+      <figure className="pullquote">
+        <blockquote>{lead.quote}</blockquote>
+        <figcaption>
+          {lead.name} <span>· Hundred Yards property client, not a course learner</span>
+        </figcaption>
+      </figure>
+      <div className="review-row">
+        {rest.map((review) => (
+          <figure className="review" key={review.name}>
+            <blockquote>“{review.quote}”</blockquote>
+            <figcaption>
+              {review.name}
+              <span>Hundred Yards property client · not a course learner</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
-    </div>
+    </>
   );
 }

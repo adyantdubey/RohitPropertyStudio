@@ -32,14 +32,14 @@ export default function ContactPage() {
 
       <section className="section section--tight surface-light">
         <div className="shell route-grid">
-          <article className="route-card" data-reveal>
+          <article className="route-card">
             <BookOpen size={22} aria-hidden="true" />
             <span className="route-card__tag">Course</span>
             <h2>Join the learning launch list.</h2>
             <p>Use the form below for individual access or team-training interest.</p>
             <a className="text-link" href="#early-access-form">Open the form</a>
           </article>
-          <article className="route-card" data-reveal data-reveal-delay="1">
+          <article className="route-card">
             <Building2 size={22} aria-hidden="true" />
             <span className="route-card__tag">Property</span>
             <h2>Speak with Hundred Yards.</h2>
@@ -53,8 +53,8 @@ export default function ContactPage() {
 
       <section className="section surface-dark">
         <div className="shell contact__grid">
-          <div data-reveal><EarlyAccessForm siteKey={turnstileSiteKey} /></div>
-          <aside className="contact-aside" data-reveal data-reveal-delay="1">
+          <div><EarlyAccessForm siteKey={turnstileSiteKey} /></div>
+          <aside className="contact-aside">
             <p className="eyebrow">Direct channels</p>
             <h2>Prefer to speak directly?</h2>
             <p>The same Hundred Yards team receives the academy&apos;s early-access enquiries.</p>

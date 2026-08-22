@@ -24,7 +24,7 @@ function HpiChart() {
   const last = hpiSeries[hpiSeries.length - 1];
 
   return (
-    <figure className="market__chart" data-reveal>
+    <figure className="market__chart">
       <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`Line chart: ${hpiSource}`}>
         {[0, 0.5, 1].map((t) => {
           const value = min + t * (max - min);
@@ -52,9 +52,9 @@ export function MarketContext() {
         <div className="head">
           <div className="head__main">
             <p className="eyebrow">Market context, source-dated</p>
-            <h2 data-split>Numbers are only useful when you know where they came from.</h2>
+            <h2>Bengaluru market context, with sources</h2>
           </div>
-          <p className="head__note" data-reveal>
+          <p className="head__note">
             The course teaches the vocabulary; this is the published context around it. Every figure
             names its source and its date — the same standard the course holds itself to.
           </p>
@@ -63,8 +63,8 @@ export function MarketContext() {
         <HpiChart />
 
         <div className="grid grid--3">
-          {marketNotes.map((note, index) => (
-            <article className="market__note" key={note.label} data-reveal data-reveal-delay={String(index)}>
+          {marketNotes.map((note) => (
+            <article className="market__note" key={note.label}>
               <strong className="market__value">{formatValue(note)}</strong>
               <h3>{note.label}</h3>
               <p>{note.detail}</p>
@@ -73,7 +73,7 @@ export function MarketContext() {
           ))}
         </div>
 
-        <p className="market__boundary" data-reveal>
+        <p className="market__boundary">
           Published context, not a recommendation. Market figures change, vary by micro-market, and say
           nothing about any specific project — verify current numbers before acting on them.
           <a className="text-link" href={course.whatsapp} target="_blank" rel="noreferrer" data-track="whatsapp_clicked">

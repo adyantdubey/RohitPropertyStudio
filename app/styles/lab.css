@@ -130,6 +130,7 @@
 
 /* ---------- lab index row ---------- */
 .resource-index__grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.resource-index__item--plain { grid-template-columns: minmax(0, 1fr); }
 
 /* ---------- simulator readouts ---------- */
 .sim-readouts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); }

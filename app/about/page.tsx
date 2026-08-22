@@ -33,17 +33,17 @@ export default function AboutPage() {
             <span className="frame frame--corner">
               <Image src="/media/rohit-kumar-singh.jpg" alt={brand.name} width={1764} height={2352} priority sizes="(max-width: 1000px) 92vw, 32vw" />
             </span>
-            <figcaption><strong>{brand.name}</strong><span>{brand.role}</span></figcaption>
+            <figcaption><strong>{brand.name}</strong><span className="annot">at the Hundred Yards office, Bengaluru</span></figcaption>
           </figure>
         </div>
       </section>
 
       <section className="section surface-light">
         <div className="shell statement-block">
-          <p className="eyebrow" data-reveal>Professional profile</p>
+          <p className="eyebrow">Professional profile</p>
           <div className="statement-block__body">
-            <h2 data-split>Real estate explained with analytical discipline.</h2>
-            <p data-reveal>
+            <h2>Real estate explained with analytical discipline.</h2>
+            <p>
               An Electronics &amp; Communication engineering graduate, Rohitt brings over a decade of
               real-estate experience to his work. The official Hundred Yards biography describes an
               analytical, strategic, customer-centric and technology-driven approach.
@@ -57,17 +57,16 @@ export default function AboutPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Professional thread</p>
-              <h2 data-split>What connects the engineer, the director and the instructor.</h2>
+              <h2>The path so far</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               The sequence below uses only details supported by Rohitt&apos;s current public professional
               biography. Unverified dates and performance claims are intentionally excluded.
             </p>
           </div>
           <div className="timeline">
-            {profileTimeline.map((item, index) => (
-              <article className="timeline__item" key={item.marker} data-reveal>
-                <span className="timeline__num">{String(index + 1).padStart(2, "0")}</span>
+            {profileTimeline.map((item) => (
+              <article className="timeline__item" key={item.marker}>
                 <span className="timeline__marker">{item.marker}</span>
                 <div><h3>{item.title}</h3><p>{item.copy}</p></div>
               </article>
@@ -76,22 +75,21 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="section surface-light">
+      <section className="section surface-dark">
         <div className="shell">
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Teaching philosophy</p>
-              <h2 data-split>Clarity is a method, not a slogan.</h2>
+              <h2>Clarity is a method, not a slogan.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               The academy&apos;s first course converts field vocabulary into a visual sequence while
               keeping the boundary between education and verification explicit.
             </p>
           </div>
           <div className="grid grid--3">
-            {teachingPrinciples.map((principle, index) => (
-              <article className="card" key={principle.title} data-reveal data-reveal-delay={String(index)}>
-                <span className="card__index">0{index + 1}</span>
+            {teachingPrinciples.map((principle) => (
+              <article className="card" key={principle.title}>
                 <h3>{principle.title}</h3>
                 <p className="card__body">{principle.copy}</p>
               </article>
@@ -105,21 +103,21 @@ export default function AboutPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Watch Rohitt work</p>
-              <h2 data-split>Field lessons, on camera.</h2>
+              <h2>Field lessons, on camera.</h2>
             </div>
-            <p className="head__note" data-reveal>
+            <p className="head__note">
               The channel carries what a website cannot: Rohitt walking real Bengaluru projects and
               answering the questions buyers actually ask.
             </p>
           </div>
-          <div data-reveal><YouTubeRail /></div>
+          <div><YouTubeRail /></div>
         </div>
       </section>
 
       <section className="section surface-dark">
         <div className="shell bridge__grid">
-          <div className="bridge__mark" data-reveal aria-hidden="true">100<span>YARDS</span></div>
-          <div className="bridge__body" data-reveal data-reveal-delay="1">
+          <div className="bridge__mark" aria-hidden="true">100<span>YARDS</span></div>
+          <div className="bridge__body">
             <p className="eyebrow">Professional context</p>
             <h2>{brand.company}</h2>
             <p>

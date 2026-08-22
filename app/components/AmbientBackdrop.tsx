@@ -61,9 +61,9 @@ export function AmbientBackdrop({ video, poster }: { video?: string; poster?: st
     };
 
     const layers: Layer[] = [
-      buildLayer(0.0045, 0.60, "#131d31", 46, 120, 0.16, 0.42),
-      buildLayer(0.0105, 0.74, "#0e1626", 38, 96, 0.14, 0.34),
-      buildLayer(0.0210, 0.88, "#080f1b", 30, 78, 0.10, 0.24),
+      buildLayer(0.0045, 0.60, "#0e1729", 46, 120, 0.16, 0.42),
+      buildLayer(0.0105, 0.74, "#0c1424", 38, 96, 0.14, 0.34),
+      buildLayer(0.0210, 0.88, "#0a111f", 30, 78, 0.10, 0.24),
     ];
 
     let width = 0;
@@ -87,9 +87,9 @@ export function AmbientBackdrop({ video, poster }: { video?: string; poster?: st
 
       // Sky: cool near-black falling to a warm horizon.
       const sky = context.createLinearGradient(0, 0, 0, height);
-      sky.addColorStop(0, "#070c16");
-      sky.addColorStop(0.58, "#0d1526");
-      sky.addColorStop(1, "#141d33");
+      sky.addColorStop(0, "#0c1425");
+      sky.addColorStop(0.58, "#101a2e");
+      sky.addColorStop(1, "#101a2e");
       context.fillStyle = sky;
       context.fillRect(0, 0, width, height);
 
