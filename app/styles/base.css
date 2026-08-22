@@ -74,6 +74,15 @@ strong, b { font-weight: 800; }
 }
 .button:active { transform: translateY(1px); }
 .button svg { flex: none; }
+
+/* gold light sweeps across the face on hover */
+.button { position: relative; overflow: hidden; }
+.button::after {
+  content: ""; position: absolute; inset: -2px; pointer-events: none;
+  background: linear-gradient(105deg, transparent 42%, rgba(255, 255, 255, .34) 50%, transparent 58%);
+  transform: translateX(-130%) skewX(-16deg);
+}
+.button:hover::after { transform: translateX(130%) skewX(-16deg); transition: transform .75s var(--e-out); }
 .button[disabled] { opacity: .55; cursor: progress; }
 
 .button--gold {
@@ -115,9 +124,23 @@ strong, b { font-weight: 800; }
 /* pre-animation hidden state — only applied once JS is confirmed present */
 .js [data-split], .js [data-enter] { opacity: 0; }
 
-/* word-mask split headline */
-.split-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+/* word-mask split headline (bottom padding leaves room for descenders + drawn underlines) */
+.split-word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .18em; margin-bottom: -.18em; }
 .split-word__inner { display: inline-block; will-change: transform; }
+
+/* staggered group reveal: put data-reveal-group on the container, children rise in order */
+.js [data-reveal-group] > * { opacity: 0; transform: translate3d(0, 16px, 0); }
+.js [data-reveal-group].is-in > * {
+  opacity: 1; transform: none;
+  transition: opacity var(--d-slow) var(--e-out), transform var(--d-slow) var(--e-out);
+}
+.js [data-reveal-group].is-in > *:nth-child(2) { transition-delay: .07s; }
+.js [data-reveal-group].is-in > *:nth-child(3) { transition-delay: .14s; }
+.js [data-reveal-group].is-in > *:nth-child(4) { transition-delay: .21s; }
+.js [data-reveal-group].is-in > *:nth-child(5) { transition-delay: .28s; }
+.js [data-reveal-group].is-in > *:nth-child(6) { transition-delay: .35s; }
+.js [data-reveal-group].is-in > *:nth-child(7) { transition-delay: .42s; }
+.js [data-reveal-group].is-in > *:nth-child(8) { transition-delay: .49s; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -125,5 +148,6 @@ strong, b { font-weight: 800; }
     animation-duration: .01ms !important; animation-iteration-count: 1 !important;
     transition-duration: .01ms !important; scroll-behavior: auto !important;
   }
-  .js [data-reveal], .js [data-split], .js [data-enter] { opacity: 1; transform: none; }
+  .js [data-reveal], .js [data-split], .js [data-enter],
+  .js [data-reveal-group] > * { opacity: 1; transform: none; }
 }

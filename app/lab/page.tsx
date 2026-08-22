@@ -53,7 +53,7 @@ export default function LabPage() {
       </section>
 
       <section className="surface-dark">
-        <div className="shell resource-index__grid resource-index__grid--4">
+        <div className="shell resource-index__grid resource-index__grid--4" data-reveal-group>
           {instruments.map((item) => (
             <a className="resource-index__item resource-index__item--plain" href={item.href} key={item.title}>
               <div><small>{item.type}</small><strong>{item.title}</strong></div>
@@ -67,7 +67,7 @@ export default function LabPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Ownership Simulator</p>
-              <h2>The whole money story of one home, on one screen.</h2>
+              <h2 data-split>The whole money story of one home, on one screen.</h2>
             </div>
             <p className="head__note">
               What the quoted price really becomes, what the loan costs each month, and how owning
@@ -83,7 +83,7 @@ export default function LabPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">The Build</p>
-              <h2>Watch your money become a building.</h2>
+              <h2 data-split>Watch your money become a building.</h2>
             </div>
             <p className="head__note">
               A construction-linked plan, drawn: select a milestone and the tower rises to show how much
@@ -99,7 +99,7 @@ export default function LabPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">EMI Time Machine</p>
-              <h2>Where every instalment actually goes.</h2>
+              <h2 data-split>Where every instalment actually goes.</h2>
             </div>
             <p className="head__note">
               Gold builds your equity; silver is the cost of borrowing. Scrub through the years and watch
@@ -117,7 +117,7 @@ export default function LabPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">X-ray Apartment</p>
-              <h2>One flat. Three sizes on paper.</h2>
+              <h2 data-split>One flat. Three sizes on paper.</h2>
             </div>
             <p className="head__note">
               Carpet, built-up, super built-up — the same home in cutaway. The walls never move; only the
@@ -133,7 +133,7 @@ export default function LabPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">AI Deal Decoder</p>
-              <h2>Paste the jargon. Get it in plain English.</h2>
+              <h2 data-split>Paste the jargon. Get it in plain English.</h2>
             </div>
             <p className="head__note">
               SBUA, PLC, corpus, CLP 10:80:10 — drop any line from a quote or brochure and the AI
@@ -149,7 +149,7 @@ export default function LabPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Property IQ Quiz</p>
-              <h2>Ten questions. How fluent are you already?</h2>
+              <h2 data-split>Ten questions. How fluent are you already?</h2>
             </div>
             <p className="head__note">
               Drawn straight from the 49-slide course material. Instant feedback, honest score.
@@ -164,7 +164,7 @@ export default function LabPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">From the field</p>
-              <h2>The same lessons, walking through real projects.</h2>
+              <h2 data-split>The same lessons, walking through real projects.</h2>
             </div>
             <p className="head__note">
               Rohitt&apos;s channel — property tours, area deep dives and market answers from Bengaluru.

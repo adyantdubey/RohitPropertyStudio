@@ -24,7 +24,7 @@ export default function CoursePage() {
   return (
     <main id="main-content">
       <section className="page-hero">
-        <AmbientBackdrop />
+        <AmbientBackdrop video="/video/site.mp4" />
         <div className="shell page-hero__grid">
           <div className="page-hero__copy">
             <p className="eyebrow" data-enter>{course.eyebrow}</p>
@@ -49,14 +49,14 @@ export default function CoursePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Fit before purchase</p>
-              <h2>Is this course for you?</h2>
+              <h2 data-split>Is this course for you?</h2>
             </div>
             <p className="head__note">
               The course is deliberately introductory. It organises vocabulary; it does not replace
               specialist review or guarantee an outcome.
             </p>
           </div>
-          <div className="grid grid--2">
+          <div className="grid grid--2" data-reveal-group>
             <article className="card fit-card fit-card--yes">
               <p className="eyebrow">Designed for</p>
               <ul>{audiences.map((item) => <li key={item}><Check size={17} aria-hidden="true" />{item}</li>)}</ul>
@@ -74,7 +74,7 @@ export default function CoursePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Course curriculum</p>
-              <h2>Four chapters. One coherent foundation.</h2>
+              <h2 data-split>Four chapters. One coherent foundation.</h2>
             </div>
             <p className="head__note">
               Each chapter moves from recognition to context, giving learners a clearer vocabulary for
@@ -98,7 +98,7 @@ export default function CoursePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Six real previews</p>
-              <h2>Judge the teaching material directly.</h2>
+              <h2 data-split>Judge the teaching material directly.</h2>
             </div>
             <p className="head__note">
               Every image below is a genuine slide from the supplied course deck.
@@ -113,7 +113,7 @@ export default function CoursePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Interactive lesson</p>
-              <h2>See why area labels should not be compared blindly.</h2>
+              <h2 data-split>See why area labels should not be compared blindly.</h2>
             </div>
             <p className="head__note">
               Adjust the illustration to understand how a broader quoted area can grow around the same
@@ -128,7 +128,7 @@ export default function CoursePage() {
         <div className="shell format__grid">
           <div>
             <p className="eyebrow">What is confirmed today</p>
-            <h2>A real course preview with an honest launch status.</h2>
+            <h2 data-split>A real course preview with an honest launch status.</h2>
           </div>
           <dl className="offer__facts">
             <div><dt>Course</dt><dd>{course.title}</dd></div>
@@ -144,9 +144,9 @@ export default function CoursePage() {
         <div className="shell boundary__grid">
           <div>
             <p className="eyebrow">Professional boundary</p>
-            <h2>Foundational knowledge is a starting point, not a property verdict.</h2>
+            <h2 data-split>Foundational knowledge is a starting point, not a property verdict.</h2>
           </div>
-          <ul className="checklist">
+          <ul className="checklist" data-reveal-group>
             {courseBoundaries.map((boundary) => (
               <li key={boundary}><Check size={18} aria-hidden="true" /><span>{boundary}</span></li>
             ))}
@@ -158,10 +158,10 @@ export default function CoursePage() {
         <div className="shell faq__grid">
           <div className="faq__intro">
             <p className="eyebrow">Course questions</p>
-            <h2>Questions, answered plainly</h2>
+            <h2 data-split>Questions, answered plainly</h2>
             <p>These answers will be updated when pricing, delivery and access terms are final.</p>
           </div>
-          <div className="accordion">
+          <div className="accordion" data-reveal-group>
             {faqs.map((faq) => (
               <details key={faq.question}><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}</p></details>
             ))}

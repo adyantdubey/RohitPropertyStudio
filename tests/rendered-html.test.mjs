@@ -23,7 +23,9 @@ test("server-renders the home page without depending on JavaScript", async () =>
   assert.doesNotMatch(html, /Rohit(?!t) Kumar Singh/);
   assert.match(html, /Learn the/i);
   assert.match(html, /of property before you sell, advise or invest/i);
-  assert.match(html, /sketch-word/); // the hand-drawn underline is present
+  assert.match(html, /u-line/); // the self-drawing gold underline is present
+  assert.match(html, /\/video\/hero\.mp4/); // hero film wired
+  assert.match(html, /ticker__set/); // marquee track present
   assert.match(html, /49-slide visual foundation/i);
   assert.match(html, /See the actual material before launch/i);
   assert.match(html, /A practical map for real property conversations/i);
@@ -47,12 +49,13 @@ test("market figures always name their source", async () => {
   }
 });
 
-test("keeps the cinematic hero working with no video file present", async () => {
+test("hero film plays over a canvas fallback that never disappears", async () => {
   const html = await (await render()).text();
-  // The generated canvas backdrop is always in the markup; a <video> element is
-  // only emitted once media.heroVideo points at a real file.
+  // The generated canvas backdrop is always in the markup, so a missing or
+  // unplayable video file can never leave the hero empty.
   assert.match(html, /class="backdrop"/);
-  assert.doesNotMatch(html, /<video[^>]*src="\/video\/hero\.mp4"/);
+  assert.match(html, /backdrop__canvas/);
+  assert.match(html, /<video[^>]*\/video\/hero\.mp4/);
 });
 
 test("server-renders the factual instructor page", async () => {

@@ -47,9 +47,12 @@ Load order matters; `app/layout.tsx` imports them in this order:
 are aliases of it and must stay that way — depth comes from hairlines and type, never shades.
 At most ONE ivory `surface-light` band per page; the rest stays navy. Numbered markers
 (01/02) exist only where order is real: course chapters and journey steps. Roughly half the
-content is deliberately un-boxed (top-rule lists, not bordered cards) and most sections do
-NOT animate — restraint is the anti-AI-look policy. `.annot` is the human margin-note voice;
-`.sketch-word`/`.sketch-ring` are the two hand-drawn marks (use sparingly — two per site).
+content is deliberately un-boxed (top-rule lists, not bordered cards). `.annot` is the human
+margin-note voice. The look is CINEMATIC, not sparse (owner direction, Aug 2026): sections
+animate in, headlines split, videos play behind the hero/course/contact moments — but always
+inside the motion contract below, always navy-tinted, and never with hand-drawn doodle marks
+(`.sketch-word`/`.sketch-ring` were tried and rejected; `.u-line` + `data-draw` is the
+approved drawn-line treatment).
 
 **Surfaces, not colours.** A section never sets its own background and text colour. It picks
 `surface-deep`, `surface-dark`, `surface-raise`, `surface-light` or `surface-gold`, and every
@@ -73,19 +76,32 @@ in this codebase carries `:not(.eyebrow)`. Keep it that way, or give the paragra
 | `data-clip` | media wipes open from the bottom |
 | `data-parallax` | media drifts slowly, desktop pointer only |
 | `data-scrub-words` | statement words brighten through the scroll |
+| `data-reveal-group` | container whose direct children rise in a stagger (CSS-driven) |
+| `path[data-draw]` | SVG path draws itself in (used by `.u-line` underlines and charts) |
 
-Rules: 0.4–0.9s, `power2`/`power3` easing. No bounce, spin, elastic or rotation. Text never
-parallaxes. One signature move per page — the homepage has the pinned curriculum rail, and
-nothing else competes with it. Everything is skipped under `prefers-reduced-motion`.
+`splitWords` keeps element children (e.g. the `.u-line` span) intact as one rising unit —
+don't flatten a `data-split` headline to plain text. MotionLayer also owns the fixed
+`.scroll-progress` gold hairline and the route-change fade on `main`. The ticker marquee and
+`.backdrop__video` drift are pure CSS. Rules: 0.4–0.9s, `power2`/`power3` easing. No bounce,
+spin, elastic or rotation. Text never parallaxes. One signature move per page — the homepage
+has the pinned curriculum rail, and nothing else competes with it. Everything is skipped
+under `prefers-reduced-motion`.
 
 ## Media contract
 
 `AmbientBackdrop.tsx` layers, bottom to top: a generated skyline canvas, an optional video, a
 brand scrim, and film grain. **The canvas always works, so no page depends on a video file.**
-To switch the hero video on, drop `public/video/hero.mp4` in and set `media.heroVideo` in
-`app/lib/siteContent.ts`. Budgets and the ffmpeg recipe are in `public/video/README.md`.
+The hero video is LIVE: `public/video/hero.mp4` (city aerial, 1080p, ~6MB) via
+`media.heroVideo`. `site.mp4` (construction) plays behind the home offer band via
+`SectionVideo` and the course page hero; `keys.mp4` plays behind the contact hero. All three
+are re-encoded 1080p H.264, well under Cloudflare's 25MiB asset cap — NEVER commit a raw
+4K/90MB source; recipe in `public/video/README.md`. `SectionVideo.tsx` = absolutely
+positioned video + navy tint inside a `.section--video` section; it removes itself if the
+file is missing or refuses to play.
 
 Video is disabled outright under reduced motion and Save-Data, and pauses off-screen.
+Sandbox note: this container's Chromium has no H.264, so local Playwright always exercises
+the no-video fallback; verify the film layers with webm stand-ins or on production.
 
 ## AI layer (Workers AI)
 

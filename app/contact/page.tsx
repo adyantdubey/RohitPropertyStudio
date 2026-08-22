@@ -16,7 +16,7 @@ export default function ContactPage() {
   return (
     <main id="main-content">
       <section className="page-hero">
-        <AmbientBackdrop />
+        <AmbientBackdrop video="/video/keys.mp4" />
         <div className="shell page-hero__grid">
           <div className="page-hero__copy">
             <p className="eyebrow" data-enter>Contact</p>
@@ -31,7 +31,7 @@ export default function ContactPage() {
       </section>
 
       <section className="section section--tight surface-light">
-        <div className="shell route-grid">
+        <div className="shell route-grid" data-reveal-group>
           <article className="route-card">
             <BookOpen size={22} aria-hidden="true" />
             <span className="route-card__tag">Course</span>
@@ -56,7 +56,7 @@ export default function ContactPage() {
           <div><EarlyAccessForm siteKey={turnstileSiteKey} /></div>
           <aside className="contact-aside">
             <p className="eyebrow">Direct channels</p>
-            <h2>Prefer to speak directly?</h2>
+            <h2 data-split>Prefer to speak directly?</h2>
             <p>The same Hundred Yards team receives the academy&apos;s early-access enquiries.</p>
             <div className="channels">
               <a href={course.whatsapp} target="_blank" rel="noreferrer" data-track="whatsapp_clicked">

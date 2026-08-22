@@ -9,13 +9,13 @@ export function EditorialReviews() {
   const [lead, ...rest] = clientFeedback;
   return (
     <>
-      <figure className="pullquote">
+      <figure className="pullquote" data-reveal>
         <blockquote>{lead.quote}</blockquote>
         <figcaption>
           {lead.name} <span>· Hundred Yards property client, not a course learner</span>
         </figcaption>
       </figure>
-      <div className="review-row">
+      <div className="review-row" data-reveal-group>
         {rest.map((review) => (
           <figure className="review" key={review.name}>
             <blockquote>“{review.quote}”</blockquote>

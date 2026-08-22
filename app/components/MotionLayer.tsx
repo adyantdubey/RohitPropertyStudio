@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -20,16 +20,41 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  */
 export function MotionLayer() {
   const pathname = usePathname();
+  const progressRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     document.documentElement.classList.add("js");
   }, []);
 
+  /* --- gold scroll-progress hairline --- */
+  useEffect(() => {
+    const bar = progressRef.current;
+    if (!bar) return;
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? Math.min(window.scrollY / max, 1) : 0})`;
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
+
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     // Reveal is CSS-driven so it still works if GSAP never loads.
-    const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const revealTargets = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-group]"));
     let revealObserver: IntersectionObserver | null = null;
 
     if (reduced) {
@@ -54,27 +79,43 @@ export function MotionLayer() {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // Splits into masked word spans. Element children (e.g. an underlined word)
+    // are kept intact and rise as a single unit.
     const splitWords = (element: HTMLElement) => {
       if (element.dataset.splitDone === "true") return [];
-      const words = (element.textContent || "").split(/\s+/).filter(Boolean);
-      element.textContent = "";
       const inners: HTMLElement[] = [];
-      words.forEach((word, index) => {
+      const wrap = (content: Node | string) => {
         const outer = document.createElement("span");
         outer.className = "split-word";
         const inner = document.createElement("span");
         inner.className = "split-word__inner";
-        inner.textContent = word;
+        if (typeof content === "string") inner.textContent = content;
+        else inner.appendChild(content);
         outer.appendChild(inner);
-        element.appendChild(outer);
-        if (index < words.length - 1) element.appendChild(document.createTextNode(" "));
         inners.push(inner);
+        return outer;
+      };
+      const nodes = Array.from(element.childNodes);
+      element.textContent = "";
+      nodes.forEach((node) => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          (node.textContent || "").split(/\s+/).filter(Boolean).forEach((word) => {
+            element.appendChild(wrap(word));
+            element.appendChild(document.createTextNode(" "));
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          element.appendChild(wrap(node));
+          element.appendChild(document.createTextNode(" "));
+        }
       });
       element.dataset.splitDone = "true";
       return inners;
     };
 
     const context = gsap.context(() => {
+      /* --- soft fade-through on route change --- */
+      gsap.fromTo("main", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.45, ease: "power1.out" });
+
       /* --- headlines --- */
       document.querySelectorAll<HTMLElement>("[data-split]").forEach((element) => {
         const inners = splitWords(element);
@@ -186,5 +227,5 @@ export function MotionLayer() {
     };
   }, [pathname]);
 
-  return null;
+  return <i className="scroll-progress" ref={progressRef} aria-hidden="true" />;
 }

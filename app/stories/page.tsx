@@ -39,13 +39,13 @@ export default function StoriesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Hundred Yards property clients</p>
-              <h2>In their words</h2>
+              <h2 data-split>In their words</h2>
             </div>
             <p className="head__note">
               Concise paraphrases of feedback published by Hundred Yards, labelled for their actual context.
             </p>
           </div>
-          <div className="story-grid">
+          <div className="story-grid" data-reveal-group>
             {clientFeedback.map((story) => (
               <article className="story-card" key={story.name}>
                 <p className="eyebrow">{story.theme}</p>
@@ -64,13 +64,13 @@ export default function StoriesPage() {
         <div className="shell boundary__grid">
           <div>
             <p className="eyebrow">Our evidence standard</p>
-            <h2>No simulated students. No borrowed success numbers.</h2>
+            <h2 data-split>No simulated students. No borrowed success numbers.</h2>
             <p className="head__note">
               Future learner evidence will be kept separate from brokerage and property-service evidence
               so visitors always know what a testimonial supports.
             </p>
           </div>
-          <ul className="checklist">
+          <ul className="checklist" data-reveal-group>
             {evidenceStandards.map((standard) => (
               <li key={standard}><Check size={18} aria-hidden="true" /><span>{standard}</span></li>
             ))}

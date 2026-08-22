@@ -8,6 +8,7 @@ import { CurriculumRail } from "./components/CurriculumRail";
 import { AreaVisualizer } from "./components/LearningTools";
 import { EditorialReviews } from "./components/ReviewMarquee";
 import { YouTubeRail } from "./components/lab/YouTubeRail";
+import { SectionVideo } from "./components/SectionVideo";
 import { SlideGallery } from "./components/SlideGallery";
 import { StatRail } from "./components/StatRail";
 import {
@@ -53,12 +54,12 @@ export default function HomePage() {
           <div className="hero__grid">
             <div className="hero__copy">
               <p className="eyebrow" data-enter>{course.eyebrow}</p>
-              <h1 data-enter>
+              <h1 data-split>
                 Learn the{" "}
-                <span className="sketch-word">
+                <span className="u-line">
                   language
-                  <svg viewBox="0 0 100 10" aria-hidden="true" preserveAspectRatio="none">
-                    <path d="M2,7 C18,4 34,8 52,5.5 C70,3.5 86,7 98,4.5" />
+                  <svg viewBox="0 0 100 8" aria-hidden="true" preserveAspectRatio="none">
+                    <path data-draw d="M2,5.5 C30,3 70,3 98,5.5" />
                   </svg>
                 </span>{" "}
                 of property before you sell, advise or invest.
@@ -103,7 +104,11 @@ export default function HomePage() {
       {/* ---------- act 2 · where the credibility comes from ---------- */}
       <div className="ticker surface-dark" aria-hidden="true">
         <div className="ticker__track">
-          {[...marketTicker, ...marketTicker].map((item, index) => <span key={`${item}-${index}`}>{item}</span>)}
+          {[0, 1].map((copy) => (
+            <div className="ticker__set" key={copy}>
+              {marketTicker.map((item) => <span key={item}>{item}</span>)}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -119,7 +124,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid--4">
+          <div className="grid grid--4" data-reveal-group>
             {learningOutcomes.map((outcome) => (
               <article className="card" key={outcome.number}>
                 <h3>{outcome.title}</h3>
@@ -153,12 +158,14 @@ export default function HomePage() {
       {/* ---------- act 6 · the teaching method ---------- */}
       <section className="section surface-dark">
         <div className="shell method__grid">
-          <div className="frame frame--corner">
-            <Image src="/course/area-terminology.png" alt="Course lesson showing area terminology" width={1600} height={900} sizes="(max-width: 1000px) 92vw, 46vw" />
+          <div className="frame frame--corner" data-clip>
+            <div data-parallax="4">
+              <Image src="/course/area-terminology.png" alt="Course lesson showing area terminology" width={1600} height={900} sizes="(max-width: 1000px) 92vw, 46vw" />
+            </div>
           </div>
           <div className="method__copy">
             <p className="eyebrow">The teaching method</p>
-            <h2>How the slides teach: picture first, term second.</h2>
+            <h2 data-split>How the slides teach: picture first, term second.</h2>
             <p>
               Visual explanations separate terms that are usually heard together. The aim is not to turn
               one slide into transaction advice; it is to give the learner a clearer place to begin
@@ -178,7 +185,7 @@ export default function HomePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Interactive lesson</p>
-              <h2>Try a lesson: the same flat, three sizes on paper.</h2>
+              <h2 data-split>Try a lesson: the same flat, three sizes on paper.</h2>
             </div>
             <p className="head__note" data-reveal>
               Move the sliders and watch a broader quoted area grow around exactly the same carpet area.
@@ -229,7 +236,7 @@ export default function HomePage() {
         <div className="shell">
           <div className="head">
             <div className="head__main">
-              <h2>What Hundred Yards clients say</h2>
+              <h2 data-split>What Hundred Yards clients say</h2>
             </div>
             <p className="head__note">
               Paraphrased property-service reviews published by Hundred Yards — not course reviews,
@@ -251,7 +258,7 @@ export default function HomePage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">From the field</p>
-              <h2>The same lessons, walking through real projects.</h2>
+              <h2 data-split>The same lessons, walking through real projects.</h2>
             </div>
             <p className="head__note">
               Property tours, area deep dives and market answers on Rohitt&apos;s channel.
@@ -265,10 +272,10 @@ export default function HomePage() {
       <section className="section surface-dark">
         <div className="shell audience__grid">
           <div className="head__main">
-            <h2>Who this is for</h2>
-            <p className="head__note">Useful whether you are entering the industry or facing it as a customer.</p>
+            <h2 data-split>Who this is for</h2>
+            <p className="head__note" data-reveal>Useful whether you are entering the industry or facing it as a customer.</p>
           </div>
-          <ul className="checklist">
+          <ul className="checklist" data-reveal-group>
             {audiences.map((audience) => (
               <li key={audience}><Check size={19} aria-hidden="true" /><span>{audience}</span></li>
             ))}
@@ -281,13 +288,13 @@ export default function HomePage() {
         <div className="shell">
           <div className="head">
             <div className="head__main">
-              <h2>Free tools while you wait</h2>
+              <h2 data-split>Free tools while you wait</h2>
             </div>
-            <p className="head__note">
+            <p className="head__note" data-reveal>
               Built from the same curriculum — every tool points back to a real learning objective.
             </p>
           </div>
-          <div className="grid grid--4">
+          <div className="grid grid--4" data-reveal-group>
             <a className="card card--link" href="/lab">
               <span className="card__index">Simulators</span>
               <h3>Property Lab</h3>
@@ -313,7 +320,8 @@ export default function HomePage() {
       </section>
 
       {/* ---------- act 9d · the offer ---------- */}
-      <section className="section surface-deep" id="early-access">
+      <section className="section section--video surface-deep" id="early-access">
+        <SectionVideo src="/video/site.mp4" opacity={0.34} />
         <div className="shell offer__grid">
           <div className="frame frame--corner" data-clip>
             <Image src="/brand/cover.png" alt={`${course.title} visual training deck`} width={1600} height={900} sizes="(max-width: 1000px) 92vw, 38vw" />
@@ -347,7 +355,7 @@ export default function HomePage() {
             <p className="eyebrow">Clear boundaries</p>
             <h2 data-split>Education should clarify what still needs verification.</h2>
           </div>
-          <ul className="checklist">
+          <ul className="checklist" data-reveal-group>
             {courseBoundaries.map((boundary) => (
               <li key={boundary}><Check size={18} aria-hidden="true" /><span>{boundary}</span></li>
             ))}
@@ -360,10 +368,10 @@ export default function HomePage() {
         <div className="shell faq__grid">
           <div className="faq__intro">
             <p className="eyebrow">Before you join</p>
-            <h2>Straight answers about the launch.</h2>
+            <h2 data-split>Straight answers about the launch.</h2>
             <p>Payment, final access terms and launch pricing will be published before any order is accepted.</p>
           </div>
-          <div className="accordion">
+          <div className="accordion" data-reveal-group>
             {faqs.map((faq) => (
               <details key={faq.question}>
                 <summary>{faq.question}<span aria-hidden="true">+</span></summary>

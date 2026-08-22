@@ -33,7 +33,7 @@ export default function ResourcesPage() {
       </section>
 
       <section className="surface-dark">
-        <div className="shell resource-index__grid">
+        <div className="shell resource-index__grid" data-reveal-group>
           {academyResources.map((resource) => (
             <a className="resource-index__item" href={resource.href} key={resource.number}>
               <span>{resource.number}</span>
@@ -48,7 +48,7 @@ export default function ResourcesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Ask the Academy</p>
-              <h2>Put any property term to the AI guide.</h2>
+              <h2 data-split>Put any property term to the AI guide.</h2>
             </div>
             <p className="head__note">
               Trained on the same vocabulary the course teaches. It explains terms; it does not give
@@ -64,7 +64,7 @@ export default function ResourcesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Property glossary</p>
-              <h2>Plain-language definitions with visible boundaries.</h2>
+              <h2 data-split>Plain-language definitions with visible boundaries.</h2>
             </div>
             <p className="head__note">
               Search the terms that appear in the course. Each definition is intentionally general and
@@ -80,7 +80,7 @@ export default function ResourcesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Area terminology visualizer</p>
-              <h2>One usable area. Several possible labels around it.</h2>
+              <h2 data-split>One usable area. Several possible labels around it.</h2>
             </div>
             <p className="head__note">
               Change the example values and watch the relationships move. The tool teaches comparison
@@ -96,7 +96,7 @@ export default function ResourcesPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Payment-plan explorer</p>
-              <h2>Read a schedule as a sequence, not a single percentage.</h2>
+              <h2 data-split>Read a schedule as a sequence, not a single percentage.</h2>
             </div>
             <p className="head__note">
               Select each illustrative milestone to see how instalments accumulate over time.
@@ -110,7 +110,7 @@ export default function ResourcesPage() {
         <div className="shell boundary__grid">
           <div>
             <p className="eyebrow">Site-visit questions</p>
-            <h2>Carry better questions into the room.</h2>
+            <h2 data-split>Carry better questions into the room.</h2>
             <p className="head__note">
               This checklist does not assess a project. It helps you identify the details that still need
               to be shown, explained or independently verified.
@@ -132,7 +132,7 @@ export default function ResourcesPage() {
         <div className="shell notes__grid">
           <div>
             <p className="eyebrow">Next in the studio</p>
-            <h2>Source-dated Bengaluru learning notes.</h2>
+            <h2 data-split>Source-dated Bengaluru learning notes.</h2>
           </div>
           <div>
             <p>

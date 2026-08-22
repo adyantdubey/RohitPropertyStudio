@@ -40,7 +40,7 @@ export const course = {
  * Keep it under 2.5 MB. See public/video/README.md for the shopping list.
  */
 export const media = {
-  heroVideo: "",
+  heroVideo: "/video/hero.mp4",
   heroPoster: "/brand/hero-poster.jpg",
 } as const;
 

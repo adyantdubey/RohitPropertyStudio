@@ -42,7 +42,7 @@ export default function AboutPage() {
         <div className="shell statement-block">
           <p className="eyebrow">Professional profile</p>
           <div className="statement-block__body">
-            <h2>Real estate explained with analytical discipline.</h2>
+            <h2 data-split>Real estate explained with analytical discipline.</h2>
             <p>
               An Electronics &amp; Communication engineering graduate, Rohitt brings over a decade of
               real-estate experience to his work. The official Hundred Yards biography describes an
@@ -57,14 +57,14 @@ export default function AboutPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Professional thread</p>
-              <h2>The path so far</h2>
+              <h2 data-split>The path so far</h2>
             </div>
             <p className="head__note">
               The sequence below uses only details supported by Rohitt&apos;s current public professional
               biography. Unverified dates and performance claims are intentionally excluded.
             </p>
           </div>
-          <div className="timeline">
+          <div className="timeline" data-reveal-group>
             {profileTimeline.map((item) => (
               <article className="timeline__item" key={item.marker}>
                 <span className="timeline__marker">{item.marker}</span>
@@ -80,14 +80,14 @@ export default function AboutPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Teaching philosophy</p>
-              <h2>Clarity is a method, not a slogan.</h2>
+              <h2 data-split>Clarity is a method, not a slogan.</h2>
             </div>
             <p className="head__note">
               The academy&apos;s first course converts field vocabulary into a visual sequence while
               keeping the boundary between education and verification explicit.
             </p>
           </div>
-          <div className="grid grid--3">
+          <div className="grid grid--3" data-reveal-group>
             {teachingPrinciples.map((principle) => (
               <article className="card" key={principle.title}>
                 <h3>{principle.title}</h3>
@@ -103,7 +103,7 @@ export default function AboutPage() {
           <div className="head">
             <div className="head__main">
               <p className="eyebrow">Watch Rohitt work</p>
-              <h2>Field lessons, on camera.</h2>
+              <h2 data-split>Field lessons, on camera.</h2>
             </div>
             <p className="head__note">
               The channel carries what a website cannot: Rohitt walking real Bengaluru projects and
@@ -119,7 +119,7 @@ export default function AboutPage() {
           <div className="bridge__mark" aria-hidden="true">100<span>YARDS</span></div>
           <div className="bridge__body">
             <p className="eyebrow">Professional context</p>
-            <h2>{brand.company}</h2>
+            <h2 data-split>{brand.company}</h2>
             <p>
               Hundred Yards is the professional context behind Rohitt&apos;s real-estate work. Its
               published company profile describes services for homebuyers, investors, NRIs and
