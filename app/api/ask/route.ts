@@ -21,7 +21,20 @@ type AiRunner = {
   ) => Promise<ReadableStream<Uint8Array> | Record<string, unknown>>;
 };
 
-const MODEL = "@cf/meta/llama-3.1-8b-instruct";
+/**
+ * Model candidates, tried in order. Catalogs change and accounts differ, so the
+ * route discovers a working model at runtime and remembers it per isolate.
+ * GET /api/ask reports which candidate works and the exact error from each
+ * failure — open it in a browser when the AI "rests" in production.
+ */
+const MODELS = [
+  "@cf/meta/llama-3.1-8b-instruct",
+  "@cf/meta/llama-3.1-8b-instruct-fast",
+  "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+  "@cf/meta/llama-3-8b-instruct",
+  "@cf/mistralai/mistral-small-3.1-24b-instruct",
+] as const;
+let workingModel: string | null = null;
 const DAILY_VISITOR_LIMIT = 15;
 const DAILY_GLOBAL_LIMIT = 400;
 
@@ -124,28 +137,67 @@ export async function POST(request: Request) {
   const ip = request.headers.get("CF-Connecting-IP") || "anonymous";
   if (!underLimit(ip)) return json({ fallback: true, reason: "limit" });
 
-  try {
-    const result = await ai.run(MODEL, {
-      messages: [
-        { role: "system", content: mode === "decode" ? decodePrompt() : systemPrompt() },
-        ...history,
-        { role: "user", content: question },
-      ],
-      stream: true,
-      max_tokens: 320,
-      temperature: 0.3,
-    });
+  const messages = [
+    { role: "system", content: mode === "decode" ? decodePrompt() : systemPrompt() },
+    ...history,
+    { role: "user", content: question },
+  ];
+  const options = { messages, max_tokens: 320, temperature: 0.3 };
+  const candidates = workingModel ? [workingModel, ...MODELS.filter((m) => m !== workingModel)] : [...MODELS];
+  const errors: string[] = [];
 
-    if (result instanceof ReadableStream) {
-      return new Response(result, {
-        headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-store" },
-      });
+  // First pass: streaming. Second pass: plain JSON (some models/accounts
+  // reject stream mode but answer fine without it — the client handles both).
+  for (const streaming of [true, false]) {
+    for (const model of candidates) {
+      try {
+        const result = await ai.run(model, { ...options, stream: streaming });
+        if (streaming && result instanceof ReadableStream) {
+          workingModel = model;
+          return new Response(result, {
+            headers: { "Content-Type": "text/event-stream", "Cache-Control": "no-store" },
+          });
+        }
+        const text = typeof (result as { response?: unknown }).response === "string"
+          ? (result as { response: string }).response
+          : "";
+        if (text) {
+          workingModel = model;
+          return json({ answer: text });
+        }
+        errors.push(`${model}${streaming ? " (stream)" : ""}: empty response`);
+      } catch (error) {
+        errors.push(`${model}${streaming ? " (stream)" : ""}: ${error instanceof Error ? error.message.slice(0, 160) : "unknown error"}`);
+      }
     }
-    const text = typeof (result as { response?: unknown }).response === "string"
-      ? (result as { response: string }).response
-      : "";
-    return text ? json({ answer: text }) : json({ fallback: true, reason: "empty_answer" });
-  } catch {
-    return json({ fallback: true, reason: "error" });
   }
+  console.error("All AI candidates failed", errors);
+  return json({ fallback: true, reason: "error", errors: errors.slice(0, 10) });
+}
+
+/**
+ * Health check: GET /api/ask answers with which model works and the exact
+ * error from every candidate that does not. Safe to expose — it holds no
+ * secrets and costs a few tokens at most.
+ */
+export async function GET() {
+  const ai = (env as unknown as { AI?: AiRunner }).AI;
+  if (!ai) return json({ ok: false, binding: "missing" });
+  const report: Array<{ model: string; ok: boolean; error?: string; sample?: string }> = [];
+  for (const model of MODELS) {
+    try {
+      const result = await ai.run(model, {
+        messages: [{ role: "user", content: "Reply with the single word: ready" }],
+        max_tokens: 10,
+      });
+      const text = typeof (result as { response?: unknown }).response === "string"
+        ? (result as { response: string }).response.trim()
+        : "";
+      report.push({ model, ok: text.length > 0, sample: text.slice(0, 40) });
+      if (text && !workingModel) workingModel = model;
+    } catch (error) {
+      report.push({ model, ok: false, error: error instanceof Error ? error.message.slice(0, 200) : "unknown" });
+    }
+  }
+  return json({ ok: report.some((r) => r.ok), workingModel, report });
 }

@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import { AmbientBackdrop } from "../components/AmbientBackdrop";
 import { ClosingCta } from "../components/ClosingCta";
+import { ConstructionPlan } from "../components/lab/ConstructionPlan";
 import { DealDecoder } from "../components/lab/DealDecoder";
-import { EmiEstimator } from "../components/lab/EmiEstimator";
+import { EmiFlow } from "../components/lab/EmiFlow";
+import { JourneyRail } from "../components/lab/JourneyRail";
+import { OwnershipSimulator } from "../components/lab/OwnershipSimulator";
+import { XrayFlat } from "../components/lab/XrayFlat";
 import { PropertyQuiz } from "../components/lab/PropertyQuiz";
-import { RentVsBuySimulator } from "../components/lab/RentVsBuySimulator";
-import { TrueCostSimulator } from "../components/lab/TrueCostSimulator";
 import { YouTubeRail } from "../components/lab/YouTubeRail";
 
 export const metadata: Metadata = {
@@ -16,11 +18,14 @@ export const metadata: Metadata = {
 };
 
 const instruments = [
-  { number: "01", title: "True Cost Simulator", href: "#true-cost", type: "Simulator" },
-  { number: "02", title: "Rent vs Buy Simulator", href: "#rent-vs-buy", type: "Simulator" },
-  { number: "03", title: "EMI & Eligibility", href: "#emi", type: "Estimator" },
-  { number: "04", title: "AI Deal Decoder", href: "#decoder", type: "AI tool" },
-  { number: "05", title: "Property IQ Quiz", href: "#quiz", type: "Ten questions" },
+  { number: "01", title: "Ownership Simulator", href: "#simulator", type: "The money story" },
+  { number: "02", title: "The Build", href: "#build", type: "Payment plan" },
+  { number: "03", title: "EMI Time Machine", href: "#emi-flow", type: "Where EMIs go" },
+  { number: "04", title: "Buyer's Journey", href: "#journey", type: "Seven steps" },
+  { number: "05", title: "X-ray Apartment", href: "#xray", type: "Area anatomy" },
+  { number: "06", title: "AI Deal Decoder", href: "#decoder", type: "AI tool" },
+  { number: "07", title: "Property IQ Quiz", href: "#quiz", type: "Ten questions" },
+  { number: "08", title: "Watch the field", href: "#watch", type: "YouTube" },
 ] as const;
 
 export default function LabPage() {
@@ -33,11 +38,11 @@ export default function LabPage() {
             <p className="eyebrow" data-enter>Property Lab</p>
             <h1 data-split>Play with the numbers before you face them in real life.</h1>
             <p data-enter>
-              Five instruments built from the same material the course teaches. Real statutory rates
-              where the law sets them, your own assumptions everywhere else.
+              Instruments built from the same material the course teaches. Real statutory rates where
+              the law sets them, your own assumptions everywhere else.
             </p>
             <div className="page-hero__actions" data-enter>
-              <a className="button button--gold" href="#true-cost">Start with the true cost <ChevronDown size={16} aria-hidden="true" /></a>
+              <a className="button button--gold" href="#simulator">Open the simulator <ChevronDown size={16} aria-hidden="true" /></a>
             </div>
           </div>
           <div className="page-hero__aside" data-enter>
@@ -48,7 +53,7 @@ export default function LabPage() {
       </section>
 
       <section className="surface-dark">
-        <div className="shell resource-index__grid resource-index__grid--5">
+        <div className="shell resource-index__grid resource-index__grid--4">
           {instruments.map((item) => (
             <a className="resource-index__item" href={item.href} key={item.number} data-reveal>
               <span>{item.number}</span>
@@ -58,59 +63,77 @@ export default function LabPage() {
         </div>
       </section>
 
-      <section className="section surface-light" id="true-cost">
+      <section className="section surface-light" id="simulator">
         <div className="shell">
           <div className="head">
             <div className="head__main">
-              <p className="eyebrow">01 · True Cost Simulator</p>
-              <h2 data-split>Why an ₹80 lakh home never costs ₹80 lakh.</h2>
+              <p className="eyebrow">01 · Ownership Simulator</p>
+              <h2 data-split>The whole money story of one home, on one screen.</h2>
             </div>
             <p className="head__note" data-reveal>
-              Stamp duty, cess, surcharge, registration and GST — the statutory charges every buyer in
-              Karnataka meets, on real current rates.
+              What the quoted price really becomes, what the loan costs each month, and how owning
+              compares with renting over fifteen years — every number moves as you drag.
             </p>
           </div>
-          <div data-reveal><TrueCostSimulator /></div>
+          <div data-reveal><OwnershipSimulator /></div>
         </div>
       </section>
 
-      <section className="section surface-dark" id="rent-vs-buy">
+      <section className="section surface-dark" id="build">
         <div className="shell">
           <div className="head">
             <div className="head__main">
-              <p className="eyebrow">02 · Rent vs Buy Simulator</p>
-              <h2 data-split>The oldest argument in property, as a picture.</h2>
+              <p className="eyebrow">02 · The Build</p>
+              <h2 data-split>Watch your money become a building.</h2>
             </div>
             <p className="head__note" data-reveal>
-              Fifteen years, two paths, five sliders. Watch how small changes in assumptions flip the
-              answer — that is the real lesson.
+              A construction-linked plan, drawn: select a milestone and the tower rises to show how much
+              of the price is already out of your hands.
             </p>
           </div>
-          <div data-reveal><RentVsBuySimulator /></div>
+          <div data-reveal><ConstructionPlan /></div>
         </div>
       </section>
 
-      <section className="section surface-light" id="emi">
+      <section className="section surface-light" id="emi-flow">
         <div className="shell">
           <div className="head">
             <div className="head__main">
-              <p className="eyebrow">03 · EMI &amp; Eligibility</p>
-              <h2 data-split>What a lender might actually stretch to.</h2>
+              <p className="eyebrow">03 · EMI Time Machine</p>
+              <h2 data-split>Where every instalment actually goes.</h2>
             </div>
             <p className="head__note" data-reveal>
-              The half-of-income rule banks commonly apply, turned into a dial. An orientation, not an
-              offer.
+              Gold builds your equity; silver is the cost of borrowing. Scrub through the years and watch
+              the balance of power shift.
             </p>
           </div>
-          <div data-reveal><EmiEstimator /></div>
+          <div data-reveal><EmiFlow /></div>
         </div>
       </section>
 
-      <section className="section surface-deep" id="decoder">
+      <JourneyRail />
+
+      <section className="section surface-deep" id="xray">
         <div className="shell">
           <div className="head">
             <div className="head__main">
-              <p className="eyebrow">04 · AI Deal Decoder</p>
+              <p className="eyebrow">05 · X-ray Apartment</p>
+              <h2 data-split>One flat. Three sizes on paper.</h2>
+            </div>
+            <p className="head__note" data-reveal>
+              Carpet, built-up, super built-up — the same home in cutaway. The walls never move; only the
+              definition grows.
+            </p>
+          </div>
+          <div data-reveal><XrayFlat /></div>
+        </div>
+      </section>
+
+      <section className="section surface-light" id="decoder">
+        <div className="shell">
+          <div className="head">
+            <div className="head__main">
+              <p className="eyebrow">06 · AI Deal Decoder</p>
               <h2 data-split>Paste the jargon. Get it in plain English.</h2>
             </div>
             <p className="head__note" data-reveal>
@@ -126,7 +149,7 @@ export default function LabPage() {
         <div className="shell">
           <div className="head">
             <div className="head__main">
-              <p className="eyebrow">05 · Property IQ Quiz</p>
+              <p className="eyebrow">07 · Property IQ Quiz</p>
               <h2 data-split>Ten questions. How fluent are you already?</h2>
             </div>
             <p className="head__note" data-reveal>

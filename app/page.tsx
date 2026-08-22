@@ -289,7 +289,7 @@ export default function HomePage() {
             <a className="card card--link" href="/lab" data-reveal>
               <span className="card__index">New · Simulators</span>
               <h3>Property Lab</h3>
-              <p className="card__body">The true cost of a quoted price, rent vs buy over fifteen years, EMI room, an AI deal decoder and a ten-question quiz.</p>
+              <p className="card__body">One live simulator for the whole money story of a home, an AI deal decoder and a ten-question property quiz.</p>
               <span className="card__cta">Enter the Lab <ArrowUpRight size={14} aria-hidden="true" /></span>
             </a>
             <a className="card card--link" href="/resources#ask" data-reveal>

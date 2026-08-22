@@ -81,13 +81,15 @@ test("server-renders the course curriculum page", async () => {
   assert.match(html, /Learning focus/i);
 });
 
-test("server-renders the Property Lab with all five instruments", async () => {
+test("server-renders the Property Lab with its instruments", async () => {
   const response = await render("/lab");
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.match(html, /True Cost Simulator/i);
-  assert.match(html, /Rent vs Buy/i);
-  assert.match(html, /EMI (&amp;|&) Eligibility/i);
+  assert.match(html, /Ownership Simulator/i);
+  assert.match(html, /Watch your money become a building/i);
+  assert.match(html, /EMI Time Machine/i);
+  assert.match(html, /Seven doors between shortlisting/i);
+  assert.match(html, /X-ray Apartment/i);
   assert.match(html, /Deal Decoder/i);
   assert.match(html, /Property IQ Quiz/i);
   // statutory rates must carry their source and a verify pointer

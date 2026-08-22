@@ -107,9 +107,23 @@ WhatsApp link. The AI is never load-bearing.
 - Everything user-adjustable is a slider with an illustrative default — never present a
   default as "today's rate". No tool judges a deal, predicts a price, or offers advice;
   each carries a boundary note. Keep that when editing copy.
-- The Deal Decoder reuses `/api/ask` with `mode: "decode"` — same Workers AI model, same
-  rate limits, same glossary/WhatsApp fallback. Do not add a second AI route.
+- The Deal Decoder reuses `/api/ask` with `mode: "decode"` — same limits and fallback. Do not
+  add a second AI route.
+- The AI route tries MODEL CANDIDATES in order (stream, then non-stream) and remembers the
+  first that works. `GET /api/ask` is a health check that reports per-model status and exact
+  errors — open it on production whenever the AI "rests". Local dev always fails with
+  "Binding AI needs to be run remotely"; that is expected, not a bug.
+- The money tools are ONE instrument (`OwnershipSimulator.tsx`): true cost + EMI + rent-vs-buy
+  in a single panel, all outputs tweened through the `useTweened` rAF hook (zero-duration under
+  reduced motion) with catmull-rom smoothed chart curves. Do not split it back into separate
+  graph tools.
 - Quiz questions in `labData.ts` must stay answerable from the course material alone.
+- Showpieces: ConstructionPlan (tower builds with the payment plan), EmiFlow (stacked
+  amortisation streams + year scrubber), XrayFlat (isometric area cutaway), JourneyRail
+  (pinned 7-step film-strip, same engine as the homepage rail — at most one pinned section
+  per page besides it). All share `useTweened`/`smoothPath` from
+  `app/components/lab/useTweened.ts`. Watch the `.tool__controls strong { color: var(--accent) }`
+  cascade — controls with gold active backgrounds need `color: inherit` on their strong.
 
 ## YouTube integration
 

@@ -15,6 +15,9 @@ const allowedEvents = new Set([
   "quiz_completed",
   "video_played",
   "youtube_clicked",
+  "construction_tool_used",
+  "emi_flow_used",
+  "xray_used",
 ]);
 
 export async function POST(request: Request) {
