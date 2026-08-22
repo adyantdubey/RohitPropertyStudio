@@ -9,7 +9,7 @@ import { academyResources, siteVisitQuestions } from "../lib/siteContent";
 
 export const metadata: Metadata = {
   title: "Learning Resources",
-  description: "Interactive foundational property tools and plain-language resources from Rohit Real Estate Academy.",
+  description: "Interactive foundational property tools and plain-language resources from Rohitt Real Estate Academy.",
   alternates: { canonical: "/resources" },
 };
 

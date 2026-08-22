@@ -61,9 +61,9 @@ export function AmbientBackdrop({ video, poster }: { video?: string; poster?: st
     };
 
     const layers: Layer[] = [
-      buildLayer(0.0045, 0.60, "#15171b", 46, 120, 0.16, 0.42),
-      buildLayer(0.0105, 0.74, "#101215", 38, 96, 0.14, 0.34),
-      buildLayer(0.0210, 0.88, "#0a0b0d", 30, 78, 0.10, 0.24),
+      buildLayer(0.0045, 0.60, "#131d31", 46, 120, 0.16, 0.42),
+      buildLayer(0.0105, 0.74, "#0e1626", 38, 96, 0.14, 0.34),
+      buildLayer(0.0210, 0.88, "#080f1b", 30, 78, 0.10, 0.24),
     ];
 
     let width = 0;
@@ -87,17 +87,17 @@ export function AmbientBackdrop({ video, poster }: { video?: string; poster?: st
 
       // Sky: cool near-black falling to a warm horizon.
       const sky = context.createLinearGradient(0, 0, 0, height);
-      sky.addColorStop(0, "#0b0c0e");
-      sky.addColorStop(0.58, "#101115");
-      sky.addColorStop(1, "#17140e");
+      sky.addColorStop(0, "#070c16");
+      sky.addColorStop(0.58, "#0d1526");
+      sky.addColorStop(1, "#141d33");
       context.fillStyle = sky;
       context.fillRect(0, 0, width, height);
 
       // Horizon glow, drifting slowly across the width.
       const glowX = width * (0.42 + Math.sin(elapsed * 0.00007) * 0.22);
       const glow = context.createRadialGradient(glowX, height * 0.92, 0, glowX, height * 0.92, height * 0.85);
-      glow.addColorStop(0, "rgba(198,161,91,0.20)");
-      glow.addColorStop(0.55, "rgba(198,161,91,0.05)");
+      glow.addColorStop(0, "rgba(198,161,91,0.17)");
+      glow.addColorStop(0.55, "rgba(198,161,91,0.045)");
       glow.addColorStop(1, "rgba(198,161,91,0)");
       context.fillStyle = glow;
       context.fillRect(0, 0, width, height);

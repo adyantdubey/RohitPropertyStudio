@@ -3,11 +3,13 @@
    Single source of truth for colour, type, space and motion.
    ============================================================ */
 :root {
-  /* --- ground & surface --- */
-  --deep:        #0d0e10;   /* cinematic ground, hero + video */
-  --carbon:      #17191c;   /* primary dark surface */
-  --carbon-2:    #1e2126;   /* raised dark surface */
-  --carbon-3:    #262a30;   /* hairline-lifted dark surface */
+  /* --- ground & surface ---
+     Deep navy, single hue family (~222deg) so every dark surface reads as one
+     material. Gold holds 7.1:1 on --carbon and silver body text 12:1. */
+  --deep:        #080d18;   /* cinematic ground, hero + video */
+  --carbon:      #101a2e;   /* primary dark surface */
+  --carbon-2:    #172338;   /* raised dark surface */
+  --carbon-3:    #212e46;   /* hairline-lifted dark surface */
   --silver:      #d0cfca;   /* primary light surface + dark-surface text */
   --silver-2:    #e2e1dc;   /* raised light surface */
   --gold:        #c6a15b;
@@ -24,7 +26,7 @@
   --on-light-faint: #82858a;
 
   /* --- hairlines --- */
-  --line-dark:  #2c3035;
+  --line-dark:  #2a3752;
   --line-light: #bcbab3;
 
   /* --- semantic (bound per surface) --- */
@@ -82,4 +84,4 @@
 .surface-dark  { --ink: var(--on-dark);  --ink-soft: var(--on-dark-soft);  --ink-faint: var(--on-dark-faint);  --line: var(--line-dark);  --accent: var(--gold);      --ground: var(--carbon);  background: var(--ground); color: var(--ink); }
 .surface-raise { --ink: var(--on-dark);  --ink-soft: var(--on-dark-soft);  --ink-faint: var(--on-dark-faint);  --line: var(--line-dark);  --accent: var(--gold);      --ground: var(--carbon-2); background: var(--ground); color: var(--ink); }
 .surface-light { --ink: var(--on-light); --ink-soft: var(--on-light-soft); --ink-faint: var(--on-light-faint); --line: var(--line-light); --accent: var(--gold-deep); --ground: var(--silver); background: var(--ground); color: var(--ink); }
-.surface-gold  { --ink: #14161a;         --ink-soft: #3b3122;              --ink-faint: #5d5039;              --line: #a8873f;           --accent: #14161a;          --ground: var(--gold);   background: var(--ground); color: var(--ink); }
+.surface-gold  { --ink: #101827;         --ink-soft: #33301f;              --ink-faint: #554e38;              --line: #a8873f;           --accent: #101827;          --ground: var(--gold);   background: var(--ground); color: var(--ink); }

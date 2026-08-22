@@ -11,7 +11,7 @@ export function SiteFooter() {
     <footer className="site-footer surface-deep">
       <div className="site-footer__main shell">
         <div data-reveal>
-          <p className="eyebrow">Rohit Real Estate Academy</p>
+          <p className="eyebrow">Rohitt Real Estate Academy</p>
           <h2>Foundational property literacy,<br />taught from the field.</h2>
         </div>
         <div className="site-footer__channels" data-reveal data-reveal-delay="1">

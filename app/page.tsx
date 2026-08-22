@@ -198,12 +198,12 @@ export default function HomePage() {
               “Most people are not confused by property. They are confused by the words used around it.”
             </p>
             <p data-reveal data-reveal-delay="2">
-              Rohit is an Electronics &amp; Communication engineering graduate with over a decade of
+              Rohitt is an Electronics &amp; Communication engineering graduate with over a decade of
               experience in real estate. His work combines analytical thinking, market experience and a
               practical focus on making property decisions easier to understand.
             </p>
             <div className="instructor__links" data-reveal data-reveal-delay="3">
-              <a className="text-link" href="/about">Read Rohit&apos;s profile <ChevronRight size={15} aria-hidden="true" /></a>
+              <a className="text-link" href="/about">Read Rohitt&apos;s profile <ChevronRight size={15} aria-hidden="true" /></a>
               <a className="text-link" href={brand.aboutUrl} target="_blank" rel="noreferrer" data-track="hundred_yards_clicked">
                 Official Hundred Yards profile <ArrowUpRight size={14} aria-hidden="true" />
               </a>

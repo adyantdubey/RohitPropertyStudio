@@ -17,8 +17,10 @@ test("server-renders the home page without depending on JavaScript", async () =>
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
-  assert.match(html, /Rohit Kumar Singh/i);
-  assert.doesNotMatch(html, />Rohitt Kumar Singh</i);
+  assert.match(html, /Rohitt Kumar Singh/);
+  // The brand spells it with two t's. This catches any regression to one t
+  // (scoped to the name — the folder path in font URLs is not page content).
+  assert.doesNotMatch(html, /Rohit(?!t) Kumar Singh/);
   assert.match(html, /Learn the language of property before you sell, advise or invest/i);
   assert.match(html, /49-slide visual foundation/i);
   assert.match(html, /See the actual material before launch/i);

@@ -1,7 +1,7 @@
 export const brand = {
-  name: "Rohit Kumar Singh",
-  shortName: "Rohit",
-  academy: "Rohit Real Estate Academy",
+  name: "Rohitt Kumar Singh",
+  shortName: "Rohitt",
+  academy: "Rohitt Real Estate Academy",
   role: "Managing Director",
   company: "Hundred Yards Realtor Pvt Ltd",
   location: "Bengaluru, India",
@@ -143,9 +143,9 @@ export const siteVisitQuestions = [
 ] as const;
 
 export const profileTimeline = [
-  { marker: "Foundation", title: "Engineering-led analytical thinking", copy: "Rohit's Electronics & Communication engineering background informs a structured approach to unfamiliar systems and terminology." },
+  { marker: "Foundation", title: "Engineering-led analytical thinking", copy: "Rohitt's Electronics & Communication engineering background informs a structured approach to unfamiliar systems and terminology." },
   { marker: "Experience", title: "Over a decade in real estate", copy: "His official Hundred Yards biography describes more than ten years of market experience and customer-facing leadership." },
-  { marker: "Leadership", title: "Managing Director, Hundred Yards", copy: "Rohit leads Hundred Yards Realtor Pvt Ltd with a stated focus on transparency, customer context and technology-enabled service." },
+  { marker: "Leadership", title: "Managing Director, Hundred Yards", copy: "Rohitt leads Hundred Yards Realtor Pvt Ltd with a stated focus on transparency, customer context and technology-enabled service." },
   { marker: "Academy", title: "Field experience turned into visual learning", copy: "The academy begins with one focused course: a practical foundation for people who need to understand the language before going deeper." },
 ] as const;
 
@@ -165,7 +165,7 @@ export const faqs = [
 
 export const navigation = [
   { label: "Course", href: "/course" },
-  { label: "About Rohit", href: "/about" },
+  { label: "About Rohitt", href: "/about" },
   { label: "Client Stories", href: "/stories" },
   { label: "Resources", href: "/resources" },
   { label: "Contact", href: "/contact" },

@@ -1,6 +1,6 @@
-# Rohit Kumar Singh — Real Estate Academy
+# Rohitt Kumar Singh — Real Estate Academy
 
-A cinematic personal-brand and course site for Rohit Kumar Singh, Managing Director of
+A cinematic personal-brand and course site for Rohitt Kumar Singh, Managing Director of
 Hundred Yards Realtor Pvt Ltd. Built with React 19, vinext, GSAP and Cloudflare Workers.
 
 The Property Academy is visibly pre-launch: there is no PDF, price, payment gateway, order or

@@ -19,7 +19,7 @@ function Cover({ id, w, h, scale }: { id: string; w: number; h: number; scale: n
       <div className="board__inner" style={{ fontSize: `${scale}px` }}>
         <div className="board__top">
           <span className="board__mark">RK</span>
-          <span className="board__brand">Rohit Kumar Singh<em>Real Estate Academy</em></span>
+          <span className="board__brand">Rohitt Kumar Singh<em>Real Estate Academy</em></span>
         </div>
         <div className="board__mid">
           <span className="board__eyebrow">Foundational visual course</span>

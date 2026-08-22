@@ -1,6 +1,6 @@
 # CLAUDE.md — 100 Yards Academy site
 
-Personal-brand and course site for **Rohit Kumar Singh**, MD of Hundred Yards Realtor Pvt Ltd
+Personal-brand and course site for **Rohitt Kumar Singh**, MD of Hundred Yards Realtor Pvt Ltd
 (100yards.in). Product: the "Basics of Real Estate" 49-slide visual course.
 Pre-launch — no price, no payment, no delivery yet.
 
@@ -11,7 +11,7 @@ Pre-launch — no price, no payment, no delivery yet.
 - GSAP + ScrollTrigger, loaded only where motion actually needs it
 - Cloudflare Worker `rohit-property-studio`; D1 `ACADEMY_DB` (leads),
   Analytics Engine `ACADEMY_ANALYTICS`, Cloudflare Images binding
-- Repo `adyantdubey/RohitPropertyStudio`; push to `main` auto-builds and deploys
+- Repo `adyantdubey/RohittPropertyStudio`; push to `main` auto-builds and deploys
 
 ## Commands
 

@@ -6,7 +6,7 @@ import { ClosingCta } from "../components/ClosingCta";
 import { brand, course, profileTimeline, teachingPrinciples } from "../lib/siteContent";
 
 export const metadata: Metadata = {
-  title: "About Rohit",
+  title: "About Rohitt",
   description: `${brand.name}, ${brand.role} of ${brand.company} and instructor of ${course.title}.`,
   alternates: { canonical: "/about" },
 };
@@ -43,7 +43,7 @@ export default function AboutPage() {
           <div className="statement-block__body">
             <h2 data-split>Real estate explained with analytical discipline.</h2>
             <p data-reveal>
-              An Electronics &amp; Communication engineering graduate, Rohit brings over a decade of
+              An Electronics &amp; Communication engineering graduate, Rohitt brings over a decade of
               real-estate experience to his work. The official Hundred Yards biography describes an
               analytical, strategic, customer-centric and technology-driven approach.
             </p>
@@ -59,7 +59,7 @@ export default function AboutPage() {
               <h2 data-split>What connects the engineer, the director and the instructor.</h2>
             </div>
             <p className="head__note" data-reveal>
-              The sequence below uses only details supported by Rohit&apos;s current public professional
+              The sequence below uses only details supported by Rohitt&apos;s current public professional
               biography. Unverified dates and performance claims are intentionally excluded.
             </p>
           </div>
@@ -106,7 +106,7 @@ export default function AboutPage() {
             <p className="eyebrow">Professional context</p>
             <h2>{brand.company}</h2>
             <p>
-              Hundred Yards is the professional context behind Rohit&apos;s real-estate work. Its
+              Hundred Yards is the professional context behind Rohitt&apos;s real-estate work. Its
               published company profile describes services for homebuyers, investors, NRIs and
               businesses, with a stated emphasis on transparency, personalised guidance and transaction
               support.
@@ -125,7 +125,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <ClosingCta eyebrow="Learn with Rohit" title="Begin with one focused real-estate foundation." />
+      <ClosingCta eyebrow="Learn with Rohitt" title="Begin with one focused real-estate foundation." />
     </main>
   );
 }

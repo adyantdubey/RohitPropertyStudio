@@ -6,7 +6,7 @@ import { brand, clientFeedback } from "../lib/siteContent";
 
 export const metadata: Metadata = {
   title: "Client Stories",
-  description: "Published Hundred Yards property-client feedback and the evidence standard used by Rohit Real Estate Academy.",
+  description: "Published Hundred Yards property-client feedback and the evidence standard used by Rohitt Real Estate Academy.",
   alternates: { canonical: "/stories" },
 };
 
@@ -86,19 +86,19 @@ export default function StoriesPage() {
             <p className="eyebrow">The practice behind the teaching</p>
             <h2>Hundred Yards provides the professional context, not a substitute for course evidence.</h2>
             <p>
-              Rohit&apos;s role as Managing Director and the company&apos;s published client conversations
+              Rohitt&apos;s role as Managing Director and the company&apos;s published client conversations
               establish his real-estate context. The academy must still earn its own learner feedback
               after launch.
             </p>
             <div className="bridge__links">
-              <a className="text-link" href={brand.aboutUrl} target="_blank" rel="noreferrer">Official Rohit profile <ArrowUpRight size={14} aria-hidden="true" /></a>
+              <a className="text-link" href={brand.aboutUrl} target="_blank" rel="noreferrer">Official Rohitt profile <ArrowUpRight size={14} aria-hidden="true" /></a>
               <a className="text-link" href={brand.galleryUrl} target="_blank" rel="noreferrer">Hundred Yards gallery <ArrowUpRight size={14} aria-hidden="true" /></a>
             </div>
           </div>
         </div>
       </section>
 
-      <ClosingCta eyebrow="From practice to foundation" title="Explore the material behind Rohit’s first course." />
+      <ClosingCta eyebrow="From practice to foundation" title="Explore the material behind Rohitt’s first course." />
     </main>
   );
 }
