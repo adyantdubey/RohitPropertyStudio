@@ -42,6 +42,12 @@ export const course = {
 export const media = {
   heroVideo: "/video/hero.mp4",
   heroPoster: "/brand/hero-poster.jpg",
+  /**
+   * Google Maps Embed API key (free, unlimited for embeds; restrict it to this
+   * domain in the Google Cloud console). When set, project dossiers gain a
+   * real Street View tab beside the locality map. Empty = tab hidden.
+   */
+  googleMapsEmbedKey: "AIzaSyDoOvjznEqnCh-6V3zqjLIaEOX16yA4CfQ",
 } as const;
 
 export const verifiedStats = [
@@ -167,6 +173,7 @@ export const faqs = [
 export const navigation = [
   { label: "Course", href: "/course" },
   { label: "Property Lab", href: "/lab" },
+  { label: "Datalab", href: "/datalab" },
   { label: "About Rohitt", href: "/about" },
   { label: "Client Stories", href: "/stories" },
   { label: "Resources", href: "/resources" },

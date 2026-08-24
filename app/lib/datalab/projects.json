@@ -1,0 +1,1429 @@
+{
+ "city": "Bengaluru",
+ "source": "Karnataka RERA public register, via published register summaries",
+ "asOf": "2026-08",
+ "note": "Seed set. Full register sync via scripts/collect-rera.mjs replaces this file.",
+ "verifyUrl": "https://rera.karnataka.gov.in/viewAllProjects",
+ "projects": [
+  {
+   "slug": "adarsh-park-heights-phase-1",
+   "name": "Adarsh Park Heights Phase 1",
+   "promoter": "Adarsh Developers",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Gunjur, Varthur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "adarsh-park-heights-phase-2",
+   "name": "Adarsh Park Heights Phase 2",
+   "promoter": "Adarsh Developers",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Gunjur, Varthur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-canvas-and-cove-phase-1",
+   "name": "Assetz Canvas & Cove Phase 1",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Begur, off Hosur Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-canvas-and-cove-phase-2",
+   "name": "Assetz Canvas & Cove Phase 2",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Begur, off Hosur Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-marq-2-0",
+   "name": "Assetz Marq 2.0",
+   "promoter": "Assetz Property & Homes LLP",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Whitefield, Kannamangala",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "bhartiya-city-nikoo-homes-4",
+   "name": "Bhartiya City Nikoo Homes 4",
+   "promoter": "Bhartiya City Developers Pvt Ltd",
+   "reraRef": "PRM/KA/RERA/1251/472/PR",
+   "reraComplete": false,
+   "locality": "Thanisandra Main Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "birla-trimaya-phase-1",
+   "name": "Birla Trimaya Phase 1",
+   "promoter": "Birla Estates",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Shettigere, Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "birla-trimaya-phase-2",
+   "name": "Birla Trimaya Phase 2",
+   "promoter": "Birla Estates",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Shettigere, Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "birla-trimaya-phase-3",
+   "name": "Birla Trimaya Phase 3",
+   "promoter": "Birla Estates",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Shettigere, Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-calista-phase-1",
+   "name": "Brigade Calista Phase 1",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Budigere Cross, Old Madras Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-calista-phase-2",
+   "name": "Brigade Calista Phase 2",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Budigere Cross",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-oasis-phase-1",
+   "name": "Brigade Oasis Phase 1",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Lakshmipura Village, Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-oasis-phase-2",
+   "name": "Brigade Oasis Phase 2",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Lakshmipura Village, Devanahalli",
+   "zone": "North",
+   "status": "Completed"
+  },
+  {
+   "slug": "brigade-oasis-phase-3",
+   "name": "Brigade Oasis Phase 3",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "Completed"
+  },
+  {
+   "slug": "brigade-valencia-phase-1",
+   "name": "Brigade Valencia Phase 1",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Kithiganahalli, Anekal",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-valencia-phase-2",
+   "name": "Brigade Valencia Phase 2",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Electronic City, Hosur Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-ananda-phase-1",
+   "name": "Godrej Ananda Phase 1",
+   "promoter": "Godrej Projects Development Pvt Ltd",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Aerospace Park, Bagalur",
+   "zone": "North",
+   "status": "Completed"
+  },
+  {
+   "slug": "godrej-ananda-phase-2",
+   "name": "Godrej Ananda Phase 2",
+   "promoter": "Godrej Projects Development Pvt Ltd",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Bagalur Aerospace Park",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-athena",
+   "name": "Godrej Athena",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Kaggadasapura",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-splendour-phase-1",
+   "name": "Godrej Splendour Phase 1",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Belathur Road, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-splendour-phase-2",
+   "name": "Godrej Splendour Phase 2",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Belathur Road, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "mahindra-eden-phase-1",
+   "name": "Mahindra Eden Phase 1",
+   "promoter": "Mahindra Lifespaces",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "mahindra-zen",
+   "name": "Mahindra Zen",
+   "promoter": "Mahindra Lifespaces",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Singasandra, Hosur Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-raintree-park",
+   "name": "Prestige Raintree Park",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Varthur, Whitefield Main Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "provident-deansgate-phase-1",
+   "name": "Provident Deansgate Phase 1",
+   "promoter": "Provident Housing Limited",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "IVC Road, North Bengaluru",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "provident-deansgate-phase-2",
+   "name": "Provident Deansgate Phase 2",
+   "promoter": "Provident Housing Limited",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "IVC Road, North Bengaluru",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "provident-ecopolitan",
+   "name": "Provident Ecopolitan",
+   "promoter": "Provident Housing Limited",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Bagaluru, KIADB Aerospace Park",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "purva-orient-grand",
+   "name": "Purva Orient Grand",
+   "promoter": "Puravankara",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Lalbagh Road",
+   "zone": "Central",
+   "status": "Active"
+  },
+  {
+   "slug": "purva-zenium-phase-1",
+   "name": "Purva Zenium Phase 1",
+   "promoter": "Puravankara",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Hosahalli, International Airport Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "purva-zenium-phase-2",
+   "name": "Purva Zenium Phase 2",
+   "promoter": "Puravankara",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Hosahalli, International Airport Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "rohan-antara",
+   "name": "Rohan Antara",
+   "promoter": "Rohan Builders",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Gunjur Village",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "shriram-107-southeast-phase-1",
+   "name": "Shriram 107 SouthEast Phase 1",
+   "promoter": "Shriram Properties",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Manchenahalli, Electronic City",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "shriram-107-southeast-phase-2",
+   "name": "Shriram 107 SouthEast Phase 2",
+   "promoter": "Shriram Properties",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Manchenahalli, Electronic City",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "shriram-107-southeast-phase-3",
+   "name": "Shriram 107 SouthEast Phase 3",
+   "promoter": "Shriram Properties",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Manchenahalli, Electronic City",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "shriram-pristine-estates",
+   "name": "Shriram Pristine Estates",
+   "promoter": "Shriram Properties",
+   "reraRef": "TOR/PRM/KA/RERA/1250/301",
+   "reraComplete": false,
+   "locality": "Doddaballapura Highway",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-insignia",
+   "name": "Sobha Insignia",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Bellandur",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-manhattan-towers-tower-1",
+   "name": "Sobha Manhattan Towers Tower 1",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Attibele, Hosur Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-manhattan-towers-tower-2",
+   "name": "Sobha Manhattan Towers Tower 2",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Attibele, Hosur Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-neopolis-phase-1",
+   "name": "Sobha Neopolis Phase 1",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-neopolis-phase-2",
+   "name": "Sobha Neopolis Phase 2",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-neopolis-phase-3",
+   "name": "Sobha Neopolis Phase 3",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-neopolis-phase-4",
+   "name": "Sobha Neopolis Phase 4",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-neopolis-phase-5",
+   "name": "Sobha Neopolis Phase 5",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-sentosa-wing-7",
+   "name": "Sobha Sentosa Wing 7",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road, Outer Ring Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-sentosa-wings-1-and-2",
+   "name": "Sobha Sentosa Wings 1 & 2",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-sentosa-wings-3-and-4",
+   "name": "Sobha Sentosa Wings 3 & 4",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-sentosa-wings-5-and-6",
+   "name": "Sobha Sentosa Wings 5 & 6",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-victoria-park-tower-a",
+   "name": "Sobha Victoria Park Tower A",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-victoria-park-tower-b",
+   "name": "Sobha Victoria Park Tower B",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "tvs-emerald-cascadia",
+   "name": "TVS Emerald Cascadia",
+   "promoter": "TVS Emerald Realty",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "tvs-emerald-isle-of-trees",
+   "name": "TVS Emerald Isle of Trees",
+   "promoter": "TVS Emerald Realty",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "North Bengaluru",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "tvs-emerald-jardin",
+   "name": "TVS Emerald Jardin",
+   "promoter": "TVS Emerald Realty",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Singasandra, Hosur Road",
+   "zone": "South",
+   "status": "Completed"
+  },
+  {
+   "slug": "prestige-glenbrook",
+   "name": "Prestige Glenbrook",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Nallurhalli, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-lavender-fields",
+   "name": "Prestige Lavender Fields",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Varthur, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-park-grove",
+   "name": "Prestige Park Grove",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Chikkabanahalli, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-serenity-shores",
+   "name": "Prestige Serenity Shores",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Gunjur Village, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-somerville",
+   "name": "Prestige Somerville",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Ramagondanahalli, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-southern-star",
+   "name": "Prestige Southern Star",
+   "promoter": "Prestige Estates Projects Ltd",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Begur Village",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "rohan-akriti-phase-2",
+   "name": "Rohan Akriti Phase 2",
+   "promoter": "Rohan Builders",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "rohan-upavan-phase-4",
+   "name": "Rohan Upavan Phase 4",
+   "promoter": "Rohan Builders",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Hennur",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "adarsh-crest",
+   "name": "Adarsh Crest",
+   "promoter": "Adarsh Developers",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Hebbal",
+   "zone": "North",
+   "status": "Delayed"
+  },
+  {
+   "slug": "adarsh-greens",
+   "name": "Adarsh Greens",
+   "promoter": "Adarsh Developers",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Kogilu",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "adarsh-savana",
+   "name": "Adarsh Savana",
+   "promoter": "Adarsh Developers",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Yelahanka Extension, Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-marq-3-0",
+   "name": "Assetz Marq 3.0",
+   "promoter": "Assetz Property Group",
+   "reraRef": "",
+   "reraComplete": false,
+   "locality": "Whitefield-Hoskote Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-ren-and-rei",
+   "name": "Assetz Ren & Rei",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Gattahalli, Sarjapur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-trees-and-tandem",
+   "name": "Assetz Trees & Tandem",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "birla-evara",
+   "name": "Birla Evara",
+   "promoter": "Birla Estates",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Kodathi, Sarjapur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "birla-ojasvi",
+   "name": "Birla Ojasvi",
+   "promoter": "Birla Estates",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Rajarajeshwari Nagar",
+   "zone": "West",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-atmosphere",
+   "name": "Brigade Atmosphere",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-citrine",
+   "name": "Brigade Citrine",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1250/304/PR",
+   "reraComplete": false,
+   "locality": "Budigere Cross",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-eternia",
+   "name": "Brigade Eternia",
+   "promoter": "Brigade Group",
+   "reraRef": "",
+   "reraComplete": false,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "Applied"
+  },
+  {
+   "slug": "brigade-horizon",
+   "name": "Brigade Horizon",
+   "promoter": "Brigade Group",
+   "reraRef": "",
+   "reraComplete": false,
+   "locality": "Kumbalgodu",
+   "zone": "West",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-sanctuary",
+   "name": "Brigade Sanctuary",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Varthur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "embassy-edge",
+   "name": "Embassy Edge",
+   "promoter": "Embassy Group",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "embassy-springs",
+   "name": "Embassy Springs",
+   "promoter": "Embassy Group",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Devanahalli, Airport Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-msr-city",
+   "name": "Godrej MSR City",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Shettigere, Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-nurture",
+   "name": "Godrej Nurture",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Electronic City Phase 1",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-royale-woods",
+   "name": "Godrej Royale Woods",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-woodscapes",
+   "name": "Godrej Woodscapes",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Budigere Cross, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-tiara",
+   "name": "Godrej Tiara",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Goruguntepalya, Yeshwanthpur",
+   "zone": "West",
+   "status": "Active"
+  },
+  {
+   "slug": "landt-raintree-boulevard",
+   "name": "L&T Raintree Boulevard",
+   "promoter": "L&T Realty",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Hebbal, Bellary Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "mahindra-blossom",
+   "name": "Mahindra Blossom",
+   "promoter": "Mahindra Lifespaces",
+   "reraRef": "",
+   "reraComplete": false,
+   "locality": "Hope Farm Junction, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "mahindra-windchimes",
+   "name": "Mahindra Windchimes",
+   "promoter": "Mahindra Lifespaces",
+   "reraRef": "",
+   "reraComplete": false,
+   "locality": "Bannerghatta Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-camden-gardens",
+   "name": "Prestige Camden Gardens",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/472/PR",
+   "reraComplete": false,
+   "locality": "Thanisandra Main Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-gardenia-estates",
+   "name": "Prestige Gardenia Estates",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-suncrest",
+   "name": "Prestige Suncrest",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "provident-botanico",
+   "name": "Provident Botanico",
+   "promoter": "Provident Housing Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Soukya Road, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "provident-park-square",
+   "name": "Provident Park Square",
+   "promoter": "Provident Housing Limited",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "purva-atmosphere",
+   "name": "Purva Atmosphere",
+   "promoter": "Puravankara",
+   "reraRef": "PRM/KA/RERA/1251/472/PR",
+   "reraComplete": false,
+   "locality": "Thanisandra",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "purva-blubelle",
+   "name": "Purva Blubelle",
+   "promoter": "Puravankara",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Rajajinagar, Magadi Road",
+   "zone": "West",
+   "status": "Active"
+  },
+  {
+   "slug": "purva-meraki",
+   "name": "Purva Meraki",
+   "promoter": "Puravankara",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "HSR Layout",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "purva-park-hill",
+   "name": "Purva Park Hill",
+   "promoter": "Puravankara",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "purva-weaves",
+   "name": "Purva Weaves",
+   "promoter": "Puravankara",
+   "reraRef": "",
+   "reraComplete": false,
+   "locality": "Yemalur, Bellandur",
+   "zone": "East",
+   "status": "Applied"
+  },
+  {
+   "slug": "purva-aerocity",
+   "name": "Purva Aerocity",
+   "promoter": "Puravankara",
+   "reraRef": "",
+   "reraComplete": false,
+   "locality": "Chikkajala, Devanahalli",
+   "zone": "North",
+   "status": "Applied"
+  },
+  {
+   "slug": "rohan-ekanta",
+   "name": "Rohan Ekanta",
+   "promoter": "Rohan Builders",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Gunjur",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sattva-forest-ridge",
+   "name": "Sattva Forest Ridge",
+   "promoter": "Salarpuria Sattva Group",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "JP Nagar 9th Phase",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "sattva-green-groves",
+   "name": "Sattva Green Groves",
+   "promoter": "Salarpuria Sattva Group",
+   "reraRef": "PRM/KA/RERA/1250/307/PR",
+   "reraComplete": false,
+   "locality": "Tumkur Road, Nelamangala",
+   "zone": "West",
+   "status": "Active"
+  },
+  {
+   "slug": "sattva-la-vita",
+   "name": "Sattva La Vita",
+   "promoter": "Salarpuria Sattva Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Hennur",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "sattva-simplicity",
+   "name": "Sattva SimpliCity",
+   "promoter": "Salarpuria Sattva Group",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Rajarajeshwari Nagar",
+   "zone": "West",
+   "status": "Active"
+  },
+  {
+   "slug": "sattva-songbird",
+   "name": "Sattva Songbird",
+   "promoter": "Salarpuria Sattva Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Cheemasandra, Budigere Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sattva-springs",
+   "name": "Sattva Springs",
+   "promoter": "Salarpuria Sattva Group",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "sattva-park-cubix",
+   "name": "Sattva Park Cubix",
+   "promoter": "Salarpuria Sattva Group",
+   "reraRef": "PR/KN/170901/001749",
+   "reraComplete": true,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "shriram-serenity",
+   "name": "Shriram Serenity",
+   "promoter": "Shriram Properties",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-infinia",
+   "name": "Sobha Infinia",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "HSR Layout, Sarjapur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-scarlet",
+   "name": "Sobha Scarlet",
+   "promoter": "Sobha Limited",
+   "reraRef": "",
+   "reraComplete": false,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "Applied"
+  },
+  {
+   "slug": "tata-one-bangalore",
+   "name": "Tata One Bangalore",
+   "promoter": "Tata Housing",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "tata-swaram",
+   "name": "Tata Swaram",
+   "promoter": "Tata Housing",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "tata-varnam",
+   "name": "Tata Varnam",
+   "promoter": "Tata Housing",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "Shettigere, Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-66-and-shibui",
+   "name": "Assetz 66 & Shibui",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Whitefield Main Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-mizumi-reserve",
+   "name": "Assetz Mizumi Reserve",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "New launch"
+  },
+  {
+   "slug": "assetz-muse-and-maison",
+   "name": "Assetz Muse & Maison",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "South Bengaluru",
+   "zone": "South",
+   "status": "New launch"
+  },
+  {
+   "slug": "assetz-the-secret-lake",
+   "name": "Assetz The Secret Lake",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1250/303/PR",
+   "reraComplete": false,
+   "locality": "IVC Road, Devanahalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "century-liva",
+   "name": "Century Liva",
+   "promoter": "Century Real Estate",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Yelahanka, Doddaballapura Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "century-regalia",
+   "name": "Century Regalia",
+   "promoter": "Century Real Estate",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Indiranagar",
+   "zone": "Central",
+   "status": "Active"
+  },
+  {
+   "slug": "century-immencity",
+   "name": "Century Immencity",
+   "promoter": "Century Real Estate",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Jakkur, Airport Road",
+   "zone": "North",
+   "status": "New launch"
+  },
+  {
+   "slug": "godrej-aveline",
+   "name": "Godrej Aveline",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Yelahanka Hobli",
+   "zone": "North",
+   "status": "New launch"
+  },
+  {
+   "slug": "godrej-lakeside-orchard",
+   "name": "Godrej Lakeside Orchard",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Kodathi Village, Varthur Hobli",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-vanantara",
+   "name": "Godrej Vanantara",
+   "promoter": "Godrej Properties",
+   "reraRef": "PRM/KA/RERA/1251/310/PR",
+   "reraComplete": false,
+   "locality": "Hommadevanahalli, Begur Hobli",
+   "zone": "North",
+   "status": "New launch"
+  },
+  {
+   "slug": "lodha-haven",
+   "name": "Lodha Haven",
+   "promoter": "Lodha",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Hosa Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "lodha-mirabelle",
+   "name": "Lodha Mirabelle",
+   "promoter": "Lodha",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Manyata Business Park, Nagavara",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "nambiar-district-25-phase-1",
+   "name": "Nambiar District 25 Phase 1",
+   "promoter": "Nambiar Builders",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Chandapura-Dommasandra Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "nambiar-district-25-phase-2",
+   "name": "Nambiar District 25 Phase 2",
+   "promoter": "Nambiar Builders",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Chandapura-Dommasandra Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "nambiar-district-25-phase-3",
+   "name": "Nambiar District 25 Phase 3",
+   "promoter": "Nambiar Builders",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Chandapura-Dommasandra Road",
+   "zone": "South",
+   "status": "New launch"
+  },
+  {
+   "slug": "northern-lights-phase-1",
+   "name": "Northern Lights Phase 1",
+   "promoter": "Puravankara KVN",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Bagalur Village, Yelahanka Taluk",
+   "zone": "North",
+   "status": "New launch"
+  },
+  {
+   "slug": "northern-lights-phase-2",
+   "name": "Northern Lights Phase 2",
+   "promoter": "Puravankara KVN",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "KIADB Aerospace Park, Bagalur",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "northern-lights-phase-3",
+   "name": "Northern Lights Phase 3",
+   "promoter": "Puravankara KVN",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "KIADB Aerospace Park, Bagalur",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-park-ridge",
+   "name": "Prestige Park Ridge",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/308/PR",
+   "reraComplete": false,
+   "locality": "Bannerghatta Road, Anekal",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-altair",
+   "name": "Sobha Altair",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Hadosiddapura, Sarjapur Main Road",
+   "zone": "East",
+   "status": "New launch"
+  },
+  {
+   "slug": "sobha-ayana",
+   "name": "Sobha Ayana",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Panathur Main Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sumadhura-capitol-residences",
+   "name": "Sumadhura Capitol Residences",
+   "promoter": "Sumadhura Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Hope Farm, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sumadhura-epitome",
+   "name": "Sumadhura Epitome",
+   "promoter": "Sumadhura Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Rachenalli",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "sumadhura-hive",
+   "name": "Sumadhura Hive",
+   "promoter": "Sumadhura Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Hoodi, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "sumadhura-solea",
+   "name": "Sumadhura Solea",
+   "promoter": "Sumadhura Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Thanisandra",
+   "zone": "North",
+   "status": "New launch"
+  },
+  {
+   "slug": "sumadhura-thrive",
+   "name": "Sumadhura Thrive",
+   "promoter": "Sumadhura Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR",
+   "reraComplete": false,
+   "locality": "Hoodi, Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "tata-new-haven-phase-5",
+   "name": "Tata New Haven Phase 5",
+   "promoter": "Tata Housing",
+   "reraRef": "PRM/KA/RERA/1251/309/PR",
+   "reraComplete": false,
+   "locality": "Tumkur Road",
+   "zone": "West",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-waterford",
+   "name": "Prestige Waterford",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR/200811/003528",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "prestige-song-of-the-south",
+   "name": "Prestige Song of the South",
+   "promoter": "Prestige Group",
+   "reraRef": "PRM/KA/RERA/1251/310/PR/170915/000243",
+   "reraComplete": true,
+   "locality": "Begur",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "brigade-cornerstone-utopia",
+   "name": "Brigade Cornerstone Utopia",
+   "promoter": "Brigade Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR/181219/002219",
+   "reraComplete": true,
+   "locality": "Varthur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "godrej-ananda",
+   "name": "Godrej Ananda",
+   "promoter": "Godrej Properties",
+   "reraRef": "PR/210331/004084",
+   "reraComplete": true,
+   "locality": "Bagalur Road",
+   "zone": "North",
+   "status": "Active"
+  },
+  {
+   "slug": "assetz-63-degree-east",
+   "name": "Assetz 63 Degree East",
+   "promoter": "Assetz Property Group",
+   "reraRef": "PRM/KA/RERA/1251/446/PR/171030/000980",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "Active"
+  },
+  {
+   "slug": "casagrand-casablanca",
+   "name": "Casagrand Casablanca",
+   "promoter": "Casagrand",
+   "reraRef": "PRM/KA/RERA/1251/310/PR/040524/006862",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "Active"
+  },
+  {
+   "slug": "sobha-sentosa",
+   "name": "Sobha Sentosa",
+   "promoter": "Sobha Limited",
+   "reraRef": "PRM/KA/RERA/1251/446/PR/201001/003625",
+   "reraComplete": true,
+   "locality": "Panathur",
+   "zone": "East",
+   "status": "Active"
+  }
+ ]
+}

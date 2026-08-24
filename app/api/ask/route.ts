@@ -1,5 +1,6 @@
 import { env } from "cloudflare:workers";
 import { brand, courseModules, glossaryTerms } from "../../lib/siteContent";
+import datalab from "../../lib/datalab/projects.json";
 
 /**
  * The Academy guide — a small educational assistant powered by Workers AI.
@@ -104,7 +105,35 @@ function systemPrompt() {
   ].join("\n");
 }
 
-type AskBody = { question?: unknown; history?: unknown; mode?: unknown };
+type AskBody = { question?: unknown; history?: unknown; mode?: unknown; project?: unknown };
+
+/** Project-aware prompt: facts come ONLY from our own register entry (looked up
+ *  server-side by slug), never from the client — so they cannot be spoofed. */
+function projectPrompt(slug: string): string | null {
+  const project = datalab.projects.find((entry) => entry.slug === slug);
+  if (!project) return null;
+  const siblings = datalab.projects
+    .filter((entry) => entry.promoter === project.promoter && entry.slug !== slug)
+    .map((entry) => `${entry.name} (${entry.locality}; ${entry.status})`)
+    .slice(0, 12);
+  return [
+    `You are the project guide of ${brand.academy} (Bengaluru, India), answering questions about ONE project using ONLY the register facts below.`,
+    ``,
+    `REGISTER FACTS (Karnataka RERA public register, as of ${datalab.asOf}):`,
+    `- Project: ${project.name}`,
+    `- Builder/promoter: ${project.promoter}`,
+    `- Locality: ${project.locality} (${project.zone} Bengaluru)`,
+    `- Register status: ${project.status}`,
+    `- K-RERA reference: ${project.reraRef || "on record"}${project.reraComplete ? "" : " (partial reference — must be confirmed on the official register)"}`,
+    siblings.length ? `- Other register entries by this promoter: ${siblings.join("; ")}` : `- No other register entries by this promoter in our extract.`,
+    ``,
+    `Hard rules:`,
+    `1. Answer ONLY from the facts above plus general vocabulary education. If a detail is not in the facts (price, carpet area, amenities, possession date, loan advice), say plainly that it is not in the public register extract and suggest the official register or the Hundred Yards team on WhatsApp (+91 99168 66667).`,
+    `2. NEVER judge whether the project or its price is good or bad, never predict prices, never give legal, tax or investment advice.`,
+    `3. Never invent a fact, figure or date. Cite "K-RERA public register" when stating a fact.`,
+    `4. Under 120 words, plain English for a beginner, no markdown headings.`,
+  ].join("\n");
+}
 type Turn = { role: "user" | "assistant"; content: string };
 
 function json(body: object, status = 200) {
@@ -119,8 +148,10 @@ export async function POST(request: Request) {
     return json({ fallback: true, reason: "bad_request" }, 400);
   }
 
-  const mode = body.mode === "decode" ? "decode" : "ask";
+  const mode = body.mode === "decode" ? "decode" : body.mode === "project" ? "project" : "ask";
   const maxLength = mode === "decode" ? 700 : 300;
+  const projectSystem = mode === "project" && typeof body.project === "string" ? projectPrompt(body.project.slice(0, 80)) : null;
+  if (mode === "project" && !projectSystem) return json({ fallback: true, reason: "unknown_project" }, 400);
   const question = typeof body.question === "string" ? body.question.trim().slice(0, maxLength) : "";
   if (question.length < 2) return json({ fallback: true, reason: "empty" }, 400);
 
@@ -138,7 +169,7 @@ export async function POST(request: Request) {
   if (!underLimit(ip)) return json({ fallback: true, reason: "limit" });
 
   const messages = [
-    { role: "system", content: mode === "decode" ? decodePrompt() : systemPrompt() },
+    { role: "system", content: mode === "decode" ? decodePrompt() : mode === "project" && projectSystem ? projectSystem : systemPrompt() },
     ...history,
     { role: "user", content: question },
   ];

@@ -58,6 +58,17 @@ test("hero film plays over a canvas fallback that never disappears", async () =>
   assert.match(html, /<video[^>]*\/video\/hero\.mp4/);
 });
 
+test("server-renders the Bengaluru Datalab from the register seed", async () => {
+  const response = await render("/datalab");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /Bengaluru Datalab/i);
+  assert.match(html, /RERA register/i);
+  assert.match(html, /rera\.karnataka\.gov\.in/);
+  // never portal asking-prices: the datalab page carries no rupee figures at all
+  assert.doesNotMatch(html, /₹\s?[\d,]+/);
+});
+
 test("server-renders the factual instructor page", async () => {
   const response = await render("/about");
   assert.equal(response.status, 200);
