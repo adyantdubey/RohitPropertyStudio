@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/datalab" },
 };
 
-const promoters = new Set(registry.projects.map((p) => p.promoter)).size;
+const promoters = new Set(registry.projects.map((p) => p.promoter).filter(Boolean)).size;
 const zones = new Set(registry.projects.map((p) => p.zone)).size;
 
 export default function DatalabPage() {

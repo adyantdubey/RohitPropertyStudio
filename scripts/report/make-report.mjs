@@ -30,7 +30,7 @@ if (!project) { console.error(`No project with slug "${slug}"`); process.exit(1)
 const orderPath = path.join(ROOT, "scripts/report/orders", `${slug}.json`);
 const order = existsSync(orderPath) ? JSON.parse(readFileSync(orderPath, "utf8")) : {};
 
-const siblings = registry.projects.filter((p) => p.promoter === project.promoter && p.slug !== slug);
+const siblings = project.promoter ? registry.projects.filter((p) => p.promoter === project.promoter && p.slug !== slug) : [];
 const today = new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
 const reportNo = `HY-PIR-${new Date().getFullYear()}-${String(Math.abs([...slug].reduce((a, c) => a * 31 + c.charCodeAt(0), 7)) % 10000).padStart(4, "0")}`;
 
@@ -103,7 +103,7 @@ const CHECKS = [
     earned: ["Active", "New launch", "Completed"].includes(project.status) ? 15 : project.status === "Applied" ? 5 : 0,
     basis: `Status on record: ${project.status}` },
   { label: "Builder's registered footprint (1 pt per register entry, max 10)", max: 10,
-    earned: Math.min(siblings.length + 1, 10), basis: "K-RERA register" },
+    earned: project.promoter ? Math.min(siblings.length + 1, 10) : null, basis: "K-RERA register" },
   { label: "No unresolved complaints found against the project", max: 15,
     earned: order.complaintsFinding === "none" ? 15 : typeof order.complaintsScore === "number" ? order.complaintsScore : null,
     basis: "K-RERA complaints record" },
@@ -151,7 +151,7 @@ const ledgerRow = (field, value, source, asOf) =>
 
 const identityLedger = [
   ledgerRow("Project name", esc(project.name), "K-RERA public register", registry.asOf),
-  ledgerRow("Promoter / builder", esc(project.promoter), "K-RERA public register", registry.asOf),
+  ledgerRow("Promoter / builder", project.promoter ? esc(project.promoter) : val(null, "On record — confirmed in commissioned report"), "K-RERA public register", registry.asOf),
   ledgerRow("Locality", `${esc(project.locality)} · ${project.zone} Bengaluru`, "K-RERA public register", registry.asOf),
   ledgerRow("Register status", esc(project.status), "K-RERA public register", registry.asOf),
   ledgerRow("K-RERA registration", `${esc(project.reraRef || "On record")}${project.reraComplete ? "" : " <em>(partial ref — confirmed in commissioned report)</em>"}`, "rera.karnataka.gov.in", registry.asOf),
@@ -365,7 +365,7 @@ ${page(4, `
 ${page(5, `
   <span class="secno">03</span>
   <p class="eyebrow">Section 03</p>
-  <h2>Promoter profile: ${esc(project.promoter)}.</h2>
+  <h2>Promoter profile: ${esc(project.promoter || "on record")}.</h2>
   <p class="lede">The promoter's registrations across the Karnataka RERA register, with current status. The
   commissioned report adds the corporate record from MCA: incorporation, directors and any
   changes of name.</p>

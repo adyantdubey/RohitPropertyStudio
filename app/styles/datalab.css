@@ -265,3 +265,14 @@
   padding: 6px 12px; font-size: 11.5px; font-weight: 800; letter-spacing: .06em; cursor: pointer;
 }
 .dmap__tabs button.is-active { background: var(--gold); border-color: var(--gold); color: var(--deep); }
+
+/* ---------- report block in dossier ---------- */
+.dossier__report { border-top: 1px solid var(--gold); padding-top: 14px; display: grid; gap: 10px; }
+.dossier__report .dossier__more-title { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 0; color: var(--gold); }
+.dossier__report-copy { color: var(--ink-soft); font-size: 13px; line-height: 1.65; }
+.dossier__report-cta { display: grid; gap: 8px; justify-items: start; }
+.dossier__coming {
+  display: inline-flex; align-items: center;
+  border: 1px dashed var(--line); padding: 10px 16px;
+  color: var(--ink-faint); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+}

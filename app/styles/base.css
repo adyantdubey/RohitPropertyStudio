@@ -124,8 +124,10 @@ strong, b { font-weight: 800; }
 /* pre-animation hidden state — only applied once JS is confirmed present */
 .js [data-split], .js [data-enter] { opacity: 0; }
 
-/* word-mask split headline (bottom padding leaves room for descenders + drawn underlines) */
-.split-word { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .18em; margin-bottom: -.18em; }
+/* word-mask split headline */
+.split-word { display: inline-block; overflow: hidden; vertical-align: bottom; }
+/* only the hero headline carries a drawn underline that needs room below the baseline */
+.hero h1 .split-word { padding-bottom: .18em; margin-bottom: -.18em; }
 .split-word__inner { display: inline-block; will-change: transform; }
 
 /* staggered group reveal: put data-reveal-group on the container, children rise in order */

@@ -152,7 +152,7 @@
    "reraRef": "PRM/KA/RERA/1251/308/PR",
    "reraComplete": false,
    "locality": "Kithiganahalli, Anekal",
-   "zone": "South",
+   "zone": "East",
    "status": "Active"
   },
   {
@@ -322,7 +322,7 @@
    "reraRef": "PRM/KA/RERA/1251/308/PR",
    "reraComplete": false,
    "locality": "Manchenahalli, Electronic City",
-   "zone": "South",
+   "zone": "East",
    "status": "Active"
   },
   {
@@ -332,7 +332,7 @@
    "reraRef": "PRM/KA/RERA/1251/308/PR",
    "reraComplete": false,
    "locality": "Manchenahalli, Electronic City",
-   "zone": "South",
+   "zone": "East",
    "status": "Active"
   },
   {
@@ -342,7 +342,7 @@
    "reraRef": "PRM/KA/RERA/1251/308/PR",
    "reraComplete": false,
    "locality": "Manchenahalli, Electronic City",
-   "zone": "South",
+   "zone": "East",
    "status": "Active"
   },
   {
@@ -1424,6 +1424,2136 @@
    "locality": "Panathur",
    "zone": "East",
    "status": "Active"
+  },
+  {
+   "slug": "lgcl-luxuriate",
+   "name": "LGCL Luxuriate",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000312",
+   "reraComplete": true,
+   "locality": "HSR Layout",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "mittal-elanza",
+   "name": "Mittal Elanza",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000683",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "mahaveer-willet",
+   "name": "Mahaveer Willet",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000828",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "umiya-woods",
+   "name": "Umiya Woods",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000830",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "saiven-siesta",
+   "name": "Saiven Siesta",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000559",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "arna-meadows",
+   "name": "Arna Meadows",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000826",
+   "reraComplete": true,
+   "locality": "Bannerghatta Main Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "classique-temple-tree",
+   "name": "Classique Temple Tree",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000809",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "vaishno-signature",
+   "name": "Vaishno Signature",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000820",
+   "reraComplete": true,
+   "locality": "Krishnarajapura",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "radiant-royal-woods",
+   "name": "Radiant Royal Woods",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000802",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "here-and-now",
+   "name": "Here and Now",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000797",
+   "reraComplete": true,
+   "locality": "Rachenahalli",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "trendsquare-precioso",
+   "name": "Trendsquare Precioso",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000829",
+   "reraComplete": true,
+   "locality": "Kalkere",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "fortuna-acacia",
+   "name": "Fortuna Acacia",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000834",
+   "reraComplete": true,
+   "locality": "Sahakar Nagar",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "shravanee-sumo",
+   "name": "Shravanee Sumo",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000839",
+   "reraComplete": true,
+   "locality": "Jayanagar 8th Block",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "parthu-pride",
+   "name": "Parthu Pride",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000842",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "legacy-eldora",
+   "name": "Legacy Eldora",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000833",
+   "reraComplete": true,
+   "locality": "Kogilu",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "century-sports-village",
+   "name": "Century Sports Village",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000844",
+   "reraComplete": true,
+   "locality": "IVC Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "aswani-aaeesha-b-wing",
+   "name": "Aswani Aaeesha B Wing",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000859",
+   "reraComplete": true,
+   "locality": "Electronic City Phase II",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "calvin-royal-residency",
+   "name": "Calvin Royal Residency",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000853",
+   "reraComplete": true,
+   "locality": "Gottigere",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "godrej-united",
+   "name": "Godrej United",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000003",
+   "reraComplete": true,
+   "locality": "Whitefield Main Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "dsr-white-waters-phase-ii",
+   "name": "DSR White Waters Phase - II",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000841",
+   "reraComplete": true,
+   "locality": "Gunjur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "mirabilis",
+   "name": "Mirabilis",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000838",
+   "reraComplete": true,
+   "locality": "Horamavu",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "roshan-platinum-apartment",
+   "name": "Roshan Platinum Apartment",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000847",
+   "reraComplete": true,
+   "locality": "Bannerghatta Main Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "legacy-cataleya",
+   "name": "Legacy Cataleya",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000867",
+   "reraComplete": true,
+   "locality": "Cunningham Road",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "godrej-air",
+   "name": "Godrej Air",
+   "promoter": "",
+   "reraRef": "PR/KN/170725/000006",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "vajram-tiara",
+   "name": "Vajram Tiara",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000144",
+   "reraComplete": true,
+   "locality": "Yelahanka Main Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "polaris",
+   "name": "Polaris",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000268",
+   "reraComplete": true,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "vbhc-palmhaven-2",
+   "name": "VBHC Palmhaven 2",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000192",
+   "reraComplete": true,
+   "locality": "Kengeri",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "saf-snowdrops-annex-block-d",
+   "name": "SAF Snowdrops Annex Block D",
+   "promoter": "",
+   "reraRef": "PR/KN/170803/001028",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "arvind-sporcia",
+   "name": "Arvind Sporcia",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000768",
+   "reraComplete": true,
+   "locality": "Off Hebbal Ring Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "radiant-elitaire",
+   "name": "Radiant Elitaire",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000773",
+   "reraComplete": true,
+   "locality": "J P Nagar 8th Phase",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "commune",
+   "name": "Commune",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000813",
+   "reraComplete": true,
+   "locality": "Chandapura",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "sowparnika-columns",
+   "name": "Sowparnika Columns",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000764",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "fortuna-bluewings",
+   "name": "Fortuna Bluewings",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000772",
+   "reraComplete": true,
+   "locality": "Basavanagar",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "sky-asta",
+   "name": "Sky Asta",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000051",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "arvind-skylands",
+   "name": "Arvind Skylands",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000771",
+   "reraComplete": true,
+   "locality": "Jakkur 80 Feet Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "janajeeva-orchid",
+   "name": "Janajeeva Orchid",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000891",
+   "reraComplete": true,
+   "locality": "K R Puram",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "aryav-crosswinds",
+   "name": "Aryav Crosswinds",
+   "promoter": "",
+   "reraRef": "PR/KN/170803/000792",
+   "reraComplete": true,
+   "locality": "Horamavu",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "lapalazzo-residences",
+   "name": "Lapalazzo Residences",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000301",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "klassik-landmark-apartments-phase-ii",
+   "name": "Klassik Landmark Apartments - Phase II",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000760",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "august-grand",
+   "name": "August Grand",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000242",
+   "reraComplete": true,
+   "locality": "Sarjapur Main Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "skylark-richmond",
+   "name": "Skylark Richmond",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000765",
+   "reraComplete": true,
+   "locality": "Richmond Town",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "century-renata",
+   "name": "Century Renata",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000782",
+   "reraComplete": true,
+   "locality": "Richmond Road",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "ravoos-nandan",
+   "name": "Ravoos Nandan",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000786",
+   "reraComplete": true,
+   "locality": "Krishnarajapura",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "surataru",
+   "name": "Surataru",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000787",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "vista-450",
+   "name": "Vista 450",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000794",
+   "reraComplete": true,
+   "locality": "Sadashivanagar",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "aswani-aaeesha-a-wing",
+   "name": "Aswani Aaeesha A Wing",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000819",
+   "reraComplete": true,
+   "locality": "Electronic City Phase II",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "chartered-hummingbird",
+   "name": "Chartered Hummingbird",
+   "promoter": "",
+   "reraRef": "PR/KN/170726/000049",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "77-sky",
+   "name": "77 Sky",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000775",
+   "reraComplete": true,
+   "locality": "HAL",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "ozone-elegant-promenade",
+   "name": "Ozone Elegant Promenade",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000781",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "elements-of-nature",
+   "name": "Elements of Nature",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000804",
+   "reraComplete": true,
+   "locality": "Varthur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "r-j-lake-gardenia",
+   "name": "R J Lake Gardenia",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000798",
+   "reraComplete": true,
+   "locality": "K R Puram",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "skylark-royaume",
+   "name": "Skylark Royaume",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000047",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "unicon-north-brooks-46",
+   "name": "Unicon North Brooks 46",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000068",
+   "reraComplete": true,
+   "locality": "Yelahanka New Town",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "mahendra-aarna",
+   "name": "Mahendra Aarna",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000061",
+   "reraComplete": true,
+   "locality": "Electronic City Phase II",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "hi-life-rio",
+   "name": "Hi Life Rio",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000956",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-kew-gardens",
+   "name": "Prestige Kew Gardens",
+   "promoter": "",
+   "reraRef": "PR/KN/170726/000058",
+   "reraComplete": true,
+   "locality": "Yemalur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "bhuvana-nivaath",
+   "name": "Bhuvana Nivaath",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/000954",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-boulevard",
+   "name": "Prestige Boulevard",
+   "promoter": "",
+   "reraRef": "PR/KN/170726/000057",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "dsr-lotus-towers",
+   "name": "DSR Lotus Towers",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000639",
+   "reraComplete": true,
+   "locality": "Krishnarajapura",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "casa-grande-luxus",
+   "name": "Casa Grande Luxus",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000970",
+   "reraComplete": true,
+   "locality": "K R Puram",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "assetz-marq",
+   "name": "Assetz Marq",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000973",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "salarpuria-sattva-park-cubix",
+   "name": "Salarpuria Sattva Park Cubix",
+   "promoter": "",
+   "reraRef": "PR/KN/170901/001749",
+   "reraComplete": true,
+   "locality": "Devanahalli Village",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "griha-unnathi",
+   "name": "Griha Unnathi",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000273",
+   "reraComplete": true,
+   "locality": "Hanumanthappa Layout",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "vdb-azure",
+   "name": "VDB Azure",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000069",
+   "reraComplete": true,
+   "locality": "Gunjur Palya",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-silicon-oasis-phase-2-wing-7",
+   "name": "Sobha Silicon Oasis Phase 2 Wing 7",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000120",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "casa-grande-neona",
+   "name": "Casa Grande Neona",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000978",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "chartered-veda",
+   "name": "Chartered Veda",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000076",
+   "reraComplete": true,
+   "locality": "Nelamangala",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "unicca-emporis",
+   "name": "Unicca Emporis",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/001020",
+   "reraComplete": true,
+   "locality": "Varthur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "manikchand-117ff",
+   "name": "Manikchand 117FF",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000063",
+   "reraComplete": true,
+   "locality": "Jayanagar 7th Block",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "vmaks-laurel",
+   "name": "Vmaks Laurel",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000889",
+   "reraComplete": true,
+   "locality": "Sarjapur Main Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-dream-acres-palm-springs-phase-12-wing-48-and-49",
+   "name": "Sobha Dream Acres - Palm Springs Phase 12 Wing 48 and 49",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000168",
+   "reraComplete": true,
+   "locality": "Panathur Main Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "solaris",
+   "name": "Solaris",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000883",
+   "reraComplete": true,
+   "locality": "Bannerghatta Main Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-palm-court",
+   "name": "Sobha Palm Court",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000164",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-silicon-oasis-phase-3-wing-8",
+   "name": "Sobha Silicon Oasis Phase 3 Wing 8",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000118",
+   "reraComplete": true,
+   "locality": "Hosa Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "legacy-salvador",
+   "name": "Legacy Salvador",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000877",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "legacy-madelia",
+   "name": "Legacy Madelia",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000882",
+   "reraComplete": true,
+   "locality": "Cunningham Road",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-indraprastha",
+   "name": "Sobha Indraprastha",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000234",
+   "reraComplete": true,
+   "locality": "Rajajinagar",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "adarsh-premia-phase-1",
+   "name": "Adarsh Premia - Phase 1",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000155",
+   "reraComplete": true,
+   "locality": "Banashankari II Stage",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "peninsula-heights",
+   "name": "Peninsula Heights",
+   "promoter": "",
+   "reraRef": "PR/KN/170727/000072",
+   "reraComplete": true,
+   "locality": "J P Nagar 2nd Phase",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "skyview",
+   "name": "Skyview",
+   "promoter": "",
+   "reraRef": "PR/KN/170727/000071",
+   "reraComplete": true,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "aswani-sunshine",
+   "name": "Aswani Sunshine",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000896",
+   "reraComplete": true,
+   "locality": "Sarjapur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-silicon-oasis-phase-4-wing-9",
+   "name": "Sobha Silicon Oasis Phase 4 Wing 9",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000119",
+   "reraComplete": true,
+   "locality": "Hosa Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "sk-daisy",
+   "name": "SK Daisy",
+   "promoter": "",
+   "reraRef": "PR/KN/170804/000905",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "rohan-akriti-building-1",
+   "name": "Rohan Akriti Building 1",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000903",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "shravanee-dwaraka",
+   "name": "Shravanee Dwaraka",
+   "promoter": "",
+   "reraRef": "PR/KN/170803/000907",
+   "reraComplete": true,
+   "locality": "Jayanagar 8th Block",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "rohan-iksha-block-a",
+   "name": "Rohan Iksha Block A",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000887",
+   "reraComplete": true,
+   "locality": "Bhoganhalli",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-spencer-heights",
+   "name": "Prestige Spencer Heights",
+   "promoter": "",
+   "reraRef": "PR/KN/170727/000082",
+   "reraComplete": true,
+   "locality": "Frazer Town",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "milestone-grand",
+   "name": "Milestone Grand",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000895",
+   "reraComplete": true,
+   "locality": "Milestone Palms Layout",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-avenue",
+   "name": "Sobha Avenue",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000231",
+   "reraComplete": true,
+   "locality": "Kannamangala Junction",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "purva-palmbeach",
+   "name": "Purva Palmbeach",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000091",
+   "reraComplete": true,
+   "locality": "Off Hennur Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-dream-acres-rain-forest-phase-3-wing-5-and-6",
+   "name": "Sobha Dream Acres - Rain Forest Phase 3 Wing 5 and 6",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000221",
+   "reraComplete": true,
+   "locality": "Panathur Main Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "subha-essence",
+   "name": "Subha Essence",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000915",
+   "reraComplete": true,
+   "locality": "Chandapura",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "esteem-emblem",
+   "name": "Esteem Emblem",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000912",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "malhar-patterns",
+   "name": "Malhar Patterns",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000101",
+   "reraComplete": true,
+   "locality": "Kengeri",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "j-s-carnation",
+   "name": "J S Carnation",
+   "promoter": "",
+   "reraRef": "PR/KN/170831/001679",
+   "reraComplete": true,
+   "locality": "Kalkere",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-falcon-city",
+   "name": "Prestige Falcon City",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000114",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "golden-panorama",
+   "name": "Golden Panorama",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000186",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-25-richmond",
+   "name": "Sobha 25 Richmond",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000257",
+   "reraComplete": true,
+   "locality": "Richmond Road",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "ck-adiithya",
+   "name": "CK Adiithya",
+   "promoter": "",
+   "reraRef": "PR/KN/170803/001055",
+   "reraComplete": true,
+   "locality": "Bannerghatta Main Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "brigade-panorama",
+   "name": "Brigade Panorama",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000125",
+   "reraComplete": true,
+   "locality": "Mysore Road",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "the-county-address",
+   "name": "The County Address",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000124",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "mvs-paradise",
+   "name": "MVS Paradise",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/001037",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "classique-ebony",
+   "name": "Classique Ebony",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000523",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "radiant-spencer-annex",
+   "name": "Radiant Spencer Annex",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000263",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "sterling-pointe",
+   "name": "Sterling Pointe",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000148",
+   "reraComplete": true,
+   "locality": "Hebbal",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "vaishnavi-ars-gardenia",
+   "name": "Vaishnavi Ars Gardenia",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000344",
+   "reraComplete": true,
+   "locality": "Jalahalli West",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "shriram-chirping-woods",
+   "name": "Shriram Chirping Woods",
+   "promoter": "",
+   "reraRef": "PR/KN/170804/001085",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "vajram-esteva",
+   "name": "Vajram Esteva",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000254",
+   "reraComplete": true,
+   "locality": "Marathahalli Sarjapur Outer Ring Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "vajram-elina",
+   "name": "Vajram Elina",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000285",
+   "reraComplete": true,
+   "locality": "Off Thanisandra Main Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "pramuk-mm-meridian",
+   "name": "Pramuk MM Meridian",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000128",
+   "reraComplete": true,
+   "locality": "Jayanagar 7th Block",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "sterling-infinia",
+   "name": "Sterling Infinia",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000310",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "habitat-iluminar",
+   "name": "Habitat Iluminar",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000183",
+   "reraComplete": true,
+   "locality": "Mysore Road",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-lakeside-habitat",
+   "name": "Prestige Lakeside Habitat",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000176",
+   "reraComplete": true,
+   "locality": "Varthur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "coevolve-northern-star",
+   "name": "CoEvolve Northern Star",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000151",
+   "reraComplete": true,
+   "locality": "Thanisandra Main Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "belmont",
+   "name": "Belmont",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/000988",
+   "reraComplete": true,
+   "locality": "Nandi Foot Hills",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "adi-s-north-lake",
+   "name": "Adi's North Lake",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/000993",
+   "reraComplete": true,
+   "locality": "Jakkur",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "hara-vijaya-heights",
+   "name": "Hara Vijaya Heights",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000372",
+   "reraComplete": true,
+   "locality": "Banashankari 6th Stage",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "monarch-aqua-block-a",
+   "name": "Monarch Aqua - Block A",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000466",
+   "reraComplete": true,
+   "locality": "Old Madras Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "garden-terraces",
+   "name": "Garden Terraces",
+   "promoter": "",
+   "reraRef": "PR/KN/170803/001063",
+   "reraComplete": true,
+   "locality": "Basavanagudi",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "bren-edgewaters",
+   "name": "Bren Edgewaters",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000320",
+   "reraComplete": true,
+   "locality": "Off Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-pinewood",
+   "name": "Prestige Pinewood",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000109",
+   "reraComplete": true,
+   "locality": "Koramangala",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "the-central-regency-address",
+   "name": "The Central Regency Address",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000123",
+   "reraComplete": true,
+   "locality": "Off Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-clovelly",
+   "name": "Sobha Clovelly",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000201",
+   "reraComplete": true,
+   "locality": "Gowdanapalya",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "ultima",
+   "name": "Ultima",
+   "promoter": "",
+   "reraRef": "PR/KN/170808/001218",
+   "reraComplete": true,
+   "locality": "Rachenahalli",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "skylark-arcadia",
+   "name": "Skylark Arcadia",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000194",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-kenilworth",
+   "name": "Prestige Kenilworth",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000208",
+   "reraComplete": true,
+   "locality": "Cunningham Road",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "shriram-luxor",
+   "name": "Shriram Luxor",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/001017",
+   "reraComplete": true,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "link-ornate",
+   "name": "Link Ornate",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/001009",
+   "reraComplete": true,
+   "locality": "Thanisandra Main Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "godrej-avenues",
+   "name": "Godrej Avenues",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000229",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "janaadhar-shubha-ii-cluster-1",
+   "name": "Janaadhar Shubha II - Cluster 1",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000313",
+   "reraComplete": true,
+   "locality": "Attibele Hobli",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "ss-carona",
+   "name": "SS Carona",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/001038",
+   "reraComplete": true,
+   "locality": "Kengeri Satellite Town",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "df-silverline-queens-terraces",
+   "name": "DF Silverline Queens Terraces",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000618",
+   "reraComplete": true,
+   "locality": "Shivajinagar",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "dhammanagi-zeus",
+   "name": "Dhammanagi Zeus",
+   "promoter": "",
+   "reraRef": "PR/KN/170803/001025",
+   "reraComplete": true,
+   "locality": "Vasanthnagar",
+   "zone": "Central",
+   "status": "—"
+  },
+  {
+   "slug": "navya-nisarga",
+   "name": "Navya Nisarga",
+   "promoter": "",
+   "reraRef": "PR/KN/170804/001068",
+   "reraComplete": true,
+   "locality": "Rammurthynagar",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "nitesh-melbourne-park",
+   "name": "Nitesh Melbourne Park",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000224",
+   "reraComplete": true,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-gulmohar",
+   "name": "Prestige Gulmohar",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000216",
+   "reraComplete": true,
+   "locality": "Horamavu",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "sowparnika-swastika-phase-ii",
+   "name": "Sowparnika Swastika Phase II",
+   "promoter": "",
+   "reraRef": "PR/KN/170805/001150",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "mims-residency",
+   "name": "MIMS Residency",
+   "promoter": "",
+   "reraRef": "PR/KN/170805/001149",
+   "reraComplete": true,
+   "locality": "Thanisandra Main Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "habitat-eden-heights",
+   "name": "Habitat Eden Heights",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000258",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "peninsula-solitaire",
+   "name": "Peninsula Solitaire",
+   "promoter": "",
+   "reraRef": "PR/KN/170807/001173",
+   "reraComplete": true,
+   "locality": "Sarjapur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "alpine-vistula",
+   "name": "Alpine Vistula",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000211",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "century-ethos",
+   "name": "Century Ethos",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000283",
+   "reraComplete": true,
+   "locality": "Sahakar Nagar",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "nr-windgates",
+   "name": "NR Windgates",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000322",
+   "reraComplete": true,
+   "locality": "Thanisandra Main Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "umiya-velociti",
+   "name": "Umiya Velociti",
+   "promoter": "",
+   "reraRef": "PR/KN/170831/001912",
+   "reraComplete": true,
+   "locality": "Hebbal",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "g-corp-residences",
+   "name": "G Corp Residences",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000249",
+   "reraComplete": true,
+   "locality": "Koramangala",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "the-wisdom-tree-community",
+   "name": "The Wisdom Tree Community",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000251",
+   "reraComplete": true,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "sansidh-galaxy",
+   "name": "Sansidh Galaxy",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000315",
+   "reraComplete": true,
+   "locality": "Rachenahalli",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-song-of-the-south-phase-i",
+   "name": "Prestige Song of the South Phase I",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000243",
+   "reraComplete": true,
+   "locality": "Begur Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "purva-westend",
+   "name": "Purva Westend",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000236",
+   "reraComplete": true,
+   "locality": "Begur Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "signature-classic",
+   "name": "Signature Classic",
+   "promoter": "",
+   "reraRef": "PR/KN/170804/000239",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "sipani-jardin",
+   "name": "Sipani Jardin",
+   "promoter": "",
+   "reraRef": "PR/KN/170805/001129",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "alanoville",
+   "name": "Alanoville",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000294",
+   "reraComplete": true,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "dnr-reflection",
+   "name": "DNR Reflection",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000279",
+   "reraComplete": true,
+   "locality": "Bellandur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "vista-vera",
+   "name": "Vista Vera",
+   "promoter": "",
+   "reraRef": "PR/KN/170807/001174",
+   "reraComplete": true,
+   "locality": "Malleshwaram",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "jain-heights-grand-west-phase-i",
+   "name": "Jain Heights Grand West Phase I",
+   "promoter": "",
+   "reraRef": "PR/KN/170728/000219",
+   "reraComplete": true,
+   "locality": "Yeshwanthpur",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-westwoods",
+   "name": "Prestige Westwoods",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000248",
+   "reraComplete": true,
+   "locality": "Magadi Road",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "godrej-eternity",
+   "name": "Godrej Eternity",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000233",
+   "reraComplete": true,
+   "locality": "Off Kanakapura Main Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "master-classic-residency",
+   "name": "Master Classic Residency",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000350",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "smr-vinay-estella",
+   "name": "SMR Vinay Estella",
+   "promoter": "",
+   "reraRef": "PR/KN/170805/001130",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "purva-coronation-square",
+   "name": "Purva Coronation Square",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000235",
+   "reraComplete": true,
+   "locality": "J P Nagar 7th Phase",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "ltcel-raintree-boulevard-cl1",
+   "name": "LTCEL Raintree Boulevard CL1",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000245",
+   "reraComplete": true,
+   "locality": "Bellary Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "opulent-spire",
+   "name": "Opulent Spire",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000561",
+   "reraComplete": true,
+   "locality": "Jayanagar 9th Block",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "ozone-urbana",
+   "name": "Ozone Urbana",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000287",
+   "reraComplete": true,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "shravanee-vista-gardenia",
+   "name": "Shravanee Vista Gardenia",
+   "promoter": "",
+   "reraRef": "PR/KN/170831/001888",
+   "reraComplete": true,
+   "locality": "Basavanagudi",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "gitanjali-aristocracy",
+   "name": "Gitanjali Aristocracy",
+   "promoter": "",
+   "reraRef": "PR/KN/170808/001194",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "silver-domicile",
+   "name": "Silver Domicile",
+   "promoter": "",
+   "reraRef": "PR/KN/170831/001918",
+   "reraComplete": true,
+   "locality": "Rachenahalli",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "bollineni-silas",
+   "name": "Bollineni Silas",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000274",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "pride-enchanta-phase-i",
+   "name": "Pride Enchanta Phase I",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000409",
+   "reraComplete": true,
+   "locality": "Mysore Road",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "provident-skyworth-phase-1",
+   "name": "Provident Skyworth Phase 1",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000355",
+   "reraComplete": true,
+   "locality": "Mysore Road",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "sowparnika-sanvi-phase-ii",
+   "name": "Sowparnika Sanvi Phase II",
+   "promoter": "",
+   "reraRef": "PR/KN/170805/001139",
+   "reraComplete": true,
+   "locality": "Whitefield",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "prestige-bagamane-temple-bells",
+   "name": "Prestige Bagamane Temple Bells",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000281",
+   "reraComplete": true,
+   "locality": "Rajarajeshwari Nagar",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "pioneer-kingstown",
+   "name": "Pioneer Kingstown",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000266",
+   "reraComplete": true,
+   "locality": "Hosur Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "gcorp-mahalakshmi",
+   "name": "GCORP Mahalakshmi",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000316",
+   "reraComplete": true,
+   "locality": "Sahakar Nagar",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "mana-tropicale",
+   "name": "Mana Tropicale",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000317",
+   "reraComplete": true,
+   "locality": "Off Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "r-f-twilight",
+   "name": "R F Twilight",
+   "promoter": "",
+   "reraRef": "PR/KN/170831/001924",
+   "reraComplete": true,
+   "locality": "Kengeri",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "vrr-fortuna",
+   "name": "VRR Fortuna",
+   "promoter": "",
+   "reraRef": "PR/KN/170802/000931",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "shriram-summitt",
+   "name": "Shriram Summitt",
+   "promoter": "",
+   "reraRef": "PR/KN/170804/001121",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "skylark-ithaca",
+   "name": "Skylark Ithaca",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000308",
+   "reraComplete": true,
+   "locality": "K R Puram",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "t-g-epitome",
+   "name": "T G Epitome",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000521",
+   "reraComplete": true,
+   "locality": "Sarjapur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "vedant-vayun",
+   "name": "Vedant Vayun",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000296",
+   "reraComplete": true,
+   "locality": "Begur Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "bren-starlight",
+   "name": "Bren Starlight",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000368",
+   "reraComplete": true,
+   "locality": "Old Madras Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "orchids",
+   "name": "Orchids",
+   "promoter": "",
+   "reraRef": "PR/KN/170823/001300",
+   "reraComplete": true,
+   "locality": "Thanisandra Main Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "century-central",
+   "name": "Century Central",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000351",
+   "reraComplete": true,
+   "locality": "Kanakapura Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "bren-champions-square",
+   "name": "Bren Champions Square",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000395",
+   "reraComplete": true,
+   "locality": "Sarjapur Main Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "janaadhar-shubha-ii-cluster-2",
+   "name": "Janaadhar Shubha II Cluster 2",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000337",
+   "reraComplete": true,
+   "locality": "Attibele Hobli",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "gm-global-techies-town-tower-c",
+   "name": "GM Global Techies Town Tower C",
+   "promoter": "",
+   "reraRef": "PR/KN/170814/001289",
+   "reraComplete": true,
+   "locality": "Electronic City Phase I",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "experia",
+   "name": "Experia",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000359",
+   "reraComplete": true,
+   "locality": "J P Nagar 7th Phase",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "five-rings",
+   "name": "Five Rings",
+   "promoter": "",
+   "reraRef": "PR/KN/170922/002143",
+   "reraComplete": true,
+   "locality": "Sarjapur Main Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "neeraja-sarovar",
+   "name": "Neeraja Sarovar",
+   "promoter": "",
+   "reraRef": "PR/KN/170803/000957",
+   "reraComplete": true,
+   "locality": "K R Puram",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "taapasi-summerbay",
+   "name": "Taapasi Summerbay",
+   "promoter": "",
+   "reraRef": "PR/KN/170823/001442",
+   "reraComplete": true,
+   "locality": "Yelahanka",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "shriline-avanti",
+   "name": "Shriline Avanti",
+   "promoter": "",
+   "reraRef": "PR/KN/170831/001664",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "navami-funique",
+   "name": "Navami Funique",
+   "promoter": "",
+   "reraRef": "PR/KN/170911/001532",
+   "reraComplete": true,
+   "locality": "Electronic City",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "vspl-pinnacle",
+   "name": "VSPL Pinnacle",
+   "promoter": "",
+   "reraRef": "PR/KN/170831/001908",
+   "reraComplete": true,
+   "locality": "Sanjeevini Nagar",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "nvt-life-square",
+   "name": "NVT Life Square",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000325",
+   "reraComplete": true,
+   "locality": "Chansandra",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "the-ripple",
+   "name": "The Ripple",
+   "promoter": "",
+   "reraRef": "PR/KN/170814/001303",
+   "reraComplete": true,
+   "locality": "Gunjur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "c-square",
+   "name": "C-Square",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000341",
+   "reraComplete": true,
+   "locality": "Hosur Main Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "bren-imperia",
+   "name": "Bren Imperia",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000390",
+   "reraComplete": true,
+   "locality": "Harlur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "shriram-southern-crest",
+   "name": "Shriram Southern Crest",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000364",
+   "reraComplete": true,
+   "locality": "J P Nagar",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "arge-urban-bloom",
+   "name": "Arge Urban Bloom",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000318",
+   "reraComplete": true,
+   "locality": "Yeshwanthpur",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "kbr-elite",
+   "name": "KBR Elite",
+   "promoter": "",
+   "reraRef": "PR/KN/170823/001417",
+   "reraComplete": true,
+   "locality": "Hebbal",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "century-breeze",
+   "name": "Century Breeze",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000324",
+   "reraComplete": true,
+   "locality": "Jakkur",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "the-gran-carmen-address",
+   "name": "The Gran Carmen Address",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000379",
+   "reraComplete": true,
+   "locality": "Sarjapur Road",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "adarsh-citrine",
+   "name": "Adarsh Citrine",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000332",
+   "reraComplete": true,
+   "locality": "J P Nagar 7th Phase",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "sobha-morzaria-grandeur-2-w1",
+   "name": "Sobha Morzaria Grandeur 2 (W1)",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000412",
+   "reraComplete": true,
+   "locality": "Koramangala",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "aryan-golden-arena",
+   "name": "Aryan Golden Arena",
+   "promoter": "",
+   "reraRef": "PR/KN/170820/001288",
+   "reraComplete": true,
+   "locality": "Sarjapur",
+   "zone": "East",
+   "status": "—"
+  },
+  {
+   "slug": "jr-garden-retreat-2",
+   "name": "JR Garden Retreat 2",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000414",
+   "reraComplete": true,
+   "locality": "Hosur Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "dhammanagi-florence",
+   "name": "Dhammanagi Florence",
+   "promoter": "",
+   "reraRef": "PR/KN/170801/000960",
+   "reraComplete": true,
+   "locality": "Devanahalli",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "purva-westend-phase-1",
+   "name": "Purva Westend Phase 1",
+   "promoter": "",
+   "reraRef": "PR/KN/170729/000394",
+   "reraComplete": true,
+   "locality": "Hosur Main Road",
+   "zone": "South",
+   "status": "—"
+  },
+  {
+   "slug": "pride-enchanta-phase-ii",
+   "name": "Pride Enchanta Phase II",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000410",
+   "reraComplete": true,
+   "locality": "Mysore Road",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "pride-palatia-phase-ii",
+   "name": "Pride Palatia Phase II",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000404",
+   "reraComplete": true,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "pride-palatia-phase-i",
+   "name": "Pride Palatia Phase I",
+   "promoter": "",
+   "reraRef": "PR/KN/170731/000463",
+   "reraComplete": true,
+   "locality": "Hennur Road",
+   "zone": "North",
+   "status": "—"
+  },
+  {
+   "slug": "purva-sunflower",
+   "name": "Purva Sunflower",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000403",
+   "reraComplete": true,
+   "locality": "Magadi Road",
+   "zone": "West",
+   "status": "—"
+  },
+  {
+   "slug": "brigade-buena-vista",
+   "name": "Brigade Buena Vista",
+   "promoter": "",
+   "reraRef": "PR/KN/170730/000405",
+   "reraComplete": true,
+   "locality": "Old Madras Road",
+   "zone": "East",
+   "status": "—"
   }
  ]
 }

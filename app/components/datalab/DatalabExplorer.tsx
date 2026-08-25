@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ArrowUpRight, MapPin, Scale, Search, ShieldCheck, X } from "lucide-react";
+import { ArrowUpRight, FileText, MapPin, Scale, Search, ShieldCheck, X } from "lucide-react";
 import registry from "../../lib/datalab/projects.json";
 import { gradeOf } from "../../lib/datalab/grade";
 import { localityLatLng, osmEmbedUrl, osmLink } from "../../lib/datalab/geo";
@@ -23,6 +23,10 @@ type Project = {
 
 const ZONES = ["All", "North", "East", "South", "West", "Central"] as const;
 
+/** The one project whose full specimen report is published free. */
+const SAMPLE_REPORT_SLUG = "embassy-edge";
+const SAMPLE_REPORT_URL = "/reports/embassy-edge-specimen.pdf";
+
 /** Published ranking formula — order, never opinion. */
 const STATUS_WEIGHT: Record<string, number> = {
   "New launch": 3,
@@ -36,9 +40,11 @@ const STATUS_WEIGHT: Record<string, number> = {
 const projects = registry.projects as Project[];
 
 const promoterCounts = projects.reduce<Record<string, number>>((acc, p) => {
-  acc[p.promoter] = (acc[p.promoter] || 0) + 1;
+  if (p.promoter) acc[p.promoter] = (acc[p.promoter] || 0) + 1;
   return acc;
 }, {});
+
+const promoterLabel = (p: Project) => p.promoter || "Promoter on register — pending sync";
 
 const rankScore = (p: Project) =>
   (STATUS_WEIGHT[p.status] ?? 1) * 10 + Math.min(promoterCounts[p.promoter] || 1, 8);
@@ -111,7 +117,7 @@ export function DatalabExplorer() {
   );
 
   const open = openSlug ? projects.find((p) => p.slug === openSlug) : null;
-  const siblings = open
+  const siblings = open && open.promoter
     ? projects.filter((p) => p.promoter === open.promoter && p.slug !== open.slug).slice(0, 4)
     : [];
   const comparing = compare
@@ -142,7 +148,7 @@ export function DatalabExplorer() {
     <button className="dl__row" key={p.slug} onClick={() => setOpenSlug(p.slug)}>
       <span className="dl__row-main">
         <strong>{p.name}</strong>
-        <span>{p.promoter}</span>
+        <span>{promoterLabel(p)}</span>
       </span>
       <span className="dl__row-side">
         <span className="dl__chip dl__chip--zone"><MapPin size={11} aria-hidden="true" />{p.locality}</span>
@@ -203,7 +209,7 @@ export function DatalabExplorer() {
               <span className="dl__pick-rank">{String(index + 1).padStart(2, "0")}</span>
               <span className="dl__pick-body">
                 <strong>{p.name}</strong>
-                <span className="dl__pick-meta">{p.promoter}</span>
+                <span className="dl__pick-meta">{promoterLabel(p)}</span>
                 <span className="dl__pick-loc"><MapPin size={12} aria-hidden="true" />{p.locality}</span>
               </span>
               <span className={`dl__chip${p.status === "New launch" ? " dl__chip--gold" : ""}`}>{p.status}</span>
@@ -213,7 +219,8 @@ export function DatalabExplorer() {
       </div>
       <p className="dl__formula annot">
         Ranked by register status and the builder’s footprint in this register — a published
-        formula over public records, not a recommendation. Covers are brand art, not photographs.
+        formula over public records, not a recommendation. Commercial and plotted registrations
+        join with the full register sync.
       </p>
 
       <div className="dl__all-toggle">
@@ -260,7 +267,7 @@ export function DatalabExplorer() {
             <h3>{open.name}</h3>
             <GradeDial project={open} />
             <dl className="dossier__facts">
-              <div><dt>Builder</dt><dd>{open.promoter}</dd></div>
+              <div><dt>Builder</dt><dd>{promoterLabel(open)}</dd></div>
               <div><dt>Locality</dt><dd>{open.locality} · {open.zone} Bengaluru</dd></div>
               <div><dt>Register status</dt><dd>{open.status}</dd></div>
               <div>
@@ -275,6 +282,27 @@ export function DatalabExplorer() {
             <a className="text-link" href={registry.verifyUrl} target="_blank" rel="noreferrer">
               Verify on the official K-RERA register <ArrowUpRight size={13} aria-hidden="true" />
             </a>
+            <div className="dossier__report">
+              <p className="dossier__more-title"><FileText size={12} aria-hidden="true" /> Property Intelligence Report</p>
+              <p className="dossier__report-copy">
+                Ten pages on this project: registration record, Record Grade, builder profile,
+                ownership trail, statutory costs and site documentation — researched from official
+                registers and signed off before delivery.
+              </p>
+              {open.slug === SAMPLE_REPORT_SLUG ? (
+                <div className="dossier__report-cta">
+                  <a className="button button--gold button--sm" href={SAMPLE_REPORT_URL} target="_blank" rel="noreferrer" data-track="report_sample_opened">
+                    View the sample report <ArrowUpRight size={14} aria-hidden="true" />
+                  </a>
+                  <span className="dossier__soon">Free specimen — commissioned reports complete every verified section</span>
+                </div>
+              ) : (
+                <div className="dossier__report-cta">
+                  <span className="dossier__coming">Full report — coming soon</span>
+                  <a className="text-link" href="/contact#early-access-form">Join early access to be told first</a>
+                </div>
+              )}
+            </div>
             <MiniMap project={open} />
             <ProjectAsk slug={open.slug} name={open.name} />
             {siblings.length > 0 && (
@@ -324,10 +352,10 @@ export function DatalabExplorer() {
                 </div>
               ))}
               {([
-                ["Builder", (p: Project) => p.promoter],
+                ["Builder", (p: Project) => promoterLabel(p)],
                 ["Locality", (p: Project) => `${p.locality} · ${p.zone}`],
                 ["Register status", (p: Project) => p.status],
-                ["Builder footprint", (p: Project) => `${promoterCounts[p.promoter]} register entries`],
+                ["Builder footprint", (p: Project) => p.promoter ? `${promoterCounts[p.promoter]} register entries` : "Pending sync"],
                 ["Record Grade", (p: Project) => {
                   const g = gradeOf(p);
                   return `${g.grade}${g.provisional ? " (provisional)" : ""} · ${g.earned}/${g.possible}`;

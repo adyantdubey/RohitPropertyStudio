@@ -11,6 +11,7 @@ import { YouTubeRail } from "./components/lab/YouTubeRail";
 import { SectionVideo } from "./components/SectionVideo";
 import { SlideGallery } from "./components/SlideGallery";
 import { StatRail } from "./components/StatRail";
+import datalabRegistry from "./lib/datalab/projects.json";
 import {
   academyResources,
   audiences,
@@ -230,6 +231,52 @@ export default function HomePage() {
 
       {/* ---------- act 8b · market context ---------- */}
       <MarketContext />
+
+      {/* ---------- act 8c · the second pillar: the datalab ---------- */}
+      <section className="section surface-deep" id="datalab-pillar">
+        <div className="shell pillar__grid">
+          <div className="pillar__copy">
+            <p className="eyebrow">Beyond the course</p>
+            <h2 data-split>The Bengaluru Datalab: every project&apos;s public record, readable.</h2>
+            <p>
+              {datalabRegistry.projects.length} RERA-registered Bengaluru projects, searchable by
+              name, builder or locality — with the register facts, a published Record Grade, street
+              imagery and an AI guide that answers only from the record. Free to explore.
+            </p>
+            <p>
+              And for the property you are serious about: a ten-page Property Intelligence Report —
+              registration record, builder profile, ownership trail, statutory costs — reviewed and
+              signed before delivery.
+            </p>
+            <div className="hero__actions">
+              <a className="button button--gold" href="/datalab">
+                Explore the Datalab <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <a className="button button--outline" href="/reports" data-track="report_sample_opened">
+                See the report <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <aside className="pillar__spine" data-reveal aria-label="Report contents">
+            <p className="pillar__spine-title">The report, page by page</p>
+            {[
+              "Project identification & registration",
+              "Record Grade assessment",
+              "Promoter profile & track record",
+              "Encumbrance & ownership history",
+              "Statutory charges & cost framework",
+              "Site documentation",
+              "Due-diligence checklist",
+              "Certification & references",
+            ].map((item, index) => (
+              <p className="pillar__spine-row" key={item}>
+                <span>{String(index + 1).padStart(2, "0")}</span> {item}
+              </p>
+            ))}
+            <p className="annot">specimen free on the Reports page — sections pending verification say so</p>
+          </aside>
+        </div>
+      </section>
 
       {/* ---------- act 9a · proof ---------- */}
       <section className="section surface-deep" id="reviews">

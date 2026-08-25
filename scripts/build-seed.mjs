@@ -4,11 +4,11 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 const ZONES = [
-  ["North", ["devanahalli", "bagalur", "bagaluru", "yelahanka", "hebbal", "hennur", "thanisandra", "jakkur", "ivc road", "doddaballapura", "airport", "kogilu", "shettigere", "aerospace", "bellary", "hosahalli", "chikkajala", "rachenalli", "nagavara", "manyata", "north bengaluru"]],
-  ["East", ["whitefield", "varthur", "panathur", "sarjapur", "bellandur", "gunjur", "budigere", "hoodi", "old madras", "hoskote", "kannamangala", "belathur", "nallurhalli", "chikkabanahalli", "ramagondanahalli", "soukya", "kodathi", "gattahalli", "hadosiddapura", "kaggadasapura", "yemalur", "hope farm", "cheemasandra", "outer ring road"]],
-  ["South", ["electronic city", "hosur", "begur", "bannerghatta", "kanakapura", "jp nagar", "anekal", "attibele", "chandapura", "hosa road", "singasandra", "hsr layout", "manchenahalli", "kithiganahalli", "hommadevanahalli", "south bengaluru"]],
-  ["West", ["yeshwanthpur", "tumkur road", "rajarajeshwari", "magadi", "nelamangala", "kumbalgodu", "goruguntepalya", "rajajinagar"]],
-  ["Central", ["lalbagh", "indiranagar"]],
+  ["North", ["devanahalli", "bagalur", "bagaluru", "yelahanka", "hebbal", "hennur", "thanisandra", "jakkur", "ivc road", "doddaballapura", "airport", "kogilu", "shettigere", "aerospace", "bellary", "hosahalli", "chikkajala", "rachenalli", "rachenahalli", "nagavara", "manyata", "sahakar nagar", "sanjeevini", "horamavu", "kalkere", "nandi", "north bengaluru"]],
+  ["East", ["whitefield", "varthur", "panathur", "sarjapur", "bellandur", "gunjur", "budigere", "hoodi", "old madras", "hoskote", "kannamangala", "belathur", "nallurhalli", "chikkabanahalli", "ramagondanahalli", "soukya", "kodathi", "gattahalli", "hadosiddapura", "kaggadasapura", "yemalur", "hope farm", "cheemasandra", "outer ring road", "k r puram", "krishnarajapura", "marathahalli", "bhoganhalli", "basavanagar", "hal", "harlur", "chansandra", "rammurthynagar", "milestone"]],
+  ["South", ["electronic city", "hosur", "begur", "bannerghatta", "kanakapura", "jp nagar", "j p nagar", "anekal", "attibele", "chandapura", "hosa road", "singasandra", "hsr layout", "manchenahalli", "kithiganahalli", "hommadevanahalli", "gottigere", "banashankari", "gowdanapalya", "koramangala", "jayanagar", "basavanagudi", "south bengaluru"]],
+  ["West", ["yeshwanthpur", "tumkur road", "rajarajeshwari", "magadi", "nelamangala", "kumbalgodu", "goruguntepalya", "rajajinagar", "mysore road", "kengeri", "jalahalli", "malleshwaram"]],
+  ["Central", ["lalbagh", "indiranagar", "richmond", "cunningham", "frazer", "shivajinagar", "vasanthnagar", "sadashivanagar", "ulsoor"]],
 ];
 
 const zoneOf = (locality) => {
@@ -26,14 +26,14 @@ const seen = new Set();
 const projects = [];
 for (const row of rows) {
   const [name, promoter, rera, locality, status] = row.split("|").map((s) => s.trim());
-  if (!name || !promoter) continue;
+  if (!name) continue;
   const slug = slugify(name);
   if (seen.has(slug)) continue;
   seen.add(slug);
   projects.push({
     slug,
     name,
-    promoter,
+    promoter: promoter || "",
     // Partial prefixes come from public register summaries; the collector
     // replaces them with full numbers straight from K-RERA.
     reraRef: rera || "",

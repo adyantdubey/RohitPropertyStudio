@@ -121,7 +121,7 @@ function projectPrompt(slug: string): string | null {
     ``,
     `REGISTER FACTS (Karnataka RERA public register, as of ${datalab.asOf}):`,
     `- Project: ${project.name}`,
-    `- Builder/promoter: ${project.promoter}`,
+    `- Builder/promoter: ${project.promoter || "on record — name pending full register sync"}`,
     `- Locality: ${project.locality} (${project.zone} Bengaluru)`,
     `- Register status: ${project.status}`,
     `- K-RERA reference: ${project.reraRef || "on record"}${project.reraComplete ? "" : " (partial reference — must be confirmed on the official register)"}`,
