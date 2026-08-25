@@ -198,7 +198,7 @@ export function DatalabExplorer() {
       <div className="dl__picks">
         {topPicks.map((p, index) => (
           <button className="dl__pick dl__pick--cover" key={p.slug} onClick={() => setOpenSlug(p.slug)}>
-            <ProjectImage slug={p.slug} name={p.name} locality={p.locality} zone={p.zone} compact />
+            <ProjectImage slug={p.slug} name={p.name} compact />
             <span className="dl__pick-inner">
               <span className="dl__pick-rank">{String(index + 1).padStart(2, "0")}</span>
               <span className="dl__pick-body">
@@ -255,7 +255,7 @@ export function DatalabExplorer() {
             <button className="dossier__close" aria-label="Close" onClick={() => setOpenSlug(null)}>
               <X size={17} aria-hidden="true" />
             </button>
-            <ProjectImage slug={open.slug} name={open.name} locality={open.locality} zone={open.zone} />
+            <ProjectImage slug={open.slug} name={open.name} />
             <p className="eyebrow">Project dossier</p>
             <h3>{open.name}</h3>
             <GradeDial project={open} />
@@ -319,7 +319,7 @@ export function DatalabExplorer() {
               <div className="cgrid__head" aria-hidden="true" />
               {comparing.map((p) => (
                 <div className="cgrid__head" key={p.slug}>
-                  <ProjectImage slug={p.slug} name={p.name} locality={p.locality} zone={p.zone} compact />
+                  <ProjectImage slug={p.slug} name={p.name} compact />
                   <strong>{p.name}</strong>
                 </div>
               ))}
