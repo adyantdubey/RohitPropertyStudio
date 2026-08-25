@@ -17,7 +17,7 @@ export type GradeCheck = {
 };
 
 const promoterCounts = registry.projects.reduce<Record<string, number>>((acc, p) => {
-  if (p.promoter) acc[p.promoter] = (acc[p.promoter] || 0) + 1;
+  acc[p.promoter] = (acc[p.promoter] || 0) + 1;
   return acc;
 }, {});
 
@@ -29,7 +29,7 @@ export function gradeChecks(project: Project): GradeCheck[] {
       label: "Register status", max: 15,
       earned: ["Active", "New launch", "Completed"].includes(project.status) ? 15 : project.status === "Applied" ? 5 : 0,
     },
-    { label: "Builder's registered footprint", max: 10, earned: project.promoter ? Math.min(promoterCounts[project.promoter] || 1, 10) : null },
+    { label: "Builder's registered footprint", max: 10, earned: Math.min(promoterCounts[project.promoter] || 1, 10) },
     { label: "No unresolved complaints found", max: 15, earned: null },
     { label: "Encumbrance trail reviewed clean", max: 15, earned: null },
     { label: "Approvals on the filing verified", max: 10, earned: null },

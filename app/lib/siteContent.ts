@@ -174,7 +174,6 @@ export const navigation = [
   { label: "Course", href: "/course" },
   { label: "Property Lab", href: "/lab" },
   { label: "Datalab", href: "/datalab" },
-  { label: "Reports", href: "/reports" },
   { label: "About Rohitt", href: "/about" },
   { label: "Client Stories", href: "/stories" },
   { label: "Resources", href: "/resources" },

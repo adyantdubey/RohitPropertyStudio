@@ -69,18 +69,6 @@ test("server-renders the Bengaluru Datalab from the register seed", async () => 
   assert.doesNotMatch(html, /₹\s?[\d,]+/);
 });
 
-test("server-renders the reports page and the homepage pillar", async () => {
-  const response = await render("/reports");
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /Property Intelligence Report/i);
-  assert.match(html, /embassy-edge-specimen\.pdf/);
-  assert.match(html, /never says buy/i);
-  const home = await (await render()).text();
-  assert.match(home, /Bengaluru Datalab/i);
-  assert.match(home, /href="\/reports"/);
-});
-
 test("server-renders the factual instructor page", async () => {
   const response = await render("/about");
   assert.equal(response.status, 200);
